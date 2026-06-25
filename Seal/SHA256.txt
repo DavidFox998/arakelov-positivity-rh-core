@@ -1,0 +1,29 @@
+# arakelov-positivity-rh-core — SHA-256 Manifest
+# Opera Numerorum — David Fox, June 25 2026
+# Axiom footprint: {propext, Classical.choice, Quot.sound}
+# SORRY: 0  AXIOM keyword: 0  OPAQUE: 0  NATIVE_DECIDE: 0
+#
+# Reproduce:
+#   git clone https://github.com/DavidFox998/arakelov-positivity-rh-core
+#   cd arakelov-positivity-rh-core
+#   sha256sum lakefile.lean lean-toolchain ArakelovRH.lean \
+#     ArakelovRH/C0*.lean ArakelovRH/Master.lean
+#
+# Source provenance:
+#   rh-p5-bridge-14  FOR_BRIDGE.txt manifest SHA (C01-C10):  see Seal/PROVENANCE.txt
+#   bost-connes      Seal/SHA256.asc sealed:                  see Seal/PROVENANCE.txt
+
+e236088c93d3faeda6337281e21dea14b3e0712940b8a502ac73277b35265b8f  lakefile.lean
+e6930c662006db4d6dc76c651d60a608e4f6a18bcfd53e6b0167d70a125285d5  lean-toolchain
+073ce46bd6c7cdac86aa474640778fb21445334927c64ce9a713935c606a37e7  ArakelovRH.lean
+4435870d321bc9b338a21728283f1120e535b4c2422637a9882f6186a859a18f  ArakelovRH/C01_Arakelov.lean
+7185a4b46e9e2754ce5c3e063aba62b8baa5c3bcea4c6e89ff5832613f5299d4  ArakelovRH/C02_Modularity.lean
+1a4bde50eefdd0fdba86edaaf578b836ceb84271797dabf491aefe2905de81d0  ArakelovRH/C03_Positivity.lean
+7f7635403ce62c87e59026ee19e258654e0c8f108685c896f0e39ec0dc360cce  ArakelovRH/C04_HeightBound.lean
+b95ee52842ee40bb1d99def52e2bfbd8df08768cf8a52a1492fbfd69ecc61647  ArakelovRH/C05_Discriminant.lean
+5f919bf0febc6f5702d08f2940715943ce037d14f0a148e477ac944dbb29330a  ArakelovRH/C06_BostConnes.lean
+d751b144f7fb43c8f0dad7fefd64747c3db08a6f9d6270b7b339d3cd7e755bd4  ArakelovRH/C07_RHCombinator.lean
+6fdcf112c7019d0f308ea95a948f57c6bbefbb8d75bfaa673ba1a7125ed6af77  ArakelovRH/C08_Positivity.lean
+11474c9579efe5e4a3d95dd9729cc8eea7b306d825c5b0214b9a21295262f302  ArakelovRH/Master.lean
+
+Manifest hash (sha256sum of above file list): 4f8d257684f4138dd3c2cd26d1cbe233438062984f1ba828f05de093d680791c

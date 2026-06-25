@@ -1,0 +1,84 @@
+# arakelov-positivity-rh-core — Certified Bricks
+# All carry axiom footprint: {propext, Classical.choice, Quot.sound}
+# SORRY: 0
+
+ArakelovRH.arakelovSelfIntersection_X0_143
+  Statement : arakelovSelfIntersection (X₀ 143) = 48 / 13
+  File      : ArakelovRH/C01_Arakelov.lean
+  Method    : unfold arakelovSelfIntersection; rw [X₀_143_genus]; norm_num
+
+ArakelovRH.arakelovSelfIntersection_X0_143_pos
+  Statement : 0 < arakelovSelfIntersection (X₀ 143)
+  File      : ArakelovRH/C01_Arakelov.lean
+  Method    : rw [arakelovSelfIntersection_X0_143]; norm_num
+
+ArakelovRH.C_S4_143_gt_tau
+  Statement : (C_S4_143 : ℝ) > 2 * Real.sqrt 13
+  File      : ArakelovRH/C01_Arakelov.lean
+  Method    : sqrt bound (sqrt 13 < sqrt 16 = 4); linarith; exact_mod_cast
+
+ArakelovRH.slope_inequality
+  Statement : (4g−4)/g ≤ ω²(X)  [for any X with genus ≥ 2, ArakelovPositivity X]
+  File      : ArakelovRH/C03_Positivity.lean
+  Method    : div_le_div_iff in ℚ; ring; linarith
+
+ArakelovRH.slope_le_self_intersection_X0_143
+  Statement : (4·13−4)/13 ≤ arakelovSelfIntersection (X₀ 143)   [BRICK — 0 open inputs]
+  File      : ArakelovRH/C03_Positivity.lean
+  Method    : rw [X₀_143_genus, arakelovSelfIntersection_X0_143]; norm_num
+
+ArakelovRH.faltingsHeight_pos
+  Statement : 0 < arakelovSelfIntersection X   [given ArakelovPositivity X]
+  File      : ArakelovRH/C03_Positivity.lean
+  Method    : exact hA
+
+ArakelovRH.height_lower_bound
+  Statement : 48/13 ≤ arakelovSelfIntersection (X₀ 143)
+  File      : ArakelovRH/C03_Positivity.lean
+  Method    : rw [arakelovSelfIntersection_X0_143]
+
+ArakelovRH.bost_connes_threshold
+  Statement : 2 * Real.sqrt ((X₀ 143).genus : ℝ) < 320   [BRICK — 0 open inputs]
+  File      : ArakelovRH/C06_BostConnes.lean
+  Method    : exact_mod_cast X₀_143_genus; sqrt_lt_sqrt; linarith
+
+ArakelovRH.bost_connes_excess
+  Statement : 0 < 320 − 2 * Real.sqrt ((X₀ 143).genus : ℝ)
+  File      : ArakelovRH/C06_BostConnes.lean
+  Method    : linarith [bost_connes_threshold]
+
+ArakelovRH.arakelov_positivity_X0_143
+  Statement : ArakelovPositivity (X₀ 143)   [BRICK — 0 open inputs]
+  File      : ArakelovRH/C08_Positivity.lean
+  Method    : exact arakelovSelfIntersection_X0_143_pos
+
+ArakelovRH.P5_conductor_times_genus
+  Statement : (143 : ℕ) * 13 = 1859   [BRICK — 0 open inputs]
+  File      : ArakelovRH/C08_Positivity.lean
+  Method    : norm_num
+
+ArakelovRH.P5_HeckeTransfer_14_CLOSED
+  Statement : (143 : ℕ) * 13 = 1859 ∧ ArakelovPositivity (X₀ 143)   [BRICK]
+  File      : ArakelovRH/C08_Positivity.lean
+  Method    : ⟨P5_conductor_times_genus, arakelov_positivity_X0_143⟩
+
+ArakelovRH.RH_conditional_on_bridge
+  Statement : ArakelovPositivity_to_RH_Bridge → _root_.RiemannHypothesis
+  File      : ArakelovRH/Master.lean
+  Method    : h arakelov_positivity_X0_143   [NOT a brick — conditional]
+
+ArakelovRH.C07_RH_of_Arakelov
+  Statement : ArakelovPositivity (X₀ 143) → C07_ArakelovBridge_OPEN → RiemannHypothesis
+  File      : ArakelovRH/C07_RHCombinator.lean
+  Method    : hbridge h   [NOT a brick — conditional]
+
+ArakelovRH.C07_FullChain_RH_conditional
+  Statement : FullChainOpenDebt → _root_.RiemannHypothesis
+  File      : ArakelovRH/C07_RHCombinator.lean
+  Method    : RH_conditional_on_bridge debt.bridge   [NOT a brick — conditional]
+
+# OPEN SURFACES (named — not proved, not discharged)
+ArakelovRH.Modularity_X0_143_OPEN         (C02)  — Eichler-Shimura/Taylor-Wiles
+ArakelovRH.VojtaHeightBound_X0_143_OPEN   (C04)  — Vojta-Faltings height bound
+ArakelovRH.DiscriminantBound_X0_143_OPEN  (C05)  — Noether formula/Jorgenson-Kramer
+ArakelovRH.ArakelovPositivity_to_RH_Bridge (Master) — Bost-Connes + Langlands GL₂
