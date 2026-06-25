@@ -19,6 +19,8 @@ import ArakelovRH.Spectral.SelbergTrace143
 import ArakelovRH.Spectral.KimSarnakChain
 import ArakelovRH.RHRouteA
 import ArakelovRH.RouteBClosure
+import ArakelovRH.ZeroDensity
+import ArakelovRH.RHCoreProof
 import ArakelovRH.RHRouteB
 import ArakelovRH.Master
 import ArakelovRH.Scaffold.GrowthContradiction
