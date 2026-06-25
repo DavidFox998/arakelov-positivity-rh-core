@@ -21,6 +21,7 @@ import ArakelovRH.RHRouteA
 import ArakelovRH.RouteBClosure
 import ArakelovRH.ZeroDensity
 import ArakelovRH.RHCoreProof
+import ArakelovRH.RouteBClosed
 import ArakelovRH.RHRouteB
 import ArakelovRH.Master
 import ArakelovRH.Scaffold.GrowthContradiction

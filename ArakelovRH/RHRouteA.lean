@@ -4,6 +4,26 @@
   Canonical standalone Lean 4 certificate.
   Author: David Fox.  Opera Numerorum.  June 2026.
 
+
+  ══════════════════════════════════════════════════════════════════
+  STATUS: DEFERRED
+  ══════════════════════════════════════════════════════════════════
+
+  Route A is deferred.  It will be examined ONLY AFTER:
+    (1) Route B is fully formalized (all 3 Lean gaps closed), AND
+    (2) The Clay RH problem statement is formally resolved via Route B.
+
+  See ArakelovRH/RouteBClosed.lean for the official proof strategy.
+
+  The mathematical reason for deferral:
+    Gate 1 (GrowthBound_OPEN) is IN FACT FALSE as stated.
+    |zeta(1/2+it)| = Omega(log t / log log t)  (Titchmarsh 1986 §8).
+    Any correct Route A argument requires a different bound —
+    which is only worth investigating once the unconditional Route B
+    certificate is complete and the Clay statement is resolved.
+
+  ══════════════════════════════════════════════════════════════════
+
   ══════════════════════════════════════════════════════════════════
   WHAT THIS FILE IS
   ══════════════════════════════════════════════════════════════════
