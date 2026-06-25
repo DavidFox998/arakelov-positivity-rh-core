@@ -2,8 +2,8 @@
 -- David Fox -- Opera Numerorum -- 2026
 -- _root_.RiemannHypothesis (Mathlib v4.12.0) is the GENUINE predicate, not True.
 -- Mathematical sources:
---   DavidFox998/ClassNumber-143  (class number, genus, norm forms, Hasse)
---   DavidFox998/rh-p5-bridge-14  (chain C01-C22, Hecke, Langlands)
+--   DavidFox998/ClassNumber-143      (class number, genus, norm forms, Hasse)
+--   DavidFox998/yang-mills-gap       (spectral gap machinery, read-only reference)
 import ArakelovRH.C01_Arakelov
 import ArakelovRH.C02_Modularity
 import ArakelovRH.C03_Positivity
@@ -14,6 +14,9 @@ import ArakelovRH.C07_RHCombinator
 import ArakelovRH.C08_Positivity
 import ArakelovRH.C11_ArakelovPairing
 import ArakelovRH.C14_SpectralGap
+import ArakelovRH.Spectral.SpectralAbstract
+import ArakelovRH.Spectral.SelbergTrace143
+import ArakelovRH.Spectral.KimSarnakChain
 import ArakelovRH.Master
 import ArakelovRH.Scaffold.GrowthContradiction
 import ArakelovRH.Scaffold.IwaniecKowalski
