@@ -329,6 +329,6 @@ theorem route_b_kimSarnak_form
     Route B has exactly 5 named open gates as of June 2026.
     Each is a def Prop; none is sorry or axiom.
     Closing all 5 gates closes RH via route_b_master_theorem. -/
-theorem route_b_open_debt_count : True := trivial
+theorem route_b_open_debt_count : True := True.intro
 
 end ArakelovRH.RouteB

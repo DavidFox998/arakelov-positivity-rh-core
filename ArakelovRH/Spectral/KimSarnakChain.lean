@@ -206,6 +206,6 @@ theorem ks_to_rh_full_chain
     Additional named open surfaces in SelbergTrace143.lean: 3
       (6) SelbergTrace_X0143_OPEN  (7) SelbergWeylLaw_X0143_OPEN
       (8) SelbergZeroFree_X0143_OPEN -/
-theorem ks_chain_audit : True := trivial
+theorem ks_chain_audit : True := True.intro
 
 end ArakelovRH.Spectral.KimSarnakChain

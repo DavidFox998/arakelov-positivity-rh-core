@@ -134,6 +134,6 @@ theorem selberg_trace_to_kimSarnak
       SelbergWeylLaw_X0143_OPEN — Weyl law
       SelbergZeroFree_X0143_OPEN — zero-free region
     All require spectral theory of Fuchsian groups (absent Mathlib v4.12.0). -/
-theorem selberg_open_count : True := trivial
+theorem selberg_open_count : True := True.intro
 
 end ArakelovRH.Spectral
