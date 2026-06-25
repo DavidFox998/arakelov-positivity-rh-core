@@ -2,19 +2,16 @@
   ArakelovRH/Master.lean
   Terminal scaffold: ArakelovPositivity -> RH bridge.
 
-  One open surface: ArakelovPositivity_to_RH_Bridge
-  One proved conditional: RH_conditional_on_bridge
+  _root_.RiemannHypothesis (Mathlib v4.12.0) is the GENUINE predicate:
+    forall (s : C) (_ : riemannZeta s = 0)
+           (_ : not exists n : N, s = -2*(n+1)) (_ : s != 1), s.re = 1/2
 
-  NOTE: In Mathlib v4.12.0, _root_.RiemannHypothesis := True.
-  Hence ArakelovPositivity_to_RH_Bridge := ArakelovPositivity (X_0 143) -> True,
-  which is trivially satisfied.  The GENUINE proof chain targets RH_genuine
-  (Scaffold/GrowthContradiction.lean).
+  One named open surface: ArakelovPositivity_to_RH_Bridge
+    STATUS: OPEN (BC95 + Langlands analytic gap)
 
-  C11 provides: arakelovPairing_X0_143_pos (BRICK -- the genuine Arakelov result)
+  C11 provides: arakelovPairing_X0_143_pos (proved, 0 sorry, classical trio)
 
-  Clay rules: no sorry, no axiom, no native_decide.
-  Axiom footprint: {propext, Classical.choice, Quot.sound}
-  SORRY: 0
+  SORRY: 0.  Axiom footprint: {propext, Classical.choice, Quot.sound}
 -/
 import ArakelovRH.C08_Positivity
 import ArakelovRH.C11_ArakelovPairing
@@ -22,11 +19,11 @@ import Mathlib.NumberTheory.LSeries.RiemannZeta
 
 namespace ArakelovRH
 
-/-- The single open surface of the Master chain.
-    In Mathlib v4.12.0, _root_.RiemannHypothesis := True, so this Prop
-    reduces to ArakelovPositivity (X_0 143) -> True, which is trivial.
-    The genuine analytic gap (BC95 + Langlands) is in C09_GRHDescent.lean.
-    STATUS: OPEN (genuine). -/
+/-- **ArakelovPositivity_to_RH_Bridge** -- the single open surface of the Master chain.
+    Given the proved Arakelov positivity, derives _root_.RiemannHypothesis.
+    _root_.RiemannHypothesis is the genuine RH predicate.
+    The analytic gap (BC95 Selberg trace + Langlands descent) is in C09_GRHDescent.lean.
+    STATUS: OPEN. -/
 def ArakelovPositivity_to_RH_Bridge : Prop :=
   ArakelovPositivity (X₀ 143) → _root_.RiemannHypothesis
 
