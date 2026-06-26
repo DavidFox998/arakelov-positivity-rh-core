@@ -1095,3 +1095,58 @@ AVENUE 3 STATUS AFTER BATCH 15:
     OPEN: RamanujanFactorization_OPEN (~5pp, quadratic algebra)
     OPEN: EulerProduct_GlobalNonZero_OPEN (~10pp, infinite products)
     TOTAL remaining Avenue 3: ~40pp
+
+====================================================================
+BATCH 16 (June 26, 2026) -- RamanujanFactorization_OPEN PROVED: pure algebra
+====================================================================
+
+NEW FILE:
+  ArakelovRH/SubClosure/RamanujanFactorizationClosed.lean  (146 lines)
+
+PURPOSE: Close RamanujanFactorization_OPEN (~5pp) with 0 sorry.
+This is pure complex number algebra: given |a| <= 2*sqrt(p), construct
+complex roots alpha = <a/2, sqrt(4p-a^2)/2>, beta = <a/2, -sqrt(4p-a^2)/2>
+of T^2 - a*T + p = 0 satisfying norm(alpha) = norm(beta) = sqrt(p).
+
+MATHEMATICAL CONTENT:
+  d := 4p - a^2 >= 0  (from a^2 <= 4p, itself from |a| <= 2*sqrt(p))
+  sqd := sqrt(d),     sqd^2 = d  (Real.sq_sqrt)
+  alpha := <a/2, sqd/2>,  beta := <a/2, -sqd/2>
+
+  normSq(alpha) = (a/2)^2 + (sqd/2)^2 = a^2/4 + d/4 = (a^2 + 4p - a^2)/4 = p
+  => norm(alpha) = sqrt(p).  Likewise beta (conjugate, same normSq).
+
+  alpha + beta = <a, 0> = (a : C)   by Complex.ext + ring.
+  alpha * beta = <(a/2)^2 + (sqd/2)^2, 0> = <p, 0> = (p : C)
+    re: (a/2)*(a/2) - (sqd/2)*(-(sqd/2)) = a^2/4 + sqd^2/4 = p  [nlinarith]
+    im: (a/2)*(-(sqd/2)) + (sqd/2)*(a/2) = 0  [ring]
+
+PROVED (0 sorry, classical trio):
+  ramanujan_factorization_closed : RamanujanFactorization_OPEN
+    -- Proof: explicit construction of roots, all 4 conditions verified.
+    -- Key tactic sequence: nlinarith [Real.sq_sqrt] for norm/re goals; ring for im+add.
+    -- API chain: norm_eq_abs -> sq_abs -> normSq_mk -> nlinarith
+    --            sqrt_sq for norm = sqrt(p) conclusion.
+
+  deligne_from_two_gaps : HeckeEigenvalue + RamanujanBound -> Deligne
+    -- RamanujanFactorization_OPEN is now discharged by this file.
+    -- One-liner: deligne_from_sub_gaps ... ramanujan_factorization_closed.
+
+CONSEQUENCE:
+  deligne_from_sub_gaps (Batch 15) now needs only TWO open sub-gaps:
+    HeckeEigenvalue_f143_OPEN  (~10pp, Hecke eigenvalue theory)
+    Deligne_RamanujanBound_OPEN (~15pp, Weil I for weight-2 cusp forms)
+
+AVENUE 3 STATUS AFTER BATCH 16:
+  CLOSED: CpowAbs_API_OPEN              (Batch 15, cpow_abs_of_pos)
+  CLOSED: CpowNormFormula for all primes (Batch 15)
+  CLOSED: RamanujanFactorization_OPEN   (Batch 16, THIS FILE)
+  OPEN: HeckeEigenvalue_f143_OPEN       (~10pp)
+  OPEN: Deligne_RamanujanBound_OPEN     (~15pp, Weil I)
+  OPEN: EulerProduct_GlobalNonZero_OPEN (~10pp, infinite product)
+  TOTAL remaining Avenue 3: ~35pp  (from ~40pp before Batch 16)
+
+AVENUE 2 STATUS (unchanged):
+  PROVED: bc6_spectral_condition (both Gate M1 inputs discharged)
+  PROVED: gate_m1_from_bc6_theorem6 (closure combinator)
+  OPEN: BC6_Theorem6_OPEN (~35pp: Selberg trace + Weil explicit + BC spectral)

@@ -69,3 +69,4 @@ import ArakelovRH.SubClosure.ExpLogBoundsSubClosure
 import ArakelovRH.SubClosure.GammaStirlingSubClosure
 import ArakelovRH.SubClosure.WeilExplicitSubClosure
 import ArakelovRH.SubClosure.DeligneBoundSubClosure
+import ArakelovRH.SubClosure.RamanujanFactorizationClosed
