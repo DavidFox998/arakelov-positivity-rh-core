@@ -513,3 +513,57 @@ B67 proof path:
 - [x] Atomic opens: 35 -> 35 (Analytics <-> DerivExch)
 - [ ] Wall C complete (1 atom: WW_GammaSeq_DerivExch_b66, ~2.5pp, B67)
 ```
+
+---
+
+### Batch 67 — Wall C: A1 (HasDerivAt formula) proved; WW_Weierstrass_b67 (B67)
+
+```
+Status: PUSHED
+Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_DerivExch_b66 -> WW_Weierstrass_b67)
+SORRY: 0.  Axioms: classical trio.
+```
+
+Proved (0 sorry):
+- `GammaSeq_cpow_hasDerivAt`: HasDerivAt (n^.) (n^s * log n) s for n >= 1.
+    Via exp(z*log n) chain rule + cpow_def_of_ne_zero.
+- `GammaSeq_prod_ne_zero`: prod(s+k) != 0 for Re(s) > 0.
+    Each factor: Re(s+k) = Re(s)+k > 0 => s+k != 0; finite product != 0.
+- `GammaSeq_prod_differentiableAt`: DifferentiableAt of prod(z+k).
+    Finset.differentiableAt_prod + each (z+k) differentiable.
+- `GammaSeq_prod_logDeriv`: logDeriv prod(z+k) s = Sigma 1/(s+k).
+    Via Mathlib logDeriv_prod: logDeriv(prod) = sum of logDerivs;
+    logDeriv(z+k) s = 1/(s+k) by field_simp + ne_zero_of_re_pos.
+- `GammaSeq_prod_hasDerivAt`: HasDerivAt prod(z+k) (prod(s+k) * Sigma 1/(s+k)) s.
+    From DifferentiableAt + logDeriv formula.
+- `GammaSeq_hasDerivAt_b67` (A1 FULLY PROVED): 0 sorry.
+    Quotient rule (HasDerivAt.div) on numerator n!*n^z and denominator prod(z+k).
+    Algebraic simplification via field_simp + ring -> GammaSeq * (log n - Sigma 1/(s+k)).
+- `WW_GammaSeq_DerivExch_b66_from_weierstrass`: DerivExch from A1 + named open.
+- `Wall_C_from_weierstrass`: full Wall C closure chain ready (0 sorry given B).
+
+Named open (1 new, 1 retired, net 35 -> 35):
+- `WW_Weierstrass_b67` (replaces WW_GammaSeq_DerivExch_b66):
+    Weierstrass derivative exchange for GammaSeq:
+      forall Re(s) > 0:
+        Tendsto (n |-> deriv(GammaSeq.n)(s) / GammaSeq s n)
+                atTop (nhds (deriv Gamma s / Gamma s))
+    Equivalently: logDeriv(GammaSeq.n)(s) -> logDeriv Gamma s.
+    B68 proof (~1pp):
+      TendstoLocallyUniformlyOn (GammaSeq.n) Gamma {Re>0}
+        (from GammaSeq_tendsto_Gamma + holomorphic + compactness/Vitali)
+      Weierstrass theorem -> deriv convergence.
+      Continuous division -> ratio convergence.
+
+Wall C status after B67:
+  A1 (HasDerivAt formula): PROVED (B67, 0 sorry)
+  A2 (EM limit over C): PROVED (B66, 0 sorry)
+  B (Weierstrass exchange): WW_Weierstrass_b67 (OPEN, ~1pp, B68)
+
+```
+- [x] Batch 67: GammaSeq_hasDerivAt_b67 (A1) PROVED (0 sorry)
+- [x] Batch 67: WW_GammaSeq_DerivExch_b66_from_weierstrass PROVED (0 sorry)
+- [x] Batch 67: Wall_C_from_weierstrass PROVED (0 sorry, full chain)
+- [x] Atomic opens: 35 -> 35 (DerivExch -> Weierstrass)
+- [ ] Wall C complete (1 atom: WW_Weierstrass_b67, ~1pp, B68)
+```
