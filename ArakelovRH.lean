@@ -55,3 +55,7 @@ import ArakelovRH.SubClosure.GammaFactorSubClosure
 import ArakelovRH.SubClosure.L143NonZeroSubClosure
 import ArakelovRH.SubClosure.ZeroFreeStripSubClosure
 import ArakelovRH.SubClosure.CremonaSubClosure
+
+import ArakelovRH.SubClosure.ClosedSurfaces
+import ArakelovRH.SubClosure.GlobalRootClose
+import ArakelovRH.SubClosure.PhragmenLindelofSubClosure
