@@ -176,3 +176,6 @@ import ArakelovRH.SubClosure.Batch48MasterCertV
 import ArakelovRH.SubClosure.Batch49DirectClose
 import ArakelovRH.SubClosure.Batch49GrandConditional
 import ArakelovRH.SubClosure.Batch49MasterCertVI
+import ArakelovRH.SubClosure.Batch50WallCClose
+import ArakelovRH.SubClosure.Batch50SurfaceDecomp
+import ArakelovRH.SubClosure.Batch50MasterCertVII
