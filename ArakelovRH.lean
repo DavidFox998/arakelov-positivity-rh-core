@@ -211,3 +211,5 @@ import ArakelovRH.SubClosure.Batch66WallCEM
 import ArakelovRH.SubClosure.Batch66MasterCertXXI
 import ArakelovRH.SubClosure.Batch67HasDerivAt
 import ArakelovRH.SubClosure.Batch67MasterCertXXII
+import ArakelovRH.SubClosure.Batch68Weierstrass
+import ArakelovRH.SubClosure.Batch68MasterCertXXIII

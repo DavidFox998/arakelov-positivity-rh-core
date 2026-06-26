@@ -567,3 +567,52 @@ Wall C status after B67:
 - [x] Atomic opens: 35 -> 35 (DerivExch -> Weierstrass)
 - [ ] Wall C complete (1 atom: WW_Weierstrass_b67, ~1pp, B68)
 ```
+
+---
+
+### Batch 68 — Wall C: WW_GammaSeq_DerivConv_b68 named open; ratio proved (B68)
+
+```
+Status: PUSHED
+Net atoms: 35 -> 35 (1-for-1: WW_Weierstrass_b67 -> WW_GammaSeq_DerivConv_b68)
+SORRY: 0.  Axioms: classical trio.
+```
+
+Proved (0 sorry):
+- `GammaSeq_tendsto_Gamma_b68`: GammaSeq s n -> Gamma s for Re(s)>0.
+    Complex.GammaSeq_tendsto_Gamma + ne_zero_of_re_pos for each factor.
+- `Gamma_ne_zero_b68`: Gamma s != 0 for Re(s) > 0.
+    Complex.Gamma_ne_zero + ne_zero_of_re_pos.
+- `WW_Weierstrass_b67_from_derivconv` (PROVED, 0 sorry):
+    Given WW_GammaSeq_DerivConv_b68:
+      numerator: deriv(GammaSeq.n)(s) -> deriv Gamma s  [named open]
+      denominator: GammaSeq s n -> Gamma s             [Mathlib]
+      Gamma s != 0                                      [Mathlib]
+      Tendsto.div -> ratio = logD_n(s) -> deriv Gamma s / Gamma s.
+- `Wall_C_from_derivconv`: full Wall C chain ready (0 sorry given named open).
+
+Named open (1 new, 1 retired, net 35 -> 35):
+- `WW_GammaSeq_DerivConv_b68` (replaces WW_Weierstrass_b67):
+    forall Re(s) > 0:
+      Tendsto (n |-> deriv(GammaSeq.n)(s)) atTop (nhds (deriv Gamma s))
+    B69 proof (~1pp):
+      (i)  TendstoLocallyUniformlyOn (GammaSeq.n) Gamma {Re>0}
+           [GammaSeq_tendsto_Gamma pointwise + locally uniform / analytic continuation]
+      (ii) Weierstrass theorem: TendstoLocallyUniformlyOn + DifferentiableOn
+           -> TendstoLocallyUniformlyOn of derivs
+           [tendstoLocallyUniformlyOn.deriv or Complex.WeierstrA1 analogue in Mathlib]
+      (iii) Evaluate at s: pointwise deriv convergence.
+
+Wall C status after B68:
+  A1 (HasDerivAt formula): PROVED (B67)
+  A2 (EM limit over C):    PROVED (B66)
+  B (Weierstrass):         WW_GammaSeq_DerivConv_b68 (OPEN, ~1pp, B69)
+
+```
+- [x] Batch 68: GammaSeq_tendsto_Gamma_b68 PROVED (0 sorry, Mathlib wrap)
+- [x] Batch 68: Gamma_ne_zero_b68 PROVED (0 sorry, Mathlib wrap)
+- [x] Batch 68: WW_Weierstrass_b67_from_derivconv PROVED (0 sorry)
+- [x] Batch 68: Wall_C_from_derivconv PROVED (0 sorry, full chain)
+- [x] Atomic opens: 35 -> 35 (Weierstrass_b67 -> DerivConv_b68)
+- [ ] Wall C complete (1 atom: WW_GammaSeq_DerivConv_b68, ~1pp, B69)
+```
