@@ -46,3 +46,12 @@ import ArakelovRH.Closure.ZetaZeroFreeClosure
 import ArakelovRH.Closure.FunctionalEquationClosure
 import ArakelovRH.Closure.ConverseUniquenessClosure
 import ArakelovRH.Closure.SelbergWeilClosure
+
+import ArakelovRH.SubClosure.CpowNormSubClosure
+import ArakelovRH.SubClosure.GlobalRootNumberSubClosure
+import ArakelovRH.SubClosure.PeterssonSubClosure
+import ArakelovRH.SubClosure.DirichletAbsSubClosure
+import ArakelovRH.SubClosure.GammaFactorSubClosure
+import ArakelovRH.SubClosure.L143NonZeroSubClosure
+import ArakelovRH.SubClosure.ZeroFreeStripSubClosure
+import ArakelovRH.SubClosure.CremonaSubClosure
