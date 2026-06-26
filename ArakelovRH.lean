@@ -75,3 +75,4 @@ import ArakelovRH.SubClosure.IKSubgateDecomp
 import ArakelovRH.SubClosure.CPSSubgateDecomp
 import ArakelovRH.SubClosure.ZetaZeroFreeDecomp
 import ArakelovRH.SubClosure.FEandRSDecomp
+import ArakelovRH.SubClosure.ConverseDecomp
