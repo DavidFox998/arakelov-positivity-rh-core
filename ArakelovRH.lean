@@ -40,3 +40,6 @@ import ArakelovRH.ClassNumber.NormFormBounds
 import ArakelovRH.Closure.EulerProductClosure
 import ArakelovRH.Closure.ResidueArgumentClosure
 import ArakelovRH.Closure.BoundedStripsClosure
+import ArakelovRH.Closure.WeilBoundToGRHClosure
+import ArakelovRH.Closure.L_sym2_NonVanishingClosure
+import ArakelovRH.Closure.ZetaZeroFreeClosure
