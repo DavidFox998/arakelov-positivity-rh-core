@@ -43,3 +43,6 @@ import ArakelovRH.Closure.BoundedStripsClosure
 import ArakelovRH.Closure.WeilBoundToGRHClosure
 import ArakelovRH.Closure.L_sym2_NonVanishingClosure
 import ArakelovRH.Closure.ZetaZeroFreeClosure
+import ArakelovRH.Closure.FunctionalEquationClosure
+import ArakelovRH.Closure.ConverseUniquenessClosure
+import ArakelovRH.Closure.SelbergWeilClosure
