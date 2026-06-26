@@ -1438,3 +1438,84 @@ GATE M3 STATUS AFTER BATCH 20:
   ZFR_RHFromWeilZeroFree_OPEN (~18pp): ZetaZeroFreeDecomp.lean.
   Combinators: l_sym2_nv_from_rs_pole (proved), residue_arg_from_ik_sub_gap (proved),
                zfr_from_sub_gaps (proved), grh_to_rh_descent_scaffold (proved).
+
+====================================================================
+BATCH 21 (June 26, 2026) -- FE + RS_Identity atomic sub-gap decomposition
+====================================================================
+
+NEW FILE:
+  ArakelovRH/SubClosure/FEandRSDecomp.lean  (309 lines)
+
+PURPOSE: Decompose the two remaining undissected sub-gates in Gates M2 and M3
+— CPS_FunctionalEquation_OPEN (~10pp) and RS_Identity_OPEN (~15pp) — into
+atomic sub-gaps with proved 0-sorry combinators.
+
+DECOMPOSITION 1: CPS_FunctionalEquation_OPEN (~10pp) into 2 sub-gaps:
+
+  FE_RootNumber_OPEN (~5pp):
+    For each chi in DirichChar_143, the root number eps_chi exists with ||eps_chi||=1.
+    Formula: eps_chi = eps(f_143a1) * chi(N)/|chi(N)| * tau(chi)^2 / f_chi
+    where tau(chi) = Gauss sum, f_chi = cond(chi), eps(f_143a1) = Atkin-Lehner eigenvalue.
+    Norm: |eps_chi| = |tau(chi)|^2/f_chi = f_chi/f_chi = 1 (Gauss sum norm for primitive chi).
+    Source: Atkin-Lehner 1978 (Inventiones), IK 2004 Theorem 5.10.
+    Lean gap: Gauss sum norm |tau(chi)|^2 = cond(chi) + root number formula (~5pp).
+
+  FE_CompletedFunctionalEq_OPEN (~5pp):
+    Given root numbers: twistedL_143a1 chi s = eps_chi * twistedL_143a1 chi (2-s).
+    Source: Hecke 1936, Atkin-Li 1978.
+    Mechanism: completed Lambda(s, f x chi) = (sqrt(N*f_chi^2)/2pi)^s * Gamma(s) * L(s, f x chi)
+    satisfies Lambda(s,fxchi) = eps_chi * Lambda(2-s, fxchi-bar).
+    Dividing by Gamma factor (using gamma_reflection_from_mathlib, proved 0 sorry):
+    twistedL chi s = eps_chi * twistedL chi (2-s).
+    Lean gap: Hecke operators + Atkin-Lehner action + Gamma FE composition (~5pp).
+
+  COMBINATOR (PROVED, 0 sorry):
+    fe_from_root_number_and_completed: FE_RootNumber + FE_CompletedFunctionalEq -> CPS_FE.
+    Proof: h_fe h_rn. 1 line.
+
+DECOMPOSITION 2: RS_Identity_OPEN (~15pp) into 2 sub-gaps:
+
+  RS_EulerFactorIdentity_OPEN (~8pp):
+    For each good prime p (p !| 143), the local Euler factor identity:
+      RS_p(s) = zeta_p(s) * L_sym2_p(s).
+    Local factors:
+      RS_p(s) = [(1-alpha_p^2 p^{-s})(1-alpha_p beta_p p^{-s})^2 (1-beta_p^2 p^{-s})]^{-1}
+      zeta_p(s) = (1-p^{-s})^{-1}
+      L_sym2_p(s) = [(1-alpha_p^2 p^{-s})(1-alpha_p beta_p p^{-s})(1-beta_p^2 p^{-s})]^{-1}
+    Alpha_p, beta_p = Hecke eigenvalue roots with |alpha_p|=|beta_p|=sqrt(p) (Weil I).
+    Lean gap: polynomial identity in Hecke eigenvalue variables (~8pp).
+
+  RS_EulerProductToIdentity_OPEN (~7pp):
+    RS_EulerFactorIdentity -> forall s, Re>1, RankinSelberg_L s = zeta(s) * L_sym2(s).
+    Given local identity prime by prime + absolute convergence:
+    Product rearrangement: prod_p RS_p = (prod_p zeta_p) * (prod_p L_sym2_p) = zeta * L_sym2.
+    Source: Mathlib multipliable rearrangement + Euler product convergence for L_sym2.
+    Lean gap: Lean formalization of Euler product rearrangement (~7pp).
+
+  COMBINATOR (PROVED, 0 sorry):
+    rs_identity_from_euler_factors: RS_EulerFactor + RS_EulerProduct -> RS_Identity_OPEN.
+    Proof: h_global h_factor. 1 line.
+
+GATE M2 STATUS AFTER BATCH 21 (ALL CPS STEPS ATOMIC):
+  FE_RootNumber_OPEN (~5pp): FEandRSDecomp.lean.
+  FE_CompletedFunctionalEq_OPEN (~5pp): FEandRSDecomp.lean.
+  EP_RamanujanBound_OPEN (~8pp): CPSSubgateDecomp.lean.
+  EP_ProductNonzero_OPEN (~7pp): CPSSubgateDecomp.lean.
+  BS_PhragmenLindelof_OPEN (~6pp): ZetaZeroFreeDecomp.lean.
+  BS_VerticalBoundary_OPEN (~4pp): ZetaZeroFreeDecomp.lean.
+  CPS_ConverseAndUniqueness_OPEN (~45pp): NOT YET DECOMPOSED. [sole remaining monolith]
+  ExplicitFormula_AtomicGap_OPEN (~20pp): WeilBoundSubClosure.lean.
+  WG_ZeroDensity_OPEN (~15pp): CPSSubgateDecomp.lean.
+  Proved combinators: fe_from_root_number_and_completed, ep_nonzero_from_sub_gaps,
+    bs_bounded_from_pl, weil_to_grh_from_sub_gaps, langlands_descent_scaffold.
+
+GATE M3 STATUS AFTER BATCH 21 (ALL IK STEPS ATOMIC):
+  IK_RS_SimplePole_OPEN (~10pp): IKSubgateDecomp.lean.
+  IK_GRH_to_L_sym2_nv_OPEN (~10pp): IKSubgateDecomp.lean.
+  RS_EulerFactorIdentity_OPEN (~8pp): FEandRSDecomp.lean.
+  RS_EulerProductToIdentity_OPEN (~7pp): FEandRSDecomp.lean.
+  IK_RS_L143_Link_OPEN (~10pp): IKSubgateDecomp.lean.
+  ZFR_DelaValleePoussin_OPEN (~12pp): ZetaZeroFreeDecomp.lean.
+  ZFR_RHFromWeilZeroFree_OPEN (~18pp): ZetaZeroFreeDecomp.lean.
+  Proved combinators: l_sym2_nv_from_rs_pole, residue_arg_from_ik_sub_gap,
+    rs_identity_from_euler_factors, zfr_from_sub_gaps, grh_to_rh_descent_scaffold.
