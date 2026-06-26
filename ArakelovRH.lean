@@ -120,3 +120,7 @@ import ArakelovRH.SubClosure.Batch31MasterCertE
 import ArakelovRH.SubClosure.Batch32IKZetaPole
 import ArakelovRH.SubClosure.Batch32WallCKernel
 import ArakelovRH.SubClosure.Batch32MasterCertF
+import ArakelovRH.SubClosure.Batch33ZFRDecomp
+import ArakelovRH.SubClosure.Batch33FEDecomp
+import ArakelovRH.SubClosure.Batch33WGDecomp
+import ArakelovRH.SubClosure.Batch33MasterCertG
