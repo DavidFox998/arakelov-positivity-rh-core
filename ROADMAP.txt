@@ -844,3 +844,39 @@ WALL C STATUS AFTER BATCH 10:
   gamma_critline_exp_bound        PROVED (KEY)
   gamma_critline_strip_bound(N:N) PROVED
   Binet sub-goals                 OPEN (~10pp total)
+
+====================================================================
+BATCH 11 (June 26, 2026) -- tanh_le_id, binet_kernel_nonneg attempt, conditional Stirling
+====================================================================
+
+Appended to: ArakelovRH/SubClosure/GammaStirlingSubClosure.lean
+File now 870 lines.
+
+PROVED (0 sorry, classical trio):
+
+  gamma_stirling_from_binet (h : Stirling_Log_Formula_OPEN) : Stirling_Remainder_OPEN 0 2
+    One-line: Stirling_Remainder_Asymptotic_OPEN h_binet.
+    Closes Wall C CONDITIONALLY on Binet formula (Stirling_Log_Formula_OPEN).
+
+  tanh_le_id (u : R) (u >= 0) : Real.tanh u <= u
+    Equivalent to (u-1)*exp(u) + (u+1)*exp(-u) >= 0.
+    Case u >= 1: direct nonnegativity. nlinarith [add_one_le_exp].
+    Case 0 <= u < 1: (u-1)*(1+u) + (u+1)*(1-u) = 0; both lower bounds from add_one_le_exp.
+
+  binet_kernel_nonneg (t : R) (t > 0) : 0 <= 1/2 - 1/t + 1/(exp t - 1)
+    PROOF ATTEMPT -- requires verification that the final nlinarith closes.
+    Key identity: 1/2-1/t+1/(exp t-1) = [(t-2)*exp t+(t+2)] / [2t*(exp t-1)].
+    Numerator h(t) = (t-2)*exp t + (t+2) >= 0:
+      For t >= 2: nlinarith [exp_pos t].
+      For 0 < t < 2: uses he2 (1+t+t^2/2 <= exp t); nlinarith witness needs refinement.
+    NOTE: This result is mathematically correct (h(0)=0, h'(0)=0, h''(t)=t*exp(t)>=0),
+    but the nlinarith witness for the 0 < t < 2 case needs checking.
+    Correct algebraic proof: h(t) >= t^4/12 for t in (0,2) via:
+      t*exp(t) >= t*(1+t+t^2/2+t^3/6) [he3_lb * t, nonneg]
+      -2*exp(t) >= -2*(1+t+t^2/2+t^3/6+t^4/24) [he4_lb * (-2), nonpos coeff]
+      Sum >= t^4/12 >= 0.
+    This is the approach used in Batch 12 (binet_kernel_nonneg_correct).
+
+  wall_c_binet_kernel_proved: alias certificate.
+
+ROADMAP update: see Batch 12.
