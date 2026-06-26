@@ -141,3 +141,6 @@ import ArakelovRH.SubClosure.Batch37MasterCertK
 import ArakelovRH.SubClosure.Batch38LaplaceProof
 import ArakelovRH.SubClosure.Batch38CompactZFR
 import ArakelovRH.SubClosure.Batch38MasterCertL
+import ArakelovRH.SubClosure.Batch39LaplaceIoi
+import ArakelovRH.SubClosure.Batch39ZFRAnalytic
+import ArakelovRH.SubClosure.Batch39MasterCertM
