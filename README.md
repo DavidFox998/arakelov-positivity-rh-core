@@ -101,10 +101,11 @@ All 14 atoms proved (0 sorry each):
 
 ---
 
-## Open Atom Table (31 total)
+## Open Atom Table (27 total)
 
-### Wall B — 4 atoms (~10pp)
-B04-B07: ExplicitFormula L6 atoms (see table above)
+### Wall B — 1 atom (~20pp)
+`ExplicitFormula_ZeroSum_OPEN` (WeilBoundToGRHClosure.lean, ~20pp, Weil 1952 / IK 5.5)
+Batch48 B04-B07 subsumed: HodgeCM proved (B71) + bridge theorem (B72).
 
 ### CPS Surfaces 2-3 — 5 atoms (~25pp)
 P01 `CPS_FE_TwistedEq_L6` (~8pp), P02 `CPS_FE_GammaFactor_L6` (~6pp),
@@ -150,6 +151,12 @@ Once Wall B (B04-B07) is closed, Gate M1 requires only:
 #print axioms ArakelovRH.Batch71HodgeCMFrobenius.hodge_cm_frobenius_bound_proved
 -- axioms: {propext, Classical.choice, Quot.sound}
 
+#print axioms ArakelovRH.Batch72WallBRefactor.explicit_formula_from_hodge_and_zero_sum
+-- axioms: {propext, Classical.choice, Quot.sound}
+
+#print axioms ArakelovRH.Batch73ExplicitFormulaCert.zero_contradiction_iff_critical
+-- axioms: {propext, Classical.choice, Quot.sound}
+
 #print axioms ArakelovRH.Batch70MasterCert.Wall_C_closed
 -- axioms: {propext, Classical.choice, Quot.sound}
 ```
@@ -168,7 +175,7 @@ route_b_clay_certificate (PROVED, 0 sorry)
         +-- gate_ik   GRH_to_RH_Descent_143    [IK ~80pp]
 
 Wall A  COMPLETE  bc_sum_S4_gt_bound + 4 log bounds (B46)
-Wall B  4 open    ExplicitFormula B04-B07 (B71: B01-B03 closed)
+Wall B  1 open    ExplicitFormula_ZeroSum_OPEN (~20pp, B71+B72 closed B01-B07)
 Wall C  COMPLETE  GammaSeq_TendstoLocalUnif via DCT (B70)
 Wall D  COMPLETE  Poussin ZFR + Stirling, all 14 atoms (B56-57)
 ```

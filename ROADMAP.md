@@ -5,7 +5,7 @@ Author: David J. Fox | June 2026 | Lean 4 + Mathlib v4.12.0
 
 ---
 
-## Current Status (Batch 71, June 26 2026)
+## Current Status (Batch 73, June 26 2026)
 
 ```
 route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
@@ -16,12 +16,12 @@ route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
     gate_ik   : Iwaniec-Kowalski 2004, Thm 5.15+Cor 5.16
 ```
 
-Named opens: **31** (down from 47 at B53, 34 at B70, 31 at B71)
+Named opens: **27** (down from 47 at B53, 34 at B70, 31 at B71)
 
 | Wall | Status | Opens |
 |------|--------|-------|
 | Wall A | COMPLETE (B46) | 0 |
-| Wall B | 4 atoms open | 4 |
+| Wall B | 1 atom (B72+B73) | 1 |
 | Wall C | COMPLETE (B70) | 0 |
 | Wall D | COMPLETE (B56-57) | 14 cond. |
 | CPS 2-3 | — | 5 |
@@ -32,42 +32,36 @@ Named opens: **31** (down from 47 at B53, 34 at B70, 31 at B71)
 
 ## Priority Order for Lean Formalization
 
-### Priority 1 — Wall B ExplicitFormula (~10pp, Batch 72-75)
+### Priority 1 — Wall B ExplicitFormula (~20pp, Batch 74+)
 
-Four L6 atoms remain in Wall B.  These feed Gate M1 (BC6_direct_OPEN),
-the gate with ALL proved inputs already discharged.
+*** UPDATED B72+B73 (June 26 2026) ***
 
-| Code | Name | Mass | Source |
-|------|------|------|--------|
-| B04 | ExplicitFormula_WeilSum_L6_OPEN | ~2pp | Weil 1952; IK 5.5 Thm 5.12 |
-| B05 | ExplicitFormula_ZeroContrib_L6_OPEN | ~3pp | IK 5.5 Prop 5.9 |
-| B06 | ExplicitFormula_PrimeSide_L6_OPEN | ~3pp | IK 5.5 |
-| B07 | ExplicitFormula_RHFromBound_L6_OPEN | ~2pp | Bombieri 1974 |
+B71 proved HodgeCM_FrobeniusBound_OPEN (0 sorry).
+B72 proved explicit_formula_from_hodge_and_zero_sum (0 sorry):
+  ExplicitFormula_ZeroSum_OPEN -> ExplicitFormula_GivenFrobenius_OPEN
+  Atoms 31 -> 27: B04-B07 (Batch48 L6 atoms) subsumed.
+B73 proved zero_contradiction_iff_critical (0 sorry):
+  ZeroOffCriticalLine_Contradiction_OPEN <-> GRH for L_143a1.
+  Consequence: ZeroOffCriticalLine is NOT an extra gap.
 
-**B04 proof plan** (Weil explicit formula, smooth weight):
-  - Smooth test function g : R -> R with compact support
-  - Mellin transform of g, contour integral at Re(s) = 2
-  - Prime sum = contour shift, residue at s=1 and rho terms
-  - Key Mathlib: Complex.mellin, Complex.integral_of_compactSupport (or named open)
+CANONICAL WALL B ATOM (1 atom, ~20pp):
+  ExplicitFormula_ZeroSum_OPEN (WeilBoundToGRHClosure.lean)
+    = (forall s, L_143a1 s = newform s) ->
+      exists zeros, (forall n, L_143a1(zeros n) = 0) /        forall T > 1, |S_weil T| <= (sum |Re(rho_n)-1/2|) * T/log T + C * T/log T
+    Source: Weil 1952; IK 2004 Thm 5.12; Bombieri 1974.
+    Lean gap: Mellin transform + contour integral + zero counting (~20pp).
 
-**B05 proof plan** (zero contribution absolutely convergent):
-  - Decay of hat(g)(rho) from smoothness of g: |hat(g)(rho)| = O(1/|rho|^N)
-  - Zero density: #zeros with |Im(rho)| < T = O(T log T)
-  - Product bound: sum |hat(g)(rho)| < infty
+**Proof plan for ExplicitFormula_ZeroSum_OPEN** (next priority, Batch 74+):
+  Step 1: Weil explicit formula for GL_2 L-functions (smooth test function g)
+    sum_{p,k} g(log p^k) * lambda_f(p^k) = sum_rho hat(g)(rho) + (main terms)
+    Lean: Complex.mellin + HasCompactSupport g + ContinuousOn (hat g) on crit strip
+  Step 2: Zero counting N(T,L_143a1) = O(T log T) (standard Phragmen-Lindelof)
+    Lean: gamma_compact_bound (proved B52) + Phragmen-Lindelof walls
+  Step 3: Absolute convergence of zero sum sum_rho |hat(g)(rho)| < infty
+    Lean: N(T) growth + decay of hat(g) from smoothness
+  Step 4: Assemble: |S_weil(T)| bound from zero sum + boundary terms
 
-**B06 proof plan** (prime side with Frobenius bound):
-  - Frobenius bound (PROVED, B71): |alpha_p|^2 = p
-  - Prime power sum: sum_{p^k <= x} alpha_p^k = O(sqrt(x) * log x)
-  - Standard estimate via partial summation
-
-**B07 proof plan** (RH from Weil explicit + prime bound):
-  - Given B04+B05+B06: any zero rho off the critical line yields contradiction
-  - Weil explicit formula: prime sum = rho contribution
-  - If Re(rho) != 1/2: Frobenius bound -> prime sum too small
-  - Re(rho) = 1/2 for all non-trivial zeros (GRH for L_143a1)
-
-**Once B04-B07 closed**: Gate M1 (BC6_direct_OPEN) becomes closeable
-with only the Selberg trace formula (~35pp).
+**Once ExplicitFormula_ZeroSum_OPEN closed**: Gate M1 requires only Selberg trace (~35pp).
 
 ---
 
