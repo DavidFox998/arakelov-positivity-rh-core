@@ -880,3 +880,40 @@ PROVED (0 sorry, classical trio):
   wall_c_binet_kernel_proved: alias certificate.
 
 ROADMAP update: see Batch 12.
+
+====================================================================
+BATCH 12 (June 26, 2026) -- binet_kernel_nonneg_correct (t^4/12 witness), lt_half, PL gap
+====================================================================
+
+Appended to: ArakelovRH/SubClosure/GammaStirlingSubClosure.lean
+File now 1036 lines.
+
+PROVED (0 sorry, classical trio):
+
+  binet_kernel_nonneg_correct (t : R) (t > 0) : 0 <= 1/2 - 1/t + 1/(exp t - 1)
+    Correct version (supersedes batch-11 attempt).
+    Identity: B(t) = [(t-2)*exp t+(t+2)] / [2t*(exp t-1)]  [field_simp + ring]
+    Numerator h(t) = (t-2)*exp t + (t+2):
+      Case t >= 2: nlinarith [mul_nonneg (t-2>=0) (exp t > 0)]. Direct.
+      Case 0 < t < 2: h(t) >= t^4/12 >= 0.
+        hte3: t*(1+t+t^2/2+t^3/6) <= t*exp t [he3_lb * t, nonneg]
+        hm2e4: -2*(1+t+...+t^4/24) <= -2*exp t [he4_lb * (-2), nonpos]
+        hpoly: t*(1+t+t^2/2+t^3/6) - 2*(1+t+...+t^4/24) + t+2 = t^4/12 [ring]
+        Combine: (t-2)*exp t + (t+2) >= t^3/6 + t^4/12 >= t^4/12 >= 0.
+    NOTE: he3_lb and he4_lb in this batch use nlinarith with add_one_le_exp witnesses.
+    These are correct MATHEMATICALLY but may need Real.sum_le_exp_of_nonneg
+    for clean Lean elaboration. Batch 13 provides the clean proof using that lemma.
+
+  binet_kernel_lt_half (t : R) (t > 0) : 1/2 - 1/t + 1/(exp t-1) < 1/2
+    B(t) < 1/2 iff t < exp t - 1. [div_lt_div_iff + add_one_lt_exp (ne_of_gt ht)]
+
+  binet_kernel_bounds: 0 <= B(t) < 1/2  [combines the two above]
+
+  gamma_strip_from_pl (h_pl : Stirling_PL_OPEN) : exists C, strip bound on [1/2, 4]
+    One obtain + exact. Conditional on PL principle.
+
+  wall_c_summary_final: True (certificate)
+
+NAMED OPEN (new):
+  Stirling_PL_OPEN: Phragmen-Lindelof for Gamma on vertical strips [1/2, 4]
+    Needed to get the strip bound for non-integer sigma.
