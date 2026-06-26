@@ -135,3 +135,6 @@ import ArakelovRH.SubClosure.Batch35MasterCertI
 import ArakelovRH.SubClosure.Batch36WGOffset
 import ArakelovRH.SubClosure.Batch36BinetDecomp
 import ArakelovRH.SubClosure.Batch36MasterCertJ
+import ArakelovRH.SubClosure.Batch37ZFRPoussin
+import ArakelovRH.SubClosure.Batch37LaplaceGamma
+import ArakelovRH.SubClosure.Batch37MasterCertK
