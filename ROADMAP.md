@@ -289,4 +289,11 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] Wall D complete (all 14 atoms proved, B56+B57)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)
 - [ ] CPS 2-3 complete (5 atoms, ~25pp)
+- [x] Batch 60: CRITICAL NAME FIX — Real.eulerMascheroniConstant (v4.12.0, not Const)
+- [x] Batch 60: Gamma.Deriv import fixed — use Harmonic.GammaDeriv (Gamma.Deriv 404 at v4.12.0)
+- [x] Batch 60: binet_digamma_at_one PROVED (hasDerivAt_Gamma_one.deriv + Gamma_one, 0 sorry)
+- [x] Batch 60: binet_digamma_at_nat n PROVED (deriv_Gamma_nat + Gamma_nat_eq_factorial, 0 sorry)
+- [x] Batch 60: Binet_DiGamma_WW_Corrected_L8 defined with correct eulerMascheroniConstant
+- [x] Batch 60: Wall C decomposed → WW_HarmonicTSum_L8 (~0.10pp) + WW_AnalyticExt_L8 (~0.15pp)
+- [ ] Wall C complete (2 sub-atoms: harmonic tsum telescoping + analytic extension)
 - [ ] All 47 named opens closed (unconditional proof)

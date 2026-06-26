@@ -195,3 +195,5 @@ import ArakelovRH.SubClosure.Batch57MasterCertXIII
 import ArakelovRH.SubClosure.Batch58WallCIKChain
 import ArakelovRH.SubClosure.Batch59IKSurfaceDecomp
 import ArakelovRH.SubClosure.Batch59MasterCertXIV
+import ArakelovRH.SubClosure.Batch60DiGammaClose
+import ArakelovRH.SubClosure.Batch60MasterCertXV
