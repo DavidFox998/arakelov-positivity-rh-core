@@ -197,3 +197,5 @@ import ArakelovRH.SubClosure.Batch59IKSurfaceDecomp
 import ArakelovRH.SubClosure.Batch59MasterCertXIV
 import ArakelovRH.SubClosure.Batch60DiGammaClose
 import ArakelovRH.SubClosure.Batch60MasterCertXV
+import ArakelovRH.SubClosure.Batch61HarmonicTSum
+import ArakelovRH.SubClosure.Batch61MasterCertXVI

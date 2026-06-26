@@ -297,3 +297,10 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] Batch 60: Wall C decomposed → WW_HarmonicTSum_L8 (~0.10pp) + WW_AnalyticExt_L8 (~0.15pp)
 - [ ] Wall C complete (2 sub-atoms: harmonic tsum telescoping + analytic extension)
 - [ ] All 47 named opens closed (unconditional proof)
+- [x] Batch 61: WW_HarmonicTSum_L8 CLOSED -- shift-telescope induction (0 sorry)
+- [x] Batch 61: shift_partial proved by induction + field_simp + ring
+- [x] Batch 61: shift_hasSum_real via hasSum_iff_tendsto_nat_of_nonneg + div_atTop
+- [x] Batch 61: shift_hasSum_cx via Complex.hasSum_ofReal lift
+- [x] Batch 61: Main HasSum.add induction + harmonic_succ + convert
+- [x] Atomic opens: 36 -> 35 (WW_HarmonicTSum_L8 closed)
+- [ ] Wall C complete (1 sub-atom: WW_AnalyticExt_L8 analytic extension ~0.15pp)
