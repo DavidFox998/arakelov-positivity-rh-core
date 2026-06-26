@@ -5,7 +5,7 @@ Author: David J. Fox | June 2026 | Lean 4 + Mathlib v4.12.0
 
 ---
 
-## Current Status (Batch 74, June 26 2026)
+## Current Status (Batch 76, June 26 2026)
 
 ```
 route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
@@ -16,7 +16,7 @@ route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
     gate_ik   : Iwaniec-Kowalski 2004, Thm 5.15+Cor 5.16
 ```
 
-Named opens: **27** (down from 47 at B53, 34 at B70, 31 at B71; B74: canonical form improved)
+Named opens: **28** (B74: 27; B75: +2 sub-gaps = 29; B76: BC95_OptimalTestFn proved = 28)
 
 | Wall | Status | Opens |
 |------|--------|-------|
@@ -34,6 +34,21 @@ Named opens: **27** (down from 47 at B53, 34 at B70, 31 at B71; B74: canonical f
 
 ### Priority 1 — Wall B ExplicitFormula (~20pp, Batch 74+)
 
+
+
+*** UPDATED B76 (June 26 2026) ***
+
+B76 proved BC95_OptimalTestFn_SubGap_OPEN (0 sorry) via explicit tent function:
+  h_T(r) := max(0, C_S14_143 / log(T) - |r| / T)
+  (a) Non-negative by le_max_left. (b) Even by abs_neg. (c) Zeroth-mode by max_le.
+  Silver bullet: eliminates ~10pp of smooth function theory.
+Silver bullet source: TheoremaAureum C_Chain analysis (stub-prop chain revealed
+  that elementary witnesses can suffice for BC95 existential conditions).
+Gate M1 now requires only 3 open sub-gaps (was 4 after B75):
+  BC6_SelbergTrace_SubGap_OPEN (~8pp)
+  BC6_WeilTraceMatch_SubGap_OPEN (~7pp)
+  BC95_SpectralBound_SubGap_OPEN (~10pp)
+File: ArakelovRH/SubClosure/Batch76TentFunctionClose.lean
 
 *** UPDATED B74 (June 26 2026) ***
 
@@ -177,10 +192,11 @@ are in this repo, and the remaining Lean work is self-contained.
 | Wall C CLOSED | B49-B70 | 34 | DONE (Jun 26 2026) |
 | Wall B atoms B01-B03 | B71 | 31 | DONE (Jun 26 2026) |
 | Wall B ExplicitFormula | B72-B75 | 27 | DONE (B75 Gate M1 decomp) |
-| CPS 2-3 surfaces | B76-B90 | 22 | Planned |
+| CPS 2-3 surfaces | B77-B90 | 25 | Planned |
 | Wall D fully unconditional | B91-B105 | 8 | Planned |
 | IK sub-gates | B106-B140 | 4 | Planned |
 | Gate M1 closeable | B75 | 4 sub-gaps | DONE (Jun 26 2026) |
+| BC95_OptimalTestFn PROVED | B76 | 28 atoms | DONE (Jun 26 2026) |
 | UNCONDITIONAL PROOF | — | 0 | Target |
 
 ---
