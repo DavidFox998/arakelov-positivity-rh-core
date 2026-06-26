@@ -1017,3 +1017,81 @@ WALL C STATUS AFTER BATCH 14:
   TOTAL remaining Wall C         : ~22pp (down from 29pp before this batch)
 
 
+
+
+====================================================================
+BATCH 15 (June 26, 2026) -- Avenue 2+3: BC6_Theorem6_OPEN decomposition
+                             + CpowAbs_API_OPEN CLOSED + Deligne sub-gaps
+====================================================================
+
+NEW FILES:
+  ArakelovRH/SubClosure/WeilExplicitSubClosure.lean  (179 lines)
+  ArakelovRH/SubClosure/DeligneBoundSubClosure.lean  (248 lines)
+
+PURPOSE: Two parallel avenues toward Route B closure.
+  Avenue 2 -- Gate M1 (BC6_direct_OPEN): precise decomposition of the
+    Bost-Connes Theorem 6 formalization. Shows WHY the WeilSum_SpectralLink
+    approach fails (C_S14_143 = 8.629 < 14 = Weyl coefficient) and gives
+    the correct route via BC95 Theorem 6 directly.
+  Avenue 3 -- Surface 2 (CPS_EulerProduct_OPEN): closes CpowAbs_API_OPEN
+    with a manual proof of |(x:C)^s| = x^{s.re}, decomposes Deligne into
+    3 atomic sub-gaps, proves the grand combinator.
+
+AVENUE 2 PROVED (0 sorry, classical trio):
+  WeilExplicitSubClosure.lean:
+    log_143_factored:      log(143) = log(11) + log(13)  [conductor splits]
+    log_11_pos / log_13_pos / log_143_pos:  positivity of conductor logs
+    c_s14_lt_weyl:         C_S14_143 = 8.629 < 14 (Weyl coeff) -- HONEST NOTE
+                           shows WeilSum_SpectralLink route is INCORRECT
+    bc6_spectral_condition: C_S14_143 > 2*sqrt(13) AND arakelovPairing > 0
+                            both proved inputs discharged
+    weil_bound_positive:   C_S14_143 * T / log T > 0 for T > 1
+    gate_m1_from_bc6_theorem6:  BC6_Theorem6_OPEN -> SelbergWeilBC6_143_OPEN
+                                CLOSURE COMBINATOR (0 sorry, 1 line proof)
+
+AVENUE 2 NAMED OPEN (new):
+  BC6_Theorem6_OPEN (~35pp):
+    Three-part BC95 Theorem 6 formalization:
+      Part A (~15pp): Selberg trace for Gamma_0(143)\H (Hejhal LNM 548 Thm 9.4)
+      Part B (~10pp): Weil explicit formula / Bombieri-Cramér BC95 Thm 5.1
+      Part C (~10pp): BC spectral estimate -> Weil bound constant C_S14_143
+
+AVENUE 3 PROVED (0 sorry, classical trio):
+  DeligneBoundSubClosure.lean:
+    cpow_abs_of_pos:       |(x:C)^s| = x^{s.re} for x > 0 (MANUAL PROOF)
+      Proof: cpow_def_of_ne_zero + abs_exp + ofReal_log + mul_re + rpow_def_of_pos
+    cpow_abs_api_closed:   CpowAbs_API_OPEN CLOSED (fun x hx s => cpow_abs_of_pos)
+    cpow_norm_formula_closed: norm((p:C)^{-s}) = p^{-s.re} CLOSED for all primes
+      Chain: cpow_abs_api_closed -> cpow_norm_prime_from_api (CpowNormSubClosure)
+    deligne_from_sub_gaps: Deligne_AlphaFactorization_OPEN from 3 atomic sub-gaps
+    cps_from_cpow_and_deligne: CPS_EulerProduct_OPEN from Deligne + Global (combinator)
+
+AVENUE 3 NAMED OPEN (new):
+  HeckeEigenvalue_f143_OPEN (~10pp): a_p is Hecke eigenvalue, local factor form
+  Deligne_RamanujanBound_OPEN (~15pp): |a_p| <= 2*sqrt(p) (Deligne 1974 / Weil I)
+  RamanujanFactorization_OPEN (~5pp): alpha*beta=p, |alpha|=|beta|=sqrt(p) (algebra)
+
+KEY INSIGHT (Batch 15):
+  CpowAbs_API_OPEN is now CLOSED: the Lean proof of |(x:C)^s| = x^{s.re}
+  required manual construction (cpow_def + abs_exp + ofReal_log route)
+  rather than a direct Mathlib lemma call. This closes the last analytical
+  prerequisite for alpha_norm_bound_from_formula (EulerProductClosure).
+  Local non-vanishing of Euler factors is now FULLY PROVED (given Deligne).
+
+AVENUE 2 STATUS AFTER BATCH 15:
+  Gate M1 (BC6_direct_OPEN):
+    PROVED inputs: C_S14_143_gt_tau, arakelovPairing_X0_143_pos  (0 sorry)
+    PROVED closure combinator: gate_m1_from_bc6_theorem6           (0 sorry)
+    OPEN: BC6_Theorem6_OPEN (~35pp, BC95 Thm 6 full formalization)
+
+AVENUE 3 STATUS AFTER BATCH 15:
+  Surface 2 (CPS_EulerProduct_OPEN):
+    PROVED: CpowAbs_API_OPEN CLOSED                                (0 sorry)
+    PROVED: CpowNormFormula for all primes                         (0 sorry)
+    PROVED: local Euler factor nonzero (given Deligne)             (0 sorry)
+    PROVED: cps_from_cpow_and_deligne combinator                   (0 sorry)
+    OPEN: HeckeEigenvalue_f143_OPEN   (~10pp)
+    OPEN: Deligne_RamanujanBound_OPEN (~15pp, Weil I for weight-2)
+    OPEN: RamanujanFactorization_OPEN (~5pp, quadratic algebra)
+    OPEN: EulerProduct_GlobalNonZero_OPEN (~10pp, infinite products)
+    TOTAL remaining Avenue 3: ~40pp
