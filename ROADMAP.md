@@ -422,3 +422,52 @@ B65 proof path:
 - [x] Atomic opens: 35 -> 35 (WW_GammaSeq_Deriv_L8 <-> WW_GammaSeq_Wall_C_Final_L8)
 - [ ] Wall C complete (1 atom: WW_GammaSeq_Wall_C_Final_L8, B65)
 ```
+
+---
+
+### Batch 65 — Wall C analytics named open (B65)
+
+```
+Status: PUSHED
+Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_Wall_C_Final_L8 -> WW_GammaSeq_Wall_C_Analytics_L8)
+SORRY: 0.  Axioms: classical trio.
+```
+
+Proved (0 sorry):
+- `GammaSeq_ne_zero_b65`: GammaSeq s n ≠ 0 for n ≥ 1, Re(s) > 0.
+    (n! ≠ 0, n^s ≠ 0 via Complex.cpow_ne_zero, ∏(s+k) ≠ 0 via Re(s+k) > 0.)
+- `GammaSeq_logDeriv_from_hasDerivAt`: HasDerivAt f (f s * d) s + f s ≠ 0
+    → deriv f s / f s = d  (one-line algebra via field_simp).
+- `GammaSeq_logDeriv_eq_b65`: per-n log-derivative formula from A1 + nonvanishing.
+- `Part_A_tendsto_b65`: logD_n(s) → -γ+F(s) given analytics A1+A2.
+    Uses B64's GammaSeq_deriv_val_conv_given_EM + GammaSeq_F_part_tendsto_b64
+    combined via Filter.Tendsto.congr' on the eventually-equal sequences.
+- `WW_GammaSeq_Wall_C_Final_L8_from_analytics`: analytics → WW_Final (0 sorry).
+- `WW_GammaSeq_Deriv_L8_from_analytics`: analytics → Wall C fully closed.
+    Chain: analytics → WW_Final (B65) → WW_Deriv (B64 combinator).
+
+Named open (1 new, 1 retired, net 35 -> 35):
+- `WW_GammaSeq_Wall_C_Analytics_L8` (replaces WW_GammaSeq_Wall_C_Final_L8):
+    Three Mathlib connectivity facts bundled as one named open:
+    (A1) HasDerivAt formula: d/ds GammaSeq(s,n) = GammaSeq(s,n)*(log n - Σ 1/(s+k))
+         [product/quotient/chain rule on n^s / ∏(s+k), B66-A1]
+    (A2) EM limit over ℂ: log n - H_{n+1} → -γ
+         [Real.tendsto_eulerMascheroniConstant + cast ℝ→ℂ, B66-A2]
+    (B)  Weierstrass exchange: logD_n(s) → deriv Gamma s / Gamma s
+         [GammaSeq_tendsto_Gamma + locally uniform + continuous div, B66-B]
+    All three are pure Lean formalisations of established mathematics (~3pp total).
+
+B66 proof path (all Mathlib connectivity):
+  A1: HasDerivAt (n^·) via exp∘(·*log n) + HasDerivAt.mul induction on ∏(·+k)
+      + quotient rule → GammaSeq * (log n - Σ 1/(s+k)).  ~1.5pp.
+  A2: Real.tendsto_eulerMascheroniConstant shift + |1/(n+1)|→0 + negate + cast.  ~0.5pp.
+  B:  Complex.GammaSeq_tendsto_Gamma + TendstoLocallyUniformlyOn + continuous division.  ~1pp.
+
+```
+- [x] Batch 65: GammaSeq_ne_zero_b65 PROVED (0 sorry)
+- [x] Batch 65: Part_A_tendsto_b65 PROVED (0 sorry, conditional on A1+A2)
+- [x] Batch 65: WW_GammaSeq_Wall_C_Final_L8_from_analytics PROVED (0 sorry)
+- [x] Batch 65: WW_GammaSeq_Deriv_L8_from_analytics PROVED (0 sorry)
+- [x] Atomic opens: 35 -> 35 (WW_Wall_C_Final <-> WW_Wall_C_Analytics)
+- [ ] Wall C complete (1 atom: WW_GammaSeq_Wall_C_Analytics_L8, ~3pp, B66)
+```
