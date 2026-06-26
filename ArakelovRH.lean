@@ -70,3 +70,4 @@ import ArakelovRH.SubClosure.GammaStirlingSubClosure
 import ArakelovRH.SubClosure.WeilExplicitSubClosure
 import ArakelovRH.SubClosure.DeligneBoundSubClosure
 import ArakelovRH.SubClosure.RamanujanFactorizationClosed
+import ArakelovRH.SubClosure.BC6DecompSubClosure

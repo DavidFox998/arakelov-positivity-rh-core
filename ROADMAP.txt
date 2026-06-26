@@ -1150,3 +1150,76 @@ AVENUE 2 STATUS (unchanged):
   PROVED: bc6_spectral_condition (both Gate M1 inputs discharged)
   PROVED: gate_m1_from_bc6_theorem6 (closure combinator)
   OPEN: BC6_Theorem6_OPEN (~35pp: Selberg trace + Weil explicit + BC spectral)
+
+====================================================================
+BATCH 17 (June 26, 2026) -- BC6_Theorem6_OPEN split into 2 atomic sub-gaps
+====================================================================
+
+NEW FILE:
+  ArakelovRH/SubClosure/BC6DecompSubClosure.lean  (178 lines)
+
+PURPOSE: Decompose the monolithic BC6_Theorem6_OPEN (~35pp) into two
+independent named sub-gaps with a proved closure combinator.
+
+DECOMPOSITION (introduces S_spectral : R -> C as the spectral zero-sum):
+
+  BC6_SelbergMatch_OPEN (~15pp):
+    S_weil(T) = S_spectral(T)  for all T > 1.
+    Mathematical source: Selberg trace formula / Weil explicit formula.
+      Hejhal LNM 548 Thm 9.4 (N squarefree) + BC95 §3-4 identification.
+      S_weil = sum over zeros of L(s,f_143a1) weighted by h_T.
+      S_spectral = sum over Hecke eigenvalues of Gamma_0(143)\H Laplacian.
+      Eichler-Shimura: L-zeros <-> Hecke eigenvalues.
+    Lean gap: Maass forms + spectral decomp of L^2(Gamma_0(143)\H) (~15pp).
+
+  BC6_SpectralBC95_OPEN (~20pp):
+    |S_spectral(T)| <= C_S14_143 * T / log T  given:
+      C_S14_143 > 2*sqrt(13)  [C_S14_143_gt_tau, PROVED B15]
+      arakelovPairing > 0     [arakelovPairing_X0_143_pos, PROVED]
+    Mathematical source: Bost-Connes 1995, Theorem 6.
+      Optimal test function h_T (BC95 §4) concentrates spectral weight.
+      The two conditions give the sharp C_S14_143 * T / log T bound.
+    Lean gap: h_T construction + spectral weight bound + counting (~20pp).
+
+PROVED (0 sorry):
+  bc6_from_two_atomic_gaps:
+    BC6_SelbergMatch_OPEN + BC6_SpectralBC95_OPEN -> BC6_Theorem6_OPEN.
+    Proof: intro hgt hpos T hT; rw [h_match T hT]; exact h_spec hgt hpos T hT.
+    3 lines, no tactic lemmas needed.
+  bc6_batch17_complete: True.intro (audit).
+
+GATE CONSEQUENCE:
+  Gate M1 (BC6) chain now reads:
+    BC6_SelbergMatch_OPEN (~15pp) -- one attackable gap
+    BC6_SpectralBC95_OPEN (~20pp) -- one attackable gap
+    -> bc6_from_two_atomic_gaps (PROVED, 0 sorry)
+    -> BC6_Theorem6_OPEN
+    -> gate_m1_from_bc6_theorem6 (PROVED, Batch 15)
+    -> Gate1.SelbergWeilBC6_143_OPEN  [GATE M1 CLOSED]
+  Each sub-gap is independently attackable; no longer one monolith.
+
+AVENUE 2 STATUS AFTER BATCH 17:
+  PROVED: bc6_spectral_condition (both Gate M1 inputs)
+  PROVED: weil_bound_positive (positivity)
+  PROVED: gate_m1_from_bc6_theorem6 (gate closure combinator, B15)
+  PROVED: bc6_from_two_atomic_gaps (THIS BATCH, 2-gap combinator)
+  OPEN: BC6_SelbergMatch_OPEN  (~15pp)
+  OPEN: BC6_SpectralBC95_OPEN  (~20pp)
+  TOTAL remaining Avenue 2: ~35pp (unchanged but now split 15+20)
+
+AVENUE 3 STATUS (unchanged from Batch 16):
+  CLOSED: CpowAbs, CpowNormFormula, RamanujanFactorization
+  OPEN: HeckeEigenvalue_f143_OPEN (~10pp)
+  OPEN: Deligne_RamanujanBound_OPEN (~15pp)
+  OPEN: EulerProduct_GlobalNonZero_OPEN (~10pp)
+  TOTAL: ~35pp
+
+WALL C STATUS (unchanged):
+  PROVED: critline_product_formula_unconditional (~unconditional, B10-11)
+  PROVED: gamma_critline_exp_bound (B10)
+  PROVED: gamma_critline_strip_bound (B10)
+  PROVED: binet_kernel_nonneg_v3, binet_kernel_upper, wall_c_binet_kernel_full
+  OPEN: Stirling_Binet_Integral_OPEN (~4pp)
+  OPEN: Stirling_Log_Upper_OPEN (~3pp)
+  OPEN: Stirling_PL_OPEN (~15pp)
+  TOTAL: ~22pp
