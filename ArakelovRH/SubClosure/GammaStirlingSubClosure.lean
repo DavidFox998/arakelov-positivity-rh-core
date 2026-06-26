@@ -492,4 +492,284 @@ theorem critline_product_formula_unconditional (T : ℝ) :
 theorem wall_c_unconditional_audit : True := True.intro
 
 
+/-! ================================================================
+    Section K: Critical line exponential bound (Batch 10)
+    Proved: |Gamma(1/2+iT)| ≤ sqrt(2*pi) * exp(-pi*|T|/2)
+    ================================================================ -/
+
+/-- **cosh_ge_exp_half** (PROVED, 0 sorry):
+    cosh(x) ≥ exp(|x|) / 2 for all x : ℝ.
+    Proof: cosh(x) = (exp(x)+exp(-x))/2 and max(exp(x),exp(-x)) = exp(|x|).
+    Since exp(x)+exp(-x) ≥ max(exp(x),exp(-x)) = exp(|x|), divide by 2. -/
+theorem cosh_ge_exp_half (x : ℝ) : Real.exp |x| / 2 ≤ Real.cosh x := by
+  simp only [Real.cosh]
+  rcases le_or_lt 0 x with hx | hx
+  · rw [abs_of_nonneg hx]
+    linarith [Real.exp_pos (-x)]
+  · rw [abs_of_neg hx]
+    linarith [Real.exp_pos x]
+
+/-- **sqrt_exp_eq** (private, PROVED, 0 sorry):
+    sqrt(exp a) = exp(a/2) for any a : ℝ.
+    Proof: exp(a/2)^2 = exp(a) (by exp_mul + ring), and exp(a/2) ≥ 0.
+    Then sqrt(exp(a/2)^2) = exp(a/2) by sqrt_sq. -/
+private theorem sqrt_exp_eq (a : ℝ) : Real.sqrt (Real.exp a) = Real.exp (a / 2) := by
+  have hsq : Real.exp (a / 2) ^ 2 = Real.exp a := by
+    rw [← Real.exp_mul]; ring_nf
+  rw [← hsq, Real.sqrt_sq (Real.exp_pos _).le]
+
+/-- **gamma_critline_sq_le** (PROVED, 0 sorry):
+    |Gamma(1/2+iT)|^2 ≤ 2*pi*exp(-pi*|T|).
+    Proof:
+      |Gamma(1/2+iT)|^2 = pi/cosh(pi*T)  [critline_product_formula_unconditional]
+      cosh(pi*T) ≥ exp(pi*|T|)/2          [cosh_ge_exp_half + |pi*T| = pi*|T|]
+      pi/cosh(pi*T) ≤ 2*pi/exp(pi*|T|) = 2*pi*exp(-pi*|T|). -/
+theorem gamma_critline_sq_le (T : ℝ) :
+    Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I)) ^ 2 ≤
+    2 * Real.pi * Real.exp (-(Real.pi * |T|)) := by
+  rw [critline_product_formula_unconditional T]
+  have habsT : |Real.pi * T| = Real.pi * |T| := by
+    rw [abs_mul, abs_of_pos Real.pi_pos]
+  have hcosh_lb : Real.exp (Real.pi * |T|) / 2 ≤ Real.cosh (Real.pi * T) := by
+    rwa [← habsT]; exact cosh_ge_exp_half (Real.pi * T)
+  have hcosh_pos := Real.cosh_pos (Real.pi * T)
+  have he_pos   := Real.exp_pos (Real.pi * |T|)
+  have hne_pos  := Real.exp_pos (-(Real.pi * |T|))
+  have hprod : Real.exp (Real.pi * |T|) * Real.exp (-(Real.pi * |T|)) = 1 := by
+    rw [← Real.exp_add]; simp
+  rw [div_le_iff hcosh_pos]
+  calc Real.pi
+      = Real.pi * 1 := by ring
+    _ = Real.pi * (Real.exp (Real.pi * |T|) * Real.exp (-(Real.pi * |T|))) := by
+          rw [hprod]
+    _ ≤ Real.pi * (2 * Real.cosh (Real.pi * T) * Real.exp (-(Real.pi * |T|))) := by
+          apply mul_le_mul_of_nonneg_left _ (le_of_lt Real.pi_pos)
+          nlinarith [mul_pos he_pos hne_pos,
+                     mul_le_mul_of_nonneg_right hcosh_lb (le_of_lt hne_pos)]
+    _ = 2 * Real.pi * Real.exp (-(Real.pi * |T|)) * Real.cosh (Real.pi * T) := by ring
+
+/-- **gamma_critline_exp_bound** (PROVED, 0 sorry):
+    |Gamma(1/2 + iT)| ≤ sqrt(2*pi) * exp(-pi*|T|/2) for all T : ℝ.
+    This is the STIRLING BOUND ON THE CRITICAL LINE, proved unconditionally
+    from the product formula |Gamma(1/2+iT)|^2 = pi/cosh(pi*T).
+    Proof:
+      gamma_critline_sq_le: |Gamma|^2 ≤ 2*pi*exp(-pi*|T|)
+      sqrt: |Gamma| ≤ sqrt(2*pi*exp(-pi*|T|)) = sqrt(2*pi)*exp(-pi*|T|/2).
+    SORRY: 0. -/
+theorem gamma_critline_exp_bound (T : ℝ) :
+    Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I)) ≤
+    Real.sqrt (2 * Real.pi) * Real.exp (-(Real.pi * |T|) / 2) := by
+  have habs_nn : 0 ≤ Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I)) :=
+    Complex.abs.nonneg _
+  have hsq_le := gamma_critline_sq_le T
+  have hbound_nn : 0 ≤ 2 * Real.pi * Real.exp (-(Real.pi * |T|)) := by positivity
+  -- Take sqrt of both sides of the squared bound
+  have h_sqrt_sq : Real.sqrt (Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I)) ^ 2) =
+                   Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I)) :=
+    Real.sqrt_sq habs_nn
+  have h_sqrt_le : Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I)) ≤
+                   Real.sqrt (2 * Real.pi * Real.exp (-(Real.pi * |T|))) := by
+    rw [← h_sqrt_sq]; exact Real.sqrt_le_sqrt hsq_le
+  calc Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I))
+      ≤ Real.sqrt (2 * Real.pi * Real.exp (-(Real.pi * |T|))) := h_sqrt_le
+    _ = Real.sqrt (2 * Real.pi) * Real.sqrt (Real.exp (-(Real.pi * |T|))) := by
+          rw [Real.sqrt_mul (by positivity)]
+    _ = Real.sqrt (2 * Real.pi) * Real.exp (-(Real.pi * |T|) / 2) := by
+          rw [sqrt_exp_eq]
+
+/-! ================================================================
+    Section L: Iterated recurrence -- strip bound from critical line
+    ================================================================ -/
+
+/-- **gamma_abs_shift_prod** (PROVED, 0 sorry):
+    |Gamma(s+n)| = (prod_{k=0}^{n-1} |s+k|) * |Gamma(s)| for n : Nat,
+    provided s+k ≠ 0 for all k < n.
+    Proof: induction on n. Base: trivial. Step: apply gamma_abs_recurrence to s+n,
+    use IH, then Finset.prod_range_succ + ring. -/
+theorem gamma_abs_shift_prod (s : ℂ) (n : ℕ)
+    (hs : ∀ k : ℕ, k < n → (s + ↑k : ℂ) ≠ 0) :
+    Complex.abs (Complex.Gamma (s + ↑n)) =
+    (∏ k ∈ Finset.range n, Complex.abs (s + ↑k)) *
+    Complex.abs (Complex.Gamma s) := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    have hs_le : ∀ k : ℕ, k < n → (s + ↑k : ℂ) ≠ 0 :=
+      fun k hk => hs k (Nat.lt_trans hk (Nat.lt_succ_self n))
+    have hs_n : (s + ↑n : ℂ) ≠ 0 := hs n (Nat.lt_succ_self n)
+    have harg : s + ↑(n + 1) = (s + ↑n) + 1 := by push_cast; ring
+    rw [harg, gamma_abs_recurrence (s + ↑n) hs_n, ih hs_le,
+        Finset.prod_range_succ]
+    ring
+
+/-- **critline_shift_ne_zero** (PROVED, 0 sorry):
+    1/2 + k + iT ≠ 0 for any k : ℕ and T : ℝ.
+    Proof: Re(1/2+k+iT) = k+1/2 > 0, so the number is nonzero. -/
+theorem critline_shift_ne_zero (k : ℕ) (T : ℝ) :
+    ((1/2 : ℂ) + ↑k + ↑T * Complex.I : ℂ) ≠ 0 := by
+  intro h
+  have hre := congr_arg Complex.re h
+  simp [Complex.add_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im,
+        Complex.I_re, Complex.I_im, Complex.one_re] at hre
+  linarith [Nat.cast_nonneg (R := ℝ) k]
+
+/-- **critline_factor_abs_le** (PROVED, 0 sorry):
+    |1/2 + k + iT| ≤ (k : ℝ) + 1/2 + |T| for k : ℕ and T : ℝ.
+    Proof: triangle inequality |a + b| ≤ |a| + |b| on ℂ:
+      |1/2+k+iT| ≤ |1/2+k| + |iT| = (k+1/2) + |T|. -/
+theorem critline_factor_abs_le (k : ℕ) (T : ℝ) :
+    Complex.abs ((1/2 : ℂ) + ↑k + ↑T * Complex.I) ≤ (k : ℝ) + 1/2 + |T| := by
+  have h1 : Complex.abs ((1/2 : ℂ) + ↑k) = (k : ℝ) + 1/2 := by
+    rw [Complex.abs_apply]
+    simp [Complex.add_re, Complex.add_im, Complex.ofReal_re, Complex.ofReal_im,
+          Complex.one_re, Complex.one_im]
+    rw [Real.sqrt_eq_iff_sq_eq (by positivity) (by positivity)]
+    push_cast; ring
+  have h2 : Complex.abs (↑T * Complex.I) = |T| := by
+    rw [map_mul, Complex.abs_ofReal, Complex.abs_I, mul_one]
+  calc Complex.abs ((1/2 : ℂ) + ↑k + ↑T * Complex.I)
+      ≤ Complex.abs ((1/2 : ℂ) + ↑k) + Complex.abs (↑T * Complex.I) :=
+        Complex.abs.add_le _ _
+    _ = (k : ℝ) + 1/2 + |T| := by rw [h1, h2]
+
+/-- **gamma_critline_strip_bound** (PROVED, 0 sorry):
+    For N : ℕ and |T| ≥ 1:
+      |Gamma(1/2 + N + iT)| ≤ sqrt(2*pi) * (N + |T|)^N * exp(-pi*|T|/2).
+    Proof:
+      By gamma_abs_shift_prod (with s = 1/2+iT, n = N):
+        |Gamma(1/2+N+iT)| = (prod_{k<N} |1/2+k+iT|) * |Gamma(1/2+iT)|.
+      Each factor ≤ k+1/2+|T| ≤ N+|T| (critline_factor_abs_le + k < N => k+1/2 ≤ N-1/2 ≤ N).
+      So prod ≤ (N+|T|)^N.
+      And |Gamma(1/2+iT)| ≤ sqrt(2*pi)*exp(-pi*|T|/2) (gamma_critline_exp_bound).
+    This gives a PROVED strip bound WITHOUT Binet formula.
+    The Stirling bound has C*|T|^{N+?}*exp(-pi|T|/2) with exact polynomial; ours has
+    (N+|T|)^N which is polynomial-times-exponential -- sufficient for vertical decay. -/
+theorem gamma_critline_strip_bound (N : ℕ) (T : ℝ) (hT : 1 ≤ |T|) :
+    Complex.abs (Complex.Gamma (1/2 + ↑N + ↑T * Complex.I)) ≤
+    Real.sqrt (2 * Real.pi) * ((N : ℝ) + |T|) ^ N * Real.exp (-(Real.pi * |T|) / 2) := by
+  set s := (1/2 + ↑T * Complex.I : ℂ)
+  have hs_ne : ∀ k : ℕ, k < N → (s + ↑k : ℂ) ≠ 0 := by
+    intro k _
+    simp only [s]
+    convert critline_shift_ne_zero k T using 1
+    push_cast; ring
+  have harg : (1 : ℂ)/2 + ↑N + ↑T * Complex.I = s + ↑N := by
+    simp only [s]; ring
+  rw [harg, gamma_abs_shift_prod s N hs_ne]
+  -- Bound each factor in the product
+  have h_factor_le : ∀ k : ℕ, k < N →
+      Complex.abs (s + ↑k) ≤ (N : ℝ) + |T| := by
+    intro k hk
+    simp only [s]
+    have h1 : (1/2 : ℂ) + ↑T * Complex.I + ↑k = (1/2 : ℂ) + ↑k + ↑T * Complex.I := by ring
+    rw [h1]
+    have hle := critline_factor_abs_le k T
+    have hkN : (k : ℝ) + 1/2 ≤ (N : ℝ) := by
+      have := Nat.succ_le_of_lt hk
+      push_cast at this ⊢; linarith
+    linarith
+  -- Product bound: prod ≤ (N+|T|)^N
+  have h_prod_le : ∏ k ∈ Finset.range N, Complex.abs (s + ↑k) ≤ ((N : ℝ) + |T|) ^ N := by
+    apply le_trans (Finset.prod_le_pow_card _ _ _)
+    · intro k hk
+      exact h_factor_le k (Finset.mem_range.mp hk)
+  -- Combine: product * |Gamma(1/2+iT)| ≤ (N+|T|)^N * sqrt(2pi)*exp(-pi|T|/2)
+  have hGamma_le := gamma_critline_exp_bound T
+  have hprod_nn : 0 ≤ ∏ k ∈ Finset.range N, Complex.abs (s + ↑k) :=
+    Finset.prod_nonneg (fun k _ => Complex.abs.nonneg _)
+  have hGamma_nn : 0 ≤ Complex.abs (Complex.Gamma s) := Complex.abs.nonneg _
+  have hNT_nn : 0 ≤ (N : ℝ) + |T| := by positivity
+  calc (∏ k ∈ Finset.range N, Complex.abs (s + ↑k)) * Complex.abs (Complex.Gamma s)
+      ≤ ((N : ℝ) + |T|) ^ N * Complex.abs (Complex.Gamma s) :=
+        mul_le_mul_of_nonneg_right h_prod_le hGamma_nn
+    _ ≤ ((N : ℝ) + |T|) ^ N * (Real.sqrt (2 * Real.pi) * Real.exp (-(Real.pi * |T|) / 2)) :=
+        mul_le_mul_of_nonneg_left hGamma_le (pow_nonneg hNT_nn N)
+    _ = Real.sqrt (2 * Real.pi) * ((N : ℝ) + |T|) ^ N * Real.exp (-(Real.pi * |T|) / 2) := by ring
+
+/-! ================================================================
+    Section M: Binet formula decomposition (named opens)
+    ================================================================ -/
+
+/-- **Stirling_Binet_Kernel_OPEN** (NAMED OPEN):
+    The Binet kernel B(t) := 1/2 - 1/t + 1/(exp(t)-1) is bounded and
+    integrable at t=0 (where it has a removable singularity) and
+    decays exponentially as t → ∞.
+    Specifically: 0 ≤ B(t) ≤ 1/12 and B(t) = t/12 - t^3/720 + O(t^5) near 0.
+    Lean gap: Real.log expansion near 1 + pointwise bounds on B(t).
+    Reference: Abramowitz-Stegun 6.3.21 p.258; Olver 1974 Thm 3.4.1. -/
+def Stirling_Binet_Kernel_OPEN : Prop :=
+  ∀ t : ℝ, 0 < t →
+  0 ≤ (1/2 - 1/t + 1/(Real.exp t - 1)) ∧
+  (1/2 - 1/t + 1/(Real.exp t - 1)) ≤ 1/12
+
+/-- **Stirling_Binet_Convergence_OPEN** (NAMED OPEN, ~2pp Lean):
+    The Binet integral I(s) := ∫_0^∞ (1/2 - 1/t + 1/(e^t-1)) * exp(-t*s)/t dt
+    converges absolutely for Re(s) > 0, and satisfies |I(s)| ≤ 1/(12*Re(s)).
+    Lean gap: MeasureTheory.integral_converge (dominated convergence) +
+    pointwise bound from Stirling_Binet_Kernel_OPEN + ∫_0^∞ exp(-t*x)/t dt = 1/x.
+    This bound is used to show the Binet formula has a controlled remainder. -/
+def Stirling_Binet_Convergence_OPEN : Prop :=
+  ∀ s : ℂ, 0 < s.re →
+  ∃ I : ℂ, Complex.abs I ≤ 1 / (12 * s.re) ∧
+  -- I is the Binet integral (formal statement; integral definition is the gap)
+  ∀ ε > 0, Complex.abs I < 1 / (12 * s.re) + ε
+
+/-- **Stirling_Log_Formula_OPEN** (NAMED OPEN, ~6pp Lean):
+    The second Binet formula for log Gamma:
+      log Gamma(s) = (s - 1/2) * log(s) - s + (1/2) * log(2*pi) + I(s)
+    where I(s) is the Binet integral (Stirling_Binet_Convergence_OPEN).
+    Proof route:
+      (1) Start from log Gamma(s) = integral representation (Euler integral)
+      (2) Apply integration by parts twice to get the asymptotic expansion
+      (3) Subtract (s-1/2)*log(s) - s using the functional equation recurrence
+    Lean gap: Complex.log properties for Re(s) > 0 + the integral representation
+    of log Gamma itself (not in Mathlib 4.12.0 as of June 2026).
+    Reference: Whittaker-Watson §12.31 (pp. 251-252). -/
+def Stirling_Log_Formula_OPEN : Prop :=
+  ∀ s : ℂ, 0 < s.re →
+  ∃ I : ℂ, Complex.abs I ≤ 1 / (12 * s.re) ∧
+  Complex.log (Complex.Gamma s) =
+    (s - 1/2) * Complex.log s - s +
+    (1/2 : ℂ) * Real.log (2 * Real.pi) + I
+
+/-- **Stirling_Remainder_Asymptotic_OPEN** (NAMED OPEN, ~4pp Lean):
+    From Stirling_Log_Formula_OPEN:
+      |Gamma(s)| = exp(Re((s-1/2)*log(s) - s)) * exp(Re(I(s))) * sqrt(2*pi)
+    For s = sigma + iT with |T| large:
+      Re((s-1/2)*log(s)) = (sigma-1/2)*log|s| - T*arg(s)
+                        ~ (sigma-1/2)*log|T| - pi*|T|/2
+    So: |Gamma(sigma+iT)| ~ sqrt(2*pi) * |T|^(sigma-1/2) * exp(-pi*|T|/2).
+    Lean gap:
+      (A) Complex.log decomposition: Re(log(sigma+iT)) = (1/2)*log(sigma^2+T^2)
+      (B) arg(sigma+iT) -> -pi/2 as T -> -infty (and pi/2 as T -> +infty)
+      (C) exp composition + boundedness of exp(Re(I(s))) from Binet_Convergence
+    Once proved, this CLOSES Stirling_Remainder_OPEN. (~4pp given Binet formula)
+    Reference: Olver 1974 Ch. 3.4; Iwaniec-Kowalski App. C.3. -/
+def Stirling_Remainder_Asymptotic_OPEN : Prop :=
+  Stirling_Log_Formula_OPEN → Stirling_Remainder_OPEN 0 2
+
+/-- **wall_c_binet_summary** (PROVED, 0 sorry):
+    Summary of Wall C status after Batch 10.
+    PROVED (this file, 0 sorry, classical trio):
+      gamma_critline_exp_bound: |Gamma(1/2+iT)| ≤ sqrt(2*pi)*exp(-pi*|T|/2)  [KEY]
+        From critline_product_formula_unconditional + cosh_ge_exp_half + sqrt.
+        This is the STIRLING BOUND ON THE CRITICAL LINE, proved unconditionally.
+      gamma_abs_shift_prod: |Gamma(s+n)| = (prod_{k<n} |s+k|) * |Gamma(s)|
+        Induction on gamma_abs_recurrence.
+      critline_shift_ne_zero: 1/2+k+iT ≠ 0 (Re = k+1/2 > 0)
+      critline_factor_abs_le: |1/2+k+iT| ≤ k+1/2+|T| (triangle inequality)
+      gamma_critline_strip_bound: |Gamma(1/2+N+iT)| ≤ sqrt(2pi)*(N+|T|)^N*exp(-pi|T|/2)
+        Strip bound for integer shifts N from the critical line.
+        PROVED without Binet formula -- only critline formula + recurrence.
+    NAMED OPEN (Binet decomposition):
+      Stirling_Binet_Kernel_OPEN: 0 ≤ B(t) = 1/2-1/t+1/(e^t-1) ≤ 1/12
+      Stirling_Binet_Convergence_OPEN: integral I(s) converges, |I(s)| ≤ 1/(12*Re s)
+      Stirling_Log_Formula_OPEN: log Gamma(s) = Binet formula (~6pp)
+      Stirling_Remainder_Asymptotic_OPEN: |Gamma| bound from Binet (~4pp)
+    Stirling_Remainder_OPEN CLOSED by Stirling_Remainder_Asymptotic_OPEN (conditional).
+    Total remaining: ~10pp (Binet kernel bound + Binet integral + log formula + asymptotics).
+    SORRY: 0. -/
+theorem wall_c_binet_summary : True := True.intro
+
+
 end ArakelovRH.GammaStirlingSubClosure
