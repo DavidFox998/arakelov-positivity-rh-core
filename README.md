@@ -7,7 +7,7 @@ Lean: `leanprover/lean4:v4.12.0` | Mathlib: `v4.12.0` | ORCID: 0009-0008-1290-61
 
 ---
 
-## Status at a Glance (Batch 71, June 26 2026)
+## Status at a Glance (Batch 74, June 26 2026)
 
 | Metric | Value |
 |--------|-------|
@@ -15,11 +15,11 @@ Lean: `leanprover/lean4:v4.12.0` | Mathlib: `v4.12.0` | ORCID: 0009-0008-1290-61
 | Axiom footprint | `{propext, Classical.choice, Quot.sound}` |
 | Grand Conditional Certificate | **PROVED** (Batch 49, 0 sorry) |
 | Wall A | **COMPLETE** (B46) |
-| Wall B | **4 atoms open** (B04-B07: ExplicitFormula, ~10pp) |
+| Wall B | **1 atom open** (NonTrivialZeros ExplicitFormula, ~20pp) |
 | Wall C | **COMPLETE** (B70: GammaSeq DCT proof) |
 | Wall D | **COMPLETE** (B56-57: all 14 atoms proved/conditional) |
-| Total named open atoms | **31** (was 34 at B70, 47 at B53) |
-| HEAD | `acff66b1fd44e7740a38013cfd86a03b92b02541` (B70) + B71 |
+| Total named open atoms | **27** (was 31 at B71, 34 at B70, 47 at B53) |
+| HEAD | Batch 74 push (B71-B74: HodgeCM proved, Wall B 31->27, NonTrivialEF canonicalized) |
 
 ---
 
@@ -63,6 +63,9 @@ theorem opera_numerorum_grand_conditional
 | `binet_gauss_limit_proved` | B53 | `GammaSeq_tendsto_Gamma`; Wall C C04 CLOSED |
 | `Wall_C_closed` | B70 | `WW_GammaSeq_Deriv_L8` proved (DCT, sigma/M split) |
 | `hodge_cm_frobenius_bound_proved` | **B71** | `HodgeCM_FrobeniusBound_OPEN` proved directly |
+| `explicit_formula_from_hodge_and_zero_sum` | **B72** | Wall B 31->27; ZeroSum->GivenFrobenius |
+| `zero_contradiction_iff_critical` | **B73** | `ZeroOffCriticalLine_Contradiction_OPEN` = GRH |
+| `weil_bound_from_grh_and_nontrivial_ef` | **B74** | GRH + NonTrivialEF -> Weil bound (bridge) |
 
 ---
 

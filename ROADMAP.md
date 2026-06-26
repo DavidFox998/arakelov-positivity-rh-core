@@ -5,7 +5,7 @@ Author: David J. Fox | June 2026 | Lean 4 + Mathlib v4.12.0
 
 ---
 
-## Current Status (Batch 73, June 26 2026)
+## Current Status (Batch 74, June 26 2026)
 
 ```
 route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
@@ -16,7 +16,7 @@ route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
     gate_ik   : Iwaniec-Kowalski 2004, Thm 5.15+Cor 5.16
 ```
 
-Named opens: **27** (down from 47 at B53, 34 at B70, 31 at B71)
+Named opens: **27** (down from 47 at B53, 34 at B70, 31 at B71; B74: canonical form improved)
 
 | Wall | Status | Opens |
 |------|--------|-------|
@@ -34,6 +34,25 @@ Named opens: **27** (down from 47 at B53, 34 at B70, 31 at B71)
 
 ### Priority 1 — Wall B ExplicitFormula (~20pp, Batch 74+)
 
+
+*** UPDATED B74 (June 26 2026) ***
+
+B74 canonicalized ExplicitFormula_NonTrivialZeros_OPEN (0 sorry):
+  Replaced ExplicitFormula_ZeroSum_OPEN with the correct formulation
+  that enumerates only NON-TRIVIAL zeros (0 < Re < 1).
+  Proved: nontrivial_ef_implies_zerosum_ef (backward compat, 0 sorry).
+  Proved: zero_deviation_vanishes_under_grh (Finset.sum = 0, 0 sorry).
+  Proved: weil_bound_from_grh_and_nontrivial_ef (GRH -> Weil bound, 0 sorry).
+  Key insight: non-trivial zeros under GRH have Re = 1/2, so the deviation
+  sum sum|Re(rho)-1/2| = 0 termwise (Finset.sum_eq_zero), giving C*T/log T.
+
+CANONICAL WALL B ATOM (1 atom, ~20pp):
+  ExplicitFormula_NonTrivialZeros_OPEN (Batch74WeilNonTrivial.lean)
+    = (forall s, L_143a1 s = newform s) ->
+      exists zeros (in critical strip 0 < Re < 1), (forall n, L_143a1(zeros n) = 0) /\
+      forall T > 1, |S_weil T| <= (sum |Re(rho_n)-1/2|) * T/log T + C * T/log T
+    Source: Weil 1952; IK 2004 Thm 5.12; Bombieri 1974.
+    Lean gap: Mellin transform + contour integral + zero counting (~20pp).
 *** UPDATED B72+B73 (June 26 2026) ***
 
 B71 proved HodgeCM_FrobeniusBound_OPEN (0 sorry).
@@ -146,7 +165,7 @@ are in this repo, and the remaining Lean work is self-contained.
 |-----------|---------|-------|--------|
 | Wall C CLOSED | B49-B70 | 34 | DONE (Jun 26 2026) |
 | Wall B atoms B01-B03 | B71 | 31 | DONE (Jun 26 2026) |
-| Wall B ExplicitFormula | B72-B75 | 27 | NEXT |
+| Wall B ExplicitFormula | B72-B75 | 27 | IN PROGRESS (B74 done) |
 | CPS 2-3 surfaces | B76-B90 | 22 | Planned |
 | Wall D fully unconditional | B91-B105 | 8 | Planned |
 | IK sub-gates | B106-B140 | 4 | Planned |
