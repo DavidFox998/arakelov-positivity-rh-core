@@ -203,3 +203,5 @@ import ArakelovRH.SubClosure.Batch62AnalyticExt
 import ArakelovRH.SubClosure.Batch62MasterCertXVII
 import ArakelovRH.SubClosure.Batch63GammaSeqConv
 import ArakelovRH.SubClosure.Batch63MasterCertXVIII
+import ArakelovRH.SubClosure.Batch64GammaSeqDeriv
+import ArakelovRH.SubClosure.Batch64MasterCertXIX

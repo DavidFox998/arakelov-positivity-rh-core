@@ -380,3 +380,45 @@ Named open (1 new):
 - [ ] Wall C complete (1 atom: WW_AnalyticUniqueness_L8 ~0.15pp, B63)
 ```
 
+---
+
+### Batch 64 — Wall C log-derivative convergence (B64)
+
+```
+Status: PUSHED
+Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_Deriv_L8 -> WW_GammaSeq_Wall_C_Final_L8)
+SORRY: 0.  Axioms: classical trio.
+```
+
+Proved (0 sorry):
+- `GammaSeq_deriv_val_split`: algebraic identity splitting log n - Σ 1/(s+k)
+    into (log n - H_{n+1}) + Σ (1/(k+1) - 1/(s+k)).
+- `GammaSeq_deriv_val_conv_given_EM`: value convergence to -γ + F(s),
+    conditional on EM limit (Mathlib) and F_shift_partial_tendsto (B63).
+- `GammaSeq_F_part_tendsto_b64`: F(s) partial sums tendsto (restated from B63).
+- `WW_GammaSeq_Deriv_from_Wall_C`:
+    WW_GammaSeq_Wall_C_Final_L8 → WW_GammaSeq_Deriv_L8  (trivial, tendsto_nhds_unique).
+
+Named open (1 new, 1 retired):
+- `WW_GammaSeq_Wall_C_Final_L8` (~0.15pp, replaces WW_GammaSeq_Deriv_L8):
+  Two Tendsto facts about logD_n(s) = deriv(GammaSeq_n)(s) / GammaSeq_n(s):
+  (A) logD_n(s) → -γ + F(s)                        [B65 Route A: HasDerivAt formula + EM]
+  (B) logD_n(s) → deriv Gamma s / Gamma s           [B65 Route B: Weierstrass exchange]
+  Together via tendsto_nhds_unique → WW_GammaSeq_Deriv_L8.
+
+B65 proof path:
+  Route A: HasDerivAt(GammaSeq · n) by product/quotient rule on n^s / ∏(s+k);
+    formula logD_n(s) = log n - Σ_{k≤n} 1/(s+k);
+    + Real.tendsto_eulerMascheroniConstant (Mathlib) for log n - H_{n+1} → -γ;
+    + GammaSeq_deriv_val_conv_given_EM (B64, already proved).
+  Route B: Complex.GammaSeq_tendsto_Gamma (Mathlib pointwise);
+    TendstoLocallyUniformlyOn + Weierstrass theorem (Mathlib Analysis.Complex.LocallyUniformLimit);
+    continuous division → ratio converges.
+
+```
+- [x] Batch 64: GammaSeq_deriv_val_split PROVED (0 sorry)
+- [x] Batch 64: GammaSeq_deriv_val_conv_given_EM PROVED (0 sorry, conditional)
+- [x] Batch 64: WW_GammaSeq_Deriv_from_Wall_C PROVED (0 sorry, tendsto_nhds_unique)
+- [x] Atomic opens: 35 -> 35 (WW_GammaSeq_Deriv_L8 <-> WW_GammaSeq_Wall_C_Final_L8)
+- [ ] Wall C complete (1 atom: WW_GammaSeq_Wall_C_Final_L8, B65)
+```
