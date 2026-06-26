@@ -93,3 +93,8 @@ import ArakelovRH.SubClosure.IKGateAttack
 import ArakelovRH.SubClosure.ZFRGateAttack
 import ArakelovRH.SubClosure.WallCRouteAttack
 import ArakelovRH.SubClosure.RouteBMasterReduction
+import ArakelovRH.SubClosure.Batch26WallCLevel3
+import ArakelovRH.SubClosure.Batch26ZFRLevel3
+import ArakelovRH.SubClosure.Batch26CPSLevel3
+import ArakelovRH.SubClosure.Batch26BC6Level3
+import ArakelovRH.SubClosure.Batch26MasterLevel3
