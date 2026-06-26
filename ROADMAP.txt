@@ -796,3 +796,51 @@ WALL C STATUS AFTER BATCH 8:
 
 RUNNING TOTAL: 20 SubClosure files, ~55+ proved theorems, 0 sorry.
 (GammaStirlingSubClosure.lean: 422 lines, 0 sorry, classical trio only)
+
+====================================================================
+BATCH 10 (June 26, 2026) -- Wall C: critline exp bound + strip bound + Binet decomposition
+====================================================================
+
+Appended ~280 lines to: ArakelovRH/SubClosure/GammaStirlingSubClosure.lean
+
+PROVED (0 sorry, classical trio):
+
+  cosh_ge_exp_half (x : R) : exp(|x|) / 2 <= cosh(x)
+    cosh = (e^x+e^{-x})/2; max(e^x,e^{-x}) = e^|x|; linarith [exp_pos].
+
+  sqrt_exp_eq (a : R) : sqrt(exp a) = exp(a/2)  [private]
+    exp(a/2)^2 = exp(a) via exp_mul+ring_nf; rw <- h; sqrt_sq (exp_pos).le.
+
+  gamma_critline_sq_le (T : R) : |Gamma(1/2+iT)|^2 <= 2*pi*exp(-pi*|T|)
+    critline_product_formula_unconditional + cosh_ge_exp_half.
+    calc chain: pi = pi*(e^a * e^{-a}) <= pi*(2*cosh*e^{-a}) via nlinarith.
+
+  gamma_critline_exp_bound (T : R) : |Gamma(1/2+iT)| <= sqrt(2*pi)*exp(-pi*|T|/2)
+    KEY RESULT: Stirling bound on the critical line, 0 sorry, NO Binet needed.
+    gamma_critline_sq_le + sqrt_le_sqrt + sqrt_mul + sqrt_exp_eq.
+
+  gamma_abs_shift_prod (s:C)(n:N)(hs) : |Gamma(s+n)| = (prod_{k<n} |s+k|)*|Gamma(s)|
+    Induction: step rw [harg, gamma_abs_recurrence, ih, prod_range_succ]; ring.
+
+  critline_shift_ne_zero (k:N)(T:R) : 1/2+k+iT != 0
+    Re(1/2+k+iT) = k+1/2 > 0. [simp + Nat.cast_nonneg + linarith]
+
+  critline_factor_abs_le (k:N)(T:R) : |1/2+k+iT| <= k+1/2+|T|
+    Triangle ineq: |1/2+k| + |iT| = (k+1/2) + |T|.
+
+  gamma_critline_strip_bound (N:N)(T:R)(|T|>=1) :
+      |Gamma(1/2+N+iT)| <= sqrt(2*pi) * (N+|T|)^N * exp(-pi*|T|/2)
+    gamma_abs_shift_prod + prod_le_pow_card + gamma_critline_exp_bound.
+    Strip bound for integer shifts N, NO Binet.
+
+NAMED OPEN (Binet decomposition, 4 sub-goals, ~10pp total):
+
+  Stirling_Binet_Kernel_OPEN: 0 <= B(t) <= 1/12 for t > 0
+  Stirling_Binet_Convergence_OPEN: I(s) converges, |I(s)| <= 1/(12*Re s)
+  Stirling_Log_Formula_OPEN: log Gamma(s) = Binet formula (~6pp)
+  Stirling_Remainder_Asymptotic_OPEN: Stirling_Log_Formula_OPEN -> Stirling_Remainder_OPEN 0 2
+
+WALL C STATUS AFTER BATCH 10:
+  gamma_critline_exp_bound        PROVED (KEY)
+  gamma_critline_strip_bound(N:N) PROVED
+  Binet sub-goals                 OPEN (~10pp total)

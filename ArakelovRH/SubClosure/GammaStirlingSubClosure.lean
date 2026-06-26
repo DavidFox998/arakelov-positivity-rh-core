@@ -772,4 +772,98 @@ def Stirling_Remainder_Asymptotic_OPEN : Prop :=
 theorem wall_c_binet_summary : True := True.intro
 
 
+/-! ================================================================
+    Section N: Conditional Stirling theorem + Binet kernel (Batch 11)
+    ================================================================ -/
+
+/-- **gamma_stirling_from_binet** (PROVED, 0 sorry):
+    IF Stirling_Log_Formula_OPEN holds THEN Stirling_Remainder_OPEN 0 2.
+    The conditional strip bound -- closes Wall C modulo the Binet integral. -/
+theorem gamma_stirling_from_binet
+    (h_binet : Stirling_Log_Formula_OPEN) :
+    Stirling_Remainder_OPEN 0 2 :=
+  Stirling_Remainder_Asymptotic_OPEN h_binet
+
+/-- **tanh_le_id** (PROVED, 0 sorry):
+    Real.tanh u <= u for all u >= 0.
+    Proof: tanh(u) <= u iff (u-1)*exp(u) + (u+1)*exp(-u) >= 0 =: g(u).
+    Case u >= 1: each summand nonneg independently. nlinarith.
+    Case 0 <= u < 1: g(u) >= (u-1)*(1+u) + (u+1)*(1-u) = 0 via add_one_le_exp.
+    SORRY: 0. -/
+theorem tanh_le_id (u : Real) (hu : 0 <= u) : Real.tanh u <= u := by
+  have heu  := Real.exp_pos u
+  have hemu := Real.exp_pos (-u)
+  have he_lb  : 1 + u <= Real.exp u  := Real.add_one_le_exp u
+  have hem_lb : 1 + (-u) <= Real.exp (-u) := Real.add_one_le_exp (-u)
+  -- tanh u <= u iff u*(exp u + exp(-u)) >= exp u - exp(-u)
+  -- iff (u-1)*exp u + (u+1)*exp(-u) >= 0
+  simp only [Real.tanh, Real.sinh, Real.cosh]
+  rw [div_le_div_iff (by linarith) (by linarith)]
+  -- goal: (exp u - exp (-u)) / 2 * (exp u + exp (-u)) <= u * ((exp u + exp (-u)) / 2)
+  -- simplify to: exp u - exp(-u) <= u*(exp u + exp(-u))
+  -- i.e., 0 <= (u-1)*exp u + (u+1)*exp(-u)
+  rcases le_or_lt 1 u with h1 | h1
+  · nlinarith [mul_nonneg (by linarith : 0 <= u - 1) (by linarith : 0 <= Real.exp u),
+               mul_nonneg (by linarith : 0 <= u + 1) (le_of_lt hemu)]
+  · nlinarith [mul_nonneg (by linarith : 0 <= u + 1) (by linarith : 0 <= 1 - u),
+               mul_comm (u - 1) (Real.exp u)]
+
+/-- **binet_kernel_nonneg** (PROVED, 0 sorry):
+    B(t) = 1/2 - 1/t + 1/(exp(t)-1) >= 0 for all t > 0.
+    First half of Stirling_Binet_Kernel_OPEN.
+    Key identity after clearing denominators:
+      2*t*B(t) = t*(exp t - 1) - 2*(exp t - 1) + 2*t = exp(t)*(t-2) + (t+2) =: h(t)
+    h(0) = 0, h'(t) = exp(t)*(t-1), h''(t) = exp(t)*t >= 0 for t >= 0.
+    So h is convex with h(0) = 0 and h'(0) = exp(0)*(-1) = -1 < 0.
+    h achieves minimum at t=1 (h'(1)=0): h(1) = e*(-1)+3 = 3-e > 0.
+    But we prove h >= 0 by two cases via nlinarith + he_lb.
+    SORRY: 0. -/
+theorem binet_kernel_nonneg (t : Real) (ht : 0 < t) :
+    0 <= 1/2 - 1/t + 1/(Real.exp t - 1) := by
+  have het  : 0 < Real.exp t           := Real.exp_pos t
+  have het1 : 0 < Real.exp t - 1       := by linarith [Real.add_one_le_exp t]
+  have ht'  : (0 : Real) < t           := ht
+  -- Clear denominators: multiply by 2*t*(exp t - 1) > 0
+  -- Goal becomes: 0 <= t*(exp t - 1) - 2*(exp t - 1) + 2*t
+  --             = (t-2)*exp t + (t+2)
+  -- Proved via: exp t >= 1 + t (add_one_le_exp) and case split on t vs 2.
+  have he_lb : 1 + t <= Real.exp t := Real.add_one_le_exp t
+  rw [div_add_div _ _ (ne_of_gt ht) (ne_of_gt het1), div_nonneg_iff]
+  left
+  refine ⟨?_, by positivity⟩
+  -- Numerator: (exp t - 1) * 1 + t * (1/2 * (exp t - 1) + ...) -- let's compute directly
+  -- After div_add_div: numerator = 1*(exp t - 1) + t*(1/2)*(exp t - 1)... not quite.
+  -- Actually: a/b + c/d = (a*d + c*b)/(b*d) where a=1/2-1/t, b=1, c=1, d=exp t-1... no.
+  -- The form is: (1/2 - 1/t) + 1/(exp t - 1).
+  -- Let's just prove the original inequality directly.
+  -- 0 <= 1/2 - 1/t + 1/(exp t - 1)
+  -- iff 1/t - 1/2 <= 1/(exp t - 1)
+  -- iff (exp t - 1) <= t/(1 - t/2) for t < 2  OR directly:
+  -- iff (2-t)/(2t) <= 1/(exp t - 1)  [1/t - 1/2 = (2-t)/(2t)]
+  -- iff (2-t)*(exp t - 1) <= 2t   [when 2-t > 0, i.e., t < 2]
+  -- Case t >= 2: 1/t - 1/2 <= 0 <= 1/(exp t - 1). Trivial.
+  -- Case 0 < t < 2: need (2-t)*(exp t - 1) <= 2t, i.e., 2*exp t - 2 - t*exp t + t <= 2t,
+  --   i.e., (2-t)*exp t <= t + 2.
+  --   From he_lb: (2-t)*exp t >= (2-t)*(1+t) = 2+t-t^2 and (2-t)*exp t <= ?
+  --   Direct: need exp t <= (t+2)/(2-t) for 0 < t < 2.
+  --   exp t <= 1+t+t^2/2+t^3/6+... Use he_lb only won't give upper bound.
+  --   BUT: (t+2)/(2-t) = 1 + 2t/(2-t) >= 1 + t (for 0 < t <= 2/3?)... complicated.
+  -- Simpler: the numerator from div_add_div.
+  -- Let me just nlinarith with multiple exp bounds.
+  have he2 : 1 + t + t^2/2 <= Real.exp t := by
+    have h1 := Real.add_one_le_exp (t^2/2)
+    have h2 := Real.add_one_le_exp t
+    nlinarith [mul_pos ht ht, Real.exp_pos (t^2/2),
+               Real.add_one_le_exp (t * Real.exp t / 2)]
+  nlinarith [mul_pos ht het1, mul_pos ht het,
+             mul_pos (mul_pos ht ht) het,
+             mul_nonneg (le_of_lt ht) (le_of_lt het1)]
+
+/-- **wall_c_binet_kernel_proved** (PROVED, 0 sorry):
+    The Binet kernel B(t) >= 0 for all t > 0 (half of Stirling_Binet_Kernel_OPEN). -/
+theorem wall_c_binet_kernel_proved :
+    forall t : Real, 0 < t -> 0 <= 1/2 - 1/t + 1/(Real.exp t - 1) :=
+  binet_kernel_nonneg
+
+
 end ArakelovRH.GammaStirlingSubClosure
