@@ -31,6 +31,7 @@ import ArakelovRH.Scaffold.AbbesUllmo
 import ArakelovRH.Scaffold.JorgensonKramer
 import ArakelovRH.Scaffold.KimSarnakAuxiliary
 import ArakelovRH.Scaffold.KimSarnakMainTheorem
+import ArakelovRH.Scaffold.RouteBReduction
 import ArakelovRH.C09_GRHDescent
 import ArakelovRH.C10_RHMainTheorem
 import ArakelovRH.ClassNumber.GenusFormula
