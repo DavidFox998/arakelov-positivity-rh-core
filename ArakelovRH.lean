@@ -98,3 +98,9 @@ import ArakelovRH.SubClosure.Batch26ZFRLevel3
 import ArakelovRH.SubClosure.Batch26CPSLevel3
 import ArakelovRH.SubClosure.Batch26BC6Level3
 import ArakelovRH.SubClosure.Batch26MasterLevel3
+import ArakelovRH.SubClosure.Batch27FELevel3
+import ArakelovRH.SubClosure.Batch27EPLevel3
+import ArakelovRH.SubClosure.Batch27BSLevel3
+import ArakelovRH.SubClosure.Batch27RSILevel3
+import ArakelovRH.SubClosure.Batch27IKLevel3
+import ArakelovRH.SubClosure.Batch27MasterLevel3b
