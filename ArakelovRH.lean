@@ -37,3 +37,6 @@ import ArakelovRH.C10_RHMainTheorem
 import ArakelovRH.ClassNumber.GenusFormula
 import ArakelovRH.ClassNumber.ReducedForms
 import ArakelovRH.ClassNumber.NormFormBounds
+import ArakelovRH.Closure.EulerProductClosure
+import ArakelovRH.Closure.ResidueArgumentClosure
+import ArakelovRH.Closure.BoundedStripsClosure
