@@ -77,3 +77,7 @@ import ArakelovRH.SubClosure.ZetaZeroFreeDecomp
 import ArakelovRH.SubClosure.FEandRSDecomp
 import ArakelovRH.SubClosure.ConverseDecomp
 import ArakelovRH.SubClosure.AtomicClosure
+import ArakelovRH.SubClosure.RSIdentityAttack
+import ArakelovRH.SubClosure.IKResidueAttack
+import ArakelovRH.SubClosure.PhragmenLindelofAttack
+import ArakelovRH.SubClosure.AnalyticExtensionAttack

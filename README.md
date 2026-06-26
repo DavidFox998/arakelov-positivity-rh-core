@@ -365,3 +365,44 @@ lake build ArakelovRH
 ```
 
 See **[ROADMAP.md](ROADMAP.md)** for the milestone plan and gate-closing requirements.
+
+
+## Batch 24 (June 2026): Surface Closure Attacks
+
+Four new attack files sub-decompose 4 of the 19 open surfaces. All combinators 0 sorry.
+
+### RSIdentityAttack.lean
+- **rs_factor_from_identity** (PROVED, 0 sorry):
+  RS_Identity_OPEN → RS_EulerFactorIdentity_OPEN.
+  Witnesses: α_p = β_p = (√p : ℝ) : ℂ (provably |.| = √p).
+  RS identity from h_id directly.
+  Effect: RS_EulerFactorIdentity_OPEN CLOSED given RS_Identity_OPEN (~15pp, IK Thm 5.13).
+
+### IKResidueAttack.lean
+- **ik_grh_nv_from_residue** (PROVED, 0 sorry):
+  3 new named opens → IK_GRH_to_L_sym2_nv_OPEN.
+  - L_sym2_ContinuousAt1_OPEN (~5pp): ContinuousAt L_sym2_143 1
+  - ZetaResidueOne_OPEN (~2pp): (s-1)·ζ(s) → 1 along Re>1 (Mathlib riemannZeta API)
+  - NhdsWithin_Re_NeBot_OPEN (~1pp): nhdsWithin 1 {Re>1} is NeBot (sequence limit)
+  Proof: Tendsto.mul + tendsto_nhds_unique + NeBot.
+
+### PhragmenLindelofAttack.lean
+- **bs_pl_from_holomorphic_growth** (PROVED, 0 sorry):
+  3 new named opens → BS_PhragmenLindelof_OPEN.
+  - TwistedL_HolomorphicStrip_OPEN (~8pp): DifferentiableOn on closed strips
+  - TwistedL_PolyGrowth_OPEN (~5pp): polynomial growth O(|T|^A)
+  - PhragmenLindelof_Strip_OPEN (~3pp): Mathlib PL API match
+  Proof: h_pl h_hol h_grow (one application).
+
+### AnalyticExtensionAttack.lean
+- **cu_extend_from_analytic** (PROVED, 0 sorry):
+  3 new named opens → CU_ExtendToAllC_OPEN.
+  - L143_AnalyticC_OPEN (~5pp): AnalyticOn ℂ L_143a1 Set.univ
+  - Newform_AnalyticC_OPEN (~5pp): AnalyticOn ℂ newform_143a1_L Set.univ
+  - AnalyticIdentity_OPEN (~3pp): Mathlib identity theorem (AnalyticOn.eqOn_of_preconnected_of_frequently_eq)
+  Proof: apply h_id h_L h_N (one application).
+
+**New named opens added: 9** (across 3 files; RSIdentityAttack adds 0 new opens).
+**New combinators proved: 4** (all 0 sorry).
+**Net effect: 4 of the 19 open surfaces now have explicit reduction paths**
+to smaller, independently attackable sub-goals.

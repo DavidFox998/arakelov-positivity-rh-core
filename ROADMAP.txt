@@ -1693,3 +1693,20 @@ Dominant item: CU_ConverseHalfPlane_OPEN (~35pp, CPS 1999 Thm 3.3).
 
 AXIOM FOOTPRINT (all proved items): {propext, Classical.choice, Quot.sound}.
 SORRY: 0 across all files.
+
+BATCH 24 (June 2026) — Surface Closure Attacks
+  NEW FILES (4 attack files, all 0 sorry):
+    RSIdentityAttack.lean       rs_factor_from_identity proved
+    IKResidueAttack.lean        ik_grh_nv_from_residue proved + 3 new opens
+    PhragmenLindelofAttack.lean bs_pl_from_holomorphic_growth proved + 3 new opens
+    AnalyticExtensionAttack.lean cu_extend_from_analytic proved + 3 new opens
+  NEW NAMED OPENS (9 sub-surfaces):
+    L_sym2_ContinuousAt1_OPEN, ZetaResidueOne_OPEN, NhdsWithin_Re_NeBot_OPEN
+    TwistedL_HolomorphicStrip_OPEN, TwistedL_PolyGrowth_OPEN, PhragmenLindelof_Strip_OPEN
+    L143_AnalyticC_OPEN, Newform_AnalyticC_OPEN, AnalyticIdentity_OPEN
+  NET EFFECT: 4 of 19 open surfaces explicitly reduced to sub-goals.
+    RS_EulerFactorIdentity_OPEN CLOSED given RS_Identity_OPEN.
+    IK_GRH_to_L_sym2_nv_OPEN CLOSED given 3 sub-opens (~8pp).
+    BS_PhragmenLindelof_OPEN CLOSED given 3 sub-opens (~16pp).
+    CU_ExtendToAllC_OPEN CLOSED given 3 sub-opens (~13pp).
+  BARREL: ArakelovRH.lean updated with 4 new imports.
