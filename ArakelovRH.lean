@@ -156,3 +156,6 @@ import ArakelovRH.SubClosure.Batch42MasterCertP
 import ArakelovRH.SubClosure.Batch43FTCIoi
 import ArakelovRH.SubClosure.Batch43ZFRAnalytic
 import ArakelovRH.SubClosure.Batch43MasterCertQ
+import ArakelovRH.SubClosure.Batch44BinetGauss
+import ArakelovRH.SubClosure.Batch44ZFRLambda
+import ArakelovRH.SubClosure.Batch44MasterCertR
