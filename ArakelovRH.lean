@@ -193,3 +193,5 @@ import ArakelovRH.SubClosure.Batch56MasterCertXII
 import ArakelovRH.SubClosure.Batch57WallDPoussin
 import ArakelovRH.SubClosure.Batch57MasterCertXIII
 import ArakelovRH.SubClosure.Batch58WallCIKChain
+import ArakelovRH.SubClosure.Batch59IKSurfaceDecomp
+import ArakelovRH.SubClosure.Batch59MasterCertXIV

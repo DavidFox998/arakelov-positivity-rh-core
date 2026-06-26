@@ -6,7 +6,7 @@ Author: David J. Fox — Opera Numerorum — June 2026
 
 ---
 
-## Current Position (Batch 58, June 26 2026)
+## Current Position (Batch 59, June 26 2026)
 
 ```
 Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
@@ -14,8 +14,9 @@ Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
 Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
 Wall C:              2 open (Binet_DiGamma_WW_L8 ~0.25pp, Binet_IntegralFromDigamma_WW_L8 cond ~0.25pp)
 Wall D:              ALL 14 atoms proved (D01-D08 B57, D09-D14 B56)
-Atomic opens:        32 valid named surfaces               0 sorry   ALL OPEN DEFS
+Atomic opens:        36 valid named surfaces               0 sorry   ALL OPEN DEFS
 Remaining:           ~185pp analytic number theory
+IK chain:            S701+S702+S801+S802 formally registered (B59)
 ```
 
 ---
@@ -242,7 +243,7 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 | 1 | C06_WW C07_WW (Wall C) | 0.50pp | none | Wall C DONE |
 | 2 | D09–D14 (Stirling+Hadamard) | ~~2.25pp~~ | M-C | CLOSED (B56) |
 | 3 | D01–D08 (Poussin ZFR) | ~~2.70pp~~ | D09-D14 | CLOSED (B57) |
-| 4 | S901–S903 (IK ZFR chain) | 25pp | Wall D | Surfaces 7-9 partial |
+| 4 | S701–S903 (IK full chain) | 45pp | Wall D | S901+S902 proved; S701/S702/S801/S802 registered |
 | 5 | S801–S802 (Rankin-Selberg) | 15pp | — | closes S901 prereq |
 | 6 | S701–S702 (GJ sym² lift) | 20pp | S801 | closes S702 prereq |
 | 7 | P04–P05 (Euler product) | 5pp | — | CPS surfaces partial |
@@ -281,6 +282,9 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] Batch 58: Gamma_NotOnBranchCut_TStrip_OPEN PROVED (Heine-Borel compactness)
 - [x] Batch 58: S901 IK_NonZeroAtOne_L5 proved structural; S902/S903 defined
 - [x] Atomic opens: 33 → 32 (T-strip closed, C06 1-for-1 rename)
+- [x] Batch 59: IK chain S701/S702/S801/S802 formally registered as named opens
+- [x] Batch 59: ik_full_chain combinator (S701+S802+S902+S903 → GRH→RH) proved 0 sorry
+- [x] Atomic opens: 32 → 36 (4 new IK sub-surfaces registered)
 - [ ] Wall B complete (7 atoms remain, ~13pp)
 - [x] Wall D complete (all 14 atoms proved, B56+B57)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)
