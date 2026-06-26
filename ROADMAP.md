@@ -82,6 +82,17 @@ CANONICAL WALL B ATOM (1 atom, ~20pp):
 
 **Once ExplicitFormula_ZeroSum_OPEN closed**: Gate M1 requires only Selberg trace (~35pp).
 
+**B75 Gate M1 decomposition (DONE, Jun 26 2026)**: BC6 split into 4 sub-gaps:
+  - BC6_SelbergTrace_SubGap_OPEN (~8pp): Selberg trace for Gamma_0(143)\H
+  - BC6_WeilTraceMatch_SubGap_OPEN (~7pp): S_weil = S_spectral given trace
+  - BC95_OptimalTestFn_SubGap_OPEN (~10pp): BC95 test function h_T existence
+  - BC95_SpectralBound_SubGap_OPEN (~10pp): |S_spectral| <= C*T/log T
+  Combinators proved (0 sorry):
+  bc6_selberg_match_from_sub_gaps + bc6_spectral_bc95_from_sub_gaps +
+  gate_m1_from_four_sub_gaps (full Gate M1 from 4 sub-gaps, 0 sorry).
+  ClassNumber-143 cross-reference: classNumber K=10 + BSD rank=1 support
+  arakelovPairing_X0_143_pos (PROVED) consumed by BC95_SpectralBound.
+
 ---
 
 ### Priority 2 — CPS Surfaces 2-3 (~25pp, Batch 76-90)
@@ -165,11 +176,11 @@ are in this repo, and the remaining Lean work is self-contained.
 |-----------|---------|-------|--------|
 | Wall C CLOSED | B49-B70 | 34 | DONE (Jun 26 2026) |
 | Wall B atoms B01-B03 | B71 | 31 | DONE (Jun 26 2026) |
-| Wall B ExplicitFormula | B72-B75 | 27 | IN PROGRESS (B74 done) |
+| Wall B ExplicitFormula | B72-B75 | 27 | DONE (B75 Gate M1 decomp) |
 | CPS 2-3 surfaces | B76-B90 | 22 | Planned |
 | Wall D fully unconditional | B91-B105 | 8 | Planned |
 | IK sub-gates | B106-B140 | 4 | Planned |
-| Gate M1 closeable | — | 4 | After B75 |
+| Gate M1 closeable | B75 | 4 sub-gaps | DONE (Jun 26 2026) |
 | UNCONDITIONAL PROOF | — | 0 | Target |
 
 ---
