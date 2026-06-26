@@ -329,7 +329,7 @@ PROVED (0 sorry, all computable or formally trivial):
   selberg_weil_from_two         (SelbergWeil) SelbergWeilBC6_143_OPEN closes (scaffold)
   Total proved theorems (June 26): 22 + prior scaffolds = 30+ (0 sorry)
 
-OPEN (atomic sub-surfaces after 9 closure files, HEAD 6d58982b):
+OPEN (atomic sub-surfaces after 9 closure files + SubClosure batch 1, HEAD 30382aa1):
   -- Surface 1: SelbergWeilBC6_143_OPEN REDUCED to:
   SelbergTrace_143_OPEN         Selberg trace formula for Gamma_0(143)    (~25 pp)
   WeilExplicitFormula_143_OPEN  Weil formula: spectral -> zero sum         (~20 pp)
@@ -377,6 +377,15 @@ Lean file inventory:
   ArakelovRH/Closure/ConverseUniquenessClosure.lean   Surface 5: CPS+Cremona PROVED
   ArakelovRH/Closure/SelbergWeilClosure.lean      Surface 1: arithmetic PROVED, 2 subs
   ArakelovRH/RouteBClosed.lean                    Terminal Clay certificate
+  ArakelovRH/SubClosure/CpowNormSubClosure.lean   CpowNorm: api-name gap (~2pp)
+  ArakelovRH/SubClosure/GlobalRootNumberSubClosure.lean  GlobalRootNum: Gauss+Weil (~8pp)
+  ArakelovRH/SubClosure/PeterssonSubClosure.lean  Petersson: RS-factorization (~18pp)
+  ArakelovRH/SubClosure/DirichletAbsSubClosure.lean  DirichletAbs: Deligne (~25pp)
+  ArakelovRH/SubClosure/GammaFactorSubClosure.lean  GammaFactor = GammaStirling (~10pp)
+  ArakelovRH/SubClosure/L143NonZeroSubClosure.lean  L143NonZero: Euler-bdry (~13pp)
+  ArakelovRH/SubClosure/ZeroFreeStripSubClosure.lean  ZeroFreeStrip: ZFR_143 (~20pp)
+  ArakelovRH/SubClosure/CremonaSubClosure.lean    Cremona: MultOne+DB (~13pp)
+  Seal/audit_lean.py                               Clay audit: strips /- ... -/ before scan
 
 ====================================================================
 ACTION PLAN -- WHAT TO DO NEXT
