@@ -144,3 +144,6 @@ import ArakelovRH.SubClosure.Batch38MasterCertL
 import ArakelovRH.SubClosure.Batch39LaplaceIoi
 import ArakelovRH.SubClosure.Batch39ZFRAnalytic
 import ArakelovRH.SubClosure.Batch39MasterCertM
+import ArakelovRH.SubClosure.Batch40LaplaceGammaClose
+import ArakelovRH.SubClosure.Batch40BinetFormula
+import ArakelovRH.SubClosure.Batch40MasterCertN
