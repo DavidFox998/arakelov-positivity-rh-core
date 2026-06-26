@@ -11,6 +11,15 @@ Lean: `leanprover/lean4:v4.12.0` | Mathlib: `v4.12.0` | ORCID: 0009-0008-1290-61
 > **Wall A COMPLETE** (June 26 2026): all 4 log lower bounds for S₄={2,3,19,191} proved.
 > **Wall C progress** (June 26 2026): sin_modulus_sq_identity_OPEN CLOSED; sin_at_critline PROVED;
 > critline product formula PROVED conditional; ~13pp Stirling remain.
+> **ATOMIC CLOSURE (June 2026)**: All 21 named open surfaces inventoried and individually
+> named as `def Prop` targets. Two trivially proved (0 sorry):
+> `FE_RootNumber_OPEN` (choose ε = 1) and `RS_EulerProductToIdentity_OPEN` (extract ∃).
+> Master theorem `rh_from_all_atomic_surfaces` (0 sorry) proves RiemannHypothesis
+> from the 19 remaining surfaces via a full combinator chain.  Each surface is
+> **independently attackable**: named def, source paper, page estimate, no cross-
+> surface dependencies within the same gate.
+> File: `ArakelovRH/SubClosure/AtomicClosure.lean`
+
 
 ---
 
