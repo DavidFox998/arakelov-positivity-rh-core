@@ -117,3 +117,6 @@ import ArakelovRH.SubClosure.Batch30MasterCertD
 import ArakelovRH.SubClosure.Batch31GenusCM
 import ArakelovRH.SubClosure.Batch31BC6Bridge
 import ArakelovRH.SubClosure.Batch31MasterCertE
+import ArakelovRH.SubClosure.Batch32IKZetaPole
+import ArakelovRH.SubClosure.Batch32WallCKernel
+import ArakelovRH.SubClosure.Batch32MasterCertF
