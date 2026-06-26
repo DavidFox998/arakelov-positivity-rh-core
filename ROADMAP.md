@@ -305,6 +305,42 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] Atomic opens: 36 -> 35 (WW_HarmonicTSum_L8 closed)
 - [ ] Wall C complete (1 sub-atom: WW_AnalyticExt_L8 analytic extension ~0.15pp)
 
+
+### Batch 63 -- Wall C GammaSeq derivative convergence argument (B63)
+
+```
+Status: PUSHED
+Net atoms: 35 -> 35 (1-for-1: WW_AnalyticUniqueness_L8 -> WW_GammaSeq_Deriv_L8)
+SORRY: 0.  Axioms: classical trio.
+```
+
+Proved (0 sorry):
+- `norm_add_nat_lb_b63`: |s+N| >= Re(s)+N  (helper; private in B62)
+- `F_summable_b63`: F(s) terms summable Re(s)>0  (reproved; private in B62)
+- `F_partial_tendsto`: partial sums sum_{k<N} term -> F(s)  [HasSum.tendsto_sum_nat]
+- `F_shift_partial_tendsto`: partial sums sum_{k<=n} term -> F(s)  [+1 shift]
+- `WW_GammaSeq_implies_AnalyticUniqueness`:
+    WW_GammaSeq_Deriv_L8 -> WW_AnalyticUniqueness_L8  (trivial combinator)
+- `Wall_C_reduces_to_GammaSeq`: status certificate
+
+Named open (1 new):
+- `WW_GammaSeq_Deriv_L8` (~0.15pp)
+  Statement: psi(s) = -gamma + F(s) for all Re(s) > 0.
+  Proof method (B64):
+    (i)  HasDerivAt (log o GammaSeq n) (log n - sum_{k=0}^n 1/(s+k)) s
+    (ii) Derivative values -> -gamma + F(s)  [F_shift_partial_tendsto, proved here]
+    (iii) log(GammaSeq s n) -> log(Gamma s) locally uniformly
+    (iv)  tendstoLocallyUniformlyOn + HasDerivAt -> HasDerivAt (log o Gamma) (-gamma+F) s
+    (v)   HasDerivAt.clog + Gamma_ne_zero -> psi(s) = -gamma + F(s)
+
+```
+- [x] Batch 63: F_partial_tendsto PROVED (0 sorry)
+- [x] Batch 63: F_shift_partial_tendsto PROVED (0 sorry)
+- [x] Batch 63: WW_GammaSeq_implies_AnalyticUniqueness PROVED (0 sorry, trivial)
+- [x] Atomic opens: 35 -> 35 (WW_AnalyticUniqueness_L8 <-> WW_GammaSeq_Deriv_L8)
+- [ ] Wall C complete (1 atom: WW_GammaSeq_Deriv_L8 ~0.15pp, B64)
+```
+
 ---
 
 ### Batch 62 — Wall C structural setup (B62)
