@@ -169,3 +169,7 @@ import ArakelovRH.SubClosure.Batch47WallCClose
 import ArakelovRH.SubClosure.Batch47ZFRLevel6
 import ArakelovRH.SubClosure.Batch47HadamardDecomp
 import ArakelovRH.SubClosure.Batch47MasterCertU
+import ArakelovRH.SubClosure.Batch48WallBDecomp
+import ArakelovRH.SubClosure.Batch48WallCDecomp
+import ArakelovRH.SubClosure.Batch48WallDPoussin
+import ArakelovRH.SubClosure.Batch48MasterCertV
