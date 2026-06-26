@@ -490,3 +490,75 @@ REMAINING MATHEMATICAL GAPS (require deep ANT or Stirling not in Mathlib v4.12.0
 
 TOTAL LEAN FILES in ArakelovRH/SubClosure/: 16 files, all Clay-clean
 
+
+
+====================================================================
+BATCH 5 (June 26, 2026) — SineGrowth + ExpLogBounds
+====================================================================
+
+NEW SUB-CLOSURE FILES:
+  ArakelovRH/SubClosure/SineGrowthSubClosure.lean
+  ArakelovRH/SubClosure/ExpLogBoundsSubClosure.lean
+
+PROVED (0 sorry, classical trio):
+  sinh_ge_exp_div_three:
+    sinh(x) >= exp(x)/3 for x >= 1.
+    Proof: exp(x)^2 > 2.718^2 > 7 > 3 (exp_one_gt_d9), so 3*exp(-x) <= exp(x),
+    then sinh = (exp-exp(-.))/2 >= exp/3. Via nlinarith + multiplicative cancel.
+
+  sinh_pos_of_pos: sinh(x) > 0 for x > 0.
+  sinh_nonneg_of_nonneg: sinh(x) >= 0 for x >= 0.
+
+  sin_modulus_ge_sinh_sq (CONDITIONAL on sin_modulus_sq_identity_OPEN):
+    |sin(pi*s)|^2 >= sinh(pi*|Im s|)^2.
+    sin_modulus_ge_sinh: |sin(pi*s)| >= sinh(pi*|Im s|).
+    sin_modulus_ge_exp_third: |sin(pi*s)| >= exp(pi*|Im s|)/3 for pi*|Im|>=1.
+
+  gamma_stirling_from_reflection (CONDITIONAL on sin_modulus_sq_identity_OPEN):
+    |Gamma(s)| * |Gamma(1-s)| <= 3*pi*exp(-pi*|Im s|) for pi*|Im|>=1.
+    (Via reflection formula + sin growth bound.)
+
+  exp_lt_two_of_le_069: exp(69/100) < 2.
+    Proof: exp(69/100)*exp(31/100)=exp(1)<2.72; exp(31/100)>=sum_4(31/100)=1.362957;
+    so exp(69/100) < 2.72/1.362957 < 2. Via nlinarith.
+
+  exp_lt_three_of_le_109: exp(109/100) < 3.
+    Proof: exp(109/100)=exp(1)*exp(9/100); exp(9/100)<100/91<1.0942;
+    2.72*1.0942 < 3. Via nlinarith.
+
+  log_lb_2: 69/100 < log(2). Via log_exp + log_lt_log + exp_lt_two_of_le_069.
+  log_lb_3: 109/100 < log(3). Via log_exp + log_lt_log + exp_lt_three_of_le_109.
+
+  wall_a_opera_sieve_status: log_lb_2 AND log_lb_3.
+
+  log_lb_19_from_exp: log_lb_19_OPEN follows from exp(2.94) < 19 (conditional).
+  log_lb_191_from_exp: log_lb_191_OPEN follows from exp(5.25) < 191 (conditional).
+
+NAMED OPEN (proof sketches complete):
+  sin_modulus_sq_identity_OPEN: |sin(pi*s)|^2 = sin^2(pi*Re)+sinh^2(pi*Im).
+    Lean gap: Complex.sin expansion + hyperbolic Pythagorean identity. (~3pp)
+
+  GammaStirling_SineDecay_OPEN: |Gamma(s)| <= 3pi*exp(-pi|T|)/|Gamma(1-s)|.
+    Lean gap: lower bound on |Gamma(1-s)| in complementary strip. (~12pp)
+
+  exp_taylor_upper_bound_OPEN: Taylor+remainder formula for exp. (~2pp)
+  log_lb_19_OPEN: 294/100 < log(19). Sub-lemma: exp(2.94) < 19. (~2pp)
+  log_lb_191_OPEN: 525/100 < log(191). Sub-lemma: exp(5.25) < 191. (~2pp)
+
+BARREL UPDATE:
+  Added 5 imports to ArakelovRH.lean:
+    SelbergTraceSubClosure (batch 3, was missing)
+    CPSSubClosure (batch 3, was missing)
+    GammaCompactSubClosure (batch 3, was missing)
+    SineGrowthSubClosure (batch 5, new)
+    ExpLogBoundsSubClosure (batch 5, new)
+
+WALL A STATUS (opera-sieve bc_sum_S4_gt_bound):
+  log_lb_2 (log 2 > 0.69): PROVED (this repo, arakelov, log_lb_2, 0 sorry)
+  log_lb_3 (log 3 > 1.09): PROVED (this repo, arakelov, log_lb_3, 0 sorry)
+  log_lb_19 (log 19 > 2.94): OPEN (~2pp, proof sketch complete)
+  log_lb_191 (log 191 > 5.25): OPEN (~2pp, proof sketch complete)
+  Total remaining: ~4pp of Taylor arithmetic.
+
+TOTAL SubClosure FILES: 18 (16 prior + 2 new batch 5)
+RUNNING PROVED THEOREM COUNT: 30+ theorems, 0 sorry, classical trio only.

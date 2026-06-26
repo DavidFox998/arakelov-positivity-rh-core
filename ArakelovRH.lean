@@ -61,3 +61,8 @@ import ArakelovRH.SubClosure.GlobalRootClose
 import ArakelovRH.SubClosure.PhragmenLindelofSubClosure
 import ArakelovRH.SubClosure.L_sym2_NonVanSubClosure
 import ArakelovRH.SubClosure.WeilBoundSubClosure
+import ArakelovRH.SubClosure.SelbergTraceSubClosure
+import ArakelovRH.SubClosure.CPSSubClosure
+import ArakelovRH.SubClosure.GammaCompactSubClosure
+import ArakelovRH.SubClosure.SineGrowthSubClosure
+import ArakelovRH.SubClosure.ExpLogBoundsSubClosure
