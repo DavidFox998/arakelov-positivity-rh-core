@@ -6,16 +6,15 @@ Author: David J. Fox — Opera Numerorum — June 2026
 
 ---
 
-## Current Position (Batch 53, June 26 2026)
+## Current Position (Batch 55, June 26 2026)
 
 ```
 Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
 Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
 Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
-Wall C closures:     7 atoms closed (SigmaBig B49, ZFR_Iso B50, KernelLarge B51,
-                     LaplaceSmall B52, GaussLimit B53, C08' B53, LogDeriv B53);
-                     2 INVALIDATED (C08+C09 false); 5 valid atoms open (~1.05pp)
-Atomic opens:        47 valid named surfaces               0 sorry   ALL OPEN DEFS
+Wall C closures:     9 atoms closed (B49-B54 + B55: binet_gauss_kernel, prod_corrected);
+                     5 INVALIDATED (C01+C02+C05+C08+C09); 3 valid atoms open (~0.60pp)
+Atomic opens:        44 valid named surfaces               0 sorry   ALL OPEN DEFS
 Remaining:           ~185pp analytic number theory
 ```
 
@@ -56,16 +55,18 @@ Key Mathlib needed: `AlgebraicGeometry.Frobenius` API for elliptic curves.
 ### Wall C — 12 Elements, 7 Closed (+2 Invalidated), 5 Valid Open (~1.05pp)
 
 ```
-C01  Binet_KernelTaylor_L8              0.20pp  W-W §12.31        OPEN
-C02  Binet_KernelFirstBernoulli_L8      0.15pp  B₂=1/6            OPEN
+C01  Binet_KernelTaylor_L8              ——      FALSE (coeff)     INVALIDATED (B55)
+C02  Binet_KernelFirstBernoulli_L8      ——      dep. on C01       INVALIDATED (B55)
 C03  Binet_KernelLargeBound_L8          0.15pp  exp decay         CLOSED (B51)
 C04  Binet_GaussLimit_L8               0.25pp  GammaSeq_tendsto  CLOSED (B53)
-C05  Binet_ProdFromLimit_L8             0.20pp  Weierstrass       OPEN
-C06  Binet_LogGammaSeries_L8            0.25pp  W-W §12.16        OPEN
-C07  Binet_IntegralFromDigamma_L8       0.25pp  W-W §12.32        OPEN
+C05  Binet_ProdFromLimit_L8             ——      FALSE (Re(s)>0)   INVALIDATED (B55)
+C06  Binet_LogGammaSeries_Corrected_L8  0.25pp  eulerMascheroni   OPEN
+C07  Binet_IntegralFromDigamma_Corr_L8  0.25pp  cond. on C06      OPEN
 C08  Gamma_NotBranch_UpperHalf_L8       ——      FALSE (Stirling)  INVALIDATED (B52)
 C09  Gamma_NotBranch_LowerHalf_L8       ——      dep. on C08       INVALIDATED (B52)
 C08' Gamma_LogGamma_Approach_L8        0.25pp  logDeriv_apply    CLOSED (B53)
+     Binet_GaussKernel_L7              ——      monotonicity      CLOSED (B55)
+     Binet_ProdFormula_Corrected_L7    ——      Re(s)>0           CLOSED (B55)
 C10  Laplace_IntegSigmaSmall_L10        0.15pp  rpow domination   CLOSED (B52)
 C11  Laplace_IntegSigmaBig_L10          ——      domination        CLOSED (B49)
 C12  ZFR_Isolated_PathA                 ——      Mathlib analytic  CLOSED (B50)
@@ -270,7 +271,7 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] Gamma_LogGamma_C08prime_closed (C08' CLOSED via logDeriv_apply)
 - [x] binet_log_deriv_direct (PROVED via HasDerivAt.clog; B46 combinator superseded)
 - [x] C08+C09 invalidated (false statements); C08' logDeriv approach CLOSED
-- [ ] Wall C complete (5 valid atoms remain, ~1.05pp)
+- [ ] Wall C complete (3 valid atoms remain, ~0.60pp) [B55: 2 proved, 3 invalidated]
 - [ ] Wall B complete (7 atoms remain, ~13pp)
 - [ ] Wall D complete (14 atoms remain, ~5pp)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)
