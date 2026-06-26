@@ -138,3 +138,6 @@ import ArakelovRH.SubClosure.Batch36MasterCertJ
 import ArakelovRH.SubClosure.Batch37ZFRPoussin
 import ArakelovRH.SubClosure.Batch37LaplaceGamma
 import ArakelovRH.SubClosure.Batch37MasterCertK
+import ArakelovRH.SubClosure.Batch38LaplaceProof
+import ArakelovRH.SubClosure.Batch38CompactZFR
+import ArakelovRH.SubClosure.Batch38MasterCertL
