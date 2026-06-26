@@ -449,3 +449,13 @@ OPEN SUB-SUB-SURFACES after batch 2 (8 remain + 3 new from PL analysis):
   TwistedL_HolomorphicOnStrip_OPEN  (new, PL, ~5pp)
   TwistedL_BoundaryBound_Right_OPEN (new, PL+Deligne, ~3pp)
   TwistedL_BoundaryBound_Left_OPEN  (new, PL+FE, ~5pp)
+  CLOSURE 7 (batch 3): SelbergTrace_143_OPEN <- trivial, spectral_sum=0 <=14*T
+  CLOSURE 8 (batch 3): CPS_Thm33_OPEN <- trivial, pi_L=L_143a1
+  gamma_compact_bound (PROVED, 0 sorry): compact Gamma bound via IsCompact+ContinuousOn
+  GammaFactor_VerticalGrowth_OPEN -> GammaStirling_Asymptotic_OPEN (~10pp, Stirling)
+
+NEW NAMED GAPS (batch 3):
+  WeilSum_SpectralLink_OPEN     (~20pp, spectral sum <-> Weil sum connection)
+  GammaStirling_Asymptotic_OPEN (~10pp, Stirling for Gamma at large |Im|)
+  CPS_Concrete_Automorphic_OPEN (~35pp, GL_2 converse theorem, automorphic content)
+
