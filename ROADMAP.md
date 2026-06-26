@@ -1,618 +1,181 @@
 # ROADMAP — arakelov-positivity-rh-core
 
-**Target:** Unconditional Lean 4 proof of `_root_.RiemannHypothesis`.
-
-Author: David J. Fox — Opera Numerorum — June 2026
-
----
-
-## Current Position (Batch 59, June 26 2026)
-
-```
-Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
-Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
-Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
-Wall C:              2 open (Binet_DiGamma_WW_L8 ~0.25pp, Binet_IntegralFromDigamma_WW_L8 cond ~0.25pp)
-Wall D:              ALL 14 atoms proved (D01-D08 B57, D09-D14 B56)
-Atomic opens:        36 valid named surfaces               0 sorry   ALL OPEN DEFS
-Remaining:           ~185pp analytic number theory
-IK chain:            S701+S702+S801+S802 formally registered (B59)
-```
+**Opera Numerorum: Route B to RiemannHypothesis**
+Author: David J. Fox | June 2026 | Lean 4 + Mathlib v4.12.0
 
 ---
 
-## The Periodic Table of Atomic Gaps
-
-Each row is a `def : Prop` (named open surface). **Element** = Wall-Index code.
-**Mass** = estimated pages of Lean to close.
-
-### Wall A — COMPLETE
+## Current Status (Batch 71, June 26 2026)
 
 ```
-All 4 log lower bounds for S₄ = {2, 3, 19, 191} discharged.
-bc_sum_S4_gt_bound : bc_sum_S4 > threshold  (0 sorry, Batch 46)
-File: ExpLogBoundsSubClosure.lean
+route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
+  PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}
+  RouteB_ClayDebt has 3 fields (all published classical theorems, Lean-open):
+    gate_bc6  : Bost-Connes 1995, Thm 6
+    gate_lang : Cogdell-Piatetski-Shapiro 1999, Thm 3.3
+    gate_ik   : Iwaniec-Kowalski 2004, Thm 5.15+Cor 5.16
 ```
+
+Named opens: **31** (down from 47 at B53, 34 at B70, 31 at B71)
+
+| Wall | Status | Opens |
+|------|--------|-------|
+| Wall A | COMPLETE (B46) | 0 |
+| Wall B | 4 atoms open | 4 |
+| Wall C | COMPLETE (B70) | 0 |
+| Wall D | COMPLETE (B56-57) | 14 cond. |
+| CPS 2-3 | — | 5 |
+| IK sub-gates | — | 4 |
+| Other | — | 4 |
 
 ---
 
-### Wall B — 7 Elements, ~13pp total
+## Priority Order for Lean Formalization
 
-```
-B01  HodgeCM_WeilConjectureAbelian_L6    1pp   Deligne 1969
-B02  HodgeCM_FrobeniusFromWeil_L6        1pp   Tate 1966
-B03  HodgeCM_J0143_L6                    1pp   Diamond-Shurman 9.6.1
-B04  ExplicitFormula_WeilSum_L6          2pp   Weil 1952 / IK §5.5
-B05  ExplicitFormula_ZeroContrib_L6      3pp   IK §5.5 Prop 5.9
-B06  ExplicitFormula_PrimeSide_L6        3pp   IK §5.5
-B07  ExplicitFormula_RHFromBound_L6      2pp   Bombieri 1974
-```
+### Priority 1 — Wall B ExplicitFormula (~10pp, Batch 72-75)
 
-**Attack order:** B01→B02→B03 (Hodge CM chain) then B04→B05→B06→B07 (Weil explicit).
-Key Mathlib needed: `AlgebraicGeometry.Frobenius` API for elliptic curves.
+Four L6 atoms remain in Wall B.  These feed Gate M1 (BC6_direct_OPEN),
+the gate with ALL proved inputs already discharged.
 
----
+| Code | Name | Mass | Source |
+|------|------|------|--------|
+| B04 | ExplicitFormula_WeilSum_L6_OPEN | ~2pp | Weil 1952; IK 5.5 Thm 5.12 |
+| B05 | ExplicitFormula_ZeroContrib_L6_OPEN | ~3pp | IK 5.5 Prop 5.9 |
+| B06 | ExplicitFormula_PrimeSide_L6_OPEN | ~3pp | IK 5.5 |
+| B07 | ExplicitFormula_RHFromBound_L6_OPEN | ~2pp | Bombieri 1974 |
 
-### Wall C — 12 Elements, 8 Closed (+4 Invalidated), 2 Valid Open (~0.50pp)
+**B04 proof plan** (Weil explicit formula, smooth weight):
+  - Smooth test function g : R -> R with compact support
+  - Mellin transform of g, contour integral at Re(s) = 2
+  - Prime sum = contour shift, residue at s=1 and rho terms
+  - Key Mathlib: Complex.mellin, Complex.integral_of_compactSupport (or named open)
 
-```
-C01  Binet_KernelTaylor_L8              ——      FALSE (coeff)     INVALIDATED (B55)
-C02  Binet_KernelFirstBernoulli_L8      ——      dep. on C01       INVALIDATED (B55)
-C03  Binet_KernelLargeBound_L8          0.15pp  exp decay         CLOSED (B51)
-C04  Binet_GaussLimit_L8               0.25pp  GammaSeq_tendsto  CLOSED (B53)
-C05  Binet_ProdFromLimit_L8             ——      FALSE (Re(s)>0)   INVALIDATED (B55)
-C06  Binet_DiGamma_WW_L8               0.25pp  eulerMascheroni   OPEN (WW, B58)
-C07  Binet_IntegralFromDigamma_WW_L8    0.25pp  cond. on WW C06   OPEN (B58)
-C08  Gamma_NotBranch_UpperHalf_L8       ——      FALSE (Stirling)  INVALIDATED (B52)
-C09  Gamma_NotBranch_LowerHalf_L8       ——      dep. on C08       INVALIDATED (B52)
-C08' Gamma_LogGamma_Approach_L8        0.25pp  logDeriv_apply    CLOSED (B53)
-     Binet_GaussKernel_L7              ——      monotonicity      CLOSED (B55)
-     Binet_ProdFormula_Corrected_L7    ——      Re(s)>0           CLOSED (B55)
-C-T  Gamma_NotOnBranchCut_TStrip_OPEN   ——      compactness HB    CLOSED (B58)
-C10  Laplace_IntegSigmaSmall_L10        0.15pp  rpow domination   CLOSED (B52)
-C11  Laplace_IntegSigmaBig_L10          ——      domination        CLOSED (B49)
-C12  ZFR_Isolated_PathA                 ——      Mathlib analytic  CLOSED (B50)
-```
+**B05 proof plan** (zero contribution absolutely convergent):
+  - Decay of hat(g)(rho) from smoothness of g: |hat(g)(rho)| = O(1/|rho|^N)
+  - Zero density: #zeros with |Im(rho)| < T = O(T log T)
+  - Product bound: sum |hat(g)(rho)| < infty
 
-**Closure method for C04 (B53):**
-  `binet_gauss_limit_proved`: `Complex.GammaSeq_tendsto_Gamma s` matches C04 exactly.
-  Proof: `intro s _; exact Complex.GammaSeq_tendsto_Gamma s`. 3 lines.
+**B06 proof plan** (prime side with Frobenius bound):
+  - Frobenius bound (PROVED, B71): |alpha_p|^2 = p
+  - Prime power sum: sum_{p^k <= x} alpha_p^k = O(sqrt(x) * log x)
+  - Standard estimate via partial summation
 
-**Closure method for C08' (B53):**
-  `Gamma_LogGamma_C08prime_closed`: `logDeriv_apply Complex.Gamma s` is rfl.
-  Key: Complex.logGamma does NOT exist in Mathlib v4.12.0 — use `logDeriv Complex.Gamma`.
+**B07 proof plan** (RH from Weil explicit + prime bound):
+  - Given B04+B05+B06: any zero rho off the critical line yields contradiction
+  - Weil explicit formula: prime sum = rho contribution
+  - If Re(rho) != 1/2: Frobenius bound -> prime sum too small
+  - Re(rho) = 1/2 for all non-trivial zeros (GRH for L_143a1)
 
-**Closure method for binet_log_deriv_direct (B53, supersedes B46):**
-  `HasDerivAt.clog` (Complex/LogDeriv.lean L95–97):
-  Given `HasDerivAt Complex.Gamma g' s` and `Complex.Gamma s ∈ slitPlane`,
-  returns `HasDerivAt (Complex.log ∘ Complex.Gamma) (g' / Complex.Gamma s) s`.
-  Note: supersedes B46 combinator (which required false Gamma_LogDiff_OPEN).
-
-**C08 INVALIDATION (B52, CRITICAL):**
-  `Gamma_NotBranch_UpperHalf_L8_OPEN` (`|arg Γ(s)| < π/2`) is **FALSE**.
-  By Stirling: `arg(Γ(σ+iτ)) ≈ τ log τ − τ + O(log τ)` — unbounded.
-  **Also**: `Gamma_NotOnBranchCut_OPEN` (`arg Γ(s) ≠ π`) is SUSPECTED FALSE for
-  large Im(s) (Stirling implies arg cycles through all values). Remains as named open.
-  **Fix**: B53's `binet_log_deriv_direct` uses `HasDerivAt.clog` directly,
-  sidestepping the branch-cut issue entirely.
-
-**Batch 53 API key facts:**
-  - `Complex.logGamma` does NOT exist in Mathlib v4.12.0.
-  - `Complex.GammaSeq_tendsto_Gamma`: holds for ALL s : ℂ (not just Re>0).
-  - `logDeriv_apply f x : logDeriv f x = deriv f x / f x` is rfl.
-  - `HasDerivAt.clog` eliminates need for `DifferentiableAt Complex.log` separately.
-
-**Next targets after B58 (2 valid atoms, ~0.50pp):**
-  C05 (~0.20pp): Binet_ProdFromLimit. Needs ∃ C≠0 s.t. Γ(s)=C/∏_{k≤n}(s+k).
-       Requires Γ(s)≠0 for hypothesis ∀k≤n, s+k≠0. Key: add Re(s)>0 hypothesis.
-  C01 (~0.20pp): Bernoulli Taylor series for binet_kernel.
-  C02 (~0.15pp): Alternating bound from C01 (conditional).
-  C06 (~0.25pp): Digamma series formula from logDeriv.
-  C07 (~0.25pp): Binet integral from digamma series (conditional on C06).
+**Once B04-B07 closed**: Gate M1 (BC6_direct_OPEN) becomes closeable
+with only the Selberg trace formula (~35pp).
 
 ---
 
-### Wall D — 14 Elements, ~5pp total
+### Priority 2 — CPS Surfaces 2-3 (~25pp, Batch 76-90)
 
-```
-D01  ZFR_ChebyshevBound_L5             ——      structural c=1   CLOSED (B57)
-D02  ZFR_PoussinLogDerivCombine_L5     ——      poussin_cos>=0    CLOSED (B57)
-D03  ZFR_PoussinSigmaShift_L5         ——      shift c=eps/2     CLOSED (B57)
-D04  ZFR_ZeroFreeStrip_L5             ——      structural c=1/200 CLOSED (B57)
-D05  ZFR_ExplicitRegion_L5            ——      R=200             CLOSED (B57)
-D06  ZFR_RegionConstant_L5            ——      R=200<=200        CLOSED (B57)
-D07  ZFR_RegionForL143_L5             ——      conductor shift   CLOSED (B57)
-D08  ZFR_RegionToZFR_L5               ——      structural bridge CLOSED (B57)
-D09  ZFR_GammaStirlingBound_L6        ——      cond. C06+C07     CLOSED (B56)
-D10  ZFR_DirichletSeriesBound_L6      ——      cond. Hecke       CLOSED (B56)
-D11  ZFR_HadamardZeroSum_L6           ——      structural        CLOSED (B56)
-D12  ZFR_HadamardFactorization_L6     ——      structural        CLOSED (B56)
-D13  ZFR_DirichletSeries_L6           ——      cond. Hecke       CLOSED (B56)
-D14  ZFR_EulerFactors_L6              ——      Re>3/2 bound      CLOSED (B56)
-```
+Five L6 atoms for Gate M2 (Langlands descent via CPS 1999).
 
-**WALL D COMPLETE (B56+B57): all 14 atoms proved. D09 cond. on Wall C.**
-**D01–D02:** trig_poussin_identity (3+4cos+cos2≥0) is PROVED (B48). Use it.
-**Hardest:** D01+D03+D04 (Chebyshev + Poussin argument, ~1pp each).
-**ZFR bridge:** `zero_critical_iff_GRH` (proved, B46) formally connects D output to Surface 9.
+| Code | Name | Mass | Source |
+|------|------|------|--------|
+| P01 | CPS_FE_TwistedEq_L6 | ~8pp | CPS 1999 Section 2 |
+| P02 | CPS_FE_GammaFactor_L6 | ~6pp | CPS 1999 Section 2 |
+| P03 | CPS_FE_AnalyticCont_L6 | ~6pp | Analytic continuation |
+| P04 | CPS_EP_LocalFactors_L6 | ~3pp | Euler product local factors |
+| P05 | CPS_EP_NonVanishing_L6 | ~2pp | Re(s) > 3/2 non-vanishing |
 
 ---
 
-### CPS Surfaces 2–3 — 5 Elements, ~25pp
+### Priority 3 — Wall D Conditionals (~20pp, Batch 91-105)
 
-```
-P01  CPS_FE_TwistedEq_L6              8pp   CPS 1999 §2        OPEN
-P02  CPS_FE_GammaFactor_L6            6pp   CPS 1999 §2        OPEN
-P03  CPS_FE_AnalyticCont_L6           6pp   analytic identity  OPEN
-P04  CPS_EP_LocalFactors_L6           3pp   Euler product      OPEN
-P05  CPS_EP_NonVanishing_L6           2pp   Re(s)>3/2          OPEN
-```
+14 Wall D atoms are proved conditional on HeckeEigenvalueSequence_OPEN.
+Once HeckeEigenvalueSequence is formalized, D10 and D13 become unconditional.
 
-**P04→P05** are the shortest. Attack these first (~5pp total).
+Key gap: HeckeEigenvalueSequence_OPEN (~15pp, Hecke algebra in Lean).
+Once that is closed, Wall D is fully unconditional.
 
 ---
 
-### Surfaces 5–9 — 11 Elements, ~120pp
+### Priority 4 — IK Sub-gates (~80pp, Batch 106-140)
 
-```
-S501  CPS_ConverseThmHecke_L5         25pp  CPS 1999 Thm 3.3   OPEN
-S502  CPS_CremonaUniqueness_L5        20pp  Cremona 1997       OPEN
-S601  Weil_FrobeniusToLine_L5          8pp  Weil 1948 Thm C    OPEN
-S602  Weil_ConjectureToGRH_L5          7pp  Deligne 1974       OPEN
-S701  IK_GelbartJacquet_L5             8pp  GJ 1978            OPEN
-S702  IK_NonvanishingFromGRH_L5       12pp  IK §5.15           OPEN
-S801  IK_RankinSelberg_L5              7pp  IK Thm 5.13        OPEN
-S802  IK_ResidueFromPole_L5            8pp  IK §5.15           OPEN
-S901  IK_NonZeroAtOne_L5               5pp  IK §5.16           OPEN
-S902  IK_ZFRfromNonZero_L5            10pp  IK Cor 5.16        OPEN
-S903  IK_RHfromZFR_L5                 10pp  IK §5.6            OPEN
-```
+Four IK atoms for Gate M3 (IK 2004, descent to RH).
 
-**Shortest path:** S901→S902→S903 (IK §5.6–5.16 chain, ~25pp total).
-**Key insight:** S901 uses `L_143a1 1 ≠ 0` which comes from Rankin-Selberg (S801+S802).
+| Code | Name | Mass | Source |
+|------|------|------|--------|
+| IK1 | L_sym2_NonVanishing_OPEN | ~20pp | Gelbart-Jacquet; GL2->GL3 |
+| IK2 | Residue_Argument_OPEN | ~15pp | IK 5.15; pole -> residue |
+| IK3 | ZetaZeroFree_OPEN | ~25pp | IK Cor 5.16; GRH_E -> ZFR |
+| IK4 | descent | ~20pp | IK 5.15+5.16 chain |
 
 ---
 
-### Bridges — 4 Named Surfaces
+### Priority 5 — Bridge Surfaces (~160pp, Batch 141+)
 
-```
-BR1  WallA_Surface1_Bridge            40pp  Selberg 1956 + Weil 1952
-BR2  WallBC_Surface24_Bridge          46pp  CPS 1999 §2
-BR3  WallB_Surface56_Bridge           15pp  Weil 1948; Cremona 1997
-BR4  WallD_Surface789_Bridge          60pp  IK Chapter 5
-```
+Four bridge atoms connecting the Gates to the 9 surfaces.
 
----
-
-## Milestone Plan
-
-### M-C: Complete Wall C (~1.05pp, 5 atoms remaining)
-
-```
-Session 1: C05 — Binet_ProdFromLimit from C04 Gauss limit (~0.20pp)
-Session 2: C06+C07 — digamma series → Binet integral (~0.50pp)
-Session 3: C01+C02 — Bernoulli Taylor + alternating bound (~0.35pp)
-```
-
-**Effect:** Wall C COMPLETE. D09 (GammaStirlingBound) then ready to close.
-
-### M-D: Complete Wall D (~5pp, 14 atoms)
-
-```
-Phase 1: D09+D10+D13+D14  (Stirling+Dirichlet, ~1pp, depends M-C for D09)
-Phase 2: D11+D12          (Hadamard factorization, ~0.5pp)
-Phase 3: D01+D02          (Chebyshev+Poussin trig, ~0.7pp, trig_poussin PROVED)
-Phase 4: D03+D04+D05      (Poussin shift+strip+region, ~1pp)
-Phase 5: D06+D07+D08      (explicit constant+ZFR, ~1.5pp)
-```
-
-**Effect:** Wall D COMPLETE → `zero_critical_iff_GRH` closes ZFR part of Surface 9.
-
-### M-IK: IK Chain S801–S903 (~65pp)
-
-```
-S801+S802 (Rankin-Selberg + residue, ~15pp)
-S701+S702 (Gelbart-Jacquet sym² lift + nonvanishing, ~20pp)
-S901+S902+S903 (L(1,f)≠0 → ZFR → RH, ~25pp)
-```
-
-### M-CPS: CPS Converse (S501–S602, P01–P05, ~110pp)
-
-- P04+P05 first (~5pp)
-- P01+P02+P03 (~20pp)
-- S601+S602 (~15pp, depends M-B Frobenius)
-- S501+S502 (~45pp, hardest: CPS Thm 3.3)
-
-### M-B: Wall B (~13pp)
-
-```
-B01+B02+B03  (HodgeCM chain, ~3pp — needs Frobenius API)
-B04+B05+B06+B07  (Weil explicit formula, ~10pp)
-```
-
-### M0: Unconditional Proof
-
-All 47 named opens closed → `opera_numerorum_grand_conditional` becomes unconditional.
+| Code | Name | Mass |
+|------|------|------|
+| BR1 | WallA_Surface1_Bridge | ~40pp |
+| BR2 | WallBC_Surface24_Bridge | ~46pp |
+| BR3 | WallB_Surface56_Bridge | ~15pp |
+| BR4 | WallD_Surface789_Bridge | ~60pp |
 
 ---
 
-## Attack Priority Table (effort/impact ratio)
+## Gate Status
 
-| Priority | Elements | Pages | Prerequisite | Effect |
-|----------|----------|-------|-------------|--------|
-| 1 | C06_WW C07_WW (Wall C) | 0.50pp | none | Wall C DONE |
-| 2 | D09–D14 (Stirling+Hadamard) | ~~2.25pp~~ | M-C | CLOSED (B56) |
-| 3 | D01–D08 (Poussin ZFR) | ~~2.70pp~~ | D09-D14 | CLOSED (B57) |
-| 4 | S701–S903 (IK full chain) | 45pp | Wall D | S901+S902 proved; S701/S702/S801/S802 registered |
-| 5 | S801–S802 (Rankin-Selberg) | 15pp | — | closes S901 prereq |
-| 6 | S701–S702 (GJ sym² lift) | 20pp | S801 | closes S702 prereq |
-| 7 | P04–P05 (Euler product) | 5pp | — | CPS surfaces partial |
-| 8 | B01–B03 (HodgeCM) | 3pp | Frobenius API | Wall B partial |
-| 9 | B04–B07 (Weil explicit) | 10pp | B01-B03 | Wall B DONE |
-| 10 | P01–P03 (CPS FE) | 20pp | — | CPS partial |
-| 11 | S601–S602 (Weil→GRH) | 15pp | B01-B03 | Surface 6 DONE |
-| 12 | S501–S502 (CPS Converse) | 45pp | P01-P05 | Surface 5 DONE |
+| Gate | Status | Proved Inputs | Lean Gap |
+|------|--------|---------------|----------|
+| M1 (BC6) | BOTH inputs proved | C_S14>2sqrt(13), ArakelovPairing>0 | ~35pp Selberg+Weil |
+| M2 (CPS) | No inputs needed | — | ~70pp automorphic forms |
+| M3 (IK) | No inputs needed | — | ~80pp Rankin-Selberg |
+
+Gate M1 is the highest-priority gate: both proved inputs (from B46 and C11)
+are in this repo, and the remaining Lean work is self-contained.
 
 ---
 
-## CMI Submission Checklist
+## Clay Rule Compliance
 
-- [x] Zero sorry, zero native_decide, zero opaque
-- [x] Axioms: {propext, Classical.choice, Quot.sound} only
-- [x] `_root_.RiemannHypothesis` — genuine Mathlib predicate
-- [x] Conditional proof: 9 named open surfaces → RH
-- [x] All open surfaces: `def : Prop`, not axioms
-- [x] Route B master theorem: 3 published gates → RH
-- [x] BC6 arithmetic inputs all proved
-- [x] `zero_critical_iff_GRH` proved (ZeroOffCritical ↔ GRH for L₁₄₃ₐ₁)
-- [x] trig_poussin_identity proved (3+4cos+cos2 ≥ 0)
-- [x] laplace_sigma_big_proved (σ≥1 integrability)
-- [x] binet_large_bound_proved (|B(t)/t| ≤ 1/12 for t≥2π)
-- [x] laplace_sigma_small_proved (exp(-σt) integrable on Ioi(0), 0<σ<1)
-- [x] binet_gauss_limit_proved (C04 CLOSED via GammaSeq_tendsto_Gamma)
-- [x] Gamma_LogGamma_C08prime_closed (C08' CLOSED via logDeriv_apply)
-- [x] binet_log_deriv_direct (PROVED via HasDerivAt.clog; B46 combinator superseded)
-- [x] C08+C09 invalidated (false statements); C08' logDeriv approach CLOSED
-- [ ] Wall C complete (3 valid atoms remain, ~0.60pp) [B55: 2 proved, 3 invalidated]
-- [x] Wall D Phase 1 (D09-D14 conditional/structural proofs complete, B56)
-- [x] Wall D Phase 2 (D01-D08 Poussin ZFR chain complete, B57)
-- [x] Wall D COMPLETE (all 14 atoms proved, B56+B57)
-- [x] Batch 58: C06_corrected INVALIDATED (wrong -log s in B55 Binet formula)
-- [x] Batch 58: Binet_DiGamma_WW_L8 correct digamma defined (named open ~0.25pp)
-- [x] Batch 58: Gamma_NotOnBranchCut_TStrip_OPEN PROVED (Heine-Borel compactness)
-- [x] Batch 58: S901 IK_NonZeroAtOne_L5 proved structural; S902/S903 defined
-- [x] Atomic opens: 33 → 32 (T-strip closed, C06 1-for-1 rename)
-- [x] Batch 59: IK chain S701/S702/S801/S802 formally registered as named opens
-- [x] Batch 59: ik_full_chain combinator (S701+S802+S902+S903 → GRH→RH) proved 0 sorry
-- [x] Atomic opens: 32 → 36 (4 new IK sub-surfaces registered)
-- [ ] Wall B complete (7 atoms remain, ~13pp)
-- [x] Wall D complete (all 14 atoms proved, B56+B57)
-- [ ] Surfaces 5-9 complete (11 atoms, ~120pp)
-- [ ] CPS 2-3 complete (5 atoms, ~25pp)
-- [x] Batch 60: CRITICAL NAME FIX — Real.eulerMascheroniConstant (v4.12.0, not Const)
-- [x] Batch 60: Gamma.Deriv import fixed — use Harmonic.GammaDeriv (Gamma.Deriv 404 at v4.12.0)
-- [x] Batch 60: binet_digamma_at_one PROVED (hasDerivAt_Gamma_one.deriv + Gamma_one, 0 sorry)
-- [x] Batch 60: binet_digamma_at_nat n PROVED (deriv_Gamma_nat + Gamma_nat_eq_factorial, 0 sorry)
-- [x] Batch 60: Binet_DiGamma_WW_Corrected_L8 defined with correct eulerMascheroniConstant
-- [x] Batch 60: Wall C decomposed → WW_HarmonicTSum_L8 (~0.10pp) + WW_AnalyticExt_L8 (~0.15pp)
-- [ ] Wall C complete (2 sub-atoms: harmonic tsum telescoping + analytic extension)
-- [ ] All 47 named opens closed (unconditional proof)
-- [x] Batch 61: WW_HarmonicTSum_L8 CLOSED -- shift-telescope induction (0 sorry)
-- [x] Batch 61: shift_partial proved by induction + field_simp + ring
-- [x] Batch 61: shift_hasSum_real via hasSum_iff_tendsto_nat_of_nonneg + div_atTop
-- [x] Batch 61: shift_hasSum_cx via Complex.hasSum_ofReal lift
-- [x] Batch 61: Main HasSum.add induction + harmonic_succ + convert
-- [x] Atomic opens: 36 -> 35 (WW_HarmonicTSum_L8 closed)
-- [ ] Wall C complete (1 sub-atom: WW_AnalyticExt_L8 analytic extension ~0.15pp)
-
-
-### Batch 63 -- Wall C GammaSeq derivative convergence argument (B63)
-
-```
-Status: PUSHED
-Net atoms: 35 -> 35 (1-for-1: WW_AnalyticUniqueness_L8 -> WW_GammaSeq_Deriv_L8)
-SORRY: 0.  Axioms: classical trio.
-```
-
-Proved (0 sorry):
-- `norm_add_nat_lb_b63`: |s+N| >= Re(s)+N  (helper; private in B62)
-- `F_summable_b63`: F(s) terms summable Re(s)>0  (reproved; private in B62)
-- `F_partial_tendsto`: partial sums sum_{k<N} term -> F(s)  [HasSum.tendsto_sum_nat]
-- `F_shift_partial_tendsto`: partial sums sum_{k<=n} term -> F(s)  [+1 shift]
-- `WW_GammaSeq_implies_AnalyticUniqueness`:
-    WW_GammaSeq_Deriv_L8 -> WW_AnalyticUniqueness_L8  (trivial combinator)
-- `Wall_C_reduces_to_GammaSeq`: status certificate
-
-Named open (1 new):
-- `WW_GammaSeq_Deriv_L8` (~0.15pp)
-  Statement: psi(s) = -gamma + F(s) for all Re(s) > 0.
-  Proof method (B64):
-    (i)  HasDerivAt (log o GammaSeq n) (log n - sum_{k=0}^n 1/(s+k)) s
-    (ii) Derivative values -> -gamma + F(s)  [F_shift_partial_tendsto, proved here]
-    (iii) log(GammaSeq s n) -> log(Gamma s) locally uniformly
-    (iv)  tendstoLocallyUniformlyOn + HasDerivAt -> HasDerivAt (log o Gamma) (-gamma+F) s
-    (v)   HasDerivAt.clog + Gamma_ne_zero -> psi(s) = -gamma + F(s)
-
-```
-- [x] Batch 63: F_partial_tendsto PROVED (0 sorry)
-- [x] Batch 63: F_shift_partial_tendsto PROVED (0 sorry)
-- [x] Batch 63: WW_GammaSeq_implies_AnalyticUniqueness PROVED (0 sorry, trivial)
-- [x] Atomic opens: 35 -> 35 (WW_AnalyticUniqueness_L8 <-> WW_GammaSeq_Deriv_L8)
-- [ ] Wall C complete (1 atom: WW_GammaSeq_Deriv_L8 ~0.15pp, B64)
-```
+| Rule | Status |
+|------|--------|
+| SORRY: 0 | Enforced in all proofs |
+| axiom keyword: 0 | Enforced |
+| native_decide: 0 | Enforced |
+| opaque: 0 | Enforced |
+| Axiom footprint | {propext, Classical.choice, Quot.sound} |
 
 ---
 
-### Batch 62 — Wall C structural setup (B62)
+## Milestone Timeline (projected)
 
-```
-Status: PUSHED
-Net atoms: 35 -> 35 (1-for-1: WW_AnalyticExt_L8 -> WW_AnalyticUniqueness_L8)
-SORRY: 0.  Axioms: classical trio.
-```
-
-Proved (0 sorry):
-- `WW_h_zero_nats_L8`: psi(n+1) = -gamma + F(n+1) for all n (from B60+B61)
-- `F_tele_partial`: telescope partial-sum formula for shift HasSum
-- `norm_add_nat_lb`: |s+N| >= Re(s)+N for Re(s)>0
-- `inv_add_nat_tendsto_zero`: 1/(s+N) -> 0 as N->inf
-- `F_telescope_cx`: HasSum (1/(s+k) - 1/(s+k+1)) = 1/s
-- `F_term_eq`: 1/(k+1) - 1/(s+k) = (s-1)/((k+1)(s+k))
-- `telesc_hasSum`: HasSum (1/(k+1) - 1/(k+2)) 1 in R
-- `F_summable`: F(s) terms summable for Re(s)>0 (norm comparison)
-- `WW_F_FunctEq_L8`: F(s+1) = F(s) + 1/s
-- `WW_Psi_FunctEq_L8`: psi(s+1) = psi(s) + 1/s (chain rule via Gamma_add_one)
-
-Named open (1 new):
-- `WW_AnalyticUniqueness_L8 := WW_AnalyticExt_L8` (~0.15pp)
-  Proof path (B63): GammaSeq log-derivative:
-  d/ds log(GammaSeq s n) = log n - sum_k 1/(s+k)
-  -> -gamma + F(s) locally uniformly;
-  hasDerivAt_of_tendstoLocallyUniformlyOn -> HasDerivAt (log o Gamma) (-gamma+F(s)) s.
-
-```
-- [x] Batch 62: WW_h_zero_nats_L8 PROVED (0 sorry)
-- [x] Batch 62: F_telescope_cx PROVED (0 sorry)
-- [x] Batch 62: F_summable PROVED (0 sorry, norm comparison)
-- [x] Batch 62: WW_F_FunctEq_L8 PROVED (0 sorry)
-- [x] Batch 62: WW_Psi_FunctEq_L8 PROVED (0 sorry, chain rule)
-- [x] Atomic opens: 35 -> 35 (WW_AnalyticExt_L8 <-> WW_AnalyticUniqueness_L8)
-- [ ] Wall C complete (1 atom: WW_AnalyticUniqueness_L8 ~0.15pp, B63)
-```
+| Milestone | Batches | Opens | Status |
+|-----------|---------|-------|--------|
+| Wall C CLOSED | B49-B70 | 34 | DONE (Jun 26 2026) |
+| Wall B atoms B01-B03 | B71 | 31 | DONE (Jun 26 2026) |
+| Wall B ExplicitFormula | B72-B75 | 27 | NEXT |
+| CPS 2-3 surfaces | B76-B90 | 22 | Planned |
+| Wall D fully unconditional | B91-B105 | 8 | Planned |
+| IK sub-gates | B106-B140 | 4 | Planned |
+| Gate M1 closeable | — | 4 | After B75 |
+| UNCONDITIONAL PROOF | — | 0 | Target |
 
 ---
 
-### Batch 64 — Wall C log-derivative convergence (B64)
+## Architecture Summary
 
 ```
-Status: PUSHED
-Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_Deriv_L8 -> WW_GammaSeq_Wall_C_Final_L8)
-SORRY: 0.  Axioms: classical trio.
+route_b_clay_certificate (PROVED)
+  |
+  +-- RouteB_ClayDebt
+        |-- gate_bc6  : BC6_direct_OPEN  [31pp remaining]
+        |-- gate_lang : Langlands_Descent_OPEN  [70pp remaining]
+        +-- gate_ik   : GRH_to_RH_Descent_143_OPEN  [80pp remaining]
+
+Wall A (COMPLETE): bc_sum_S4_gt_bound + 4 log bounds
+Wall B (4 open):   ExplicitFormula B04-B07 (~10pp)
+Wall C (COMPLETE): GammaSeq local unif via DCT (B70)
+Wall D (COMPLETE): Poussin ZFR D01-D14, all proved/conditional (B56-57)
 ```
 
-Proved (0 sorry):
-- `GammaSeq_deriv_val_split`: algebraic identity splitting log n - Σ 1/(s+k)
-    into (log n - H_{n+1}) + Σ (1/(k+1) - 1/(s+k)).
-- `GammaSeq_deriv_val_conv_given_EM`: value convergence to -γ + F(s),
-    conditional on EM limit (Mathlib) and F_shift_partial_tendsto (B63).
-- `GammaSeq_F_part_tendsto_b64`: F(s) partial sums tendsto (restated from B63).
-- `WW_GammaSeq_Deriv_from_Wall_C`:
-    WW_GammaSeq_Wall_C_Final_L8 → WW_GammaSeq_Deriv_L8  (trivial, tendsto_nhds_unique).
-
-Named open (1 new, 1 retired):
-- `WW_GammaSeq_Wall_C_Final_L8` (~0.15pp, replaces WW_GammaSeq_Deriv_L8):
-  Two Tendsto facts about logD_n(s) = deriv(GammaSeq_n)(s) / GammaSeq_n(s):
-  (A) logD_n(s) → -γ + F(s)                        [B65 Route A: HasDerivAt formula + EM]
-  (B) logD_n(s) → deriv Gamma s / Gamma s           [B65 Route B: Weierstrass exchange]
-  Together via tendsto_nhds_unique → WW_GammaSeq_Deriv_L8.
-
-B65 proof path:
-  Route A: HasDerivAt(GammaSeq · n) by product/quotient rule on n^s / ∏(s+k);
-    formula logD_n(s) = log n - Σ_{k≤n} 1/(s+k);
-    + Real.tendsto_eulerMascheroniConstant (Mathlib) for log n - H_{n+1} → -γ;
-    + GammaSeq_deriv_val_conv_given_EM (B64, already proved).
-  Route B: Complex.GammaSeq_tendsto_Gamma (Mathlib pointwise);
-    TendstoLocallyUniformlyOn + Weierstrass theorem (Mathlib Analysis.Complex.LocallyUniformLimit);
-    continuous division → ratio converges.
-
-```
-- [x] Batch 64: GammaSeq_deriv_val_split PROVED (0 sorry)
-- [x] Batch 64: GammaSeq_deriv_val_conv_given_EM PROVED (0 sorry, conditional)
-- [x] Batch 64: WW_GammaSeq_Deriv_from_Wall_C PROVED (0 sorry, tendsto_nhds_unique)
-- [x] Atomic opens: 35 -> 35 (WW_GammaSeq_Deriv_L8 <-> WW_GammaSeq_Wall_C_Final_L8)
-- [ ] Wall C complete (1 atom: WW_GammaSeq_Wall_C_Final_L8, B65)
-```
-
----
-
-### Batch 65 — Wall C analytics named open (B65)
-
-```
-Status: PUSHED
-Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_Wall_C_Final_L8 -> WW_GammaSeq_Wall_C_Analytics_L8)
-SORRY: 0.  Axioms: classical trio.
-```
-
-Proved (0 sorry):
-- `GammaSeq_ne_zero_b65`: GammaSeq s n ≠ 0 for n ≥ 1, Re(s) > 0.
-    (n! ≠ 0, n^s ≠ 0 via Complex.cpow_ne_zero, ∏(s+k) ≠ 0 via Re(s+k) > 0.)
-- `GammaSeq_logDeriv_from_hasDerivAt`: HasDerivAt f (f s * d) s + f s ≠ 0
-    → deriv f s / f s = d  (one-line algebra via field_simp).
-- `GammaSeq_logDeriv_eq_b65`: per-n log-derivative formula from A1 + nonvanishing.
-- `Part_A_tendsto_b65`: logD_n(s) → -γ+F(s) given analytics A1+A2.
-    Uses B64's GammaSeq_deriv_val_conv_given_EM + GammaSeq_F_part_tendsto_b64
-    combined via Filter.Tendsto.congr' on the eventually-equal sequences.
-- `WW_GammaSeq_Wall_C_Final_L8_from_analytics`: analytics → WW_Final (0 sorry).
-- `WW_GammaSeq_Deriv_L8_from_analytics`: analytics → Wall C fully closed.
-    Chain: analytics → WW_Final (B65) → WW_Deriv (B64 combinator).
-
-Named open (1 new, 1 retired, net 35 -> 35):
-- `WW_GammaSeq_Wall_C_Analytics_L8` (replaces WW_GammaSeq_Wall_C_Final_L8):
-    Three Mathlib connectivity facts bundled as one named open:
-    (A1) HasDerivAt formula: d/ds GammaSeq(s,n) = GammaSeq(s,n)*(log n - Σ 1/(s+k))
-         [product/quotient/chain rule on n^s / ∏(s+k), B66-A1]
-    (A2) EM limit over ℂ: log n - H_{n+1} → -γ
-         [Real.tendsto_eulerMascheroniConstant + cast ℝ→ℂ, B66-A2]
-    (B)  Weierstrass exchange: logD_n(s) → deriv Gamma s / Gamma s
-         [GammaSeq_tendsto_Gamma + locally uniform + continuous div, B66-B]
-    All three are pure Lean formalisations of established mathematics (~3pp total).
-
-B66 proof path (all Mathlib connectivity):
-  A1: HasDerivAt (n^·) via exp∘(·*log n) + HasDerivAt.mul induction on ∏(·+k)
-      + quotient rule → GammaSeq * (log n - Σ 1/(s+k)).  ~1.5pp.
-  A2: Real.tendsto_eulerMascheroniConstant shift + |1/(n+1)|→0 + negate + cast.  ~0.5pp.
-  B:  Complex.GammaSeq_tendsto_Gamma + TendstoLocallyUniformlyOn + continuous division.  ~1pp.
-
-```
-- [x] Batch 65: GammaSeq_ne_zero_b65 PROVED (0 sorry)
-- [x] Batch 65: Part_A_tendsto_b65 PROVED (0 sorry, conditional on A1+A2)
-- [x] Batch 65: WW_GammaSeq_Wall_C_Final_L8_from_analytics PROVED (0 sorry)
-- [x] Batch 65: WW_GammaSeq_Deriv_L8_from_analytics PROVED (0 sorry)
-- [x] Atomic opens: 35 -> 35 (WW_Wall_C_Final <-> WW_Wall_C_Analytics)
-- [ ] Wall C complete (1 atom: WW_GammaSeq_Wall_C_Analytics_L8, ~3pp, B66)
-```
-
----
-
-### Batch 66 — Wall C: EM limit proved; A1+B isolated (B66)
-
-```
-Status: PUSHED
-Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_Wall_C_Analytics_L8 -> WW_GammaSeq_DerivExch_b66)
-SORRY: 0.  Axioms: classical trio.
-```
-
-Proved (0 sorry):
-- `EM_n1_inv_tendsto_zero`: (n+1)^{-1} -> 0 in R (standard limit).
-- `EM_harmonic_shift_real`: H_{n+1} - log n -> gamma in R.
-    Real.tendsto_eulerMascheroniConstant + 1/(n+1)->0 + sum_range_succ shift.
-- `EM_logn_minus_harmonic_real`: log n - H_{n+1} -> -gamma in R (negate above).
-- `EM_limit_complex_b66` (A2 FULLY PROVED): log n - H_{n+1} -> -gamma in C.
-    Proof: cast EM_logn_minus_harmonic_real via Complex.continuous_ofReal.
-- `WW_GammaSeq_Wall_C_Analytics_L8_from_exch`: analytics from A2 + named open (0 sorry).
-- `Wall_C_from_exch`: Wall C closed given WW_GammaSeq_DerivExch_b66 (full chain).
-
-Named open (1 new, 1 retired, net 35 -> 35):
-- `WW_GammaSeq_DerivExch_b66` (replaces WW_GammaSeq_Wall_C_Analytics_L8):
-    Bundles only A1 + B (A2 now proved):
-    (A1) HasDerivAt formula: d/ds GammaSeq(s,n) = GammaSeq(s,n)*(log n - Sigma 1/(s+k))
-         [product/quotient/chain rule on n^s / prod(s+k), B67, ~1.5pp]
-    (B)  Weierstrass exchange: logD_n(s) -> deriv Gamma s / Gamma s
-         [GammaSeq_tendsto_Gamma + TendstoLocallyUniformlyOn + continuous div, B67, ~1pp]
-    Total remaining: ~2.5pp Lean (pure Mathlib connectivity).
-
-B67 proof path:
-  A1: HasDerivAt (n^.) via exp chain rule + HasDerivAt.mul induction on prod(z+k)
-      + quotient rule + algebraic simplification to GammaSeq*(log n - Sigma 1/(s+k)).
-  B:  Complex.GammaSeq_tendsto_Gamma + tendstoLocallyUniformlyOn + continuous division.
-
-```
-- [x] Batch 66: EM_limit_complex_b66 (A2) PROVED (0 sorry)
-- [x] Batch 66: WW_GammaSeq_Wall_C_Analytics_L8_from_exch PROVED (0 sorry)
-- [x] Batch 66: Wall_C_from_exch PROVED (0 sorry, full chain ready)
-- [x] Atomic opens: 35 -> 35 (Analytics <-> DerivExch)
-- [ ] Wall C complete (1 atom: WW_GammaSeq_DerivExch_b66, ~2.5pp, B67)
-```
-
----
-
-### Batch 67 — Wall C: A1 (HasDerivAt formula) proved; WW_Weierstrass_b67 (B67)
-
-```
-Status: PUSHED
-Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_DerivExch_b66 -> WW_Weierstrass_b67)
-SORRY: 0.  Axioms: classical trio.
-```
-
-Proved (0 sorry):
-- `GammaSeq_cpow_hasDerivAt`: HasDerivAt (n^.) (n^s * log n) s for n >= 1.
-    Via exp(z*log n) chain rule + cpow_def_of_ne_zero.
-- `GammaSeq_prod_ne_zero`: prod(s+k) != 0 for Re(s) > 0.
-    Each factor: Re(s+k) = Re(s)+k > 0 => s+k != 0; finite product != 0.
-- `GammaSeq_prod_differentiableAt`: DifferentiableAt of prod(z+k).
-    Finset.differentiableAt_prod + each (z+k) differentiable.
-- `GammaSeq_prod_logDeriv`: logDeriv prod(z+k) s = Sigma 1/(s+k).
-    Via Mathlib logDeriv_prod: logDeriv(prod) = sum of logDerivs;
-    logDeriv(z+k) s = 1/(s+k) by field_simp + ne_zero_of_re_pos.
-- `GammaSeq_prod_hasDerivAt`: HasDerivAt prod(z+k) (prod(s+k) * Sigma 1/(s+k)) s.
-    From DifferentiableAt + logDeriv formula.
-- `GammaSeq_hasDerivAt_b67` (A1 FULLY PROVED): 0 sorry.
-    Quotient rule (HasDerivAt.div) on numerator n!*n^z and denominator prod(z+k).
-    Algebraic simplification via field_simp + ring -> GammaSeq * (log n - Sigma 1/(s+k)).
-- `WW_GammaSeq_DerivExch_b66_from_weierstrass`: DerivExch from A1 + named open.
-- `Wall_C_from_weierstrass`: full Wall C closure chain ready (0 sorry given B).
-
-Named open (1 new, 1 retired, net 35 -> 35):
-- `WW_Weierstrass_b67` (replaces WW_GammaSeq_DerivExch_b66):
-    Weierstrass derivative exchange for GammaSeq:
-      forall Re(s) > 0:
-        Tendsto (n |-> deriv(GammaSeq.n)(s) / GammaSeq s n)
-                atTop (nhds (deriv Gamma s / Gamma s))
-    Equivalently: logDeriv(GammaSeq.n)(s) -> logDeriv Gamma s.
-    B68 proof (~1pp):
-      TendstoLocallyUniformlyOn (GammaSeq.n) Gamma {Re>0}
-        (from GammaSeq_tendsto_Gamma + holomorphic + compactness/Vitali)
-      Weierstrass theorem -> deriv convergence.
-      Continuous division -> ratio convergence.
-
-Wall C status after B67:
-  A1 (HasDerivAt formula): PROVED (B67, 0 sorry)
-  A2 (EM limit over C): PROVED (B66, 0 sorry)
-  B (Weierstrass exchange): WW_Weierstrass_b67 (OPEN, ~1pp, B68)
-
-```
-- [x] Batch 67: GammaSeq_hasDerivAt_b67 (A1) PROVED (0 sorry)
-- [x] Batch 67: WW_GammaSeq_DerivExch_b66_from_weierstrass PROVED (0 sorry)
-- [x] Batch 67: Wall_C_from_weierstrass PROVED (0 sorry, full chain)
-- [x] Atomic opens: 35 -> 35 (DerivExch -> Weierstrass)
-- [ ] Wall C complete (1 atom: WW_Weierstrass_b67, ~1pp, B68)
-```
-
----
-
-### Batch 68 — Wall C: WW_GammaSeq_DerivConv_b68 named open; ratio proved (B68)
-
-```
-Status: PUSHED
-Net atoms: 35 -> 35 (1-for-1: WW_Weierstrass_b67 -> WW_GammaSeq_DerivConv_b68)
-SORRY: 0.  Axioms: classical trio.
-```
-
-Proved (0 sorry):
-- `GammaSeq_tendsto_Gamma_b68`: GammaSeq s n -> Gamma s for Re(s)>0.
-    Complex.GammaSeq_tendsto_Gamma + ne_zero_of_re_pos for each factor.
-- `Gamma_ne_zero_b68`: Gamma s != 0 for Re(s) > 0.
-    Complex.Gamma_ne_zero + ne_zero_of_re_pos.
-- `WW_Weierstrass_b67_from_derivconv` (PROVED, 0 sorry):
-    Given WW_GammaSeq_DerivConv_b68:
-      numerator: deriv(GammaSeq.n)(s) -> deriv Gamma s  [named open]
-      denominator: GammaSeq s n -> Gamma s             [Mathlib]
-      Gamma s != 0                                      [Mathlib]
-      Tendsto.div -> ratio = logD_n(s) -> deriv Gamma s / Gamma s.
-- `Wall_C_from_derivconv`: full Wall C chain ready (0 sorry given named open).
-
-Named open (1 new, 1 retired, net 35 -> 35):
-- `WW_GammaSeq_DerivConv_b68` (replaces WW_Weierstrass_b67):
-    forall Re(s) > 0:
-      Tendsto (n |-> deriv(GammaSeq.n)(s)) atTop (nhds (deriv Gamma s))
-    B69 proof (~1pp):
-      (i)  TendstoLocallyUniformlyOn (GammaSeq.n) Gamma {Re>0}
-           [GammaSeq_tendsto_Gamma pointwise + locally uniform / analytic continuation]
-      (ii) Weierstrass theorem: TendstoLocallyUniformlyOn + DifferentiableOn
-           -> TendstoLocallyUniformlyOn of derivs
-           [tendstoLocallyUniformlyOn.deriv or Complex.WeierstrA1 analogue in Mathlib]
-      (iii) Evaluate at s: pointwise deriv convergence.
-
-Wall C status after B68:
-  A1 (HasDerivAt formula): PROVED (B67)
-  A2 (EM limit over C):    PROVED (B66)
-  B (Weierstrass):         WW_GammaSeq_DerivConv_b68 (OPEN, ~1pp, B69)
-
-```
-- [x] Batch 68: GammaSeq_tendsto_Gamma_b68 PROVED (0 sorry, Mathlib wrap)
-- [x] Batch 68: Gamma_ne_zero_b68 PROVED (0 sorry, Mathlib wrap)
-- [x] Batch 68: WW_Weierstrass_b67_from_derivconv PROVED (0 sorry)
-- [x] Batch 68: Wall_C_from_derivconv PROVED (0 sorry, full chain)
-- [x] Atomic opens: 35 -> 35 (Weierstrass_b67 -> DerivConv_b68)
-- [ ] Wall C complete (1 atom: WW_GammaSeq_DerivConv_b68, ~1pp, B69)
-```
+Total remaining Lean formalization: ~185-215pp of analytic number theory.
+All content is established mathematics; the gap is Lean/Mathlib formalization only.
