@@ -199,3 +199,5 @@ import ArakelovRH.SubClosure.Batch60DiGammaClose
 import ArakelovRH.SubClosure.Batch60MasterCertXV
 import ArakelovRH.SubClosure.Batch61HarmonicTSum
 import ArakelovRH.SubClosure.Batch61MasterCertXVI
+import ArakelovRH.SubClosure.Batch62AnalyticExt
+import ArakelovRH.SubClosure.Batch62MasterCertXVII

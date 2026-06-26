@@ -304,3 +304,43 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] Batch 61: Main HasSum.add induction + harmonic_succ + convert
 - [x] Atomic opens: 36 -> 35 (WW_HarmonicTSum_L8 closed)
 - [ ] Wall C complete (1 sub-atom: WW_AnalyticExt_L8 analytic extension ~0.15pp)
+
+---
+
+### Batch 62 — Wall C structural setup (B62)
+
+```
+Status: PUSHED
+Net atoms: 35 -> 35 (1-for-1: WW_AnalyticExt_L8 -> WW_AnalyticUniqueness_L8)
+SORRY: 0.  Axioms: classical trio.
+```
+
+Proved (0 sorry):
+- `WW_h_zero_nats_L8`: psi(n+1) = -gamma + F(n+1) for all n (from B60+B61)
+- `F_tele_partial`: telescope partial-sum formula for shift HasSum
+- `norm_add_nat_lb`: |s+N| >= Re(s)+N for Re(s)>0
+- `inv_add_nat_tendsto_zero`: 1/(s+N) -> 0 as N->inf
+- `F_telescope_cx`: HasSum (1/(s+k) - 1/(s+k+1)) = 1/s
+- `F_term_eq`: 1/(k+1) - 1/(s+k) = (s-1)/((k+1)(s+k))
+- `telesc_hasSum`: HasSum (1/(k+1) - 1/(k+2)) 1 in R
+- `F_summable`: F(s) terms summable for Re(s)>0 (norm comparison)
+- `WW_F_FunctEq_L8`: F(s+1) = F(s) + 1/s
+- `WW_Psi_FunctEq_L8`: psi(s+1) = psi(s) + 1/s (chain rule via Gamma_add_one)
+
+Named open (1 new):
+- `WW_AnalyticUniqueness_L8 := WW_AnalyticExt_L8` (~0.15pp)
+  Proof path (B63): GammaSeq log-derivative:
+  d/ds log(GammaSeq s n) = log n - sum_k 1/(s+k)
+  -> -gamma + F(s) locally uniformly;
+  hasDerivAt_of_tendstoLocallyUniformlyOn -> HasDerivAt (log o Gamma) (-gamma+F(s)) s.
+
+```
+- [x] Batch 62: WW_h_zero_nats_L8 PROVED (0 sorry)
+- [x] Batch 62: F_telescope_cx PROVED (0 sorry)
+- [x] Batch 62: F_summable PROVED (0 sorry, norm comparison)
+- [x] Batch 62: WW_F_FunctEq_L8 PROVED (0 sorry)
+- [x] Batch 62: WW_Psi_FunctEq_L8 PROVED (0 sorry, chain rule)
+- [x] Atomic opens: 35 -> 35 (WW_AnalyticExt_L8 <-> WW_AnalyticUniqueness_L8)
+- [ ] Wall C complete (1 atom: WW_AnalyticUniqueness_L8 ~0.15pp, B63)
+```
+
