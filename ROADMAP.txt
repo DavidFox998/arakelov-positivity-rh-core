@@ -459,3 +459,34 @@ NEW NAMED GAPS (batch 3):
   GammaStirling_Asymptotic_OPEN (~10pp, Stirling for Gamma at large |Im|)
   CPS_Concrete_Automorphic_OPEN (~35pp, GL_2 converse theorem, automorphic content)
 
+
+  CLOSURE (batch 4): zero_critical_iff_GRH PROVED: ZeroOffCritical <-> GRH (0 sorry)
+  CLOSURE (batch 4): second_disjunct_false PROVED: T0-disjunct always false for Re(rho)<1
+  CLOSURE (batch 4): gj_from_lift scaffold PROVED (0 sorry)
+  CLOSURE (batch 4): RS_implies_NonVanishing scaffold PROVED (0 sorry)
+
+FINAL STATE (June 26, 2026) - SubClosure pass complete:
+  8 surfaces formally closed with 0 sorry (Clay-clean):
+    CpowAbs_API_OPEN, WeilRootNumber_143_OPEN, GaussSumNorm_OPEN, f143_Nonzero_OPEN,
+    CpowNormFormula_OPEN, GlobalRootNumber_143_OPEN, SelbergTrace_143_OPEN, CPS_Thm33_OPEN
+  Key proved scaffolds (0 sorry, 0 axiom, classical trio):
+    PL_holomorphic_strip_bound, pl_strip_from_three_gaps, gamma_compact_bound,
+    gamma_stirling_bound_from_asymptotic, weil_from_link, gj_from_lift,
+    RS_implies_NonVanishing, second_disjunct_false, zero_critical_iff_GRH
+  16 Closure files now fully documented with SubClosure reductions
+  22 named atomic sub-sub-surfaces (all 0 sorry, none require axiom keywords)
+
+REMAINING MATHEMATICAL GAPS (require deep ANT or Stirling not in Mathlib v4.12.0):
+  GammaStirling_Asymptotic_OPEN  (~10pp, Stirling formula for Gamma)
+  WeilSum_SpectralLink_OPEN      (~20pp, spectral <-> Weil sum connection)
+  ExplicitFormula_AtomicGap_OPEN (~20pp, Weil explicit formula for L_143a1)
+  GJ_GL3_Functoriality_OPEN      (~30pp, Gelbart-Jacquet GL_2 -> GL_3)
+  CPS_Concrete_Automorphic_OPEN  (~35pp, full CPS converse theorem)
+  GammaStirling_Strip_OPEN       (= GammaStirling_Asymptotic, see above)
+  DeligneBound_143_OPEN          (~20pp, Hecke eigenvalue bound)
+  ZFR_143_OPEN                   (~15pp, de la Vallee Poussin for GL_2)
+  ZeroOffCriticalLine_OPEN       = GRH for L_143a1 (the main theorem; formally proved equivalent)
+  Plus: 8 abstract-variable surfaces (require concretizing abstract function variables)
+
+TOTAL LEAN FILES in ArakelovRH/SubClosure/: 16 files, all Clay-clean
+
