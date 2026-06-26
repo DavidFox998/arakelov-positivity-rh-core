@@ -81,3 +81,15 @@ import ArakelovRH.SubClosure.RSIdentityAttack
 import ArakelovRH.SubClosure.IKResidueAttack
 import ArakelovRH.SubClosure.PhragmenLindelofAttack
 import ArakelovRH.SubClosure.AnalyticExtensionAttack
+import ArakelovRH.SubClosure.Batch25Closures
+import ArakelovRH.SubClosure.BC6GateAttack
+import ArakelovRH.SubClosure.FEGateAttack
+import ArakelovRH.SubClosure.EulerProductAttack
+import ArakelovRH.SubClosure.ConverseCPSAttack
+import ArakelovRH.SubClosure.WeilGateAttack
+import ArakelovRH.SubClosure.BSVerticalAttack
+import ArakelovRH.SubClosure.RSIdentityFullAttack
+import ArakelovRH.SubClosure.IKGateAttack
+import ArakelovRH.SubClosure.ZFRGateAttack
+import ArakelovRH.SubClosure.WallCRouteAttack
+import ArakelovRH.SubClosure.RouteBMasterReduction
