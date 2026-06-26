@@ -150,3 +150,6 @@ import ArakelovRH.SubClosure.Batch40MasterCertN
 import ArakelovRH.SubClosure.Batch41IoiGammaClose
 import ArakelovRH.SubClosure.Batch41ZFRIsolation
 import ArakelovRH.SubClosure.Batch41MasterCertO
+import ArakelovRH.SubClosure.Batch42LaplaceSubst
+import ArakelovRH.SubClosure.Batch42ZFRIdentityThm
+import ArakelovRH.SubClosure.Batch42MasterCertP
