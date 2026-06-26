@@ -124,3 +124,7 @@ import ArakelovRH.SubClosure.Batch33ZFRDecomp
 import ArakelovRH.SubClosure.Batch33FEDecomp
 import ArakelovRH.SubClosure.Batch33WGDecomp
 import ArakelovRH.SubClosure.Batch33MasterCertG
+import ArakelovRH.SubClosure.Batch34ZFRCombinator
+import ArakelovRH.SubClosure.Batch34BSVertical
+import ArakelovRH.SubClosure.Batch34WGSpectral
+import ArakelovRH.SubClosure.Batch34MasterCertH
