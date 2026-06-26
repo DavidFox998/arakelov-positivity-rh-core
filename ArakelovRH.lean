@@ -207,3 +207,5 @@ import ArakelovRH.SubClosure.Batch64GammaSeqDeriv
 import ArakelovRH.SubClosure.Batch64MasterCertXIX
 import ArakelovRH.SubClosure.Batch65WallCClose
 import ArakelovRH.SubClosure.Batch65MasterCertXX
+import ArakelovRH.SubClosure.Batch66WallCEM
+import ArakelovRH.SubClosure.Batch66MasterCertXXI

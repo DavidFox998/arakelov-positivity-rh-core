@@ -471,3 +471,45 @@ B66 proof path (all Mathlib connectivity):
 - [x] Atomic opens: 35 -> 35 (WW_Wall_C_Final <-> WW_Wall_C_Analytics)
 - [ ] Wall C complete (1 atom: WW_GammaSeq_Wall_C_Analytics_L8, ~3pp, B66)
 ```
+
+---
+
+### Batch 66 — Wall C: EM limit proved; A1+B isolated (B66)
+
+```
+Status: PUSHED
+Net atoms: 35 -> 35 (1-for-1: WW_GammaSeq_Wall_C_Analytics_L8 -> WW_GammaSeq_DerivExch_b66)
+SORRY: 0.  Axioms: classical trio.
+```
+
+Proved (0 sorry):
+- `EM_n1_inv_tendsto_zero`: (n+1)^{-1} -> 0 in R (standard limit).
+- `EM_harmonic_shift_real`: H_{n+1} - log n -> gamma in R.
+    Real.tendsto_eulerMascheroniConstant + 1/(n+1)->0 + sum_range_succ shift.
+- `EM_logn_minus_harmonic_real`: log n - H_{n+1} -> -gamma in R (negate above).
+- `EM_limit_complex_b66` (A2 FULLY PROVED): log n - H_{n+1} -> -gamma in C.
+    Proof: cast EM_logn_minus_harmonic_real via Complex.continuous_ofReal.
+- `WW_GammaSeq_Wall_C_Analytics_L8_from_exch`: analytics from A2 + named open (0 sorry).
+- `Wall_C_from_exch`: Wall C closed given WW_GammaSeq_DerivExch_b66 (full chain).
+
+Named open (1 new, 1 retired, net 35 -> 35):
+- `WW_GammaSeq_DerivExch_b66` (replaces WW_GammaSeq_Wall_C_Analytics_L8):
+    Bundles only A1 + B (A2 now proved):
+    (A1) HasDerivAt formula: d/ds GammaSeq(s,n) = GammaSeq(s,n)*(log n - Sigma 1/(s+k))
+         [product/quotient/chain rule on n^s / prod(s+k), B67, ~1.5pp]
+    (B)  Weierstrass exchange: logD_n(s) -> deriv Gamma s / Gamma s
+         [GammaSeq_tendsto_Gamma + TendstoLocallyUniformlyOn + continuous div, B67, ~1pp]
+    Total remaining: ~2.5pp Lean (pure Mathlib connectivity).
+
+B67 proof path:
+  A1: HasDerivAt (n^.) via exp chain rule + HasDerivAt.mul induction on prod(z+k)
+      + quotient rule + algebraic simplification to GammaSeq*(log n - Sigma 1/(s+k)).
+  B:  Complex.GammaSeq_tendsto_Gamma + tendstoLocallyUniformlyOn + continuous division.
+
+```
+- [x] Batch 66: EM_limit_complex_b66 (A2) PROVED (0 sorry)
+- [x] Batch 66: WW_GammaSeq_Wall_C_Analytics_L8_from_exch PROVED (0 sorry)
+- [x] Batch 66: Wall_C_from_exch PROVED (0 sorry, full chain ready)
+- [x] Atomic opens: 35 -> 35 (Analytics <-> DerivExch)
+- [ ] Wall C complete (1 atom: WW_GammaSeq_DerivExch_b66, ~2.5pp, B67)
+```
