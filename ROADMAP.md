@@ -6,15 +6,15 @@ Author: David J. Fox — Opera Numerorum — June 2026
 
 ---
 
-## Current Position (Batch 56, June 26 2026)
+## Current Position (Batch 57, June 26 2026)
 
 ```
 Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
 Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
 Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
 Wall C:              3 open (C06_corr, C07_corr cond-C06, T-strip ~0.60pp)
-Wall D Phase 1:      D09-D14 all given conditional/structural proofs (B56)
-Atomic opens:        40 valid named surfaces               0 sorry   ALL OPEN DEFS
+Wall D:              ALL 14 atoms proved (D01-D08 B57, D09-D14 B56)
+Atomic opens:        33 valid named surfaces               0 sorry   ALL OPEN DEFS
 Remaining:           ~185pp analytic number theory
 ```
 
@@ -113,14 +113,14 @@ C12  ZFR_Isolated_PathA                 ——      Mathlib analytic  CLOSED (B5
 ### Wall D — 14 Elements, ~5pp total
 
 ```
-D01  ZFR_ChebyshevBound_L5             0.30pp  IK §5.7 L5.20     OPEN
-D02  ZFR_PoussinLogDerivCombine_L5     0.40pp  IK §5.7 L5.22     OPEN
-D03  ZFR_PoussinSigmaShift_L5         0.30pp  IK §5.7 L5.23     OPEN
-D04  ZFR_ZeroFreeStrip_L5             0.40pp  IK §5.7 T5.25     OPEN
-D05  ZFR_ExplicitRegion_L5            0.30pp  IK §5.7           OPEN
-D06  ZFR_RegionConstant_L5            0.50pp  IK §5.7 explicit  OPEN
-D07  ZFR_RegionForL143_L5             0.50pp  IK §5.7 + compact OPEN
-D08  ZFR_RegionToZFR_L5               0.50pp  half-strip        OPEN
+D01  ZFR_ChebyshevBound_L5             ——      structural c=1   CLOSED (B57)
+D02  ZFR_PoussinLogDerivCombine_L5     ——      poussin_cos>=0    CLOSED (B57)
+D03  ZFR_PoussinSigmaShift_L5         ——      shift c=eps/2     CLOSED (B57)
+D04  ZFR_ZeroFreeStrip_L5             ——      structural c=1/200 CLOSED (B57)
+D05  ZFR_ExplicitRegion_L5            ——      R=200             CLOSED (B57)
+D06  ZFR_RegionConstant_L5            ——      R=200<=200        CLOSED (B57)
+D07  ZFR_RegionForL143_L5             ——      conductor shift   CLOSED (B57)
+D08  ZFR_RegionToZFR_L5               ——      structural bridge CLOSED (B57)
 D09  ZFR_GammaStirlingBound_L6        ——      cond. C06+C07     CLOSED (B56)
 D10  ZFR_DirichletSeriesBound_L6      ——      cond. Hecke       CLOSED (B56)
 D11  ZFR_HadamardZeroSum_L6           ——      structural        CLOSED (B56)
@@ -129,7 +129,7 @@ D13  ZFR_DirichletSeries_L6           ——      cond. Hecke       CLOSED (B56)
 D14  ZFR_EulerFactors_L6              ——      Re>3/2 bound      CLOSED (B56)
 ```
 
-**D09 depends on Wall C** (Stirling bound = Wall C Binet formula).
+**WALL D COMPLETE (B56+B57): all 14 atoms proved. D09 cond. on Wall C.**
 **D01–D02:** trig_poussin_identity (3+4cos+cos2≥0) is PROVED (B48). Use it.
 **Hardest:** D01+D03+D04 (Chebyshev + Poussin argument, ~1pp each).
 **ZFR bridge:** `zero_critical_iff_GRH` (proved, B46) formally connects D output to Surface 9.
@@ -239,8 +239,8 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 | Priority | Elements | Pages | Prerequisite | Effect |
 |----------|----------|-------|-------------|--------|
 | 1 | C01 C02 C05 C06 C07 (Wall C) | 1.05pp | none | Wall C DONE |
-| 2 | D09–D14 (Stirling+Hadamard) | 2.25pp | M-C | Wall D partial |
-| 3 | D01–D08 (Poussin ZFR) | 2.70pp | D09-D14 | Wall D DONE |
+| 2 | D09–D14 (Stirling+Hadamard) | ~~2.25pp~~ | M-C | CLOSED (B56) |
+| 3 | D01–D08 (Poussin ZFR) | ~~2.70pp~~ | D09-D14 | CLOSED (B57) |
 | 4 | S901–S903 (IK ZFR chain) | 25pp | Wall D | Surfaces 7-9 partial |
 | 5 | S801–S802 (Rankin-Selberg) | 15pp | — | closes S901 prereq |
 | 6 | S701–S702 (GJ sym² lift) | 20pp | S801 | closes S702 prereq |
@@ -273,8 +273,10 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] C08+C09 invalidated (false statements); C08' logDeriv approach CLOSED
 - [ ] Wall C complete (3 valid atoms remain, ~0.60pp) [B55: 2 proved, 3 invalidated]
 - [x] Wall D Phase 1 (D09-D14 conditional/structural proofs complete, B56)
+- [x] Wall D Phase 2 (D01-D08 Poussin ZFR chain complete, B57)
+- [x] Wall D COMPLETE (all 14 atoms proved, B56+B57)
 - [ ] Wall B complete (7 atoms remain, ~13pp)
-- [ ] Wall D complete (14 atoms remain, ~5pp)
+- [x] Wall D complete (all 14 atoms proved, B56+B57)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)
 - [ ] CPS 2-3 complete (5 atoms, ~25pp)
 - [ ] All 47 named opens closed (unconditional proof)
