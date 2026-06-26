@@ -188,3 +188,5 @@ import ArakelovRH.SubClosure.Batch53MasterCertX
 import ArakelovRH.SubClosure.Batch54AuditClose
 import ArakelovRH.SubClosure.Batch55WallCClose
 import ArakelovRH.SubClosure.Batch55MasterCertXI
+import ArakelovRH.SubClosure.Batch56WallCFinalD
+import ArakelovRH.SubClosure.Batch56MasterCertXII

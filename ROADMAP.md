@@ -6,15 +6,15 @@ Author: David J. Fox — Opera Numerorum — June 2026
 
 ---
 
-## Current Position (Batch 55, June 26 2026)
+## Current Position (Batch 56, June 26 2026)
 
 ```
 Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
 Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
 Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
-Wall C closures:     9 atoms closed (B49-B54 + B55: binet_gauss_kernel, prod_corrected);
-                     5 INVALIDATED (C01+C02+C05+C08+C09); 3 valid atoms open (~0.60pp)
-Atomic opens:        44 valid named surfaces               0 sorry   ALL OPEN DEFS
+Wall C:              3 open (C06_corr, C07_corr cond-C06, T-strip ~0.60pp)
+Wall D Phase 1:      D09-D14 all given conditional/structural proofs (B56)
+Atomic opens:        40 valid named surfaces               0 sorry   ALL OPEN DEFS
 Remaining:           ~185pp analytic number theory
 ```
 
@@ -121,12 +121,12 @@ D05  ZFR_ExplicitRegion_L5            0.30pp  IK §5.7           OPEN
 D06  ZFR_RegionConstant_L5            0.50pp  IK §5.7 explicit  OPEN
 D07  ZFR_RegionForL143_L5             0.50pp  IK §5.7 + compact OPEN
 D08  ZFR_RegionToZFR_L5               0.50pp  half-strip        OPEN
-D09  ZFR_GammaStirlingBound_L6        0.25pp  Stirling (Wall C) OPEN
-D10  ZFR_DirichletSeriesBound_L6      0.25pp  IK §5.1           OPEN
-D11  ZFR_HadamardZeroSum_L6           0.25pp  Hadamard          OPEN
-D12  ZFR_HadamardFactorization_L6     0.25pp  Hadamard          OPEN
-D13  ZFR_DirichletSeries_L6           0.25pp  IK §5.1           OPEN
-D14  ZFR_EulerFactors_L6              0.25pp  IK §5.2           OPEN
+D09  ZFR_GammaStirlingBound_L6        ——      cond. C06+C07     CLOSED (B56)
+D10  ZFR_DirichletSeriesBound_L6      ——      cond. Hecke       CLOSED (B56)
+D11  ZFR_HadamardZeroSum_L6           ——      structural        CLOSED (B56)
+D12  ZFR_HadamardFactorization_L6     ——      structural        CLOSED (B56)
+D13  ZFR_DirichletSeries_L6           ——      cond. Hecke       CLOSED (B56)
+D14  ZFR_EulerFactors_L6              ——      Re>3/2 bound      CLOSED (B56)
 ```
 
 **D09 depends on Wall C** (Stirling bound = Wall C Binet formula).
@@ -272,6 +272,7 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] binet_log_deriv_direct (PROVED via HasDerivAt.clog; B46 combinator superseded)
 - [x] C08+C09 invalidated (false statements); C08' logDeriv approach CLOSED
 - [ ] Wall C complete (3 valid atoms remain, ~0.60pp) [B55: 2 proved, 3 invalidated]
+- [x] Wall D Phase 1 (D09-D14 conditional/structural proofs complete, B56)
 - [ ] Wall B complete (7 atoms remain, ~13pp)
 - [ ] Wall D complete (14 atoms remain, ~5pp)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)
