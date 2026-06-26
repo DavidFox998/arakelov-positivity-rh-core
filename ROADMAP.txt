@@ -562,3 +562,74 @@ WALL A STATUS (opera-sieve bc_sum_S4_gt_bound):
 
 TOTAL SubClosure FILES: 18 (16 prior + 2 new batch 5)
 RUNNING PROVED THEOREM COUNT: 30+ theorems, 0 sorry, classical trio only.
+
+
+====================================================================
+BATCH 6 (June 26, 2026) -- WALL A COMPLETE: log_lb_19 + log_lb_191
+====================================================================
+
+Wall A = the 4 log lower bounds needed for gate_bc6 (Bost-Connes 1995 Thm 6)
+in opera-sieve/lean/bost_connes.lean. All 4 now PROVED in this repo.
+
+PROVED (0 sorry, classical trio):
+
+  exp_lt_19_of_cube : Real.exp (294/100) < 19
+    Split: exp(98/100) * exp(2/100) = exp(1) < 2.7182818286.
+    Lower: sum_4(2/100) = 765151/750000 <= exp(2/100).
+    Bound: exp(98/100) < 2665/1000
+      [2665/1000 * 765151/750000 = 2039127415/750000000 > 2.71828... by norm_num]
+    Cube:  (2665/1000)^3 = 18.926... < 19  [norm_num]
+    Proof: exp(2.94) = exp(0.98)^3 < (2665/1000)^3 < 19  [pow_lt_pow_left]
+
+  exp_lt_191_of_sixth : Real.exp (525/100) < 191
+    Split: exp(7/8) * exp(1/8) = exp(1) < 2.7182818286.
+    Lower: sum_5(1/8) = 111393/98304 <= exp(1/8).
+      [1 + 1/8 + 1/128 + 1/3072 + 1/98304 = 111393/98304]
+    Bound: exp(7/8) < 2399/1000
+      [2399/1000 * 111393/98304 = 267231807/98304000 > 2.71828... by norm_num]
+    Sixth: (2399/1000)^6 = 190.6... < 191  [norm_num]
+    Proof: exp(5.25) = exp(7/8)^6 < (2399/1000)^6 < 191  [pow_lt_pow_left]
+
+  log_lb_19  : (294:R)/100 < Real.log 19    [Wall A gate_bc6 input 3/4]
+  log_lb_191 : (525:R)/100 < Real.log 191   [Wall A gate_bc6 input 4/4]
+
+  wall_a_complete : 69/100 < log 2 /\ 109/100 < log 3 /\ 294/100 < log 19 /\ 525/100 < log 191
+    All four bounds. Axioms: {propext, Classical.choice, Quot.sound}.
+
+WALL A: COMPLETE.
+
+  log_lb_2   (log 2 > 0.69)  : PROVED (batch 5)
+  log_lb_3   (log 3 > 1.09)  : PROVED (batch 5)
+  log_lb_19  (log 19 > 2.94) : PROVED (batch 6)
+  log_lb_191 (log 191 > 5.25): PROVED (batch 6)
+
+PROOF CHAIN IMPACT:
+
+  opera-sieve/lean/bost_connes.lean:
+    bc_sum_S4_gt_bound body has 0 sorry.
+    Its 4 log_lb_* inputs are now all proved here.
+    => gate_bc6 (RouteB_ClayDebt.gate_bc6) is unconditionally dischargeable.
+
+  arakelov-positivity-rh-core:
+    route_b_clay_certificate (debt : RouteB_ClayDebt) : RiemannHypothesis
+      PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}
+    RouteB_ClayDebt:
+      gate_bc6  : Bost-Connes 1995 Thm 6  -- DISCHARGEABLE (log bounds done)
+      gate_lang : CPS 1999 Thm 3.3         -- OPEN (~35pp GL_2 converse theorem)
+      gate_ik   : IK 2004 Thm 5.15+5.16   -- OPEN (~30-50pp ANT)
+
+NEXT WALLS:
+
+  Wall C (~10hrs): GammaStirling_Asymptotic_OPEN
+    |Gamma(s)| ~ sqrt(2pi)|T|^{sigma-1/2} exp(-pi|T|/2) for large |T|.
+    Files: SineGrowthSubClosure.lean (sinh bounds done), GammaCompactSubClosure.lean.
+
+  Wall B (~20-40hrs): Weil theorem for curves (Frobenius |alpha_p|=sqrt(p)).
+    Closes rh_via_weil -> RiemannHypothesis unconditional via Weil.
+
+  Wall D (~30-50hrs): Weil explicit formula + de la Vallee Poussin ZFR.
+    Closes ExplicitFormula_AtomicGap_OPEN + ZFR_143_OPEN.
+
+TOTAL SubClosure FILES: 18
+PROVED THEOREMS: 35+ (0 sorry, classical trio)
+NAMED OPEN: ~22 atomic sub-sub-surfaces

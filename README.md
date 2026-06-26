@@ -7,7 +7,8 @@ Lean: `leanprover/lean4:v4.12.0` | Mathlib: `v4.12.0` | ORCID: 0009-0008-1290-61
 
 > SORRY: 0.  Axiom footprint: `{propext, Classical.choice, Quot.sound}` (classical trio).
 > No `native_decide`. No `opaque`. No `trivial` in proof bodies.
-> Named open surfaces: ~26. Author-proved bricks: 30+.
+> Named open surfaces: ~22. Author-proved bricks: 35+.
+> **Wall A COMPLETE** (June 26 2026): all 4 log bounds for S₄={2,3,19,191} proved.
 
 ---
 
@@ -152,6 +153,11 @@ See `ArakelovRH/RHRouteB.lean` for the complete formal statement.
 | **`route_b_master_theorem`** | **RHRouteB** | **5 gates → RH (Route B)** |
 | **`route_b_explicit`** | **RHRouteB** | **same, explicit-arg form** |
 | **`route_b_kimSarnak_form`** | **RHRouteB** | **3-gate form** |
+| `exp_lt_19_of_cube` | ExpLogBoundsSubClosure | exp(2.94) < 19 via exp(0.98)³, sum₄(2/100) |
+| `exp_lt_191_of_sixth` | ExpLogBoundsSubClosure | exp(5.25) < 191 via exp(7/8)⁶, sum₅(1/8) |
+| `log_lb_19` | ExpLogBoundsSubClosure | 294/100 < log 19 — Wall A gate_bc6 3/4 |
+| `log_lb_191` | ExpLogBoundsSubClosure | 525/100 < log 191 — Wall A gate_bc6 4/4 |
+| **`wall_a_complete`** | **ExpLogBoundsSubClosure** | **All 4 log bounds — gate_bc6 dischargeable** |
 | `grh_descent_to_RH` | C09_GRHDescent | 3-line descent proof |
 | `opera_numerorum_route_b` | C10 | Route B combinator |
 | `exp_loglog_dominates_sq` | GrowthContradiction | Mathlib tendsto |
@@ -244,6 +250,26 @@ ArakelovRH/
 ```
 
 ---
+
+## Wall A — COMPLETE (June 26 2026)
+
+All four log lower bounds for S₄ = {2, 3, 19, 191} now formally proved (0 sorry):
+
+| Bound | Theorem | Method |
+|-------|---------|--------|
+| log 2 > 0.69 | `log_lb_2` | exp(69/100) < 2 via sum₄(31/100) ≥ 1.362957 |
+| log 3 > 1.09 | `log_lb_3` | exp(109/100) < 3 via exp(9/100)·91 ≤ 100 |
+| log 19 > 2.94 | `log_lb_19` | exp(2.94) = exp(98/100)³ < (2665/1000)³ via sum₄(2/100) |
+| log 191 > 5.25 | `log_lb_191` | exp(5.25) = exp(7/8)⁶ < (2399/1000)⁶ via sum₅(1/8) |
+
+This closes **gate_bc6** (Bost-Connes 1995 Thm 6) in `opera-sieve/lean/bost_connes.lean`.
+
+```lean
+-- Wall A certificate:
+#print axioms ArakelovRH.ExpLogBoundsSubClosure.wall_a_complete
+-- Expected: {propext, Classical.choice, Quot.sound}
+```
+
 
 ## Run
 
