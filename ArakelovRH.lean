@@ -185,3 +185,4 @@ import ArakelovRH.SubClosure.Batch52WallCProgress
 import ArakelovRH.SubClosure.Batch52MasterCertIX
 import ArakelovRH.SubClosure.Batch53WallCDigamma
 import ArakelovRH.SubClosure.Batch53MasterCertX
+import ArakelovRH.SubClosure.Batch54AuditClose

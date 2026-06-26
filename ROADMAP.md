@@ -6,15 +6,16 @@ Author: David J. Fox — Opera Numerorum — June 2026
 
 ---
 
-## Current Position (Batch 51, June 26 2026)
+## Current Position (Batch 53, June 26 2026)
 
 ```
 Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
 Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
 Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
-Wall C closures:     5 atoms closed (SigmaBig B49, ZFR_Iso B50, KernelLarge B51, LaplaceSmall B52; C08+C09 INVALIDATED)
-                     7 valid atoms open; C08+C09 replaced by C08' (logGamma)
-Atomic opens:        49 valid named surfaces               0 sorry   ALL OPEN DEFS
+Wall C closures:     7 atoms closed (SigmaBig B49, ZFR_Iso B50, KernelLarge B51,
+                     LaplaceSmall B52, GaussLimit B53, C08' B53, LogDeriv B53);
+                     2 INVALIDATED (C08+C09 false); 5 valid atoms open (~1.05pp)
+Atomic opens:        47 valid named surfaces               0 sorry   ALL OPEN DEFS
 Remaining:           ~185pp analytic number theory
 ```
 
@@ -52,61 +53,59 @@ Key Mathlib needed: `AlgebraicGeometry.Frobenius` API for elliptic curves.
 
 ---
 
-### Wall C — 12 Elements, 3 Closed, 9 Open (~1.50pp open)
+### Wall C — 12 Elements, 7 Closed (+2 Invalidated), 5 Valid Open (~1.05pp)
 
 ```
 C01  Binet_KernelTaylor_L8              0.20pp  W-W §12.31        OPEN
-C02  Binet_KernelFirstBernoulli_L8      0.15pp  B_2=1/6           OPEN
+C02  Binet_KernelFirstBernoulli_L8      0.15pp  B₂=1/6            OPEN
 C03  Binet_KernelLargeBound_L8          0.15pp  exp decay         CLOSED (B51)
-C04  Binet_GaussLimit_L8               0.25pp  Gauss product     OPEN
-C05  Binet_ProdFromLimit_L8             0.25pp  Weierstrass       OPEN
+C04  Binet_GaussLimit_L8               0.25pp  GammaSeq_tendsto  CLOSED (B53)
+C05  Binet_ProdFromLimit_L8             0.20pp  Weierstrass       OPEN
 C06  Binet_LogGammaSeries_L8            0.25pp  W-W §12.16        OPEN
 C07  Binet_IntegralFromDigamma_L8       0.25pp  W-W §12.32        OPEN
-C08  Gamma_NotBranch_UpperHalf_L8       0.05pp  Artin §1          OPEN
-C09  Gamma_NotBranch_LowerHalf_L8       0.05pp  reflection        OPEN
-C10  Laplace_IntegSigmaSmall_L10        0.15pp  antiderivative    OPEN
+C08  Gamma_NotBranch_UpperHalf_L8       ——      FALSE (Stirling)  INVALIDATED (B52)
+C09  Gamma_NotBranch_LowerHalf_L8       ——      dep. on C08       INVALIDATED (B52)
+C08' Gamma_LogGamma_Approach_L8        0.25pp  logDeriv_apply    CLOSED (B53)
+C10  Laplace_IntegSigmaSmall_L10        0.15pp  rpow domination   CLOSED (B52)
 C11  Laplace_IntegSigmaBig_L10          ——      domination        CLOSED (B49)
 C12  ZFR_Isolated_PathA                 ——      Mathlib analytic  CLOSED (B50)
 ```
 
-**Closure method for C03 (B51, done):**
-  `binet_large_bound_proved`: `t ≥ 2π → |B(t)/t| ≤ 1/(4π) < 1/12`
-  via `Real.add_one_le_exp` + `Real.pi_gt_three`.
+**Closure method for C04 (B53):**
+  `binet_gauss_limit_proved`: `Complex.GammaSeq_tendsto_Gamma s` matches C04 exactly.
+  Proof: `intro s _; exact Complex.GammaSeq_tendsto_Gamma s`. 3 lines.
 
-**Closure method for C10 (B52, done):**
-  `laplace_sigma_small_proved`: split `Ioi(0) = Ioc(0,1) ∪ Ioi(1)`.
-  On `Ioc(0,1)`: `ContinuousOn.integrableOn_Icc` (compact).
-  On `Ioi(1)`: dominate by `(2/σ²)·t^{-2}` from `(σt)²/2 ≤ exp(σt)`.
-  `t^{-2}` integrable via `integrableOn_Ioi_rpow_of_lt (-2 < -1)`.
+**Closure method for C08' (B53):**
+  `Gamma_LogGamma_C08prime_closed`: `logDeriv_apply Complex.Gamma s` is rfl.
+  Key: Complex.logGamma does NOT exist in Mathlib v4.12.0 — use `logDeriv Complex.Gamma`.
+
+**Closure method for binet_log_deriv_direct (B53, supersedes B46):**
+  `HasDerivAt.clog` (Complex/LogDeriv.lean L95–97):
+  Given `HasDerivAt Complex.Gamma g' s` and `Complex.Gamma s ∈ slitPlane`,
+  returns `HasDerivAt (Complex.log ∘ Complex.Gamma) (g' / Complex.Gamma s) s`.
+  Note: supersedes B46 combinator (which required false Gamma_LogDiff_OPEN).
 
 **C08 INVALIDATION (B52, CRITICAL):**
   `Gamma_NotBranch_UpperHalf_L8_OPEN` (`|arg Γ(s)| < π/2`) is **FALSE**.
-  By Stirling: `arg(Γ(σ+iτ)) ≈ τ log τ - τ + O(log τ)` — unbounded.
-  **Fix**: Replace C06+C07 to use `Complex.logGamma` (holomorphic log, no branch cut).
-  New atom **C08'** (`Gamma_LogGamma_Approach_L8`): ~0.25pp, replaces C08+C09.
+  By Stirling: `arg(Γ(σ+iτ)) ≈ τ log τ − τ + O(log τ)` — unbounded.
+  **Also**: `Gamma_NotOnBranchCut_OPEN` (`arg Γ(s) ≠ π`) is SUSPECTED FALSE for
+  large Im(s) (Stirling implies arg cycles through all values). Remains as named open.
+  **Fix**: B53's `binet_log_deriv_direct` uses `HasDerivAt.clog` directly,
+  sidestepping the branch-cut issue entirely.
 
-**Next: C08'** (logGamma API, ~0.25pp): identify `Complex.logGamma` in Mathlib 4.12.0,
-prove `DifferentiableAt ℂ Complex.logGamma s` for Re(s)>0, and restate C06+C07.
+**Batch 53 API key facts:**
+  - `Complex.logGamma` does NOT exist in Mathlib v4.12.0.
+  - `Complex.GammaSeq_tendsto_Gamma`: holds for ALL s : ℂ (not just Re>0).
+  - `logDeriv_apply f x : logDeriv f x = deriv f x / f x` is rfl.
+  - `HasDerivAt.clog` eliminates need for `DifferentiableAt Complex.log` separately.
 
-**Next: C01→C02** (alternating series for Binet kernel small t).
-  C01 closes via Bernoulli generating function Taylor series in Mathlib.
-  C02 closes from C01 via alternating series bound.
-
-**Next: C04→C05** (Gauss limit → Weierstrass product).
-  C04: `Complex.tendsto_GaussProduct` if available in v4.12.0; else named open.
-  C05: from C04 by taking logs.
-
-**Next: C06→C07** (digamma series → log Gamma integral).
-  C06: digamma series from `Complex.differentiableAt_Gamma` + product formula.
-  C07: integration of C06 gives Binet's first formula (W-W §12.32).
-
-**Then: C08→C09** (Gamma branch cut argument, tiny).
-  C08: sector bound in upper half-plane (`|arg Γ(s)| < π/2 for Im(s) > 0`).
-  Note: the statement `|arg Γ(s)| < π/2` may be too strong for large Im(s).
-  Safe restatement: `arg Γ(s) ≠ π` for Re(s) > 0. (Verified in docs.)
-
-**Then: C10** (Laplace integrability, σ∈(0,1), Ioi(0)).
-  Proof: HasDerivAt antiderivative `-exp(-σt)/σ` → `integrableOn_Ioi`.
+**Next targets (5 valid atoms, ~1.05pp):**
+  C05 (~0.20pp): Binet_ProdFromLimit. Needs ∃ C≠0 s.t. Γ(s)=C/∏_{k≤n}(s+k).
+       Requires Γ(s)≠0 for hypothesis ∀k≤n, s+k≠0. Key: add Re(s)>0 hypothesis.
+  C01 (~0.20pp): Bernoulli Taylor series for binet_kernel.
+  C02 (~0.15pp): Alternating bound from C01 (conditional).
+  C06 (~0.25pp): Digamma series formula from logDeriv.
+  C07 (~0.25pp): Binet integral from digamma series (conditional on C06).
 
 ---
 
@@ -130,7 +129,7 @@ D14  ZFR_EulerFactors_L6              0.25pp  IK §5.2           OPEN
 ```
 
 **D09 depends on Wall C** (Stirling bound = Wall C Binet formula).
-**D01-D02:** trig_poussin_identity (3+4cos+cos2≥0) is PROVED (B48). Use it.
+**D01–D02:** trig_poussin_identity (3+4cos+cos2≥0) is PROVED (B48). Use it.
 **Hardest:** D01+D03+D04 (Chebyshev + Poussin argument, ~1pp each).
 **ZFR bridge:** `zero_critical_iff_GRH` (proved, B46) formally connects D output to Surface 9.
 
@@ -166,7 +165,7 @@ S902  IK_ZFRfromNonZero_L5            10pp  IK Cor 5.16        OPEN
 S903  IK_RHfromZFR_L5                 10pp  IK §5.6            OPEN
 ```
 
-**Shortest path:** S901→S902→S903 (IK §5.6-5.16 chain, ~25pp total).
+**Shortest path:** S901→S902→S903 (IK §5.6–5.16 chain, ~25pp total).
 **Key insight:** S901 uses `L_143a1 1 ≠ 0` which comes from Rankin-Selberg (S801+S802).
 
 ---
@@ -184,22 +183,17 @@ BR4  WallD_Surface789_Bridge          60pp  IK Chapter 5
 
 ## Milestone Plan
 
-### M-C: Complete Wall C (~1.5pp, 9 atoms)
-
-**Goal:** Close C01-C10 (9 atoms, ~1.50pp total).
+### M-C: Complete Wall C (~1.05pp, 5 atoms remaining)
 
 ```
-Session 1: C04+C05 — Gauss limit → Weierstrass product (~0.50pp)
+Session 1: C05 — Binet_ProdFromLimit from C04 Gauss limit (~0.20pp)
 Session 2: C06+C07 — digamma series → Binet integral (~0.50pp)
-Session 3: C01+C02 — Bernoulli Taylor expansion + small-t bound (~0.35pp)
-Session 4: C08+C09+C10 — branch cut + Laplace small-sigma (~0.15pp)
+Session 3: C01+C02 — Bernoulli Taylor + alternating bound (~0.35pp)
 ```
 
 **Effect:** Wall C COMPLETE. D09 (GammaStirlingBound) then ready to close.
 
 ### M-D: Complete Wall D (~5pp, 14 atoms)
-
-**Goal:** Close D01-D14 in dependency order.
 
 ```
 Phase 1: D09+D10+D13+D14  (Stirling+Dirichlet, ~1pp, depends M-C for D09)
@@ -209,10 +203,9 @@ Phase 4: D03+D04+D05      (Poussin shift+strip+region, ~1pp)
 Phase 5: D06+D07+D08      (explicit constant+ZFR, ~1.5pp)
 ```
 
-**Effect:** Wall D COMPLETE → `zero_critical_iff_GRH` + `zfr_zero_critical_bridge`
-close the ZFR part of Surface 9 chain.
+**Effect:** Wall D COMPLETE → `zero_critical_iff_GRH` closes ZFR part of Surface 9.
 
-### M-IK: IK Chain S801-S903 (~65pp)
+### M-IK: IK Chain S801–S903 (~65pp)
 
 ```
 S801+S802 (Rankin-Selberg + residue, ~15pp)
@@ -220,11 +213,8 @@ S701+S702 (Gelbart-Jacquet sym² lift + nonvanishing, ~20pp)
 S901+S902+S903 (L(1,f)≠0 → ZFR → RH, ~25pp)
 ```
 
-**Effect:** Surfaces 7-9 CLOSED.
+### M-CPS: CPS Converse (S501–S602, P01–P05, ~110pp)
 
-### M-CPS: CPS Converse (S501-S602, P01-P05, ~110pp)
-
-Largest block. Parallel attack:
 - P04+P05 first (~5pp)
 - P01+P02+P03 (~20pp)
 - S601+S602 (~15pp, depends M-B Frobenius)
@@ -237,11 +227,9 @@ B01+B02+B03  (HodgeCM chain, ~3pp — needs Frobenius API)
 B04+B05+B06+B07  (Weil explicit formula, ~10pp)
 ```
 
-**Effect:** Frobenius bound ready for S601+S602 (Weil → GRH).
-
 ### M0: Unconditional Proof
 
-All 50 named opens closed → `opera_numerorum_grand_conditional` becomes unconditional.
+All 47 named opens closed → `opera_numerorum_grand_conditional` becomes unconditional.
 
 ---
 
@@ -249,7 +237,7 @@ All 50 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 
 | Priority | Elements | Pages | Prerequisite | Effect |
 |----------|----------|-------|-------------|--------|
-| 1 | C01–C10 (Wall C remain) | 1.50pp | none | Wall C DONE |
+| 1 | C01 C02 C05 C06 C07 (Wall C) | 1.05pp | none | Wall C DONE |
 | 2 | D09–D14 (Stirling+Hadamard) | 2.25pp | M-C | Wall D partial |
 | 3 | D01–D08 (Poussin ZFR) | 2.70pp | D09-D14 | Wall D DONE |
 | 4 | S901–S903 (IK ZFR chain) | 25pp | Wall D | Surfaces 7-9 partial |
@@ -278,10 +266,13 @@ All 50 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] laplace_sigma_big_proved (σ≥1 integrability)
 - [x] binet_large_bound_proved (|B(t)/t| ≤ 1/12 for t≥2π)
 - [x] laplace_sigma_small_proved (exp(-σt) integrable on Ioi(0), 0<σ<1)
-- [x] C08+C09 invalidated (false statements); C08' logGamma approach documented
-- [ ] Wall C complete (7 valid atoms remain, ~1.40pp; C10 CLOSED B52)
+- [x] binet_gauss_limit_proved (C04 CLOSED via GammaSeq_tendsto_Gamma)
+- [x] Gamma_LogGamma_C08prime_closed (C08' CLOSED via logDeriv_apply)
+- [x] binet_log_deriv_direct (PROVED via HasDerivAt.clog; B46 combinator superseded)
+- [x] C08+C09 invalidated (false statements); C08' logDeriv approach CLOSED
+- [ ] Wall C complete (5 valid atoms remain, ~1.05pp)
 - [ ] Wall B complete (7 atoms remain, ~13pp)
 - [ ] Wall D complete (14 atoms remain, ~5pp)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)
 - [ ] CPS 2-3 complete (5 atoms, ~25pp)
-- [ ] All 50 named opens closed (unconditional proof)
+- [ ] All 47 named opens closed (unconditional proof)

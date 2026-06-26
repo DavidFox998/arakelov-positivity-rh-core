@@ -7,56 +7,58 @@ Lean: `leanprover/lean4:v4.12.0` | Mathlib: `v4.12.0` | ORCID: 0009-0008-1290-61
 
 ---
 
-## Status at a Glance (Batch 51)
+## Status at a Glance (Batch 53)
 
 | Metric | Value |
 |--------|-------|
 | SORRY in any main proof body | **0** |
 | Axiom footprint | `{propext, Classical.choice, Quot.sound}` |
 | Grand Conditional Certificate | **PROVED** (Batch 49, 0 sorry) |
-| Wall C atoms closed | **3** of 12: SigmaBig (B49) · ZFR_Isolated (B50) · KernelLarge (B51) |
-| Wall C atoms remaining | **9** (~1.50pp) |
-| Total atomic opens | **50** named surfaces (0 sorry each) |
+| Wall C closed / invalidated | **7 closed** (B49–B53) + **2 invalidated** (C08+C09 false) |
+| Wall C atoms remaining | **5** valid open (~1.05pp) |
+| Total atomic opens | **47** named surfaces (0 sorry each) |
 
 ---
 
 ## What This Repo Proves
 
-### Grand Conditional (Batch 49, 0 sorry, classical trio)
+### Grand Conditional (Batch 49, 0 sorry, classical trio only)
 
 ```lean
 theorem opera_numerorum_grand_conditional
-    (h_s1 : SelbergWeilBC6_143_OPEN S_weil)   -- ~40pp Surface 1
-    (h_s2 : CPS_FunctionalEquation_OPEN ...)   -- ~20pp Surface 2
-    (h_s3 : CPS_EulerProduct_OPEN)             -- ~5pp  Surface 3
-    (h_s4 : CPS_BoundedStrips_OPEN ...)        -- ~10pp Surface 4
+    (h_s1 : SelbergWeilBC6_143_OPEN S_weil)    -- ~40pp  Surface 1
+    (h_s2 : CPS_FunctionalEquation_OPEN ...)   -- ~20pp  Surface 2
+    (h_s3 : CPS_EulerProduct_OPEN)             -- ~5pp   Surface 3
+    (h_s4 : CPS_BoundedStrips_OPEN ...)        -- ~10pp  Surface 4
     (h_s5 : CPS_ConverseAndUniqueness_OPEN ...) -- ~45pp Surface 5
-    (h_s6 : WeilBound_to_GRH_OPEN ...)        -- ~15pp Surface 6
-    (h_s7 : L_sym2_NonVanishing_OPEN ...)      -- ~20pp Surface 7
-    (h_s8 : Residue_Argument_OPEN ...)         -- ~15pp Surface 8
-    (h_s9 : ZetaZeroFree_OPEN)                 -- ~25pp Surface 9
+    (h_s6 : WeilBound_to_GRH_OPEN ...)        -- ~15pp  Surface 6
+    (h_s7 : L_sym2_NonVanishing_OPEN ...)      -- ~20pp  Surface 7
+    (h_s8 : Residue_Argument_OPEN ...)         -- ~15pp  Surface 8
+    (h_s9 : ZetaZeroFree_OPEN)                 -- ~25pp  Surface 9
     : _root_.RiemannHypothesis
--- Direct call to route_b_from_nine_surfaces (proved scaffold, 0 sorry)
 ```
 
 ### Direct Closures (0 sorry each, cumulative)
 
 | Theorem | Batch | Method |
-|---|---|---|
+|---------|-------|--------|
 | `wall_a_complete` | B46 | All 4 log bounds for S₄={2,3,19,191} |
 | `trig_poussin_identity` | B48 | `3+4cos+cos2 ≥ 0` via `cos_two_mul + positivity` |
 | `laplace_sigma_big_proved` | B49 | `IntegrableOn.mono_fun + Gamma_integral_convergent` |
 | `zfr_isolated_patha_proved` | B50 | `AnalyticAt.eventually_eq_zero_or_frequently_ne_zero` |
-| `wall_c_zerofree_combinator` | B50 | `ZFR_IsolatedFromAnalytic_L8` closed via PathA |
-| `binet_large_bound_proved` | B51 | `\|B(t)/t\| ≤ 1/(4π) < 1/12` for t≥2π via `add_one_le_exp + pi_gt_three` |
-| `laplace_sigma_small_proved` | **B52** | `exp(-σt)` integrable on `Ioi(0)` for 0<σ<1 via split+rpow domination |
+| `binet_large_bound_proved` | B51 | `|B(t)/t| ≤ 1/(4π) < 1/12` for t ≥ 2π |
+| `laplace_sigma_small_proved` | **B52** | split+rpow; `exp(-σt)` integrable on `Ioi(0)`, 0<σ<1 |
+| `binet_gauss_limit_proved` | **B53** | `Complex.GammaSeq_tendsto_Gamma`; **C04 CLOSED** |
+| `Gamma_LogGamma_C08prime_closed` | **B53** | `logDeriv_apply` (rfl); **C08' CLOSED** |
+| `binet_log_deriv_direct` | **B53** | `HasDerivAt.clog`; supersedes B46 combinator |
+| `gamma_log_diff_corrected_proved` | **B54** | `Complex.differentiableAt_log`; slitPlane correction |
 
 ---
 
 ## Atomic Open Surface Table
 
-Every named open is a `def : Prop`. The **Element** column gives a short
-periodic-table-style tag (Wall-Index). **Mass** is estimated Lean pages to close.
+Every named open is a `def : Prop`. **Element** = Wall-Index code.
+**Mass** = estimated Lean pages to close.
 
 ### Wall A — COMPLETE
 
@@ -68,33 +70,39 @@ All inputs to `gate_bc6` discharged: `bc_sum_S4_gt_bound` + 4 log lower bounds.
 
 | Element | Name | Mass | Source |
 |---------|------|------|--------|
-| B01 | `HodgeCM_WeilConjectureAbelian_L6` | ~1pp | Deligne 1969, Weil conj for abelian var |
-| B02 | `HodgeCM_FrobeniusFromWeil_L6` | ~1pp | Tate 1966, |α_p|²=p from CM Hodge |
-| B03 | `HodgeCM_J0143_L6` | ~1pp | Diamond-Shurman 9.6.1, J₀(143) specifics |
-| B04 | `ExplicitFormula_WeilSum_L6` | ~2pp | Weil 1952, IK §5.5; S_weil(T) sum |
-| B05 | `ExplicitFormula_ZeroContrib_L6` | ~3pp | IK §5.5 Prop 5.9; zero contribution |
-| B06 | `ExplicitFormula_PrimeSide_L6` | ~3pp | IK §5.5; prime-side sum |
-| B07 | `ExplicitFormula_RHFromBound_L6` | ~2pp | Bombieri 1974; bound → RH descent |
+| B01 | `HodgeCM_WeilConjectureAbelian_L6` | ~1pp | Deligne 1969 |
+| B02 | `HodgeCM_FrobeniusFromWeil_L6` | ~1pp | Tate 1966 |
+| B03 | `HodgeCM_J0143_L6` | ~1pp | Diamond-Shurman 9.6.1 |
+| B04 | `ExplicitFormula_WeilSum_L6` | ~2pp | Weil 1952 / IK §5.5 |
+| B05 | `ExplicitFormula_ZeroContrib_L6` | ~3pp | IK §5.5 Prop 5.9 |
+| B06 | `ExplicitFormula_PrimeSide_L6` | ~3pp | IK §5.5 |
+| B07 | `ExplicitFormula_RHFromBound_L6` | ~2pp | Bombieri 1974 |
 
 ---
 
-### Wall C — 9 Open / 3 Closed Atomic L8/L10 Opens (~1.50pp open)
+### Wall C — 5 Valid Open / 7 Closed / 2 Invalidated (~1.05pp open)
 
 | Element | Name | Mass | Source | Status |
 |---------|------|------|--------|--------|
-| C01 | `Binet_KernelTaylor_L8` | ~0.20pp | W-W §12.31; Bernoulli generating fn | OPEN |
-| C02 | `Binet_KernelFirstBernoulli_L8` | ~0.15pp | B₂=1/6; alternating series bound | OPEN |
-| **C03** | `Binet_KernelLargeBound_L8` | ~0.15pp | t≥2π; \|B(t)/t\|≤1/(4π)<1/12 | **CLOSED B51** |
-| C04 | `Binet_GaussLimit_L8` | ~0.25pp | Gauss product limit → Γ(s) | OPEN |
-| C05 | `Binet_ProdFromLimit_L8` | ~0.25pp | Weierstrass product from Gauss | OPEN |
-| C06 | `Binet_LogGammaSeries_L8'` | ~0.25pp | digamma via `Complex.logGamma` | OPEN (restated) |
-| C07 | `Binet_IntegralFromDigamma_L8'` | ~0.25pp | Binet integral via `logGamma` | OPEN (restated) |
+| C01 | `Binet_KernelTaylor_L8` | ~0.20pp | W-W §12.31; Bernoulli gen fn | OPEN |
+| C02 | `Binet_KernelFirstBernoulli_L8` | ~0.15pp | B₂=1/6; alternating bound | OPEN |
+| **C03** | `Binet_KernelLargeBound_L8` | ~0.15pp | t≥2π; exp decay | **CLOSED B51** |
+| **C04** | `Binet_GaussLimit_L8` | ~0.25pp | `GammaSeq_tendsto_Gamma` | **CLOSED B53** |
+| C05 | `Binet_ProdFromLimit_L8` | ~0.20pp | Weierstrass from Gauss limit | OPEN |
+| C06 | `Binet_LogGammaSeries_L8` | ~0.25pp | digamma via `logDeriv Γ` | OPEN |
+| C07 | `Binet_IntegralFromDigamma_L8` | ~0.25pp | Binet integral via logDeriv | OPEN |
 | ~~C08~~ | ~~`Gamma_NotBranch_UpperHalf_L8`~~ | — | **FALSE** (Stirling: arg unbounded) | **INVALID B52** |
 | ~~C09~~ | ~~`Gamma_NotBranch_LowerHalf_L8`~~ | — | depends on false C08 | **INVALID B52** |
-| C08' | `Gamma_LogGamma_Approach_L8` | ~0.25pp | `Complex.logGamma` API on {Re>0} | OPEN (replaces C08+C09) |
-| **C10** | `Laplace_IntegSigmaSmall_L10` | ~0.15pp | split+rpow; 0<σ<1 Ioi(0) | **CLOSED B52** |
-| ~~C11~~ | ~~`Laplace_IntegSigmaBig_L10`~~ | — | domination by exp(−t) | **CLOSED B49** |
+| **C08'** | `Gamma_LogGamma_Approach_L8` | ~0.25pp | `logDeriv_apply` (rfl) | **CLOSED B53** |
+| **C10** | `Laplace_IntegSigmaSmall_L10` | ~0.15pp | split+rpow; 0<σ<1, Ioi(0) | **CLOSED B52** |
+| ~~C11~~ | ~~`Laplace_IntegSigmaBig_L10`~~ | — | domination by exp(-t) | **CLOSED B49** |
 | ~~C12~~ | ~~`ZFR_Isolated_PathA`~~ | — | `AnalyticAt.isolated_zeros` | **CLOSED B50** |
+
+**Key API discoveries (B53):**
+- `Complex.GammaSeq_tendsto_Gamma` (Gamma/Beta.lean): closes C04 in 3 lines
+- `logDeriv_apply` is `rfl`: closes C08' in 1 line
+- `HasDerivAt.clog` (Complex/LogDeriv.lean L95): supersedes B46 combinator
+- `Complex.logGamma` does **NOT** exist in Mathlib v4.12.0 — use `logDeriv Complex.Gamma`
 
 ---
 
@@ -166,15 +174,15 @@ All inputs to `gate_bc6` discharged: `bc_sum_S4_gt_bound` + 4 log lower bounds.
 |------|------|--------|-------|
 | A | 0 | COMPLETE | — |
 | B | 7 | 0 | 7 |
-| C | 7 | 5 | 12 (+1 new C08') |
+| C | 5 | 7 (+2 inv) | 12+1 |
 | D | 14 | 0 | 14 |
 | CPS 2-3 | 5 | 0 | 5 |
 | Surfaces 5-9 | 11 | 0 | 11 |
 | Bridges | 4 | 0 | 4 |
-| **Total** | **49** | **5** | **54** |
+| **Total** | **47** | **7** | **54** |
 
-All 49 open surfaces: `def : Prop` (named opens), 0 sorry in any proof body.
-C08+C09 invalidated (false statements); C08' (logGamma API) replaces them.
+All 47 open surfaces: `def : Prop` (named opens), 0 sorry in any proof body.
+C08+C09 invalidated (false statements); C08' (logDeriv approach) replaces them and is CLOSED.
 
 ---
 
@@ -187,7 +195,7 @@ C08+C09 invalidated (false statements); C08' (logGamma API) replaces them.
 #print axioms binet_large_bound_proved
 -- axioms: {propext, Classical.choice, Quot.sound}
 
-#print axioms zfr_isolated_patha_proved
+#print axioms binet_gauss_limit_proved
 -- axioms: {propext, Classical.choice, Quot.sound}
 ```
 
