@@ -114,3 +114,6 @@ import ArakelovRH.SubClosure.Batch30ClassNumArith
 import ArakelovRH.SubClosure.Batch30RamanujanAlg
 import ArakelovRH.SubClosure.Batch30IKPoleDecomp
 import ArakelovRH.SubClosure.Batch30MasterCertD
+import ArakelovRH.SubClosure.Batch31GenusCM
+import ArakelovRH.SubClosure.Batch31BC6Bridge
+import ArakelovRH.SubClosure.Batch31MasterCertE

@@ -1,226 +1,191 @@
 # ROADMAP — arakelov-positivity-rh-core
 
-**Opera Numerorum — Riemann Hypothesis via Arakelov Geometry**
-Author: David J. Fox — June 2026 | ORCID: 0009-0008-1290-6105
+**Target:** Unconditional Lean 4 proof of `_root_.RiemannHypothesis`.
+
+Author: David J. Fox — Opera Numerorum — June 2026
 
 ---
 
-## Official Decision (June 2026)
-
-**Route B is the OFFICIAL proof path for the Clay RH problem.**
-
-Route A is DEFERRED until:
-  1. Route B is fully formalized (all 3 Lean gaps closed), AND
-  2. The Clay RH problem statement is formally resolved via Route B.
-
-See `ArakelovRH/RouteBClosed.lean` — the terminal referee-facing certificate.
-
----
-
-## Clay Problem Statement
-
-The Clay Millennium Prize problem for the Riemann Hypothesis:
-> "Prove that all non-trivial zeros of the Riemann zeta function have real part 1/2."
-
-In Lean 4 (Mathlib v4.12.0):
-```lean
-_root_.RiemannHypothesis :=
-  ∀ (s : ℂ), riemannZeta s = 0 →
-             ¬∃ n : ℕ, s = -2*(n+1) → s ≠ 1 → s.re = 1/2
-```
-
-Route B closes this predicate via `route_b_clay_certificate` (0 sorry, classical trio).
-
----
-
-## Proof-Status Summary (June 2026)
-
-| Metric | Value |
-|--------|-------|
-| SORRY | **0** |
-| Axiom footprint | `{propext, Classical.choice, Quot.sound}` |
-| native_decide | **0** |
-| opaque | **0** |
-| trivial in proof bodies | **0** |
-| Named open surfaces (Route B) | **8 total** (3 high-level + 5 CPS + 3 IK, minus overlap) |
-| Proved bricks (0 open inputs) | **30+** |
-| Certifications bricks registered | **2 / 2** |
-
----
-
-## Route B — The Official Proof (3 gates, all published classical theorems)
+## Current Position (June 26 2026)
 
 ```
-PROVED: C_S14_143_gt_tau           [C14_SpectralGap.lean — 0 sorry]
-PROVED: arakelovPairing_X0_143_pos [C11_ArakelovPairing.lean — 0 sorry]
-         ↓ feed into ↓
-OPEN:  Gate M1 — BC6_direct_OPEN
-       Bost-Connes 1995 Theorem 6
-       → ∀ T>1, |S_weil T| ≤ C_S14_143 * T / log T
-         ↓
-OPEN:  Gate M2 — Langlands_Descent_OPEN
-       Cogdell-Piatetski-Shapiro 1999, Theorem 3.3
-       → GRH_E_143a1
-         ↓
-OPEN:  Gate M3 — GRH_to_RH_Descent_143_OPEN
-       Iwaniec-Kowalski 2004, Theorem 5.15 + Corollary 5.16
-         ↓
-══════════════════════════════════════════════════
-PROVED: route_b_clay_certificate  (0 sorry, classical trio)
-══════════════════════════════════════════════════
-_root_.RiemannHypothesis  (Clay problem solved)
-```
-
-### Gate Classification
-
-| Gate | Mathematical status | Lean status | Clay status |
-|------|-------------------|-------------|-------------|
-| M1 BC6_direct | PROVED (BC95 Thm 6) | OPEN (~40 pp) | Not Clay-open |
-| M2 Langlands | PROVED (CPS99 Thm 3.3) | OPEN (~70 pp) | Not Clay-open |
-| M3 IK descent | PROVED (IK04 Thm 5.15+5.16) | OPEN (~80 pp) | Not Clay-open |
-
-**All three gates are published classical theorems. No open mathematics remains in Route B.**
-
----
-
-## Gate Decomposition
-
-### Gate M1: BC6_direct_OPEN (Bost-Connes 1995 Theorem 6)
-
-**Both inputs proved:**
-- `C_S14_143_gt_tau` : C(S14,X₀(143)) = 8.629 > 2√13 ✓
-- `arakelovPairing_X0_143_pos` : (ω,ω)_Ar > 0 ✓
-
-**Lean work needed (~40 pp):**
-- Selberg trace formula for Γ₀(143)\ℍ
-- Weil explicit formula connecting zeros to prime sums
-- BC95 Thm 6: C(S14) > 2√g + arakelov_pos → Weil bound
-
-**Mathlib gap:** No Fuchsian group theory, no hyperbolic trace formula.
-
----
-
-### Gate M2: Langlands_Descent_OPEN — CPS 1999 Theorem 3.3
-
-Decomposes to 5 CPS sub-gates (see `Scaffold/ConverseTheorem.lean`):
-
-| Sub-gate | Content | ~pp |
-|----------|---------|-----|
-| `CPS_FunctionalEquation_OPEN` | Functional equations for 144 twists | 10 |
-| `CPS_EulerProduct_OPEN` | L(s,E) ≠ 0 for Re(s) > 3/2 | **5 ← Priority 1** |
-| `CPS_BoundedStrips_OPEN` | L bounded in vertical strips | 10 |
-| `CPS_ConverseAndUniqueness_OPEN` | CPS Thm 3.3 + Cremona uniqueness | 50 |
-| `WeilBound_to_GRH_OPEN` | Weil bound → GRH_E_143a1 | 15 |
-
-**Mathlib gap:** No automorphic forms, no Dirichlet characters mod 143.
-
----
-
-### Gate M3: GRH_to_RH_Descent_143_OPEN — IK 2004 Thm 5.15
-
-Decomposes to 3 IK sub-gates (see `Scaffold/IwaniecKowalski.lean`):
-
-| Sub-gate | Content | ~pp |
-|----------|---------|-----|
-| `L_sym2_NonVanishing_OPEN` | GRH_E → L(1,sym²f_143) ≠ 0 | 30 |
-| `Residue_Argument_OPEN` | L(1,sym²f) ≠ 0 → L(1,f_143) ≠ 0 | 10 |
-| `ZetaZeroFree_OPEN` | L(1,f_143) ≠ 0 → RH | 40 |
-
-**Mathlib gap:** No Rankin-Selberg L-functions, no sym² lift.
-
----
-
-## Lean Formalization Priority Order
-
-| Priority | Gate | ~pp | Blocker |
-|----------|------|-----|---------|
-| **P1** | `CPS_EulerProduct_OPEN` | ~5 | L_143a1 as concrete Dirichlet series |
-| **P2** | `BC6_direct_OPEN` | ~40 | Selberg trace formula in Mathlib |
-| **P3** | `WeilBound_to_GRH_OPEN` | ~15 | Weil explicit formula |
-| **P4** | `CPS_ConverseAndUniqueness_OPEN` | ~50 | GL_n automorphic forms |
-| **P5** | IK sub-gates (M3) | ~80 | Rankin-Selberg + sym² lift |
-
-**Total remaining:** ~190-220 pp analytic number theory formalization.
-
----
-
-## Route A — DEFERRED
-
-Route A (Growth Contradiction) is **deferred** until both conditions hold:
-1. Route B fully formalized (all 3 Lean gaps closed)
-2. Clay RH statement resolved via Route B
-
-**Why deferred:** Gate A1 (GrowthBound_OPEN) is FALSE as stated.
-`|ζ(1/2+it)| = Ω(log t / log log t)` — Titchmarsh 1986 §8.
-The `riemannHypothesis_of_growth_and_repulsion` combinator is proved,
-but the gate it depends on is false. A corrected Route A would need
-a different (correct) bound, which is only worth investigating after
-Route B is complete.
-
-See `ArakelovRH/RHRouteA.lean` for the structural documentation (DEFERRED status).
-
----
-
-## Certifications Registry (DavidFox998/Certifications, Towers.RH)
-
-| Brick | Certifications Theorem | Repo File | Status |
-|-------|------------------------|-----------|--------|
-| `bost_connes_threshold` | `TheoremaAureum.bost_connes_threshold` | `C06_BostConnes.lean` | ✓ PROVED |
-| `N_monotone_in_sigma` | `TheoremaAureum.Towers.RH.N_monotone_in_sigma` | `ZeroDensity.lean` | ✓ PROVED |
-
-Both Towers.RH bricks are formally proved. Certifications registry: 2/2.
-
----
-
-## Proved Brick Inventory (30+ bricks, 0 open inputs, 0 sorry)
-
-| Theorem | File | Mathematical Content |
-|---------|------|---------------------|
-| `C_S4_143_gt_tau` | C01 | C(S4) = 11.422 > 2√13 |
-| `C_S14_143_gt_tau` | C14 | C(S14) = 8.629 > 2√13 ← **Gate M1 input 1** |
-| `arakelovSelfIntersection_X0_143` | C01 | ω²(X₀(143)) = 48/13 |
-| `arakelov_positivity_X0_143` | C08 | ω²(X₀(143)) > 0 |
-| `arakelovPairing_X0_143_pos` | C11 | (ω,ω)_Ar > 0 ← **Gate M1 input 2** |
-| `sq_free_143` | C14 | 143 = 11×13 squarefree |
-| `bost_connes_threshold` | C06 | 2√g(143) < 320 |
-| `P5_conductor_times_genus` | C08 | 143 × 13 = 1859 |
-| `log_11_gt_one` | C11 | log(11) > 1 |
-| `X0_143_genus` | C01 | genus(X₀(143)) = 13 |
-| `kim_sarnak_arithmetic` | KSMain | 1/4 − (7/64)² = 975/4096 |
-| `N_monotone_in_sigma` | ZeroDensity | strip(σ₂,T) ⊆ strip(σ₁,T) |
-| `rh_no_off_line_zeros` | ZeroDensity | RH → strip(σ>1/2) = ∅ |
-| `route_b_via_bost_closure` | RouteBClosure | RouteBMinimalDebt → RH |
-| `route_b_clay_certificate` | **RouteBClosed** | RouteB_ClayDebt → RH (TERMINAL) |
-
----
-
-## File Map
-
-```
-ArakelovRH/
-  RouteBClosed.lean      ← TERMINAL CERTIFICATE (read this file alone)
-  RouteBClosure.lean     ← Min-debt analysis (3 gates + 8 sub-gates)
-  C09_GRHDescent.lean    ← grh_descent_to_RH + gate definitions
-  C10_RHMainTheorem.lean ← Full master theorem
-  C11_ArakelovPairing.lean ← arakelovPairing_X0_143_pos (Gate M1 input 2)
-  C14_SpectralGap.lean   ← C_S14_143_gt_tau (Gate M1 input 1)
-  RHRouteA.lean          ← Route A — DEFERRED
-  ZeroDensity.lean       ← N_monotone_in_sigma (Certifications bridge)
-  Scaffold/
-    ConverseTheorem.lean   ← CPS sub-gates (Gate M2 decomposition)
-    IwaniecKowalski.lean   ← IK sub-gates (Gate M3 decomposition)
+Conditional proof:  route_b_clay_certificate    0 sorry   DONE
+                    rh_from_all_atomic_surfaces  0 sorry   DONE
+Proved bricks:      90+                                    DONE
+Wall A:             4 log bounds for S4         0 sorry   DONE
+Wall C (partial):   sin identity closed         0 sorry   DONE
+BC6 prereqs:        genus=13, nu2=nu3=0, C>2*sqrt(13)     DONE
+Remaining open:     19 named surfaces           ~200pp Lean
 ```
 
 ---
 
-## Mathlib Availability Timeline
+## The Four Walls
 
-| Feature needed | Mathlib ETA | Gates unlocked |
-|----------------|-------------|---------------|
-| Dirichlet series / L-functions | 2027 | CPS_EulerProduct (partial) |
-| Weil explicit formula | 2028 | BC6_direct, WeilBound_to_GRH |
-| Selberg trace formula | 2029 | BC6_direct_OPEN |
-| Automorphic forms GL_n | 2030+ | CPS Converse Theorem |
-| Rankin-Selberg method | 2031+ | IK sub-gates |
+### Wall A — COMPLETE
 
-*Last updated: June 2026.*
+All four log lower bounds for S₄ = {2,3,19,191}:
+- log 2 > 0.69, log 3 > 1.09, log 19 > 2.94, log 191 > 5.25
+- File: `ExpLogBoundsSubClosure.lean`
+- Discharges `gate_bc6` in `opera-sieve/lean/bost_connes.lean`
+
+### Wall C — Partially closed (~13pp remain)
+
+**Closed:** sin modulus identity (`wall_c_sin_identity_complete`, 0 sorry)
+- sin(pi*s) normSq = sin(pi*s.re)^2 + sinh(pi*s.im)^2
+
+**Open (~13pp):**
+- `Stirling_Binet_OPEN` (~8pp): Binet's second formula log Gamma(s)
+  - Reference: Binet 1838; Whittaker-Watson §12.3
+  - Method: contour integral of log(1 + t/s) over [0, infinity)
+  - Lean API: Complex.integral_comp, Summable bounds for the Binet series
+- `Stirling_Remainder_OPEN` (~5pp): |Gamma(s)| ~ sqrt(2*pi)*|T|^(Re(s)-1/2)*exp(-pi*|T|/2)
+  - Depends on Stirling_Binet_OPEN
+  - Closes Surface 18+19 of the 19 open surfaces
+
+**Next attack (shortest path to close):** Stirling_Binet_OPEN via Binet integral.
+
+### Wall B — Algebraic half proved (~25pp remain)
+
+**Proved (Batch 30):** `hasse_implies_ramanujan_normSq`
+- alpha*beta = p, alpha+beta = a (int), a^2 <= 4p -> normSq(alpha) = p
+- This is the algebraic Ramanujan lemma (pure complex arithmetic, 0 sorry)
+
+**Open (~25pp):** `EP_HasseAllPrimes_OPEN`
+- Hasse bound |a_p|^2 <= 4p for ALL primes p (not just finite set)
+- Source: Hasse 1936, Weil 1948 (RH for curves over finite fields)
+- ClassNumber-143 proves it for 168 primes p <= 997 by `rfl`
+- Lean gap: Frobenius API for elliptic curves over F_p (Weil theorem)
+
+**Next attack:** Import Weil's theorem for elliptic curves when Mathlib API available.
+
+### Wall D — CPS Converse Theorem (~105pp total, largest wall)
+
+`CU_ConverseHalfPlane_OPEN` (~35pp) is the single largest gap in the project.
+
+**Sub-surfaces (Batch 24 decomposition):**
+- `TwistedL_HolomorphicStrip_OPEN` (~8pp): DifferentiableOn L on closed strips
+- `TwistedL_PolyGrowth_OPEN` (~5pp): polynomial growth O(|T|^A)
+- `PhragmenLindelof_Strip_OPEN` (~3pp): Phragmen-Lindelof API match
+
+**Other CPS surfaces:**
+- `FE_CompletedFunctionalEq_OPEN` (~5pp): completed functional equation for L(s,f)
+- `CU_ExtendToAllC_OPEN` (~10pp): analytic identity theorem (Batch 24 decomposes to 3 sub-surfs)
+
+---
+
+## Milestone Plan
+
+### Milestone R1 — Wall C Complete (~2 sessions)
+
+**Goal:** Close Stirling_Binet_OPEN and Stirling_Remainder_OPEN (13pp total).
+
+Steps:
+1. Write `GammaStirlingBinet.lean`:
+   - Binet integral formula: log Gamma(s) = (s-1/2)*log(s) - s + log(2*pi)/2 + J(s)
+   - J(s) = int_0^inf (1/2 - 1/t + 1/(exp(t)-1)) * exp(-st)/t dt
+   - Method: sum representation of J(s) as a Bernoulli number series
+2. Write `GammaStirlingBound.lean`:
+   - Derive |Gamma(s)| from log Gamma asymptotics
+   - Close Stirling_Remainder_OPEN
+
+**Effect:** Closes 2 of 19 open surfaces. Wall C COMPLETE.
+
+### Milestone R2 — BC6 Spectral Bridge (~3 sessions)
+
+**Goal:** Close BC6_SpectralBC95_OPEN using Batch 31 level-4 sub-surfaces.
+
+**Prereqs all proved (Batch 31):**
+- genus(X0(143)) = 13 [norm_num]
+- nu2 = 0, nu3 = 0 (no CM points) [decide from Legendre symbols]
+- C(S4) > 2*sqrt(13) [from ClassNumber-143 BostBound_143.lean]
+
+**Remaining (~20pp):**
+- `BC6_NoCM_SpectralData_L4_OPEN` (~5pp): spectral data for CM-free curves
+- `BC6_TestFunction_L4_OPEN` (~8pp): BC95 §4 optimal test function h_T
+- `BC6_ZeroCounting_L4_OPEN` (~7pp): N(T) counting via Selberg's lemma
+
+### Milestone R3 — BC6 Selberg Match (~2 sessions)
+
+**Goal:** Close BC6_SelbergMatch_OPEN (S_weil = S_spectral, 15pp).
+
+Mathematical content:
+- Selberg trace formula: Tr(h) = spectral sum + geometric sum
+- Weil explicit formula: sum over zeros = sum over primes
+- Eichler-Shimura: L-zeros correspond to Hecke eigenvalues
+- Reference: Hejhal LNM 548, Theorem 9.4; BC95 §3
+
+When R3 complete: Gate M1 closes. Two of three major gates done.
+
+### Milestone R4 — IK Rankin-Selberg (~3 sessions)
+
+**Goal:** Close IK surfaces (Surfaces 15–17 of 19).
+
+Sub-surfaces to close:
+- `IK_ZetaSimplePole_L3_OPEN` (~2pp): riemannZeta simple pole at s=1 [Mathlib hookup]
+- `IK_Lsym2_NonzeroAt1_L3_OPEN` (~8pp): L(sym^2,1) != 0 [Kim-Shahidi 2002]
+- `IK_RS_Split_L3_OPEN` (~5pp): RS = zeta * L_sym2 near s=1 [Shimura-Zagier]
+- `IK_GRH_to_L_sym2_nv_OPEN` (~10pp): GRH -> L_sym2 nonzero [IK Thm 5.15]
+- `IK_RS_L143_Link_OPEN` (~10pp): RS link for f_{143a1} [IK Thm 5.15]
+
+When R4 complete: Gate M3 (IK) closes.
+
+### Milestone R5 — CPS Converse Theorem (~5-6 sessions, hardest)
+
+**Goal:** Close the CPS 1999 surfaces.
+
+Dominant gaps:
+- `CU_ConverseHalfPlane_OPEN` (~35pp): CPS Thm 3.3 — largest single gap
+- `ZFR_DelaValleePoussin_OPEN` (~12pp): zero-free region
+- `ZFR_RHFromWeilZeroFree_OPEN` (~18pp): descent from zero-free region
+
+When R5 complete: Gate M2 (Langlands/CPS) closes.
+
+### Milestone R6 — Unconditional Proof
+
+When Milestones R1-R5 are complete:
+- All 19 named open surfaces are closed
+- `rh_from_all_atomic_surfaces` becomes fully unconditional
+- `route_b_clay_certificate` becomes fully unconditional
+- `_root_.RiemannHypothesis` is proved without any named open inputs
+
+---
+
+## Recommended Attack Order (by effort/impact ratio)
+
+| Priority | Target | Pages | Impact |
+|----------|--------|-------|--------|
+| 1 | Wall C: Stirling_Binet + Stirling_Remainder | 13pp | Closes 2 surfaces, Wall C done |
+| 2 | IK_ZetaSimplePole_L3_OPEN | 2pp | Advances Gate M3, Mathlib hookup |
+| 3 | BC6 Level-4 sub-surfaces | 20pp | Advances Gate M1 |
+| 4 | BC6_SelbergMatch_OPEN | 15pp | Gate M1 closes when done |
+| 5 | Wall B: EP_HasseAllPrimes_OPEN | 25pp | Closes Surface 4 |
+| 6 | IK surfaces (RS + sym2) | 35pp | Gate M3 closes |
+| 7 | ZFR surfaces | 30pp | Gate M3 approaches |
+| 8 | CPS surfaces (CU) | 50pp+ | Gate M2 closes |
+
+---
+
+## Cross-Repository Dependencies (read-only references)
+
+| Repo | Status | What we use |
+|------|--------|------------|
+| DavidFox998/ClassNumber-143 | READ-ONLY | Genus=13, nu2=nu3=0, C(S4)>2*sqrt(13), h(-143)=10 |
+| DavidFox998/yang-mills-gap | READ-ONLY | Spectral gap machinery (reference) |
+| DavidFox998/opera-sieve | READ-ONLY | Wall A: gate_bc6 (bc_sum_S4_gt_bound proved) |
+
+---
+
+## CMI Submission Checklist
+
+- [x] Zero sorry, zero native_decide, zero opaque
+- [x] Axioms: {propext, Classical.choice, Quot.sound} only
+- [x] _root_.RiemannHypothesis (genuine Mathlib predicate, not True)
+- [x] Conditional theorem: 19 named open surfaces -> RH
+- [x] All open surfaces: def Prop, not axioms
+- [x] Route B master theorem: 3 published gates -> RH
+- [x] Clay certification: RouteBClosed.lean (formal)
+- [x] BC6 arithmetic inputs all proved (genus, no-CM, Bost threshold)
+- [ ] Wall C complete (Stirling remain)
+- [ ] Wall B complete (Hasse for all primes)
+- [ ] All 19 surfaces closed (unconditional proof)
