@@ -7,8 +7,9 @@ Lean: `leanprover/lean4:v4.12.0` | Mathlib: `v4.12.0` | ORCID: 0009-0008-1290-61
 
 > SORRY: 0.  Axiom footprint: `{propext, Classical.choice, Quot.sound}` (classical trio).
 > No `native_decide`. No `opaque`. No `trivial` in proof bodies.
-> Named open surfaces: ~22. Author-proved bricks: 35+.
-> **Wall A COMPLETE** (June 26 2026): all 4 log bounds for S₄={2,3,19,191} proved.
+> Named open surfaces: ~20. Author-proved bricks: 45+.
+> **Wall A COMPLETE** (June 26 2026): all 4 log lower bounds for S₄={2,3,19,191} proved.
+> **Wall C progress** (June 26 2026): sin_modulus_sq_identity_OPEN CLOSED; ~13pp remain.
 
 ---
 
@@ -153,6 +154,13 @@ See `ArakelovRH/RHRouteB.lean` for the complete formal statement.
 | **`route_b_master_theorem`** | **RHRouteB** | **5 gates → RH (Route B)** |
 | **`route_b_explicit`** | **RHRouteB** | **same, explicit-arg form** |
 | **`route_b_kimSarnak_form`** | **RHRouteB** | **3-gate form** |
+| `hyp_pythagorean` | GammaStirlingSubClosure | cosh²-sinh²=1 from exp definitions |
+| `sin_normSq` | GammaStirlingSubClosure | normSq(sin s)=sin(re)²+sinh(im)² — hyperbolic Pythagoras |
+| `sin_normSq_pi` | GammaStirlingSubClosure | closes sin_modulus_sq_identity_OPEN |
+| `sin_abs_ge_sinh` | GammaStirlingSubClosure | \|sin(πs)\| ≥ \|sinh(π Im s)\| — unconditional |
+| `sin_abs_ge_exp_third` | GammaStirlingSubClosure | \|sin(πs)\| ≥ exp(π\|Im\|)/3 — unconditional |
+| `gamma_abs_recurrence` | GammaStirlingSubClosure | \|Γ(s+1)\| = \|s\|·\|Γ(s)\| from Gamma_add_one |
+| **`wall_c_sin_identity_complete`** | **GammaStirlingSubClosure** | **sin identity closed (0 sorry)** |
 | `exp_lt_19_of_cube` | ExpLogBoundsSubClosure | exp(2.94) < 19 via exp(0.98)³, sum₄(2/100) |
 | `exp_lt_191_of_sixth` | ExpLogBoundsSubClosure | exp(5.25) < 191 via exp(7/8)⁶, sum₅(1/8) |
 | `log_lb_19` | ExpLogBoundsSubClosure | 294/100 < log 19 — Wall A gate_bc6 3/4 |
@@ -250,6 +258,25 @@ ArakelovRH/
 ```
 
 ---
+
+## Wall C Progress — sin Identity Closed (June 26 2026)
+
+`sin_modulus_sq_identity_OPEN` from `SineGrowthSubClosure.lean` is now **PROVED**:
+
+```lean
+-- Closed by wall_c_sin_identity_complete (GammaStirlingSubClosure.lean, 0 sorry):
+∀ s : ℂ, Complex.normSq (Complex.sin (↑π · s)) = Real.sin (π · s.re)² + Real.sinh (π · s.im)²
+-- Proof: Complex.sin_re/im + cosh²-sinh²=1 (hyp_pythagorean) + rw+ring
+```
+
+**Impact:** All theorems in `SineGrowthSubClosure.lean` that were conditional on this identity
+are now unconditional: `sin_modulus_ge_sinh`, `sin_modulus_ge_exp_third`,
+`gamma_stirling_from_reflection`.
+
+**Remaining Wall C gaps** (~13pp total):
+- `Stirling_Binet_OPEN` — Binet's second formula for log Γ(s) (~8pp)
+- `Stirling_Remainder_OPEN` — |Γ(s)| bound from Binet (~5pp)
+
 
 ## Wall A — COMPLETE (June 26 2026)
 

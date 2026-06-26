@@ -66,3 +66,4 @@ import ArakelovRH.SubClosure.CPSSubClosure
 import ArakelovRH.SubClosure.GammaCompactSubClosure
 import ArakelovRH.SubClosure.SineGrowthSubClosure
 import ArakelovRH.SubClosure.ExpLogBoundsSubClosure
+import ArakelovRH.SubClosure.GammaStirlingSubClosure

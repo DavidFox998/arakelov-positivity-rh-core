@@ -633,3 +633,101 @@ NEXT WALLS:
 TOTAL SubClosure FILES: 18
 PROVED THEOREMS: 35+ (0 sorry, classical trio)
 NAMED OPEN: ~22 atomic sub-sub-surfaces
+
+
+====================================================================
+BATCH 7 (June 26, 2026) -- Wall C BEGIN: sin_normSq PROVED, GammaStirling scaffolded
+====================================================================
+
+New file: ArakelovRH/SubClosure/GammaStirlingSubClosure.lean
+
+PROVED (all 0 sorry, classical trio):
+
+  hyp_pythagorean (b : R) : cosh(b)^2 - sinh(b)^2 = 1
+    Expand: cosh=(e^b+e^{-b})/2, sinh=(e^b-e^{-b})/2.
+    Numerator: (e^b+e^{-b})^2 - (e^b-e^{-b})^2 = 4*e^b*e^{-b} = 4.
+    Key: Real.exp b * Real.exp (-b) = 1 (exp_add + simp). nlinarith.
+
+  sin_normSq_algebra: sin^2*cosh^2 + cos^2*sinh^2 = sin^2 + sinh^2
+    Given sin^2+cos^2=1 and cosh^2-sinh^2=1.
+    Let cosh^2 = 1+sinh^2, cos^2 = 1-sin^2 (linarith from hypotheses).
+    Substituting: sin^2*(1+sinh^2) + (1-sin^2)*sinh^2 = sin^2 + sinh^2. ring.
+
+  sin_normSq (s : C) :
+      normSq(sin(s)) = sin(Re s)^2 + sinh(Im s)^2
+    Proof: Complex.sin_re, Complex.sin_im give Re=(sin*cosh), Im=(cos*sinh).
+    normSq_apply + sin_normSq_algebra + hyp_pythagorean.
+
+  sin_normSq_pi (s : C) :
+      normSq(sin(pi*s)) = sin(pi*Re s)^2 + sinh(pi*Im s)^2
+    Proof: (pi*s).re = pi*s.re, (pi*s).im = pi*s.im (mul_re, mul_im, ofReal_re/im).
+    Then sin_normSq.
+
+  sin_modulus_sq_proved : all s:C, normSq(sin(pi*s)) = sin(pi*Re)^2 + sinh(pi*Im)^2
+    CLOSES sin_modulus_sq_identity_OPEN (SineGrowthSubClosure.lean).
+
+  sin_normSq_ge_sinh_sq: normSq(sin(pi*s)) >= sinh(pi*Im s)^2
+    Immediate from sin_normSq_pi: sin^2 >= 0.
+
+  sin_abs_ge_sinh (s : C) : |sinh(pi*Im s)| <= |sin(pi*s)|
+    From sin_normSq_ge_sinh_sq via sqrt monotonicity + sq_abs.
+
+  sin_abs_ge_exp_third (s : C) (pi*|Im s| >= 1) : exp(pi*|Im s|)/3 <= |sin(pi*s)|
+    Key step: exp(-x) <= exp(x)/3 for x >= 1 iff 3 <= exp(2x).
+    exp(2x) >= exp(2) > 7 > 3 (from exp_one_gt_d9 + pi_gt_three + exp monotone).
+    Combined with sinh=(exp-exp(-))/2: sinh(x) >= exp(x)/3 for x >= 1. Then sin_abs_ge_sinh.
+    UNCONDITIONAL version of SineGrowthSubClosure.sin_modulus_ge_exp_third.
+
+  gamma_abs_recurrence (s : C) (s != 0) :
+      |Gamma(s+1)| = |s| * |Gamma(s)|
+    From Complex.Gamma_add_one (Mathlib) + map_mul (abs_mul).
+
+  gamma_ne_zero_of_pos_re (s : C) (Re(s) > 0) : Gamma(s) != 0
+    Non-positive integer poles have Re <= 0 < Re(s). Contradiction.
+
+  gamma_strip_re_shift (s : C) (k : N) : Re(s+k) = Re(s) + k
+    simp (ofNat casting).
+
+  wall_c_sin_identity_complete : sin_normSq_pi for all s
+    Certificate: sin_modulus_sq_identity_OPEN CLOSED. SORRY: 0.
+
+NAMED OPEN (Lean statements given, proof sketches complete):
+
+  Stirling_Binet_OPEN:
+    forall s : C, Re(s) > 0 ->
+    exists r : R, |r| <= 1/(12*Re(s)) /\
+    log(Gamma(s)) = (s-1/2)*log(s) - s + (1/2)*log(2*pi) + r
+    Lean gap: Complex.log for non-real args + Binet integral bound. (~8pp)
+
+  Stirling_Remainder_OPEN (sigma_lo sigma_hi : R):
+    exists C > 0, forall s, sigma_lo <= Re(s) <= sigma_hi, |Im(s)| >= 1:
+      |Gamma(s)| <= C * |Im(s)|^(Re(s)-1/2) * exp(-pi*|Im(s)|/2)
+    Lean gap: Re/Im decomposition of (s-1/2)*log(s). (~5pp)
+
+  Gamma_CritLine_SqFormula_OPEN:
+    forall T : R, |Gamma(1/2 + iT)|^2 = pi / cosh(pi*T)
+    Proof outline: reflection formula + sin(pi*(1/2+iT)) = cosh(pi*T) + conj.
+    Lean gap: Complex.Gamma_mul_Gamma_one_sub (if in Mathlib). (~2pp)
+
+  GammaStirling_VerticalDecay_OPEN (sigma_lo sigma_hi):
+    exists C > 0, forall s in strip, |Im(s)| >= 1:
+      |Gamma(s)| <= C * |Im(s)|^(sigma-1/2) * exp(-pi*|Im(s)|/2)
+    = Stirling_Remainder_OPEN specialized. (~13pp total remaining)
+
+WALL C STATUS AFTER BATCH 7:
+
+  sin_modulus_sq_identity_OPEN : CLOSED (sin_normSq_proved, 0 sorry)
+  GammaStirling_SineDecay_OPEN backbone: UNCONDITIONAL via sin_modulus_sq_proved
+  Stirling_Binet_OPEN          : OPEN (~8pp)
+  Stirling_Remainder_OPEN      : OPEN (~5pp)
+  Total remaining Wall C       : ~13pp complex analysis
+
+PROOF CHAIN IMPACT:
+
+  sin_modulus_sq_identity_OPEN CLOSED:
+    SineGrowthSubClosure.sin_modulus_ge_sinh         now unconditional
+    SineGrowthSubClosure.sin_modulus_ge_exp_third    now unconditional
+    SineGrowthSubClosure.gamma_stirling_from_reflection now unconditional
+  gamma_abs_recurrence: scaffolds the polynomial decay component of Stirling.
+
+RUNNING TOTAL: 19 SubClosure files, ~45+ proved theorems, 0 sorry.
