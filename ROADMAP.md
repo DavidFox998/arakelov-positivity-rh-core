@@ -12,8 +12,9 @@ Author: David J. Fox — Opera Numerorum — June 2026
 Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
 Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
 Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
-Wall C closures:     3 atoms closed (SigmaBig, ZFR_Iso, KernelLarge)
-Atomic opens:        50 named surfaces                    0 sorry   ALL OPEN DEFS
+Wall C closures:     5 atoms closed (SigmaBig B49, ZFR_Iso B50, KernelLarge B51, LaplaceSmall B52; C08+C09 INVALIDATED)
+                     7 valid atoms open; C08+C09 replaced by C08' (logGamma)
+Atomic opens:        49 valid named surfaces               0 sorry   ALL OPEN DEFS
 Remaining:           ~185pp analytic number theory
 ```
 
@@ -68,9 +69,24 @@ C11  Laplace_IntegSigmaBig_L10          ——      domination        CLOSED (B4
 C12  ZFR_Isolated_PathA                 ——      Mathlib analytic  CLOSED (B50)
 ```
 
-**Closure method for C03 (done):**
+**Closure method for C03 (B51, done):**
   `binet_large_bound_proved`: `t ≥ 2π → |B(t)/t| ≤ 1/(4π) < 1/12`
   via `Real.add_one_le_exp` + `Real.pi_gt_three`.
+
+**Closure method for C10 (B52, done):**
+  `laplace_sigma_small_proved`: split `Ioi(0) = Ioc(0,1) ∪ Ioi(1)`.
+  On `Ioc(0,1)`: `ContinuousOn.integrableOn_Icc` (compact).
+  On `Ioi(1)`: dominate by `(2/σ²)·t^{-2}` from `(σt)²/2 ≤ exp(σt)`.
+  `t^{-2}` integrable via `integrableOn_Ioi_rpow_of_lt (-2 < -1)`.
+
+**C08 INVALIDATION (B52, CRITICAL):**
+  `Gamma_NotBranch_UpperHalf_L8_OPEN` (`|arg Γ(s)| < π/2`) is **FALSE**.
+  By Stirling: `arg(Γ(σ+iτ)) ≈ τ log τ - τ + O(log τ)` — unbounded.
+  **Fix**: Replace C06+C07 to use `Complex.logGamma` (holomorphic log, no branch cut).
+  New atom **C08'** (`Gamma_LogGamma_Approach_L8`): ~0.25pp, replaces C08+C09.
+
+**Next: C08'** (logGamma API, ~0.25pp): identify `Complex.logGamma` in Mathlib 4.12.0,
+prove `DifferentiableAt ℂ Complex.logGamma s` for Re(s)>0, and restate C06+C07.
 
 **Next: C01→C02** (alternating series for Binet kernel small t).
   C01 closes via Bernoulli generating function Taylor series in Mathlib.
@@ -261,7 +277,9 @@ All 50 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] trig_poussin_identity proved (3+4cos+cos2 ≥ 0)
 - [x] laplace_sigma_big_proved (σ≥1 integrability)
 - [x] binet_large_bound_proved (|B(t)/t| ≤ 1/12 for t≥2π)
-- [ ] Wall C complete (9 atoms remain, ~1.50pp)
+- [x] laplace_sigma_small_proved (exp(-σt) integrable on Ioi(0), 0<σ<1)
+- [x] C08+C09 invalidated (false statements); C08' logGamma approach documented
+- [ ] Wall C complete (7 valid atoms remain, ~1.40pp; C10 CLOSED B52)
 - [ ] Wall B complete (7 atoms remain, ~13pp)
 - [ ] Wall D complete (14 atoms remain, ~5pp)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)

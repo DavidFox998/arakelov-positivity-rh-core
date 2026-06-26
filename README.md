@@ -48,7 +48,8 @@ theorem opera_numerorum_grand_conditional
 | `laplace_sigma_big_proved` | B49 | `IntegrableOn.mono_fun + Gamma_integral_convergent` |
 | `zfr_isolated_patha_proved` | B50 | `AnalyticAt.eventually_eq_zero_or_frequently_ne_zero` |
 | `wall_c_zerofree_combinator` | B50 | `ZFR_IsolatedFromAnalytic_L8` closed via PathA |
-| `binet_large_bound_proved` | **B51** | `\|B(t)/t\| ≤ 1/(4π) < 1/12` for t≥2π via `add_one_le_exp + pi_gt_three` |
+| `binet_large_bound_proved` | B51 | `\|B(t)/t\| ≤ 1/(4π) < 1/12` for t≥2π via `add_one_le_exp + pi_gt_three` |
+| `laplace_sigma_small_proved` | **B52** | `exp(-σt)` integrable on `Ioi(0)` for 0<σ<1 via split+rpow domination |
 
 ---
 
@@ -86,11 +87,12 @@ All inputs to `gate_bc6` discharged: `bc_sum_S4_gt_bound` + 4 log lower bounds.
 | **C03** | `Binet_KernelLargeBound_L8` | ~0.15pp | t≥2π; \|B(t)/t\|≤1/(4π)<1/12 | **CLOSED B51** |
 | C04 | `Binet_GaussLimit_L8` | ~0.25pp | Gauss product limit → Γ(s) | OPEN |
 | C05 | `Binet_ProdFromLimit_L8` | ~0.25pp | Weierstrass product from Gauss | OPEN |
-| C06 | `Binet_LogGammaSeries_L8` | ~0.25pp | W-W §12.16; digamma series | OPEN |
-| C07 | `Binet_IntegralFromDigamma_L8` | ~0.25pp | W-W §12.32; log Γ integral | OPEN |
-| C08 | `Gamma_NotBranch_UpperHalf_L8` | ~0.05pp | Artin §1; sector bound on ℑ(s)>0 | OPEN |
-| C09 | `Gamma_NotBranch_LowerHalf_L8` | ~0.05pp | reflection formula + C08 | OPEN |
-| C10 | `Laplace_IntegSigmaSmall_L10` | ~0.15pp | antiderivative; 0<σ<1 Ioi(0) | OPEN |
+| C06 | `Binet_LogGammaSeries_L8'` | ~0.25pp | digamma via `Complex.logGamma` | OPEN (restated) |
+| C07 | `Binet_IntegralFromDigamma_L8'` | ~0.25pp | Binet integral via `logGamma` | OPEN (restated) |
+| ~~C08~~ | ~~`Gamma_NotBranch_UpperHalf_L8`~~ | — | **FALSE** (Stirling: arg unbounded) | **INVALID B52** |
+| ~~C09~~ | ~~`Gamma_NotBranch_LowerHalf_L8`~~ | — | depends on false C08 | **INVALID B52** |
+| C08' | `Gamma_LogGamma_Approach_L8` | ~0.25pp | `Complex.logGamma` API on {Re>0} | OPEN (replaces C08+C09) |
+| **C10** | `Laplace_IntegSigmaSmall_L10` | ~0.15pp | split+rpow; 0<σ<1 Ioi(0) | **CLOSED B52** |
 | ~~C11~~ | ~~`Laplace_IntegSigmaBig_L10`~~ | — | domination by exp(−t) | **CLOSED B49** |
 | ~~C12~~ | ~~`ZFR_Isolated_PathA`~~ | — | `AnalyticAt.isolated_zeros` | **CLOSED B50** |
 
@@ -164,14 +166,15 @@ All inputs to `gate_bc6` discharged: `bc_sum_S4_gt_bound` + 4 log lower bounds.
 |------|------|--------|-------|
 | A | 0 | COMPLETE | — |
 | B | 7 | 0 | 7 |
-| C | 9 | 3 | 12 |
+| C | 7 | 5 | 12 (+1 new C08') |
 | D | 14 | 0 | 14 |
 | CPS 2-3 | 5 | 0 | 5 |
 | Surfaces 5-9 | 11 | 0 | 11 |
 | Bridges | 4 | 0 | 4 |
-| **Total** | **50** | **3** | **53** |
+| **Total** | **49** | **5** | **54** |
 
-All 50 open surfaces: `def : Prop` (named opens), 0 sorry in any proof body.
+All 49 open surfaces: `def : Prop` (named opens), 0 sorry in any proof body.
+C08+C09 invalidated (false statements); C08' (logGamma API) replaces them.
 
 ---
 

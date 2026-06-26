@@ -181,3 +181,5 @@ import ArakelovRH.SubClosure.Batch50SurfaceDecomp
 import ArakelovRH.SubClosure.Batch50MasterCertVII
 import ArakelovRH.SubClosure.Batch51AtomicClose
 import ArakelovRH.SubClosure.Batch51MasterCertVIII
+import ArakelovRH.SubClosure.Batch52WallCProgress
+import ArakelovRH.SubClosure.Batch52MasterCertIX
