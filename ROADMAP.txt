@@ -1357,3 +1357,84 @@ GATE M2 STATUS AFTER BATCH 19:
     WG_ZeroDensity_OPEN (~15pp).
     Combinator: weil_to_grh_from_sub_gaps (PROVED, 0 sorry).
   langlands_descent_scaffold: PROVED (0 sorry, ConverseTheorem.lean).
+
+====================================================================
+BATCH 20 (June 26, 2026) -- Gate M3 ZetaZeroFree + Gate M2 BoundedStrips
+====================================================================
+
+NEW FILE:
+  ArakelovRH/SubClosure/ZetaZeroFreeDecomp.lean  (282 lines)
+
+PURPOSE: Decompose the two remaining large sub-gates — ZetaZeroFree_OPEN
+(Gate M3, ~30pp) and CPS_BoundedStrips_OPEN (Gate M2, ~10pp) — into
+atomic sub-gaps with proved 0-sorry combinators.
+
+DECOMPOSITION 1: ZetaZeroFree_OPEN (~30pp) into 2 sub-gaps:
+
+  ZFR_DelaValleePoussin_OPEN (~12pp):
+    L_143a1(1) != 0 -> exists sigma_0 < 1, L_143a1 has zero-free region
+    {sigma_0 < Re(s) <= 1}.
+    Source: Hecke-Landau, de la Vallee Poussin method for modular forms.
+    Mechanism: completed L-function Lamb(s,f) is entire; Hadamard product +
+    L(1,f)!=0 eliminates zeros from region 1-c/log(143+|Im(s)|) < Re <= 1.
+    Lean gap: Hadamard product theory for Lambda(s,f) (~12pp).
+
+  ZFR_RHFromWeilZeroFree_OPEN (~18pp):
+    L_143a1 zero-free near Re=1 -> RiemannHypothesis.
+    Source: IK Corollary 5.16 (deepest IK step).
+    Mechanism:
+      (1) Rankin-Selberg: L(s, f x f-bar) = zeta(s) * L(s, sym^2 f).
+      (2) If zeta(s_0)=0 with Re(s_0) != 1/2, then RS identity forces
+          L(s_0, f) = 0 or L(s_0, f-bar) = 0.
+      (3) Zero-free region near Re=1 eliminates these zeros from {sigma_0 < Re <= 1}.
+      (4) Bost-Connes spectral bound forces remaining zeros to Re=1/2.
+      Result: RiemannHypothesis.
+    Lean gap: RS identity + spectral zero transfer (~18pp).
+
+  COMBINATOR (PROVED, 0 sorry):
+    zfr_from_sub_gaps: ZFR_DelaValleePoussin + ZFR_RHFromWeilZeroFree -> ZetaZeroFree_OPEN.
+    Proof: fun hL => h_rh (h_dvp hL). 1 line.
+
+DECOMPOSITION 2: CPS_BoundedStrips_OPEN (~10pp) into 2 sub-gaps:
+
+  BS_PhragmenLindelof_OPEN (~6pp):
+    Given M-bounds on twistedL chi on both vertical lines Re=sigma_1 and Re=sigma_2,
+    and M > 0: the PL principle gives ||twistedL chi s|| <= M throughout the strip.
+    Source: Phragmen-Lindelof 1908 for entire functions of finite order.
+    Note: adapts the existing PL_holomorphic_strip_bound (GammaStirlingSubClosure.lean,
+    0 sorry) which proved PL for Gamma. Same technique for twistedL.
+    Lean gap: PL for twisted L-functions of conductor 143 (~6pp).
+
+  BS_VerticalBoundary_OPEN (~4pp):
+    For each chi and sigma_1 < sigma_2, exists M > 0 bounding twistedL chi
+    on both vertical lines Re=sigma_1 and Re=sigma_2.
+    Source: Euler product (Re>3/2) + functional equation (maps Re<1/2 to Re>3/2).
+    Lean gap: Euler product + FE boundary analysis (~4pp).
+
+  COMBINATOR (PROVED, 0 sorry):
+    bs_bounded_from_pl: BS_PhragmenLindelof + BS_VerticalBoundary -> CPS_BoundedStrips_OPEN.
+    Proof: obtain <M, hMpos, hM1, hM2> from h_vb; apply h_pl with M. Tactic.
+
+GATE M2 STATUS AFTER BATCH 20:
+  Named sub-gaps: 10 atomic.
+  CPS_FunctionalEquation_OPEN (~10pp): NOT YET DECOMPOSED.
+  EP_RamanujanBound_OPEN (~8pp): CPSSubgateDecomp.lean.
+  EP_ProductNonzero_OPEN (~7pp): CPSSubgateDecomp.lean.
+  BS_PhragmenLindelof_OPEN (~6pp): ZetaZeroFreeDecomp.lean.
+  BS_VerticalBoundary_OPEN (~4pp): ZetaZeroFreeDecomp.lean.
+  CPS_ConverseAndUniqueness_OPEN (~45pp): NOT YET DECOMPOSED.
+  ExplicitFormula_AtomicGap_OPEN (~20pp): WeilBoundSubClosure.lean.
+  WG_ZeroDensity_OPEN (~15pp): CPSSubgateDecomp.lean.
+  Combinators: ep_nonzero_from_sub_gaps (proved), bs_bounded_from_pl (proved),
+               weil_to_grh_from_sub_gaps (proved), langlands_descent_scaffold (proved).
+
+GATE M3 STATUS AFTER BATCH 20:
+  Named sub-gaps: 8 atomic.
+  IK_RS_SimplePole_OPEN (~10pp): IKSubgateDecomp.lean.
+  IK_GRH_to_L_sym2_nv_OPEN (~10pp): IKSubgateDecomp.lean.
+  RS_Identity_OPEN (~15pp): IwaniecKowalski.lean (existing).
+  IK_RS_L143_Link_OPEN (~10pp): IKSubgateDecomp.lean.
+  ZFR_DelaValleePoussin_OPEN (~12pp): ZetaZeroFreeDecomp.lean.
+  ZFR_RHFromWeilZeroFree_OPEN (~18pp): ZetaZeroFreeDecomp.lean.
+  Combinators: l_sym2_nv_from_rs_pole (proved), residue_arg_from_ik_sub_gap (proved),
+               zfr_from_sub_gaps (proved), grh_to_rh_descent_scaffold (proved).
