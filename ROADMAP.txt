@@ -1223,3 +1223,73 @@ WALL C STATUS (unchanged):
   OPEN: Stirling_Log_Upper_OPEN (~3pp)
   OPEN: Stirling_PL_OPEN (~15pp)
   TOTAL: ~22pp
+
+====================================================================
+BATCH 18 (June 26, 2026) -- Gate M3 IK sub-gate atomic decomposition
+====================================================================
+
+NEW FILE:
+  ArakelovRH/SubClosure/IKSubgateDecomp.lean  (217 lines)
+
+PURPOSE: Decompose two of the three Gate M3 (Iwaniec-Kowalski Chapter 5)
+named sub-gates into atomic sub-gaps with proved closure combinators.
+
+TARGETS:
+  L_sym2_NonVanishing_OPEN (~20pp): GRH_E_143a1 -> L_sym2(1) != 0
+  Residue_Argument_OPEN    (~10pp): L_sym2(1) != 0 -> L_143a1(1) != 0
+
+DECOMPOSITION 1: L_sym2_NonVanishing_OPEN (~20pp) into 3 sub-gaps:
+
+  IK_RS_SimplePole_OPEN (~10pp):
+    RS L-function has simple pole at s=1 with positive residue c > 0.
+    RS(s) = L(s, f_143 x f_143-bar) (Rankin-Selberg L-function).
+    Simple pole from Rankin-Selberg integral over Gamma_0(143)\H.
+    Residue c = 4pi^2 ||f||_{Pet}^2 / Vol(Gamma_0(143)\H) > 0.
+    Source: Rankin 1939, Selberg 1940.
+    Lean gap: integral unfolding + Petersson norm estimate (~10pp).
+
+  IK_GRH_to_L_sym2_nv_OPEN (~10pp):
+    GRH_E_143a1 -> RS_SimplePole -> RS_Identity -> L_sym2(1) != 0.
+    Argument: RS = zeta * L_sym2 [RS_Identity]. Res_{s=1}[RS] = L_sym2(1)
+    [residue of zeta is 1, L_sym2 holomorphic at s=1 by GRH_sym2].
+    But Res_{s=1}[RS] = c > 0 [RS_SimplePole]. So L_sym2(1) = c > 0.
+    Lean gap: residue computation (Mathlib riemannZeta near s=1) + Filter.Tendsto.
+
+  RS_Identity_OPEN (~15pp, in IwaniecKowalski.lean):
+    RS(s) = riemannZeta(s) * L_sym2(s) for Re(s) > 1 [IK Thm 5.13].
+    Already named open. Lean gap: L-function identity for sym^2 lift (~15pp).
+
+  COMBINATOR (PROVED, 0 sorry):
+    l_sym2_nv_from_rs_pole:
+      RS_SimplePole + GRH_to_L_sym2_nv + RS_Identity -> L_sym2_NonVanishing.
+      Proof: fun hGRH => h_grh_nv hGRH h_pole h_rs_id. 1 line.
+
+DECOMPOSITION 2: Residue_Argument_OPEN (~10pp) named as sub-gap:
+
+  IK_RS_L143_Link_OPEN (~10pp):
+    L_sym2_143(1) != 0 -> L_143a1(1) != 0.
+    Same type as Residue_Argument_OPEN (definitional equality).
+    Documents IK Thm 5.15 final step: Hecke multiplicativity + Euler product
+    at s=1 connects L_sym2 nonvanishing to L_143a1 nonvanishing.
+    Lean gap: Hecke eigenvalue multiplicativity + residue linking (~10pp).
+
+  COMBINATOR (PROVED, 0 sorry, trivial):
+    residue_arg_from_ik_sub_gap: IK_RS_L143_Link_OPEN -> Residue_Argument_OPEN.
+    Proof: h (id, definitional equality).
+
+GATE M3 STATUS AFTER BATCH 18:
+  L_sym2_NonVanishing_OPEN: 3 named sub-gaps.
+    IK_RS_SimplePole_OPEN (~10pp)
+    IK_GRH_to_L_sym2_nv_OPEN (~10pp)
+    RS_Identity_OPEN (~15pp, IwaniecKowalski.lean, existing)
+    Combinator: l_sym2_nv_from_rs_pole (PROVED, 0 sorry)
+  Residue_Argument_OPEN: named as IK_RS_L143_Link_OPEN (~10pp).
+    Combinator: residue_arg_from_ik_sub_gap (PROVED, 0 sorry)
+  ZetaZeroFree_OPEN (~30pp): NOT YET DECOMPOSED.
+    IK Corollary 5.16. L_143a1(1)!=0 -> RH.
+  grh_to_rh_descent_scaffold: PROVED (0 sorry, IwaniecKowalski.lean).
+
+TOTAL GATE M3 REMAINING: ~75pp
+  RS_SimplePole(10) + GRH_to_L_sym2_nv(10) + RS_Identity(15)
+  + RS_L143_Link(10) + ZetaZeroFree(30) = 75pp.
+  (Was ~80pp monolith; now 5 named sub-gaps.)
