@@ -132,3 +132,6 @@ import ArakelovRH.SubClosure.Batch35EFDecomp
 import ArakelovRH.SubClosure.Batch35ZFREquiv
 import ArakelovRH.SubClosure.Batch35VBRight
 import ArakelovRH.SubClosure.Batch35MasterCertI
+import ArakelovRH.SubClosure.Batch36WGOffset
+import ArakelovRH.SubClosure.Batch36BinetDecomp
+import ArakelovRH.SubClosure.Batch36MasterCertJ
