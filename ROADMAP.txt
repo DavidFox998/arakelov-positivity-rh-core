@@ -298,7 +298,7 @@ SECTION 5: LEAN PROOF CHAIN (arakelov-positivity-rh-core, PUBLIC)
 
 GitHub: https://github.com/DavidFox998/arakelov-positivity-rh-core
 Branch: main
-HEAD (June 26, 2026): 6d58982b
+HEAD (June 26, 2026): db5d3b03
 
 Route B: conditional proof of RH via GRH_E_143a1 -> RH descent.
 Clay rules: 0 sorry, 0 axiom, 0 native_decide, 0 opaque.
