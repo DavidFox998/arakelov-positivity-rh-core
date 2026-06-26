@@ -162,3 +162,6 @@ import ArakelovRH.SubClosure.Batch44MasterCertR
 import ArakelovRH.SubClosure.Batch45ZFRRegion
 import ArakelovRH.SubClosure.Batch45LaplaceFTC
 import ArakelovRH.SubClosure.Batch45MasterCertS
+import ArakelovRH.SubClosure.Batch46HodgeBridge
+import ArakelovRH.SubClosure.Batch46BinetClose
+import ArakelovRH.SubClosure.Batch46MasterCertT
