@@ -59,3 +59,6 @@ import ArakelovRH.SubClosure.CremonaSubClosure
 import ArakelovRH.SubClosure.ClosedSurfaces
 import ArakelovRH.SubClosure.GlobalRootClose
 import ArakelovRH.SubClosure.PhragmenLindelofSubClosure
+import ArakelovRH.SubClosure.SelbergTraceSubClosure
+import ArakelovRH.SubClosure.CPSSubClosure
+import ArakelovRH.SubClosure.GammaCompactSubClosure
