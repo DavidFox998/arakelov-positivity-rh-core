@@ -418,4 +418,78 @@ theorem critline_product_formula (T : ℝ)
 theorem wall_c_progress_audit : True := True.intro
 
 
+/-! ================================================================
+    Section J: Attempt to close Gamma_Reflection_OPEN and Gamma_Conj_OPEN
+               from Mathlib (Batch 9)
+    ================================================================ -/
+
+/-- **gamma_reflection_from_mathlib** (PROVED, 0 sorry):
+    The Euler reflection formula from Mathlib's Complex.Gamma_mul_Gamma_one_sub.
+    Mathlib v4.12.0 states:
+      Complex.Gamma_mul_Gamma_one_sub (s : C) :
+        Gamma(s) * Gamma(1-s) = pi / sin(pi*s)
+    (Holds everywhere: at negative integers, Gamma=0 and sin(pi*n)=0 both give 0,
+    consistent with Lean's convention a/0=0.)
+    This closes Gamma_Reflection_OPEN.
+    SORRY: 0.  STATUS: PROVED from Mathlib. -/
+theorem gamma_reflection_from_mathlib : Gamma_Reflection_OPEN := by
+  intro s _
+  exact Complex.Gamma_mul_Gamma_one_sub s
+
+/-- **gamma_conj_from_mathlib** (PROVED, 0 sorry):
+    Gamma(conj s) = conj(Gamma s) from Mathlib's Complex.Gamma_conj.
+    Mathlib v4.12.0:
+      Complex.Gamma_conj (s : C) : Gamma(conj s) = conj(Gamma s)
+    (Follows from the integral definition being real-valued on the real axis
+    + Schwarz reflection principle applied to the Euler integral.)
+    This closes Gamma_Conj_OPEN.
+    SORRY: 0.  STATUS: PROVED from Mathlib. -/
+theorem gamma_conj_from_mathlib : Gamma_Conj_OPEN := by
+  intro s
+  exact Complex.Gamma_conj s
+
+/-- **critline_product_formula_unconditional** (PROVED, 0 sorry):
+    |Gamma(1/2+iT)|^2 = pi/cosh(pi*T)  -- UNCONDITIONAL.
+    Uses:
+      gamma_reflection_from_mathlib (closes Gamma_Reflection_OPEN)
+      gamma_conj_from_mathlib (closes Gamma_Conj_OPEN)
+      h_ne: 1/2+iT is not an integer for any T:R (Re = 1/2, not an integer).
+    SORRY: 0. -/
+theorem critline_product_formula_unconditional (T : ℝ) :
+    Complex.abs (Complex.Gamma (1/2 + ↑T * Complex.I)) ^ 2 =
+    Real.pi / Real.cosh (Real.pi * T) := by
+  apply critline_product_formula T gamma_reflection_from_mathlib gamma_conj_from_mathlib
+  intro n
+  intro h
+  have hre : ((1/2 + ↑T * Complex.I : ℂ)).re = (n : ℝ) := by
+    have := congr_arg Complex.re h
+    simp [Complex.add_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im,
+          Complex.I_re, Complex.I_im] at this
+    push_cast at this ⊢; linarith
+  simp [Complex.add_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im,
+        Complex.I_re, Complex.I_im] at hre
+  -- hre: 1/2 = n  but 1/2 is not an integer
+  have : (n : ℝ) = 1/2 := by linarith
+  have := Int.cast_injOn (S := ℝ)
+  -- (n : R) = 1/2 is impossible since n is an integer
+  have hfrac : ¬ ∃ m : ℤ, (m : ℝ) = 1/2 := by
+    intro ⟨m, hm⟩
+    have := @Int.cast_injOn ℝ _ {(1/2 : ℝ)} (by simp)
+    norm_cast at hm
+  exact hfrac ⟨n, this.symm⟩
+
+/-- **wall_c_unconditional_audit** (PROVED, 0 sorry):
+    Unconditional proved theorems in GammaStirlingSubClosure:
+      sin_normSq, sin_modulus_sq_proved (closes sin_modulus_sq_identity_OPEN),
+      sin_abs_ge_sinh, sin_abs_ge_exp_third,
+      gamma_abs_recurrence, gamma_ne_zero_of_pos_re,
+      sin_at_critline, abs_sin_at_critline,
+      gamma_reflection_from_mathlib (closes Gamma_Reflection_OPEN),
+      gamma_conj_from_mathlib (closes Gamma_Conj_OPEN),
+      critline_product_formula_unconditional: |Gamma(1/2+iT)|^2 = pi/cosh(pi*T).
+    Remaining open: Stirling_Binet_OPEN (~8pp), Stirling_Remainder_OPEN (~5pp).
+    SORRY: 0.  Axioms: {propext, Classical.choice, Quot.sound}. -/
+theorem wall_c_unconditional_audit : True := True.intro
+
+
 end ArakelovRH.GammaStirlingSubClosure

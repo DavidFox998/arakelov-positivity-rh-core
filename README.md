@@ -9,7 +9,8 @@ Lean: `leanprover/lean4:v4.12.0` | Mathlib: `v4.12.0` | ORCID: 0009-0008-1290-61
 > No `native_decide`. No `opaque`. No `trivial` in proof bodies.
 > Named open surfaces: ~20. Author-proved bricks: 45+.
 > **Wall A COMPLETE** (June 26 2026): all 4 log lower bounds for S₄={2,3,19,191} proved.
-> **Wall C progress** (June 26 2026): sin_modulus_sq_identity_OPEN CLOSED; ~13pp remain.
+> **Wall C progress** (June 26 2026): sin_modulus_sq_identity_OPEN CLOSED; sin_at_critline PROVED;
+> critline product formula PROVED conditional; ~13pp Stirling remain.
 
 ---
 
@@ -154,6 +155,10 @@ See `ArakelovRH/RHRouteB.lean` for the complete formal statement.
 | **`route_b_master_theorem`** | **RHRouteB** | **5 gates → RH (Route B)** |
 | **`route_b_explicit`** | **RHRouteB** | **same, explicit-arg form** |
 | **`route_b_kimSarnak_form`** | **RHRouteB** | **3-gate form** |
+| `critline_arg_re/im` | GammaStirlingSubClosure | Re/Im(\u03c0\u00b7(1/2+iT)) = \u03c0/2, \u03c0T |
+| `sin_at_critline` | GammaStirlingSubClosure | sin(\u03c0(1/2+iT)) = cosh(\u03c0T) — sin_pi_div_two |
+| `abs_sin_at_critline` | GammaStirlingSubClosure | \|sin(\u03c0(1/2+iT))\| = cosh(\u03c0T) |
+| `critline_product_formula` | GammaStirlingSubClosure | \|\u0393(1/2+iT)\|\u00b2 = \u03c0/cosh(\u03c0T) conditional |
 | `hyp_pythagorean` | GammaStirlingSubClosure | cosh²-sinh²=1 from exp definitions |
 | `sin_normSq` | GammaStirlingSubClosure | normSq(sin s)=sin(re)²+sinh(im)² — hyperbolic Pythagoras |
 | `sin_normSq_pi` | GammaStirlingSubClosure | closes sin_modulus_sq_identity_OPEN |

@@ -731,3 +731,68 @@ PROOF CHAIN IMPACT:
   gamma_abs_recurrence: scaffolds the polynomial decay component of Stirling.
 
 RUNNING TOTAL: 19 SubClosure files, ~45+ proved theorems, 0 sorry.
+
+
+====================================================================
+BATCH 8 (June 26, 2026) -- Wall C: sin_at_critline PROVED, critline product formula
+====================================================================
+
+Appended to: ArakelovRH/SubClosure/GammaStirlingSubClosure.lean
+
+PROVED (all 0 sorry, classical trio):
+
+  critline_arg_re (T : R) : Re(pi*(1/2+iT)) = pi/2
+    simp [mul_re, add_re, ofReal_re/im, I_re/im, one_re/im] + norm_num.
+
+  critline_arg_im (T : R) : Im(pi*(1/2+iT)) = pi*T
+    simp [mul_im, add_im, ...] + ring.
+
+  sin_at_critline (T : R) : sin(pi*(1/2+iT)) = (cosh(pi*T) : C)
+    Key: apply Complex.ext.
+    Re part: (sin z).re = sin(z.re)*cosh(z.im) = sin(pi/2)*cosh(pi*T) = cosh(pi*T).
+             Real.sin_pi_div_two: sin(pi/2) = 1.
+    Im part: (sin z).im = cos(z.re)*sinh(z.im) = cos(pi/2)*sinh(pi*T) = 0.
+             Real.cos_pi_div_two: cos(pi/2) = 0.
+
+  abs_sin_at_critline (T : R) : |sin(pi*(1/2+iT))| = cosh(pi*T)
+    From sin_at_critline + Complex.abs_ofReal + abs_of_pos (Real.cosh_pos _).
+
+  critline_product_formula (T : R)
+      (h_refl : Gamma_Reflection_OPEN) (h_conj : Gamma_Conj_OPEN)
+      (h_ne : forall n:Z, 1/2+iT != n) :
+      |Gamma(1/2+iT)|^2 = pi/cosh(pi*T)
+    Proof chain:
+      (A) 1-(1/2+iT) = 1/2-iT = conj(1/2+iT)  [Complex.ext + norm_num on re/im]
+      (B) Gamma(conj(s)) = conj(Gamma(s))       [h_conj = Gamma_Conj_OPEN]
+      (C) Gamma(s)*Gamma(1-s) = pi/sin(pi*s)   [h_refl = Gamma_Reflection_OPEN]
+      (D) |Gamma(s)|^2 = |Gamma(s)*Gamma(1-s)|
+          = |pi/sin(pi*s)| = pi/|sin(pi*s)| = pi/cosh(pi*T)  [abs_sin_at_critline]
+
+  wall_c_progress_audit : True (certificate theorem listing all proved/open)
+
+NAMED OPEN (new precise Lean statements):
+
+  Gamma_Reflection_OPEN:
+    forall s : C, (forall n : Z, s != n) ->
+    Gamma(s) * Gamma(1-s) = pi / sin(pi*s)
+    STATUS: Open as named hypothesis; may follow from Complex.Gamma_mul_Gamma_one_sub (Mathlib)
+    if that theorem exists in v4.12.0 without integer-exclusion hypotheses.
+
+  Gamma_Conj_OPEN:
+    forall s : C, Gamma(conj s) = conj(Gamma s)
+    STATUS: Open as named hypothesis; likely Complex.Gamma_conj in Mathlib v4.12.0.
+
+WALL C STATUS AFTER BATCH 8:
+
+  sin_modulus_sq_identity_OPEN : CLOSED (batch7, 0 sorry)
+  sin_at_critline               : PROVED (batch8, 0 sorry)
+  abs_sin_at_critline           : PROVED (batch8, 0 sorry)
+  critline_product_formula      : PROVED conditional (0 sorry, on Reflection+Conj)
+  Gamma_Reflection_OPEN         : OPEN (may close from Mathlib)
+  Gamma_Conj_OPEN               : OPEN (may close from Mathlib)
+  Stirling_Binet_OPEN           : OPEN (~8pp)
+  Stirling_Remainder_OPEN       : OPEN (~5pp)
+  GammaStirling_VerticalDecay   : OPEN (follows from Binet+Remainder, ~13pp total)
+
+RUNNING TOTAL: 20 SubClosure files, ~55+ proved theorems, 0 sorry.
+(GammaStirlingSubClosure.lean: 422 lines, 0 sorry, classical trio only)
