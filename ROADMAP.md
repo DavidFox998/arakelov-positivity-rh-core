@@ -6,15 +6,15 @@ Author: David J. Fox — Opera Numerorum — June 2026
 
 ---
 
-## Current Position (Batch 57, June 26 2026)
+## Current Position (Batch 58, June 26 2026)
 
 ```
 Grand Conditional:   opera_numerorum_grand_conditional   0 sorry   PROVED (B49)
 Route B scaffold:    route_b_from_nine_surfaces           0 sorry   PROVED (B49)
 Wall A:              bc_sum_S4_gt_bound + 4 log bounds    0 sorry   COMPLETE (B46)
-Wall C:              3 open (C06_corr, C07_corr cond-C06, T-strip ~0.60pp)
+Wall C:              2 open (Binet_DiGamma_WW_L8 ~0.25pp, Binet_IntegralFromDigamma_WW_L8 cond ~0.25pp)
 Wall D:              ALL 14 atoms proved (D01-D08 B57, D09-D14 B56)
-Atomic opens:        33 valid named surfaces               0 sorry   ALL OPEN DEFS
+Atomic opens:        32 valid named surfaces               0 sorry   ALL OPEN DEFS
 Remaining:           ~185pp analytic number theory
 ```
 
@@ -52,7 +52,7 @@ Key Mathlib needed: `AlgebraicGeometry.Frobenius` API for elliptic curves.
 
 ---
 
-### Wall C — 12 Elements, 7 Closed (+2 Invalidated), 5 Valid Open (~1.05pp)
+### Wall C — 12 Elements, 8 Closed (+4 Invalidated), 2 Valid Open (~0.50pp)
 
 ```
 C01  Binet_KernelTaylor_L8              ——      FALSE (coeff)     INVALIDATED (B55)
@@ -60,13 +60,14 @@ C02  Binet_KernelFirstBernoulli_L8      ——      dep. on C01       INVALIDATE
 C03  Binet_KernelLargeBound_L8          0.15pp  exp decay         CLOSED (B51)
 C04  Binet_GaussLimit_L8               0.25pp  GammaSeq_tendsto  CLOSED (B53)
 C05  Binet_ProdFromLimit_L8             ——      FALSE (Re(s)>0)   INVALIDATED (B55)
-C06  Binet_LogGammaSeries_Corrected_L8  0.25pp  eulerMascheroni   OPEN
-C07  Binet_IntegralFromDigamma_Corr_L8  0.25pp  cond. on C06      OPEN
+C06  Binet_DiGamma_WW_L8               0.25pp  eulerMascheroni   OPEN (WW, B58)
+C07  Binet_IntegralFromDigamma_WW_L8    0.25pp  cond. on WW C06   OPEN (B58)
 C08  Gamma_NotBranch_UpperHalf_L8       ——      FALSE (Stirling)  INVALIDATED (B52)
 C09  Gamma_NotBranch_LowerHalf_L8       ——      dep. on C08       INVALIDATED (B52)
 C08' Gamma_LogGamma_Approach_L8        0.25pp  logDeriv_apply    CLOSED (B53)
      Binet_GaussKernel_L7              ——      monotonicity      CLOSED (B55)
      Binet_ProdFormula_Corrected_L7    ——      Re(s)>0           CLOSED (B55)
+C-T  Gamma_NotOnBranchCut_TStrip_OPEN   ——      compactness HB    CLOSED (B58)
 C10  Laplace_IntegSigmaSmall_L10        0.15pp  rpow domination   CLOSED (B52)
 C11  Laplace_IntegSigmaBig_L10          ——      domination        CLOSED (B49)
 C12  ZFR_Isolated_PathA                 ——      Mathlib analytic  CLOSED (B50)
@@ -100,7 +101,7 @@ C12  ZFR_Isolated_PathA                 ——      Mathlib analytic  CLOSED (B5
   - `logDeriv_apply f x : logDeriv f x = deriv f x / f x` is rfl.
   - `HasDerivAt.clog` eliminates need for `DifferentiableAt Complex.log` separately.
 
-**Next targets (5 valid atoms, ~1.05pp):**
+**Next targets after B58 (2 valid atoms, ~0.50pp):**
   C05 (~0.20pp): Binet_ProdFromLimit. Needs ∃ C≠0 s.t. Γ(s)=C/∏_{k≤n}(s+k).
        Requires Γ(s)≠0 for hypothesis ∀k≤n, s+k≠0. Key: add Re(s)>0 hypothesis.
   C01 (~0.20pp): Bernoulli Taylor series for binet_kernel.
@@ -238,7 +239,7 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 
 | Priority | Elements | Pages | Prerequisite | Effect |
 |----------|----------|-------|-------------|--------|
-| 1 | C01 C02 C05 C06 C07 (Wall C) | 1.05pp | none | Wall C DONE |
+| 1 | C06_WW C07_WW (Wall C) | 0.50pp | none | Wall C DONE |
 | 2 | D09–D14 (Stirling+Hadamard) | ~~2.25pp~~ | M-C | CLOSED (B56) |
 | 3 | D01–D08 (Poussin ZFR) | ~~2.70pp~~ | D09-D14 | CLOSED (B57) |
 | 4 | S901–S903 (IK ZFR chain) | 25pp | Wall D | Surfaces 7-9 partial |
@@ -275,6 +276,11 @@ All 47 named opens closed → `opera_numerorum_grand_conditional` becomes uncond
 - [x] Wall D Phase 1 (D09-D14 conditional/structural proofs complete, B56)
 - [x] Wall D Phase 2 (D01-D08 Poussin ZFR chain complete, B57)
 - [x] Wall D COMPLETE (all 14 atoms proved, B56+B57)
+- [x] Batch 58: C06_corrected INVALIDATED (wrong -log s in B55 Binet formula)
+- [x] Batch 58: Binet_DiGamma_WW_L8 correct digamma defined (named open ~0.25pp)
+- [x] Batch 58: Gamma_NotOnBranchCut_TStrip_OPEN PROVED (Heine-Borel compactness)
+- [x] Batch 58: S901 IK_NonZeroAtOne_L5 proved structural; S902/S903 defined
+- [x] Atomic opens: 33 → 32 (T-strip closed, C06 1-for-1 rename)
 - [ ] Wall B complete (7 atoms remain, ~13pp)
 - [x] Wall D complete (all 14 atoms proved, B56+B57)
 - [ ] Surfaces 5-9 complete (11 atoms, ~120pp)

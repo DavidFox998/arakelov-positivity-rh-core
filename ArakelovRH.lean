@@ -192,3 +192,4 @@ import ArakelovRH.SubClosure.Batch56WallCFinalD
 import ArakelovRH.SubClosure.Batch56MasterCertXII
 import ArakelovRH.SubClosure.Batch57WallDPoussin
 import ArakelovRH.SubClosure.Batch57MasterCertXIII
+import ArakelovRH.SubClosure.Batch58WallCIKChain
