@@ -165,3 +165,7 @@ import ArakelovRH.SubClosure.Batch45MasterCertS
 import ArakelovRH.SubClosure.Batch46HodgeBridge
 import ArakelovRH.SubClosure.Batch46BinetClose
 import ArakelovRH.SubClosure.Batch46MasterCertT
+import ArakelovRH.SubClosure.Batch47WallCClose
+import ArakelovRH.SubClosure.Batch47ZFRLevel6
+import ArakelovRH.SubClosure.Batch47HadamardDecomp
+import ArakelovRH.SubClosure.Batch47MasterCertU
