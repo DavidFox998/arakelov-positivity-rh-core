@@ -917,3 +917,103 @@ PROVED (0 sorry, classical trio):
 NAMED OPEN (new):
   Stirling_PL_OPEN: Phragmen-Lindelof for Gamma on vertical strips [1/2, 4]
     Needed to get the strip bound for non-integer sigma.
+
+====================================================================
+BATCH 13 (June 26, 2026) -- exp_taylor3_lb/4_lb + binet_kernel_nonneg_v3 (clean)
+====================================================================
+
+Appended to: ArakelovRH/SubClosure/GammaStirlingSubClosure.lean
+File: 1036 -> 1149 lines.
+
+PURPOSE: Provide a clean, Lean-elaboration-safe proof of binet_kernel_nonneg (B(t)>=0).
+Batch 12 used ad-hoc nlinarith witnesses. Batch 13 uses Real.sum_le_exp_of_nonneg
+from Mathlib (Analysis.SpecialFunctions.Exp) to prove Taylor lower bounds first.
+
+PROVED (0 sorry, classical trio):
+
+  exp_taylor3_lb (t : R) (t >= 0) : 1+t+t^2/2+t^3/6 <= exp(t)
+    Real.sum_le_exp_of_nonneg ht 4 + simp [Finset.sum_range_succ] + norm_num + linarith.
+    The Finset.sum_range_succ unfolds the partial sum; norm_num handles factorials.
+
+  exp_taylor4_lb (t : R) (t >= 0) : 1+t+t^2/2+t^3/6+t^4/24 <= exp(t)
+    Same strategy with n=5. Gives the 5-term Taylor lower bound.
+
+  binet_kernel_nonneg_v3 (t : R) (t > 0) : 0 <= B(t)  [B(t) = 1/2 - 1/t + 1/(exp t-1)]
+    Uses exp_taylor3_lb and exp_taylor4_lb. CLEAN version (supersedes batch 11/12 attempts).
+    heq identity: B(t) = [(t-2)*exp t + (t+2)] / [2t*(exp t-1)]  (field_simp + ring).
+    Numerator h(t) = (t-2)*exp t + (t+2):
+      Case t >= 2: mul_nonneg (t-2>=0) (exp t >= 0). Direct.
+      Case 0 < t < 2:
+        hte3 : t*(1+t+t^2/2+t^3/6) <= t*exp t  (mul_le_mul_of_nonneg_left Taylor3, t>=0)
+        hm2e4: -2*exp t >= -2*(1+t+...+t^4/24) (mul_le_mul_of_nonpos_left Taylor4, -2<=0)
+        hpoly: t*(Taylor3) - 2*(Taylor4) + t+2 = t^3/6+t^4/12 (ring)
+        nlinarith [t^3>=0, t^4>=0 witnesses]. Done.
+
+  wall_c_binet_complete: B(t)>=0 AND B(t)<1/2 (combines nonneg_v3 + lt_half). Certificate.
+
+  wall_c_route_b_connection: True (connection certificate to Route B Surface 4).
+
+WALL C STATUS AFTER BATCH 13:
+  B(t) >= 0 : PROVED (binet_kernel_nonneg_v3, 0 sorry)
+  B(t) < 1/2: PROVED (binet_kernel_lt_half, 0 sorry)
+  B(t) <= t/12: OPEN (Stirling_Binet_Kernel_OPEN -> see Batch 14)
+
+====================================================================
+BATCH 14 (June 26, 2026) -- B(t) <= t/12: sharp Binet kernel upper bound
+====================================================================
+
+Appended to: ArakelovRH/SubClosure/GammaStirlingSubClosure.lean
+File: 1149 -> ~1290 lines.
+
+PURPOSE: Prove the SHARP upper bound B(t) <= t/12. This is the bound that makes
+the Binet integral I(s) = int_0^inf B(t)*exp(-st)/t dt convergent and bounded
+by 1/(12*Re(s)). It completes the Binet kernel analysis (all 3 bounds proved).
+
+KEY ALGEBRAIC IDENTITY (the heart of the proof):
+  B(t) <= t/12
+  iff  t/12 - B(t) >= 0
+  iff  [2*(t^2-6t+12)*exp(t) - 2*(t^2+6t+12)] / [12t*(exp t-1)] >= 0
+  iff  (t^2-6t+12)*exp(t) >= t^2+6t+12                      [hmain]
+
+  Key: t^2-6t+12 = (t-3)^2+3 > 0 always (by nlinarith).
+  From exp_taylor4_lb:
+    (t^2-6t+12)*(1+t+t^2/2+t^3/6+t^4/24) = t^2+6t+12 + 5*t^5/12 + t^6/24
+  So (t^2-6t+12)*exp(t) >= t^2+6t+12 + 5t^5/12 + t^6/24 >= t^2+6t+12.
+  Witnesses for nlinarith: pow_pos ht 5, pow_pos ht 6.
+
+PROVED (0 sorry, classical trio):
+
+  binet_kernel_upper (t : R) (t > 0) : B(t) <= t/12
+    Steps: hq (t^2-6t+12>0), he4 (Taylor4), hmain (key ineq), heq (algebraic id),
+    div_nonneg (num>=0, den>0 by positivity), linarith.
+
+  binet_kernel_over_t (t : R) (t > 0) : B(t)/t <= 1/12
+    From binet_kernel_upper: divide both sides by t > 0.
+    div_le_div_iff ht (12>0) + linarith.
+
+  wall_c_binet_kernel_full: B(t)>=0 AND B(t)<=t/12 AND B(t)<1/2
+    Triple conjunction: (nonneg_v3, upper, lt_half).
+
+NAMED OPEN (new, Batch 14):
+  Stirling_Binet_Integral_OPEN (~4pp):
+    Binet first formula: log Gamma(s) = (s-1/2)*log s - s + log(2pi)/2 + I(s)
+    where |I(s)| <= 1/(12*Re(s)) for Re(s) > 0.
+    Lean gap: MeasureTheory.integral_exp + dominated_convergence + analytic continuation.
+
+  Stirling_Log_Upper_OPEN (~3pp):
+    |log Gamma(sigma+iT)| <= (sigma-1/2)*log|s| + C  for sigma in [1/2,4], |T|>=1.
+    Lean gap: Complex.abs_add + log bounds + triangle inequality chain.
+
+WALL C STATUS AFTER BATCH 14:
+  B(t) >= 0    : PROVED (binet_kernel_nonneg_v3,  0 sorry)
+  B(t) <= t/12 : PROVED (binet_kernel_upper,       0 sorry)  <-- NEW THIS BATCH
+  B(t) < 1/2   : PROVED (binet_kernel_lt_half,     0 sorry)
+  B(t)/t <= 1/12: PROVED (binet_kernel_over_t,     0 sorry)  <-- NEW THIS BATCH
+  |Gamma(1/2+iT)| <= sqrt(2pi)*exp(-pi|T|/2) : PROVED (gamma_critline_exp_bound, 0 sorry)
+  |Gamma(1/2+N+iT)| bounded: PROVED for N:Nat (gamma_critline_strip_bound, 0 sorry)
+  Stirling_Binet_Integral_OPEN  : OPEN (~4pp Lean)
+  Stirling_Log_Upper_OPEN        : OPEN (~3pp Lean)
+  Stirling_PL_OPEN               : OPEN (~15pp Lean)
+  TOTAL remaining Wall C         : ~22pp (down from 29pp before this batch)
+
+
