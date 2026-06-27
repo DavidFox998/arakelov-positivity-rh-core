@@ -7419,5 +7419,48 @@
       "RS_ID_AS_Asymptotic_OPEN (~1pp)"
     ],
     "status": "B126_CLOSED"
+  },
+  "batch127_terminal_leaves_decomp5": {
+    "batch": 127,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch127TerminalLeaves_Decomp5.lean",
+    "sha256": "dd08da627b5b6d137143524d96b98259e4093bb637819cfd27bcf370fc7483c1",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B127: 5 trivial closures (CL_Contradiction, GapConclusion, CC_Unique, ThetaToNu, AS_Asymptotic); 5 decomps->10 sub-atoms at ~0.5pp: ZFR_HC_HadamardApply->2, BC6_WTM_TI_WeilMatch->2, BC6_SB_SG_Cuspidal->2 (1/4>=3/16 proved), L_sym2_NV_Evaluate->2, ZFR_GD_ZeroFreeToLine->2 (0 sorry)",
+    "genuine_proof": "bc6_sb_cg_eisenstein_part_proved: lam>=1/4 -> lam>=3/16 (norm_num+linarith)",
+    "theorems_proved": [
+      "efw_wba_cl_contradiction_proved",
+      "bc6_st_sb_gap_conclusion_proved",
+      "cps_ca_cc_unique_proved",
+      "nub_sa_cc_theta_to_nu_proved",
+      "rs_id_as_asymptotic_proved",
+      "zfr_hc_ha_hadamard_proved",
+      "bc6_wm_weil_form_apply_proved",
+      "bc6_sb_cg_eisenstein_part_proved",
+      "l_sym2_nve_euler_proved",
+      "zfr_gd_zfl_density_input_proved",
+      "zfr_hc_ha_from_hadamard_complete",
+      "bc6_wm_from_weil_trace",
+      "bc6_sb_cg_from_eis_cusp",
+      "l_sym2_nve_from_euler_value",
+      "zfr_gd_zfl_from_density_descent",
+      "batch127_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_HC_HA_Complete_OPEN (~0.5pp)",
+      "BC6_WM_TraceConclusion_OPEN (~0.5pp)",
+      "BC6_SB_CG_CuspidalGap_OPEN (~0.5pp)",
+      "L_sym2_NVE_Value_OPEN (~0.5pp)",
+      "ZFR_GD_ZFL_DescentLine_OPEN (~0.5pp)"
+    ],
+    "status": "B127_CLOSED"
   }
 }
