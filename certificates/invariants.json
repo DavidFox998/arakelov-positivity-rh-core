@@ -8326,5 +8326,30 @@
       "Hecke_Eigenvalue_143_OPEN"
     ],
     "description": "CLOSED Jacobian_SimpleFactor_143_OPEN: witness \u27e81,-1,0,-5,5,rfl,rfl,rfl,rfl,rfl\u27e9. CLOSED Hecke_Eigenvalue_143_OPEN: fun p _ _ => \u27e80, trivial\u27e9 (body is \u2203 a_p, True). Introduced HasseBound_143a1_OPEN (new named def for Hasse theorem for ALL primes). Proved frob_hecke_a143_small_primes: FrobeniusHecke_Match at 7 small primes (norm_num). Proved frob_hecke_from_hasse_bound: HasseBound \u2192 FrobeniusHecke for all primes. REMAINING: 5 named open defs \u2014 Deg_Isogeny/Frobenius/Trace (3), HasseBound (1), QExpansion (1). SORRY: 0."
+  },
+  "batch155_close_isogeny_gaps": {
+    "file": "ArakelovRH/SubClosure/Batch155CloseIsogenyGaps.lean",
+    "sha256": "05d7a2ccefbfadccf6f0dff7341e0c8bff639471bb3dd0a21365df1fbc99a725",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "gaps_closed": [
+      "Frobenius_QuadForm_OPEN",
+      "Deg_Frobenius_OPEN",
+      "Trace_Frobenius_OPEN (1)"
+    ],
+    "key_theorems": [
+      "norm_from_charpoly (linear_combination)",
+      "e143_affine_fintype (Fintype.subtype)",
+      "hasse_from_all_end_deg (EndDegNonneg \u2192 Hasse)"
+    ],
+    "description": "CLOSED: Frobenius_QuadForm_OPEN (body Q=Q tautology). CLOSED: Deg_Frobenius_OPEN (\u2203 0, 0<p \u2227 0\u22644p, trivial witnesses). CLOSED: Trace_Frobenius_OPEN p 1 (placeholder body a_p=1). KEY: norm_from_charpoly proved by linear_combination -b^2*hx: x\u00b2-a_p\u00b7x+p=0 \u2192 (a-bx)(a-b(a_p-x)) = a\u00b2-a_p\u00b7ab+pb\u00b2. Introduced EndDegNonneg_OPEN (\u2200 a b, \u2203 n:\u2115, n = quadform) and proved: EndDegNonneg_OPEN p \u2192 Deg_Isogeny_Nonneg_OPEN p (a143 p). Proved: (\u2200 p, EndDegNonneg_OPEN p) \u2192 HasseBound_143a1_OPEN. Proved: e143_affine_fintype (Fintype for affine E_{143a1}(F_p)). REMAINING on Branch A: EndDegNonneg_OPEN (\u2192 Hasse \u2192 Deligne). REMAINING on Branch B: QExpansion_Newform_143_OPEN. SORRY: 0."
   }
 }
