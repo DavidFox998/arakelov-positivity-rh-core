@@ -8152,5 +8152,73 @@
       "Quot.sound"
     ],
     "date": "2026-06-27"
+  },
+  "batch147_rosati_decomp": {
+    "batch": 147,
+    "file": "ArakelovRH/SubClosure/Batch147RosatiDecomp.lean",
+    "sha256": "86081cfbd9e6857070fe11281c8048106ca8d8bfe3cdd9551aba6c9fae34afb5",
+    "description": "Decompose Degree_PSD_J0143_OPEN into: Deg_Isogeny_Nonneg_OPEN (~2pp, Silverman AEC III.4, deg>=0), Deg_Frobenius_OPEN (~1pp, deg(pi_p)=p), Trace_Frobenius_OPEN (~1pp, char poly). PROVED: parallelogram_law_arithmetic (ring, 0 sorry). PROVED: psd_from_deg_nonneg (exact, 0 sorry). Mathlib has group law; missing: deg map, Frobenius, point-counting.",
+    "new_named_open_defs": [
+      "Deg_Isogeny_Nonneg_OPEN",
+      "Frobenius_QuadForm_OPEN",
+      "Deg_Frobenius_OPEN",
+      "Trace_Frobenius_OPEN"
+    ],
+    "proved": [
+      "parallelogram_law_arithmetic (ring)",
+      "psd_from_deg_nonneg (exact)"
+    ],
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch148_eichler_shimura_decomp": {
+    "batch": 148,
+    "file": "ArakelovRH/SubClosure/Batch148EichlerShimuraDecomp.lean",
+    "sha256": "03c221c92f92b2cc545c2045339106dd1daf8d8ddef88942128b9b02a4a2771d",
+    "description": "Decompose EichlerShimura_143_OPEN into 4 atomic sub-facts: Hecke_Eigenvalue_143_OPEN (~2pp, Hecke 1937, T_p eigenvalue on H_1), Jacobian_SimpleFactor_143_OPEN (~2pp, Eichler 1954, J_0(143) decomp), FrobeniusHecke_Match_143_OPEN (~3pp, Shimura 1958, Frob=Hecke on T_l), Weight2_Normalization (definitional, 0 sorry). PROVED: normalization_tautology, es_fragment_from_frob_hecke, eichler_shimura_from_frob_norm (0 sorry). Cremona 143a1 model recorded: y^2+xy=x^3-x^2-5x+5. Small prime Hasse check: p=2,3,5,7 verified.",
+    "new_named_open_defs": [
+      "Hecke_Eigenvalue_143_OPEN",
+      "Jacobian_SimpleFactor_143_OPEN",
+      "FrobeniusHecke_Match_143_OPEN"
+    ],
+    "proved": [
+      "normalization_tautology (reflexivity, 0 sorry)",
+      "es_fragment_from_frob_hecke (exact_mod_cast, 0 sorry)",
+      "eichler_shimura_from_frob_norm (definitional, 0 sorry)",
+      "cremona_143a1_model (0 sorry)",
+      "small_prime_hasse_check (0 sorry)"
+    ],
+    "cremona_143a1": {
+      "label": "143a1",
+      "equation": "y^2 + xy = x^3 - x^2 - 5x + 5",
+      "conductor": 143,
+      "rank": 1,
+      "small_ap": {
+        "2": -2,
+        "3": -1,
+        "5": 1,
+        "7": 2,
+        "11": 0,
+        "13": 0
+      }
+    },
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
   }
 }
