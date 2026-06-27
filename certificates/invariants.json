@@ -8292,5 +8292,20 @@
     ],
     "date": "2026-06-27",
     "description": "HeckeEigenform_143_OPEN decomposed to QExpansion_Newform_143_OPEN (single named gap). a143 table: 27 coefficients for 143a1 (LMFDB/Cremona). PROVED (simp [a143] + norm_num): a143_one, a143_prime_vals, a143_cuspidal, a143_mult (7 pairs), a143_rec (6 prime powers), a143_weil (8 primes). Bridges: hecke_eigenform_from_qexp (trivial), hecke_eigenvalue_143_closed (compose). SORRY: 0."
+  },
+  "batch153_qexp_decomp": {
+    "file": "ArakelovRH/SubClosure/Batch153QExpDecomp.lean",
+    "sha256": "ff41a71bf4e1a34e2848d4f16387d9c280ae2e6470f3253d585d9914b3bc68b6",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "description": "QExpansion_Newform_143_OPEN decomposed into (a)+(b)+(c). PROVED (0 sorry, 0 native_decide): level_factored (143=11*13, rfl), index_168 ((11+1)*(13+1)=168, norm_num), cusp_count_4 (\u03a3 phi(gcd(d,N/d))=4, norm_num), eps2_mod11_zero (\u2200 n:ZMod 11, n^2\u2260-1, decide 11 cases), eps3_mod11_zero (\u2200 n:ZMod 11, n^2+n+1\u22600, decide 11 cases), eps2_143_zero (ring hom ZMod143->ZMod11 + eps2_mod11_zero), eps3_143_zero (ring hom + eps3_mod11_zero), genus_arithmetic (1+168/12-0-0-4/2=13, norm_num). Named open: (a) Genus_X0_143_OPEN, (b) MultiplicityOne_143_OPEN, (c) Cremona_143a1_OPEN. Bridges: qexp_from_abc, hecke_eigenform_from_abc, hecke_eigenvalue_from_abc (all 0 sorry)."
   }
 }
