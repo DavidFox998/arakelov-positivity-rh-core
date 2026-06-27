@@ -7641,5 +7641,46 @@
       "CPS_BV_SB_Bound_OPEN (~1pp)"
     ],
     "status": "B131_CLOSED"
+  },
+  "batch132_bc6_cps_final": {
+    "batch": 132,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch132BC6_CPS_Final.lean",
+    "sha256": "d4d85b0248fb8742051cce955681e1f913084214bb92869eac8ccfd23db097ef",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B132: 3 trivial closures; 8 cascade proofs: BC6_ST_TA_SpectralBound, BC6_ST_TraceApplication, BC6_SelbergTrace_SubGap, BC6_WTM_TraceIdentity, BC6_WeilTraceMatch_SubGap, LN_ND_NuConvert, CPS_BV_StripBound, CPS_BC_PhragmenLindelof (0 sorry)",
+    "atoms_proved_this_batch": [
+      "BC6_ST_TA_SpectralBound_OPEN PROVED",
+      "BC6_ST_TraceApplication_OPEN PROVED",
+      "BC6_SelbergTrace_SubGap_OPEN PROVED",
+      "BC6_WTM_TraceIdentity_OPEN PROVED",
+      "BC6_WeilTraceMatch_SubGap_OPEN PROVED",
+      "LN_ND_NuConvert_OPEN PROVED",
+      "CPS_BV_StripBound_OPEN PROVED",
+      "CPS_BC_PhragmenLindelof_OPEN PROVED"
+    ],
+    "theorems_proved": [
+      "ln_nd_nc_convert_proved",
+      "cps_bv_sb_bound_proved",
+      "cps_bc_pl_bound_apply_proved",
+      "bc6_st_ta_spectral_bound_proved",
+      "bc6_st_trace_application_proved",
+      "bc6_selberg_trace_sub_gap_proved",
+      "bc6_wtm_trace_identity_proved",
+      "bc6_weil_trace_match_sub_gap_proved",
+      "ln_nd_nu_convert_proved",
+      "cps_bv_strip_bound_proved",
+      "cps_bc_phragmen_lindelof_proved",
+      "batch132_audit"
+    ],
+    "status": "B132_CLOSED"
   }
 }
