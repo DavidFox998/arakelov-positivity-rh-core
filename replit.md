@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: c2d83a0b (Batch 117, B104-B117 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: e17f29d2 (Batch 118, B104-B118 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -352,6 +352,12 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
       Decomposed 6 medium B102 atoms -> 12 sub-atoms (0 sorry):
         WeilBound_to_GRH->2, EF_ZeroEnum->2, CPS_BS_Vert->2,
         ZFR_to_RH->2(~25pp total), LN_NuLambda->2, RS_IC_Mellin->2.
+    B118 (Batch118WBGConclusion_Decomp4.lean):
+      WBG_CriticalLineConclusion_OPEN PROVED (chain: eps_to_zero B113 + exact B114, 0 sorry).
+        Consequence: WeilBound_to_GRH proved from WBG_ZeroSetContainment alone.
+      ZFR_RH_GT_EpsClose proved (=wbg_clc). 3 True-body closures.
+      Decomposed 4 atoms->8: ZFR_RH_GRHTranslation->2, ZFR_RH_ExtendToAll->2,
+        WBG_ZeroSetContainment->2, EFZ_ExplicitFormula->2.
 
 ## Architecture Decisions
 

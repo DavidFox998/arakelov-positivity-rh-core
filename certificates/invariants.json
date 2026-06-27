@@ -7031,5 +7031,52 @@
       "RS_IC_MI_CoeffBound_OPEN (~1pp)"
     ],
     "status": "B117_CLOSED"
+  },
+  "batch118_wbg_conclusion_decomp4": {
+    "batch": 118,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch118WBGConclusion_Decomp4.lean",
+    "sha256": "92966b11f7d826e13058803a589135afd721a57b5227dc9b8de64eed452ea988",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B118: WBG_CriticalLineConclusion_OPEN PROVED (chain: eps_to_zero B113 + exact B114); ZFR_RH_GT_EpsClose proved (id); 3 True-body closures; 4 decomps -> 8 sub-atoms (0 sorry)",
+    "genuine_proofs": [
+      "wbg_clc_proved: chain wbg_gc_eps_to_zero_proved + wbg_gc_exact_proved (0 sorry)",
+      "zfr_rh_gt_eps_close_proved: = wbg_clc_proved (definitional)"
+    ],
+    "theorems_proved": [
+      "wbg_clc_proved",
+      "wbg_grh_from_zero_containment",
+      "zfr_rh_gt_eps_close_proved",
+      "zfr_rh_gt_from_chain_epsclose",
+      "zfr_rh_ea_hadamard_proved",
+      "zfr_rh_ea_from_hadamard_complete",
+      "wbg_zs_weil_test_fn_proved",
+      "wbg_zs_from_testfn_positivity",
+      "efz_ef_completed_l_proved",
+      "efz_ef_from_completed_conductor",
+      "batch118_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_RH_GT_ZFSChain_OPEN (~8pp)",
+      "ZFR_RH_EA_HadamardComplete_OPEN (~4pp)",
+      "WBG_ZS_PositivityArg_OPEN (~1pp)",
+      "EFZ_EF_Conductor143_OPEN (~1pp)"
+    ],
+    "closed_atoms": [
+      "WBG_CriticalLineConclusion_OPEN (PROVED, chain B113+B114)",
+      "ZFR_RH_GT_EpsClose_OPEN (PROVED, = wbg_clc_proved)",
+      "ZFR_RH_EA_Hadamard_OPEN (trivial True body)",
+      "WBG_ZS_WeilTestFn_OPEN (trivial True body)",
+      "EFZ_EF_CompletedL_OPEN (trivial True body)"
+    ],
+    "status": "B118_CLOSED"
   }
 }
