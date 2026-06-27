@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: 5923e746 (Batch 125, B104-B125 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: ef595d33 (Batch 126, B104-B126 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -399,6 +399,13 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
         RS_ID_L1S_RSHolo, LN_ND_SL_Orthogonal, BC6_SB_BC_TraceApply, CPS_BC_PL_StripHolo.
       5 decomps->10: EFW_WBA_ZeroContrib->2, RS_ID_L1Shimura->2,
         LN_ND_SelbergLambda->2, BC6_SB_BC95Bound->2, CPS_BC_PL->2.
+    B126 (Batch126Cascade_Decomp5.lean):
+      CASCADE: ZFR_DF_ZeroFreeApply_OPEN PROVED (B124+B125 chain complete).
+      8 closures: RS_ID_L1S_ValuePos, LN_ND_SL_LambdaCast, BC6_SB_BC_GapBound,
+        EFW_WBA_CL_NegContrib, BC6_ST_SB_SumApply, CPS_CA_CC_Identify,
+        NuB_SA_CC_AlphaToTheta, RS_ID_AS_PrimeSieve.
+      5 decomps->10: CritLine->2, SpectralBound->2, CPS_Conclude->2,
+        NuCast->2, AsymptoticSum->2.
 
 ## Architecture Decisions
 

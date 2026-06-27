@@ -7377,5 +7377,47 @@
       "CPS_BC_PL_BoundApply_OPEN (~1pp)"
     ],
     "status": "B125_CLOSED"
+  },
+  "batch126_cascade_decomp5": {
+    "batch": 126,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch126Cascade_Decomp5.lean",
+    "sha256": "d637f4dd92e43165018d7c0908f4d89b298e49ca7155c07b326748e2d28f0aa6",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B126: ZFR_DF_ZeroFreeApply PROVED (B124+B125 cascade); 8 closures; 5 decomps->10 sub-atoms at ~0.75-1pp: EFW_WBA_ZC_CritLine->2, BC6_ST_TA_SpectralBound->2, CPS_CA_CTA_Conclude->2, NuB_SA_NC_NuCast->2, RS_ID_RO_AsymptoticSum->2 (0 sorry)",
+    "cascade_proved": "ZFR_DF_ZeroFreeApply_OPEN (chain: BV_Distribution[B124] + FESymmetry[B125])",
+    "theorems_proved": [
+      "zfr_df_zero_free_apply_proved",
+      "rs_id_l1s_value_pos_proved",
+      "ln_nd_sl_lambda_cast_proved",
+      "bc6_sb_bc_gap_bound_proved",
+      "efw_wba_cl_neg_contrib_proved",
+      "bc6_st_sb_sum_apply_proved",
+      "cps_ca_cc_identify_proved",
+      "nub_sa_cc_alpha_to_theta_proved",
+      "rs_id_as_prime_sieve_proved",
+      "efw_wba_cl_from_neg_contra",
+      "bc6_st_sb_from_sum_gap",
+      "cps_ca_cc_from_identify_unique",
+      "nub_sa_cc_from_alpha_theta_nu",
+      "rs_id_as_from_prime_asymp",
+      "batch126_audit"
+    ],
+    "new_open_defs": [
+      "EFW_WBA_CL_Contradiction_OPEN (~0.75pp)",
+      "BC6_ST_SB_GapConclusion_OPEN (~1pp)",
+      "CPS_CA_CC_Unique_OPEN (~1pp)",
+      "NuB_SA_CC_ThetaToNu_OPEN (~1pp)",
+      "RS_ID_AS_Asymptotic_OPEN (~1pp)"
+    ],
+    "status": "B126_CLOSED"
   }
 }
