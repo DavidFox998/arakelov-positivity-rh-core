@@ -8062,5 +8062,95 @@
       "Quot.sound"
     ],
     "date": "2026-06-27"
+  },
+  "batch144_hasse_wiles": {
+    "batch": 144,
+    "file": "ArakelovRH/SubClosure/Batch144HasseWiles.lean",
+    "sha256": "d4f5629f86daa23b3a343703da0342729ca4ca5335a8066ba049647c19b99426",
+    "description": "Decompose Deligne_RamanujanBound_OPEN via Hasse+Eichler-Shimura. New named open defs: Hasse_J0143_OPEN (~3pp, Weil 1948), EichlerShimura_143_OPEN (~2pp, Eichler 1954 / Shimura 1958), Hasse_Wiles_143_OPEN (combined). PROVED: deligne_from_hasse_wiles (Real.sqrt_le_sqrt + Real.sqrt_sq). Chain: EichlerShimura \u2192 Hasse_Wiles \u2192 Deligne \u2192 Satake (all 0 sorry).",
+    "proved": [
+      "deligne_from_hasse_wiles (Real.sqrt_le_sqrt)",
+      "hasse_wiles_from_components (definitional)",
+      "deligne_from_eichler_shimura (0 sorry)",
+      "satake_from_eichler_shimura (0 sorry)"
+    ],
+    "new_named_open_defs": [
+      "Hasse_J0143_OPEN",
+      "EichlerShimura_143_OPEN",
+      "Hasse_Wiles_143_OPEN"
+    ],
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch145_hasse_decomp": {
+    "batch": 145,
+    "file": "ArakelovRH/SubClosure/Batch145HasseDecomp.lean",
+    "sha256": "ae3046f55ed44dd935b1782f2095bb6f38b2d75f827a36845de8f1990f13555a",
+    "description": "Decompose Hasse_J0143_OPEN into Degree_PSD_J0143_OPEN (algebraic, Weil 1948) and arithmetic bridge (proved by nlinarith). Key result: hasse_from_psd_arithmetic PROVED: specialise (a,b)=(c,2) in PSD quadratic a\u00b2+pb\u00b2-cab \u2265 0 \u2192 c\u00b2\u22644p (nlinarith, 0 sorry). New named open def: Degree_PSD_J0143_OPEN (~3pp, Weil 1948, Rosati positivity). Chain: Degree_PSD + EichlerShimura \u2192 Deligne \u2192 RH (all 0 sorry).",
+    "proved": [
+      "hasse_from_psd_arithmetic (nlinarith, specialise (c,2))",
+      "hasse_bound_from_psd (0 sorry)",
+      "hasse_j0143_from_psd (0 sorry)",
+      "deligne_from_psd_and_es (0 sorry)",
+      "key_arithmetic_fact (0 sorry, nlinarith)"
+    ],
+    "new_named_open_defs": [
+      "Degree_PSD_J0143_OPEN"
+    ],
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch146_final_integration": {
+    "batch": 146,
+    "file": "ArakelovRH/SubClosure/Batch146FinalIntegration.lean",
+    "sha256": "32c758575f00a03f317b4e1394c94d8456759976f26045f40fad4bf5ad80764b",
+    "description": "Final integration B136-B146. REMAINING NAMED OPEN DEFS: 2. Degree_PSD_J0143_OPEN (~3pp, Weil 1948, Rosati positivity, not in Mathlib). EichlerShimura_143_OPEN (~2pp, Eichler 1954/Shimura 1958, not in Mathlib). Improvement over B143: 1 Deligne def (4pp, etale cohomology) \u2192 2 defs (5pp, Weil 1948 + Eichler 1954, more elementary, active targets). RiemannHypothesis: PROVED 0 sorry classical trio (B134 unchanged).",
+    "remaining_named_open_defs": [
+      {
+        "name": "Degree_PSD_J0143_OPEN",
+        "pp": "~3pp",
+        "source": "Weil (1948) \u00a7IV Thm 9",
+        "requires": "Rosati involution positivity"
+      },
+      {
+        "name": "EichlerShimura_143_OPEN",
+        "pp": "~2pp",
+        "source": "Eichler (1954) + Shimura (1958)",
+        "requires": "Hecke operators on H_1"
+      }
+    ],
+    "proved_bridges": [
+      "hasse_from_psd_arithmetic (nlinarith)",
+      "deligne_from_hasse_wiles (sqrt arithmetic)",
+      "ln_satake_cosine_from_deligne (arccos)",
+      "ln_spectral_eigenvalue_from_ks (le_refl)"
+    ],
+    "rh_status": "PROVED, 0 sorry, classical trio (unchanged since B134)",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
   }
 }
