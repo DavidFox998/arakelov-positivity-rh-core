@@ -7158,5 +7158,54 @@
       "EFZ_ZT_CountingMatch_OPEN (~1pp)"
     ],
     "status": "B120_CLOSED"
+  },
+  "batch121_zfschain_decomp5": {
+    "batch": 121,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch121ZFSChain_Decomp5.lean",
+    "sha256": "a5ad2df71e84fda1839f945836ea78ccc284e6229ab1ef171a809c7f80d469f5",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B121: ZFR_GT_ZFS_StripDef+EpsConnect PROVED (abs_sub_comm+abs_lt+linarith); cascade: ZFR_RH_GT_ZFSChain PROVED + ZFR_RH_GRHTranslation PROVED; 3 trivial; 5 decomps -> 10 sub-atoms (0 sorry)",
+    "genuine_proofs": [
+      "zfr_gt_zfs_strip_def_proved: abs_sub_comm+abs_lt+Set.mem_Ioo+linarith",
+      "zfr_gt_zfs_eps_connect_proved: Set.mem_Ioo+abs_lt+linarith"
+    ],
+    "cascade_proved": [
+      "ZFR_RH_GT_ZFSChain_OPEN (via B120 combinator + above two)",
+      "ZFR_RH_GRHTranslation_OPEN (via B118 combinator + chain)"
+    ],
+    "theorems_proved": [
+      "zfr_gt_zfs_strip_def_proved",
+      "zfr_gt_zfs_eps_connect_proved",
+      "zfr_rh_gt_chain_proved",
+      "zfr_rh_grh_translation_proved",
+      "bc6_sb_rankin_proved",
+      "rs_id_hadamard_proved",
+      "l_sym2_shimura_fe_proved",
+      "bc6_sb_from_rankin_apply",
+      "rs_id_from_hadamard_rankone",
+      "l_sym2_from_shimura_nonvan",
+      "zfr_df_from_apply_final",
+      "ln_nd_from_selberg_convert",
+      "batch121_audit"
+    ],
+    "new_open_defs": [
+      "BC6_SB_SpectralApply_OPEN (~5pp)",
+      "RS_ID_RankOne_OPEN (~5pp)",
+      "L_sym2_NonVanishingValue_OPEN (~3pp)",
+      "ZFR_DF_ZeroFreeApply_OPEN (~1pp)",
+      "ZFR_DF_GRHFinal_OPEN (~1pp)",
+      "LN_ND_SelbergLambda_OPEN (~2pp)",
+      "LN_ND_NuConvert_OPEN (~1pp)"
+    ],
+    "status": "B121_CLOSED"
   }
 }
