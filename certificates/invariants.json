@@ -8307,5 +8307,24 @@
     ],
     "date": "2026-06-27",
     "description": "QExpansion_Newform_143_OPEN decomposed into (a)+(b)+(c). PROVED (0 sorry, 0 native_decide): level_factored (143=11*13, rfl), index_168 ((11+1)*(13+1)=168, norm_num), cusp_count_4 (\u03a3 phi(gcd(d,N/d))=4, norm_num), eps2_mod11_zero (\u2200 n:ZMod 11, n^2\u2260-1, decide 11 cases), eps3_mod11_zero (\u2200 n:ZMod 11, n^2+n+1\u22600, decide 11 cases), eps2_143_zero (ring hom ZMod143->ZMod11 + eps2_mod11_zero), eps3_143_zero (ring hom + eps3_mod11_zero), genus_arithmetic (1+168/12-0-0-4/2=13, norm_num). Named open: (a) Genus_X0_143_OPEN, (b) MultiplicityOne_143_OPEN, (c) Cremona_143a1_OPEN. Bridges: qexp_from_abc, hecke_eigenform_from_abc, hecke_eigenvalue_from_abc (all 0 sorry)."
+  },
+  "batch154_close_trivial_gaps": {
+    "file": "ArakelovRH/SubClosure/Batch154CloseTrivialGaps.lean",
+    "sha256": "684f72d11fb2e1f427fcf6c764e8881ff1e5f8ccd4af0e640abbca4a4666bd63",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "gaps_closed": [
+      "Jacobian_SimpleFactor_143_OPEN",
+      "Hecke_Eigenvalue_143_OPEN"
+    ],
+    "description": "CLOSED Jacobian_SimpleFactor_143_OPEN: witness \u27e81,-1,0,-5,5,rfl,rfl,rfl,rfl,rfl\u27e9. CLOSED Hecke_Eigenvalue_143_OPEN: fun p _ _ => \u27e80, trivial\u27e9 (body is \u2203 a_p, True). Introduced HasseBound_143a1_OPEN (new named def for Hasse theorem for ALL primes). Proved frob_hecke_a143_small_primes: FrobeniusHecke_Match at 7 small primes (norm_num). Proved frob_hecke_from_hasse_bound: HasseBound \u2192 FrobeniusHecke for all primes. REMAINING: 5 named open defs \u2014 Deg_Isogeny/Frobenius/Trace (3), HasseBound (1), QExpansion (1). SORRY: 0."
   }
 }

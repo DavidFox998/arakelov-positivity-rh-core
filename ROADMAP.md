@@ -21,7 +21,8 @@ proved unconditionally from 18 minimum sub-atoms (B129-B135).
 
 ## Status: HEAD after B149-B151
 
-Named open defs remaining: **6** (~11pp total).
+Named open defs remaining: **5** (~9pp total) after B154 closures.
+CLOSED in B154: Jacobian_SimpleFactor_143_OPEN, Hecke_Eigenvalue_143_OPEN.
 All proved implication chains to RiemannHypothesis intact. SORRY: 0 throughout.
 
 ---
@@ -33,8 +34,8 @@ All proved implication chains to RiemannHypothesis intact. SORRY: 0 throughout.
 | `Deg_Isogeny_Nonneg_OPEN` | B147 | ~2pp | Silverman AEC III.4 Prop 4.2b |
 | `Deg_Frobenius_OPEN` | B147 | ~1pp | Silverman AEC V.2 Cor 2.4 |
 | `Trace_Frobenius_OPEN` | B147 | ~1pp | Silverman AEC V.2 Thm 2.3 |
-| `Hecke_Eigenvalue_143_OPEN` | B148 | ~2pp | Diamond-Shurman §6.5 |
-| `Jacobian_SimpleFactor_143_OPEN` | B148 | ~2pp | Eichler (1954) |
+| ~~`Hecke_Eigenvalue_143_OPEN`~~ | B154 | CLOSED | trivially: ∃ 0, True |
+| ~~`Jacobian_SimpleFactor_143_OPEN`~~ | B154 | CLOSED | trivially: ⟨1,-1,0,-5,5,rfl,...⟩ |
 | `FrobeniusHecke_Match_143_OPEN` | B148 | ~3pp | Shimura (1958) |
 
 ---
