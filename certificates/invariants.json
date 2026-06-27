@@ -8220,5 +8220,62 @@
       "Quot.sound"
     ],
     "date": "2026-06-27"
+  },
+  "batch149_point_counting": {
+    "file": "ArakelovRH/SubClosure/Batch149PointCounting.lean",
+    "sha256": "d7de2faba92dc6f554aaed15c71dce44b1686520849357927be3a23a31e24c15",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "description": "Target 1: #E(F_p)=Fintype.card E.Point. PROVED: zmod_card_eq_prime (ZMod.card, Mathlib), fintype_point_from_decidable (Fintype.subtype), count_E_pos (Fintype.card_pos), frob_trace_small_primes (omega), frob_trace_sign (omega). Named open: Fintype_E_Point_OPEN, Frob_Trace_Formula_OPEN."
+  },
+  "batch150_degree_nonneg": {
+    "file": "ArakelovRH/SubClosure/Batch150DegreeNonneg.lean",
+    "sha256": "1299585b29e6cd54d6f7e508e44e3454c616a7cf09ea99bd5f4a280bec139030",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "description": "Target 2: deg(phi)=Finset.card phi.kernel -> Deg_Isogeny_Nonneg_OPEN. PROVED: finset_card_nonneg (Int.coe_nat_nonneg), nat_cast_nonneg_int, deg_nonneg_from_kernel, deg_isogeny_nonneg_abstract, hasse_from_nonneg_quadform, mul_by_n_degree (ring), identity_degree (ring). Key insight: Finset.card:N makes nonnegativity tautological; real content is deg=kernel_count (algebra->combinatorics)."
+  },
+  "batch151_hecke_operators": {
+    "file": "ArakelovRH/SubClosure/Batch151HeckeOperators.lean",
+    "sha256": "7fd6c5c3f61405b5082a70f7636e985a67829d654903cc01d2fd1c1e8bbc0bbd",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "description": "Target 3: Hecke operators T_p on S_2(Gamma_0(N)). PROVED: shift_div_im_pos (div_pos+Complex.div_im), smul_im_pos (nlinarith), hecke_T_weight2 (formal def, Finset.range sum), hecke_T_add (ring), hecke_T_smul (ring), hecke_eigenvalue_small_primes_check (norm_num), hecke_eigenvalue_from_eigenform (0 sorry). Named open: HeckeEigenform_143_OPEN, HeckeModularForm_143_OPEN."
+  },
+  "README": {
+    "file": "README.md",
+    "sha256": "4ee4a42a52949585a744b47d8fb986ca49235343cd2b2bf4c04c791389dbf420",
+    "description": "Repo README: RH proof statement, file+theorem+axiom, architecture, named open defs, nearest targets.",
+    "date": "2026-06-27"
+  },
+  "ROADMAP_b151": {
+    "file": "ROADMAP.md",
+    "sha256": "7096d2e7b681641e7c33ab36cbbda073807f8918973dcba4a313acab63227dcf",
+    "description": "Updated ROADMAP: B149-B151 results, gap tables, full implication chain, batch history.",
+    "date": "2026-06-27"
   }
 }
