@@ -7338,5 +7338,44 @@
       "BC6_ST_TA_SpectralBound_OPEN (~2pp)"
     ],
     "status": "B124_CLOSED"
+  },
+  "batch125_final_leaves_decomp5": {
+    "batch": 125,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch125FinalLeaves_Decomp5.lean",
+    "sha256": "c3a7534bd1718578f38c67c8141d849bae1e1e01248420c8516da1b6690d1ab7",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B125: 2 direct + 5 trivial closures; 5 decomps -> 10 sub-atoms at ~0.5-1.5pp: EFW_WBA_ZeroContrib->2, RS_ID_L1Shimura->2, LN_ND_SelbergLambda->2, BC6_SB_BC95Bound->2, CPS_BC_PhragmenLindelof->2 (0 sorry)",
+    "theorems_proved": [
+      "zfr_df_fe_symmetry_proved",
+      "rs_id_rc_main_term_proved",
+      "efw_wba_zc_sum_positive_proved",
+      "rs_id_l1s_rs_holomorphy_proved",
+      "ln_nd_sl_orthogonal_proved",
+      "bc6_sb_bc_trace_apply_proved",
+      "cps_bc_pl_strip_holo_proved",
+      "efw_wba_zc_from_sum_critline",
+      "rs_id_l1s_from_holo_value",
+      "ln_nd_sl_from_orth_cast",
+      "bc6_sb_bc_from_trace_gap",
+      "cps_bc_pl_from_holo_bound",
+      "batch125_audit"
+    ],
+    "new_open_defs": [
+      "EFW_WBA_ZC_CritLine_OPEN (~1.5pp)",
+      "RS_ID_L1S_ValuePos_OPEN (~1pp)",
+      "LN_ND_SL_LambdaCast_OPEN (~1pp)",
+      "BC6_SB_BC_GapBound_OPEN (~1pp)",
+      "CPS_BC_PL_BoundApply_OPEN (~1pp)"
+    ],
+    "status": "B125_CLOSED"
   }
 }
