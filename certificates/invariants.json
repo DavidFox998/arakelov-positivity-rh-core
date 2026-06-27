@@ -6437,5 +6437,54 @@
     },
     "key_proof": "real_euler_poly_pos_of_hasse: 4p*(1-au+pu^2)=(2pu-a)^2+(4p-a^2); sum=0 forces pu^2=1. Contradiction with pu^2<1.",
     "status": "B104_CLOSED"
+  },
+  "batch105_complex_ep_decompositions": {
+    "batch": 105,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch105ComplexEPAndDecompositions.lean",
+    "sha256": "6d84e60dc6e89d686a0c04b7a826da3dde342aaf8713cc940fbeb25b372aea63",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B105: complex_euler_poly_nonzero (PROVED) + 7 atom decompositions (0 sorry each)",
+    "theorems_proved": [
+      "complex_euler_poly_nonzero",
+      "ep_local_factor_from_poly_and_hasse",
+      "l_sym2_from_shimura",
+      "rs_identity_from_unfolding",
+      "lambda_to_nu_from_selberg",
+      "ef_zero_enum_from_perron",
+      "cps_fe_from_twisted",
+      "cps_bs_from_twisted_bound",
+      "batch105_audit"
+    ],
+    "new_open_defs": [
+      "EulerFactorPolyForm_OPEN (~1pp)",
+      "HeckeBound_143_OPEN (~2pp)",
+      "CpowNormSq_143_OPEN (~1pp)",
+      "Shimura_NonVanishing_OPEN (~5pp)",
+      "RS_UnfoldingIntegral_OPEN (~10pp)",
+      "SelbergEigenvalueNu_OPEN (~5pp)",
+      "EF_PerronFormula_OPEN (~5pp)",
+      "CPS_TwistedFEExists_OPEN (~6pp)",
+      "CPS_TwistedBoundedStrips_OPEN (~6pp)"
+    ],
+    "key_theorem": "complex_euler_poly_nonzero: Re/Im split; Case 1 completing-the-square; Case 2 p*normSq(z)=1 contradiction. Algebraic core of EP_LocalFactor.",
+    "ep_combinator": "ep_local_factor_from_poly_and_hasse: EulerFactorPolyForm + HeckeBound + CpowNormSq => EP_LocalFactor_NonZero_143_OPEN (0 sorry)",
+    "identity_combinators": {
+      "l_sym2_from_shimura": "Shimura_NonVanishing => L_sym2_One_Nonzero",
+      "rs_identity_from_unfolding": "RS_Unfolding => RS_Identity",
+      "lambda_to_nu_from_selberg": "SelbergEigenvalueNu => LambdaToNu",
+      "ef_zero_enum_from_perron": "EF_PerronFormula => EF_ZeroEnum",
+      "cps_fe_from_twisted": "CPS_TwistedFEExists => CPS_FE",
+      "cps_bs_from_twisted_bound": "CPS_TwistedBounded => CPS_BS"
+    },
+    "status": "B105_CLOSED"
   }
 }
