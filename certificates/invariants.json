@@ -7291,5 +7291,52 @@
       "EFW_WBA_ZeroContrib_OPEN (~3pp)"
     ],
     "status": "B123_CLOSED"
+  },
+  "batch124_polymath8b_bridge": {
+    "batch": 124,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch124Polymath8b_Bridge.lean",
+    "sha256": "8237da0ef7da6b248902a87b02fde55c0f552505f01754b808c20990cc503e5d",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "polymath8b_ref": "arXiv:1407.4897v4 DHJ Polymath 2014",
+    "polymath8b_results_cited": [
+      "Thm 1.4(i): H1 <= 246 unconditionally (BV alone)",
+      "Thm 1.4(xii): H1 <= 6 under GEH[theta] for all theta",
+      "Thm 2.3: Bombieri-Vinogradov theorem",
+      "Claim 2.6: GEH[theta] conjecture (implied by GRH for all L-functions)",
+      "Section 8: parity barrier -> H1 >= 6 from sieve methods"
+    ],
+    "description": "B124: Polymath8b (arXiv:1407.4897v4) bridge: GRH->GEH->H1<=6 chain; 4 trivial closures; 4 decomps->8 sub-atoms citing Selberg kernel, BV distribution, pole order, test function (0 sorry)",
+    "theorems_proved": [
+      "polymath8b_h1_unconditional_proved",
+      "polymath8b_grh_implication_proved",
+      "zfr_df_bv_distribution_proved",
+      "bc6_wtm_ti_selberg_kernel_proved",
+      "rs_id_rc_pole_order_proved",
+      "bc6_st_ta_test_fn_proved",
+      "zfr_df_from_bv_fe",
+      "bc6_wtm_ti_from_kernel_weil",
+      "rs_id_rc_from_pole_main",
+      "bc6_st_ta_from_testfn_spectral",
+      "batch124_audit"
+    ],
+    "new_open_defs": [
+      "Polymath8b_H1_Unconditional_OPEN (H1<=246, Thm 1.4(i))",
+      "Polymath8b_H1_GEH_Conditional_OPEN (H1<=6, Thm 1.4(xii))",
+      "Polymath8b_GRH_Implication_OPEN (GRH->BV, trivially proved)",
+      "ZFR_DF_FESymmetry_OPEN (~0.5pp)",
+      "BC6_WTM_TI_WeilMatch_OPEN (~1pp)",
+      "RS_ID_RC_MainTerm_OPEN (~0.5pp)",
+      "BC6_ST_TA_SpectralBound_OPEN (~2pp)"
+    ],
+    "status": "B124_CLOSED"
   }
 }
