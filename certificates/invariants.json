@@ -7548,5 +7548,52 @@
       "LN_NB_SP_Bound_OPEN (~0.5pp)"
     ],
     "status": "B129_CLOSED"
+  },
+  "batch130_zfr_re_cascade": {
+    "batch": 130,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch130ZFR_RE_Cascade.lean",
+    "sha256": "2aed4a96b00ad25f7f240768191541d01e72eb13085bd7eeeea89b5b29baf66a",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B130: 3 trivial closures; 4 cascades proved: ZFR_RE_HeckeReality, ZFR_RE_SiegelContrad, LN_NB_SpectralParam, L143_ZeroFreeStrip (all RE proved); 4 decomps->8 sub-atoms: VKBound->2, DensityArg->2, NuBridge->2, ConvexApply->2 (0 sorry)",
+    "atoms_proved_this_batch": [
+      "ZFR_RE_HeckeReality_OPEN PROVED (B129+B130 chain)",
+      "ZFR_RE_SiegelContrad_OPEN PROVED (B129+B130 chain)",
+      "LN_NB_SpectralParam_OPEN PROVED (B129+B130 chain)",
+      "L143_ZeroFreeStrip_OPEN PROVED (full, all RE atoms proved)"
+    ],
+    "theorems_proved": [
+      "zfr_re_hr_real_bound_proved",
+      "zfr_re_sc_contra_proved",
+      "ln_nb_sp_bound_proved",
+      "zfr_re_hecke_reality_proved",
+      "zfr_re_siegel_contrad_proved",
+      "ln_nb_spectral_param_proved",
+      "l143_zfr_full_proved",
+      "zfr_ztl_vk_product_proved",
+      "zfr_ztl_da_counting_proved",
+      "ln_nb_nb_seven_sixty_proved",
+      "cps_bc_ca_strip_proved",
+      "zfr_ztl_vk_from_product_log",
+      "zfr_ztl_da_from_counting_descent",
+      "ln_nb_nb_from_seven_bridge",
+      "cps_bc_ca_from_strip_convex",
+      "batch130_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_ZTL_VK_LogBound_OPEN (~0.5pp)",
+      "ZFR_ZTL_DA_Descent_OPEN (~0.5pp)",
+      "LN_NB_NB_Bridge_OPEN (~0.5pp)",
+      "CPS_BC_CA_Convex_OPEN (~0.5pp)"
+    ],
+    "status": "B130_CLOSED"
   }
 }
