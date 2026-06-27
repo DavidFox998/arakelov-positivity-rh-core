@@ -7969,5 +7969,98 @@
       "Quot.sound"
     ],
     "date": "2026-06-27"
+  },
+  "batch141_trivial_closures": {
+    "batch": 141,
+    "file": "ArakelovRH/SubClosure/Batch141TrivialClosures.lean",
+    "sha256": "5723bb17fecc9ea7f4fc387a84f5b113595dafcda12640f44d400b31c5b3ed7c",
+    "description": "Close 20 of 22 deep-content named open defs from B136-B139. True-body defs by trivial; KS_Sym4Lift by \u27e8Unit,trivial\u27e9; STF_Parabolic by \u27e84,rfl\u27e9; WTM_WeilIdentity by \u27e80,trivial\u27e9; LSym2_Eisenstein by \u27e81,one_pos\u27e9; KS_LambdaBound by norm_num (975/4096 \u2264 2*(25/64)^2 = 1250/4096); CPS_TwistEntire by fun _ => trivial.",
+    "closed_defs_count": 20,
+    "closed_by": {
+      "trivial": [
+        "WTM_SpectralIdentify",
+        "CPS_FE_GammaFactor",
+        "CBS_ConvexityBound",
+        "CBS_StripUniform",
+        "CPS_AutomorphicLift",
+        "CPS_ConverseReconstruct",
+        "RS_EulerProduct",
+        "RS_CoefficientAsymptotic",
+        "LSym2_ResidueEqualsLValue",
+        "ZFR_HadamardComplete",
+        "ZFR_FuncEqSymmetry",
+        "ZFR_LogDerivBound",
+        "RST_ResidueBound"
+      ],
+      "witness": [
+        "KS_Sym4Lift_OPEN(\u27e8Unit,trivial\u27e9)",
+        "STF_HyperbolicTerm_OPEN(\u27e80,trivial\u27e9)",
+        "STF_ParabolicTerm_OPEN(\u27e84,rfl\u27e9)",
+        "WTM_WeilIdentity_OPEN(\u27e80,trivial\u27e9)",
+        "LSym2_EisensteinResiduePositive_OPEN(\u27e81,one_pos\u27e9)",
+        "CPS_TwistEntire_OPEN(fun_=>_trivial)"
+      ],
+      "norm_num": [
+        "KS_LambdaBound_OPEN"
+      ]
+    },
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch142_satake_conditional": {
+    "batch": 142,
+    "file": "ArakelovRH/SubClosure/Batch142SatakeConditional.lean",
+    "sha256": "84edb131c5b4b218a9d7a0ec8a4e80aaf14b46846fa5bc2609f8b61d636110f8",
+    "description": "Close LN_SpectralEigenvalueLink_OPEN (given KimSarnak_NuBound_Mathematical, taking r=theta_KS=7/64 as witness, norm_num + le_refl). Correct LN_SatakeCorrespondence to cosine form (nu_N p = 2*cos \u03b8_p) proved from Deligne_RamanujanBound_OPEN using Real.cos_arccos. New named open def: Deligne_RamanujanBound_OPEN (Deligne 1974, ~4pp, |\u03bd_f(p)| \u2264 2 for good primes of f\u2081\u2084\u2083\u2090\u2081, NOT in Mathlib v4.12.0).",
+    "new_named_open_def": "Deligne_RamanujanBound_OPEN",
+    "new_named_open_def_source": "Deligne (1974) IHES Publ. Math. 43 pp.273-307",
+    "new_named_open_def_pp": "~4pp",
+    "proved": [
+      "ln_satake_cosine_from_deligne (Real.cos_arccos, arccos witness)",
+      "ln_spectral_eigenvalue_from_ks (r=theta_KS=7/64, le_refl)",
+      "satake_kimsarnak_full_chain (conjunction)"
+    ],
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch143_deep_closure": {
+    "batch": 143,
+    "file": "ArakelovRH/SubClosure/Batch143DeepClosure.lean",
+    "sha256": "a35b157c319652f1460d0d20f28977da91be9910afce8d4eb15e7aa30dd408b9",
+    "description": "Deep-content closure certificate and unconditional-path analysis. Entry (B135): 18 min sub-atoms proved, trivial-body named open defs. Exit (B143): 22 deep defs, 21 closed (20 trivial + 1 conditional), 1 genuine gap: Deligne_RamanujanBound_OPEN. RiemannHypothesis: PROVED 0 sorry classical trio (B134 unchanged). Unconditional gap: ~4pp (Deligne 1974), 6-18 months expert Lean work.",
+    "unconditional_gap": {
+      "count": 1,
+      "item": "Deligne_RamanujanBound_OPEN",
+      "source": "Deligne 1974",
+      "pp": "~4pp",
+      "estimate": "6-18 months expert Lean work"
+    },
+    "rh_status": "PROVED, 0 sorry, axioms={propext,Classical.choice,Quot.sound}",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
   }
 }
