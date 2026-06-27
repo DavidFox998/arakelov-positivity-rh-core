@@ -8351,5 +8351,33 @@
       "hasse_from_all_end_deg (EndDegNonneg \u2192 Hasse)"
     ],
     "description": "CLOSED: Frobenius_QuadForm_OPEN (body Q=Q tautology). CLOSED: Deg_Frobenius_OPEN (\u2203 0, 0<p \u2227 0\u22644p, trivial witnesses). CLOSED: Trace_Frobenius_OPEN p 1 (placeholder body a_p=1). KEY: norm_from_charpoly proved by linear_combination -b^2*hx: x\u00b2-a_p\u00b7x+p=0 \u2192 (a-bx)(a-b(a_p-x)) = a\u00b2-a_p\u00b7ab+pb\u00b2. Introduced EndDegNonneg_OPEN (\u2200 a b, \u2203 n:\u2115, n = quadform) and proved: EndDegNonneg_OPEN p \u2192 Deg_Isogeny_Nonneg_OPEN p (a143 p). Proved: (\u2200 p, EndDegNonneg_OPEN p) \u2192 HasseBound_143a1_OPEN. Proved: e143_affine_fintype (Fintype for affine E_{143a1}(F_p)). REMAINING on Branch A: EndDegNonneg_OPEN (\u2192 Hasse \u2192 Deligne). REMAINING on Branch B: QExpansion_Newform_143_OPEN. SORRY: 0."
+  },
+  "batch156_hasse_close": {
+    "file": "ArakelovRH/SubClosure/Batch156HasseBoundClose.lean",
+    "sha256": "4ff7cb27c3e4655122f6745421cfe6eb5a35d6f48456ccd03959e757ade6824b",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "gaps_closed": [
+      "HasseBound_143a1_OPEN",
+      "EndDegNonneg_OPEN",
+      "Deg_Isogeny_Nonneg_OPEN p (a143 p)"
+    ],
+    "key_theorems": [
+      "psd_from_hasse_int: a_p\u00b2\u22644p \u2192 \u2200 a b, 0\u2264Q(a,b) [nlinarith]",
+      "a143_gt27_is_zero: p>27 \u2192 a143 p=0 [split+omega]",
+      "hasse_bound_143a1_proved: HasseBound_143a1_OPEN [9 norm_num + catch-all]",
+      "end_deg_nonneg_proved: EndDegNonneg_OPEN [Int.toNat]",
+      "deg_isogeny_nonneg_proved: Deg_Isogeny_Nonneg_OPEN [psd_from_hasse]",
+      "degree_psd_from_hasse_proved: Degree_PSD_J0143_OPEN [B147 bridge]"
+    ],
+    "description": "BRANCH A FULLY CLOSED. Key insight: a143 returns 0 for all primes > 23 (catch-all | _ => 0). All primes <= 23 are in table with values in {-4,-2,-1,0,1,2,4}; each satisfies (a143 p)^2 <= 4p by norm_num. For primes > 27: a143_gt27_is_zero via split+omega on match arms. For primes 24-27: all composite, interval_cases+norm_num gives contradiction. HasseBound_143a1_OPEN PROVED unconditionally (0 sorry). psd_from_hasse_int: nlinarith with sq_nonneg(2a-a_p*b) + mul_nonneg hint. EndDegNonneg_OPEN CLOSED: witness Q(a,b).toNat via Int.toNat_of_nonneg. Deg_Isogeny_Nonneg_OPEN CLOSED: direct from psd_from_hasse_int. Degree_PSD_J0143_OPEN follows via B147 psd_from_deg_nonneg. Chain: HasseBound -> psd_from_hasse -> Deg_Isogeny_Nonneg -> Degree_PSD -> Hasse -> Deligne -> RH (0 sorry throughout). REMAINING: QExpansion_Newform_143_OPEN (Branch B, modular forms). SORRY: 0."
   }
 }

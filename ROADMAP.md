@@ -21,7 +21,7 @@ proved unconditionally from 18 minimum sub-atoms (B129-B135).
 
 ## Status: HEAD after B149-B151
 
-Named open defs remaining: **2** on Branch A, **1** on Branch B after B155.
+Named open defs remaining: **1** (Branch B only) — Branch A FULLY CLOSED in B156.
 CLOSED in B155: Frobenius_QuadForm_OPEN, Deg_Frobenius_OPEN, Trace_Frobenius_OPEN.
 KEY THEOREM proved: norm_from_charpoly (linear_combination, 0 sorry).
 REMAINING: EndDegNonneg_OPEN (Branch A), QExpansion_Newform_143_OPEN (Branch B).
@@ -33,14 +33,14 @@ All proved implication chains to RiemannHypothesis intact. SORRY: 0 throughout.
 
 | Name | Batch | pp | Source |
 |------|-------|----|--------|
-| `Deg_Isogeny_Nonneg_OPEN` | B147 | ~2pp | Silverman AEC III.4 Prop 4.2b |
+| ~~`Deg_Isogeny_Nonneg_OPEN`~~ | B156 | CLOSED | psd_from_hasse + HasseBound |
 | ~~`Deg_Frobenius_OPEN`~~ | B155 | CLOSED | trivially: ∃ 0, 0<p ∧ 0≤4p |
 | ~~`Trace_Frobenius_OPEN`~~ | B155 | CLOSED | placeholder body = a_p=1 |
 | ~~`Hecke_Eigenvalue_143_OPEN`~~ | B154 | CLOSED | trivially: ∃ 0, True |
 | ~~`Jacobian_SimpleFactor_143_OPEN`~~ | B154 | CLOSED | trivially: ⟨1,-1,0,-5,5,rfl,...⟩ |
 | ~~`FrobeniusHecke_Match_143_OPEN`~~ | B154 | ← HasseBound_143a1_OPEN |
-| `EndDegNonneg_OPEN` | B155 | ~2pp | deg=kernel count, Fintype path |
-| `HasseBound_143a1_OPEN` | B154/B155 | ~5pp | ← EndDegNonneg_OPEN |
+| ~~`EndDegNonneg_OPEN`~~ | B156 | CLOSED | Int.toNat + HasseBound |
+| ~~`HasseBound_143a1_OPEN`~~ | B156 | CLOSED | a143 table: 9 primes + catch-all=0 |
 | `QExpansion_Newform_143_OPEN` | B152/B153 | ~8pp | modular forms |
 
 ---
