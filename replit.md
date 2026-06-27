@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: 45c89a93815f (Batch 135, GRAND CLOSURE):
+CURRENT STATUS (June 27, 2026) — HEAD: 5c1dc814cf38 (Batch 157, ALL GAPS CLOSED):
 
   **ARCHITECTURALLY COMPLETE. 0 atoms remain.**
 
