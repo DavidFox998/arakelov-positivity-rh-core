@@ -7118,5 +7118,45 @@
       "CPS_CE_ConverseApply_OPEN (~20pp)"
     ],
     "status": "B119_CLOSED"
+  },
+  "batch120_bc6gaps_decomp6": {
+    "batch": 120,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch120BC6Gaps_Decomp6.lean",
+    "sha256": "1b78e26eee9f0d49ac93fce8d45d314c36c6505142dda646c774d4c977b61563",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B120: 5 trivial closures + decompose 6 atoms -> 12 sub-atoms: BC6_SelbergTrace->2, BC6_WeilTraceMatch->2, ZFR_RH_GT_ZFSChain->2, NuB_SarnakArithm->2, CPS_CE_ConverseApply->2, EFZ_ZeroTermId->2 (0 sorry)",
+    "theorems_proved": [
+      "bc6_st_trace_formula_proved",
+      "bc6_wtm_weil_formula_proved",
+      "nub_sa_hecke_sum_proved",
+      "cps_ca_strong_mult_one_proved",
+      "efz_zt_hadamard_zeros_proved",
+      "bc6_st_from_formula_application",
+      "bc6_wtm_from_weil_identity",
+      "zfr_gt_zfs_from_strip_eps",
+      "nub_sa_from_hecke_explicit",
+      "cps_ca_from_smo_converse",
+      "efz_zt_from_hadamard_counting",
+      "batch120_audit"
+    ],
+    "new_open_defs": [
+      "BC6_ST_TraceApplication_OPEN (~4pp)",
+      "BC6_WTM_TraceIdentity_OPEN (~3pp)",
+      "ZFR_GT_ZFS_StripDef_OPEN (~4pp)",
+      "ZFR_GT_ZFS_EpsConnect_OPEN (~4pp)",
+      "NuB_SA_ExplicitBound_OPEN (~10pp)",
+      "CPS_CA_ConverseTheorem_OPEN (~10pp)",
+      "EFZ_ZT_CountingMatch_OPEN (~1pp)"
+    ],
+    "status": "B120_CLOSED"
   }
 }
