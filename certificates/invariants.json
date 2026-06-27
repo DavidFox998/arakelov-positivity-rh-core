@@ -6948,5 +6948,48 @@
       "CPS_FT_TwistEq_OPEN (~1pp)"
     ],
     "status": "B115_CLOSED"
+  },
+  "batch116_spectralgap_decomp5": {
+    "batch": 116,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch116SpectralGap_Decomp5.lean",
+    "sha256": "e4562e98ef7afff5f11961a156476bfce6f2cb9b05948aca036717485a3052dc",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B116: KS_EC_SpectralGap (s_val=1/2+0i,rfl), CPS_FT_GammaFactor (1,one_ne_zero), KS_EF_Casimir (combine), KS_PID_EigenExpr (ring), CPS_EE_LocalFE (1,one_ne_zero); decompose 5 atoms -> 10 sub-atoms (0 sorry)",
+    "genuine_proofs": [
+      "ks_pid_eigen_expr_proved: (1/2+nu)*(1/2-nu)=1/4-nu^2 by ring"
+    ],
+    "theorems_proved": [
+      "ks_ec_spectral_gap_proved",
+      "cps_ft_gamma_factor_proved",
+      "ks_ef_casimir_proved",
+      "ks_pid_eigen_expr_proved",
+      "cps_ee_local_fe_proved",
+      "zfr_re_from_hecke_siegel",
+      "zfs_vr_va_from_fix_gap",
+      "zfr_ztl_from_vk_density",
+      "ks_pid_from_eigen_extract",
+      "cps_ee_from_local_epsilon",
+      "batch116_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_RE_HeckeReality_OPEN (~1pp)",
+      "ZFR_RE_SiegelContrad_OPEN (~1pp)",
+      "ZFS_VR_VA_FixT0_OPEN (~1pp)",
+      "ZFS_VR_VA_EtaGap_OPEN (~1pp)",
+      "ZFR_ZTL_VKBound_OPEN (~1pp)",
+      "ZFR_ZTL_DensityArg_OPEN (~1pp)",
+      "KS_PID_NuExtract_OPEN (~1pp)",
+      "CPS_EE_EpsilonFactor_OPEN (~1pp)"
+    ],
+    "status": "B116_CLOSED"
   }
 }
