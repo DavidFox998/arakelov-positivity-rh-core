@@ -7207,5 +7207,49 @@
       "LN_ND_NuConvert_OPEN (~1pp)"
     ],
     "status": "B121_CLOSED"
+  },
+  "batch122_zfr_to_rh_decomp6": {
+    "batch": 122,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch122ZFRtoRH_Decomp6.lean",
+    "sha256": "eb8502b3e143e3669b80622c6fed2e243e67071f7f4ed7bc3d9b9b4bab92e750",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B122: ZFR_to_RH reduces to ZFR_RH_EA_HadamardComplete alone (chain 0 sorry); 4 trivial closures; 6 decomps -> 12 sub-atoms at ~1-5pp (0 sorry)",
+    "chain_consequences": [
+      "zfr_to_rh_from_hadamard_complete: ZFR_to_RH_OPEN <- ZFR_RH_EA_HadamardComplete alone"
+    ],
+    "theorems_proved": [
+      "zfr_to_rh_from_hadamard_complete",
+      "zfr_ea_hc_zero_product_proved",
+      "l_sym2_nv_shimura_thm_proved",
+      "nub_sa_eb_ramanujan_check_proved",
+      "cps_ca_ct_input_proved",
+      "zfr_ea_hc_from_zero_strip",
+      "bc6_sb_sa_from_selberg_bc95",
+      "rs_id_ro_from_pole_asymp",
+      "l_sym2_nv_from_shimura_eval",
+      "nub_sa_eb_from_ramanujan_compute",
+      "cps_ca_ct_from_input_apply",
+      "batch122_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_EA_HC_StripComplete_OPEN (~2pp)",
+      "BC6_SB_SA_SelbergGap_OPEN (~3pp)",
+      "BC6_SB_SA_BC95Bound_OPEN (~2pp)",
+      "RS_ID_RO_PoleExtract_OPEN (~3pp)",
+      "RS_ID_RO_AsymptoticSum_OPEN (~2pp)",
+      "L_sym2_NV_Evaluate_OPEN (~1pp)",
+      "NuB_SA_EB_NuCompute_OPEN (~5pp)",
+      "CPS_CA_CT_Apply_OPEN (~5pp)"
+    ],
+    "status": "B122_CLOSED"
   }
 }
