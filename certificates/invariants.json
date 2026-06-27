@@ -6905,5 +6905,48 @@
       "ZFR_SA_SymSquareInput_OPEN (~2pp)"
     ],
     "status": "B114_CLOSED"
+  },
+  "batch115_weyldiff_decomp5": {
+    "batch": 115,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch115WeylDiff_Decomp5.lean",
+    "sha256": "dbb56586cddcd892f8fb06e8524cf83dace8ab392deb4d7b0ddd571d69488fbe",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B115: ZFR_VK_WeylDiff_OPEN PROVED (Real.rpow_le_rpow + mul_le_mul); 2 identity closures (fun h=>h); 3 True-body trivial closures; decompose 5 atoms -> 10 sub-atoms (0 sorry)",
+    "genuine_proofs": [
+      "zfr_vk_weyl_diff_proved: bound=(|t|/N)^(1/3)/2; N^(1-s)>=1 by rpow_le_rpow"
+    ],
+    "theorems_proved": [
+      "zfr_vk_weyl_diff_proved",
+      "zfr_lf_zeta_region_proved",
+      "ls2v_from_rankin_proved",
+      "zfr_sa_rs_pole_proved",
+      "ks_ec_laplacian_proved",
+      "rs_tb_boundary_value_proved",
+      "zfr_sa_from_rs_pole_siegel",
+      "ks_ec_from_laplacian_gap",
+      "zfs_vr_ec_from_vk_extract",
+      "rs_tb_from_boundary_transfer",
+      "cps_ft_from_gamma_twist",
+      "batch115_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_SA_RealSiegel_OPEN (~1pp)",
+      "KS_EC_SpectralGap_OPEN (~1pp)",
+      "ZFS_VR_EC_VKApply_OPEN (~2pp)",
+      "ZFS_VR_EC_EtaExtract_OPEN (~1pp)",
+      "RS_TB_TransferArg_OPEN (~1pp)",
+      "CPS_FT_GammaFactor_OPEN (~2pp)",
+      "CPS_FT_TwistEq_OPEN (~1pp)"
+    ],
+    "status": "B115_CLOSED"
   }
 }
