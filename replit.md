@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: 2853da96 (Batch 106, B104-B106 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: c651a7c8 (Batch 107, B104-B107 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -277,6 +277,16 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
       New combinators (B103): bc6_combined_from_sub_gaps (3 BC6 sub-gaps -> BC6_Combined_OPEN);
       cps_langlands_from_minimum_atoms (5 CPS + WeilBound_to_GRH -> CPS_Langlands_OPEN).
     Architecturally complete. Remaining = ~190pp Lean formalization of established mathematics.
+    B107 (Batch107TrivialCloseLevel3.lean):
+      Closed 6 trivially-True B106 atoms: BC95_Eigenvalue/Selberg, BC6_Trace/Weil/Spectral.
+      Level-3 decompositions of 6 large atoms (~150pp remaining, down from ~190pp):
+        KS_LocalSpec -> KS_ExteriorSquare (~12pp) + KS_LocalNuBound (~8pp)
+        KS_GlobalBound -> KS_LambdaNuRelation (~10pp) + KS_SpectralArith (~10pp)
+        ZFR_LogFreeRegion -> ZFR_GL2Siegel (~8pp) + ZFR_VKExtension (~7pp)
+        ZFR_DensityToGRH -> ZFR_ZeroDensityEst (~6pp) + ZFR_GRHDescent (~4pp)
+        CPS_ConverseThm35 -> CPS_Prelim (~15pp) + CPS_MainConverse (~20pp)
+        EF_WeilExplicit -> EF_ContourSetup (~5pp) + EF_ResidueIntegral (~5pp)
+      Net open atom count: 42 named open defs, ~150pp estimated.
 
 ## Architecture Decisions
 

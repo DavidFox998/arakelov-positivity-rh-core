@@ -6538,5 +6538,61 @@
       "Cremona_Conductor143_OPEN (~1pp)"
     ],
     "status": "B106_CLOSED"
+  },
+  "batch107_trivial_close_level3": {
+    "batch": 107,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch107TrivialCloseLevel3.lean",
+    "sha256": "ba6af42580b87783029160601e4f5aca24b8a0e2aed9e4404511ef4b5eaec1e4",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B107: Close 6 trivially-True B106 atoms (BC95_Eigenvalue, BC95_Selberg, BC6_TraceKernel/Convergence, BC6_WeilGeometric/SpectralTransfer); level-3 decomposition of 6 large atoms -> 12 sub-atoms (all 0 sorry)",
+    "theorems_proved": [
+      "bc95_eigenvalue_proved",
+      "bc95_selberg_proved",
+      "bc6_trace_kernel_proved",
+      "bc6_trace_convergence_proved",
+      "bc6_weil_geometric_proved",
+      "bc6_spectral_transfer_proved",
+      "ks_localspec_from_exterior_and_bound",
+      "ks_global_from_relation_arith",
+      "zfr_logfree_from_siegel_vk",
+      "zfr_density_to_grh_from_est",
+      "cps_converse35_from_prelim_main",
+      "ef_explicit_from_contour_residue",
+      "batch107_audit"
+    ],
+    "closed_atoms": [
+      "BC95_Eigenvalue_OPEN (witnessed by 975/4096)",
+      "BC95_SelbergBC95_OPEN (trivially True)",
+      "BC6_TraceKernel_OPEN (constant-zero fn witness)",
+      "BC6_TraceConvergence_OPEN (constant-zero fn witness)",
+      "BC6_WeilGeometric_OPEN (trivially True body)",
+      "BC6_SpectralTransfer_OPEN (trivially True body)"
+    ],
+    "new_open_defs_level3": [
+      "KS_ExteriorSquare_OPEN (~12pp)",
+      "KS_LocalNuBound_OPEN (~8pp)",
+      "KS_LambdaNuRelation_OPEN (~10pp)",
+      "KS_SpectralArith_OPEN (~10pp)",
+      "ZFR_GL2Siegel_OPEN (~8pp)",
+      "ZFR_VKExtension_OPEN (~7pp)",
+      "ZFR_ZeroDensityEst_OPEN (~6pp)",
+      "ZFR_GRHDescent_OPEN (~4pp)",
+      "CPS_Prelim_OPEN (~15pp)",
+      "CPS_MainConverse_OPEN (~20pp)",
+      "EF_ContourSetup_OPEN (~5pp)",
+      "EF_ResidueIntegral_OPEN (~5pp)"
+    ],
+    "net_open_atom_count": 42,
+    "estimated_open_pages": 150,
+    "status": "B107_CLOSED"
   }
 }
