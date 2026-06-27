@@ -7462,5 +7462,44 @@
       "ZFR_GD_ZFL_DescentLine_OPEN (~0.5pp)"
     ],
     "status": "B127_CLOSED"
+  },
+  "batch128_cascades_final5": {
+    "batch": 128,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch128Cascades_Final5.lean",
+    "sha256": "70f8dabb65aee3baecd43d509dd6eadc40c06121251a533f65e3de1ff198d8ae",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B128: 5 terminal closures (ZFR_HC_HA_Complete, BC6_WM_TraceConclusion, BC6_SB_CG_CuspidalGap, L_sym2_NVE_Value, ZFR_GD_ZFL_DescentLine); 5 major cascades proved: NuB_SA_NC_NuCast, NuB_SA_EB_NuCompute, L_sym2_NV_Evaluate, BC6_SB_SA_BC95Bound, ZFR_GD_ZeroFreeToLine; bonus: BC6_SB_SG_Cuspidal (0 sorry)",
+    "atoms_proved_this_batch": [
+      "NuB_SA_NC_NuCast_OPEN PROVED (B126+B127 chain)",
+      "NuB_SA_EB_NuCompute_OPEN PROVED (B123+B128 chain)",
+      "L_sym2_NV_Evaluate_OPEN PROVED (B127+B128 chain)",
+      "BC6_SB_SA_BC95Bound_OPEN PROVED (B125+B126 chain)",
+      "ZFR_GD_ZeroFreeToLine_OPEN PROVED (B127+B128 chain)",
+      "BC6_SB_SG_Cuspidal_OPEN PROVED (B127+B128 chain)"
+    ],
+    "theorems_proved": [
+      "zfr_hc_ha_complete_proved",
+      "bc6_wm_trace_conclusion_proved",
+      "bc6_sb_cg_cuspidal_gap_proved",
+      "l_sym2_nve_value_proved",
+      "zfr_gd_zfl_descent_line_proved",
+      "nub_sa_nc_nu_cast_proved",
+      "nub_sa_eb_nu_compute_proved",
+      "l_sym2_nv_evaluate_proved",
+      "bc6_sb_sa_bc95_bound_proved",
+      "zfr_gd_zero_free_to_line_proved",
+      "bc6_sb_sa_selberg_gap_cascade",
+      "batch128_audit"
+    ],
+    "status": "B128_CLOSED"
   }
 }
