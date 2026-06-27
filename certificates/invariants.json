@@ -6818,5 +6818,46 @@
       "RS_IC_MellinInv_OPEN (~2pp)"
     ],
     "status": "B112_CLOSED"
+  },
+  "batch113_epszero_decomp5": {
+    "batch": 113,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch113EpsToZero_Decomp5.lean",
+    "sha256": "e20c78b93892fc844c20b3c4e4816842cba7a81ede6b6af221ff300d8fddc00d",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B113: WBG_GC_EpsToZero_OPEN PROVED (le_of_forall_pos_lt_add + abs_eq_zero); ZFS_HS_DensityApply trivial; decompose 5 atoms -> 10 sub-atoms (0 sorry)",
+    "genuine_proofs": [
+      "wbg_gc_eps_to_zero_proved: le_of_forall_pos_lt_add + abs_nonneg + abs_eq_zero"
+    ],
+    "theorems_proved": [
+      "wbg_gc_eps_to_zero_proved",
+      "zfs_hs_density_apply_proved",
+      "zfr_siegel_abs_from_bsd_exclusion",
+      "zfr_siegel_explicit_from_gap_extract",
+      "zfr_grh_from_descent_final",
+      "zfs_hs_from_density_logbound",
+      "zfs_gl_from_halfstrip_grh",
+      "batch113_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_SA_BSDImplication_OPEN (~3pp)",
+      "ZFR_SA_RealExclusion_OPEN (~2pp)",
+      "ZFR_SE_GapExistence_OPEN (~2pp)",
+      "ZFR_SE_ConstantExtract_OPEN (~1pp)",
+      "ZFR_GD_ZeroFreeToLine_OPEN (~2pp)",
+      "ZFR_GD_DescentFinal_OPEN (~2pp)",
+      "ZFS_HS_LogBound_OPEN (~1pp)",
+      "ZFS_GL_HalfStripToFull_OPEN (~1pp)",
+      "ZFS_GL_GRHStatement_OPEN (~1pp)"
+    ],
+    "status": "B113_CLOSED"
   }
 }
