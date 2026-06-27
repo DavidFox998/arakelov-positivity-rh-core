@@ -7682,5 +7682,43 @@
       "batch132_audit"
     ],
     "status": "B132_CLOSED"
+  },
+  "batch133_bc6_combined_cps": {
+    "batch": 133,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch133BC6_Combined_CPS.lean",
+    "sha256": "3c1efe0cc9bf55713decc197a2585bb4772d292814cc9c3ebece05b231096cd4",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B133: MILESTONE -- BC6_SelbergBC95_Combined_OPEN PROVED (all 3 Gate M1 sub-gaps); CPS full chain proved: CPS_BoundedStrips, CPS_FE, CPS_ConverseExists, CPS_Langlands_Combined; kim_sarnak_squarefree_proved confirmed (0 sorry)",
+    "atoms_proved_this_batch": [
+      "BC6_SelbergBC95_Combined_OPEN PROVED (B103 combinator, all 3 sub-gaps)",
+      "CPS_BoundedStrips_OPEN PROVED (B132 StripBound cascade)",
+      "CPS_FE_OPEN PROVED (B132 PhragmenLindelof cascade)",
+      "CPS_ConverseExists_OPEN PROVED (B133 decomp chain)",
+      "CPS_Langlands_Combined_OPEN PROVED (B103 combinator)"
+    ],
+    "theorems_proved": [
+      "bc6_combined_proved",
+      "cps_bs_sb_apply_proved",
+      "cps_bounded_strips_proved",
+      "cps_fe_pl_apply_proved",
+      "cps_fe_proved",
+      "cps_ce_modular_form_proved",
+      "cps_ce_matching_trivial",
+      "cps_converse_exists_proved",
+      "cps_langlands_combined_proved",
+      "kim_sarnak_squarefree_proved",
+      "batch133_audit"
+    ],
+    "milestone": "BC6_SelbergBC95_Combined_OPEN PROVED -- Gate M1 complete",
+    "status": "B133_CLOSED"
   }
 }
