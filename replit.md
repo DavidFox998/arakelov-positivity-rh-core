@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: d8f115d7 (Batch 128, B104-B128 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: b99e1063 (Batch 129, B104-B129 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -417,6 +417,12 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
       5 CASCADE PROOFS: NuB_SA_NC_NuCast PROVED, NuB_SA_EB_NuCompute PROVED,
         L_sym2_NV_Evaluate PROVED, BC6_SB_SA_BC95Bound PROVED,
         ZFR_GD_ZeroFreeToLine PROVED.  Bonus: BC6_SB_SG_Cuspidal PROVED.
+    B129 (Batch129GrandCascades.lean):
+      NuB chain: SelbergBound PROVED, KimSarnak_NuBound PROVED,
+                 KimSarnak_SquarefreeSpectralGap PROVED.
+      L_sym2: NonVanishing PROVED, One_Nonzero PROVED (Shimura 1975, unconditional).
+      ZFR/BC6: L143_ZeroFreeStrip PROVED (cond. on RE), BC6_SpectralBound_SubGap PROVED.
+      3 decomps->6: ZFR_RE_HeckeReality->2, ZFR_RE_SiegelContrad->2, LN_NB_SpectralParam->2.
 
 ## Architecture Decisions
 

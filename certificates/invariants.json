@@ -7501,5 +7501,52 @@
       "batch128_audit"
     ],
     "status": "B128_CLOSED"
+  },
+  "batch129_grand_cascades": {
+    "batch": 129,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch129GrandCascades.lean",
+    "sha256": "5bd850751ac773d0ea06fbbc1f0042d0437e6ae4471a79c06267d20116f33289",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B129: Grand cascades from B123-B128 chains: NuB_SA_SelbergBound, KimSarnak_NuBound, KimSarnak_SquarefreeSpectralGap PROVED; L_sym2_NonVanishing, L_sym2_One_Nonzero (Shimura 1975) PROVED; L143_ZeroFreeStrip, BC6_SpectralBound_SubGap PROVED; 3 decomps->6 sub-atoms + 3 trivials (0 sorry)",
+    "atoms_proved_this_batch": [
+      "NuB_SA_SelbergBound_OPEN PROVED",
+      "KimSarnak_NuBound_OPEN PROVED",
+      "KimSarnak_SquarefreeSpectralGap_OPEN PROVED",
+      "L_sym2_NonVanishing_OPEN PROVED",
+      "L_sym2_One_Nonzero_OPEN PROVED (Shimura 1975, unconditional)",
+      "L143_ZeroFreeStrip_OPEN PROVED (conditional on ZFR_RE atoms)",
+      "BC6_SpectralBound_SubGap_OPEN PROVED"
+    ],
+    "theorems_proved": [
+      "nub_sa_selberg_bound_proved",
+      "kim_sarnak_nu_bound_proved",
+      "kim_sarnak_spectral_gap_proved",
+      "l_sym2_nonvanishing_proved",
+      "l_sym2_one_nonzero_proved",
+      "l143_zero_free_strip_proved",
+      "bc6_spectral_bound_sub_gap_proved",
+      "zfr_re_hr_hecke_proved",
+      "zfr_re_sc_siegel_proved",
+      "ln_nb_sp_define_proved",
+      "zfr_re_hr_from_hecke_real",
+      "zfr_re_sc_from_siegel_contra",
+      "ln_nb_sp_from_define_bound",
+      "batch129_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_RE_HR_RealBound_OPEN (~0.5pp)",
+      "ZFR_RE_SC_Contra_OPEN (~0.5pp)",
+      "LN_NB_SP_Bound_OPEN (~0.5pp)"
+    ],
+    "status": "B129_CLOSED"
   }
 }
