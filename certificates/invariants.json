@@ -6859,5 +6859,51 @@
       "ZFS_GL_GRHStatement_OPEN (~1pp)"
     ],
     "status": "B113_CLOSED"
+  },
+  "batch114_grh_exact_decomp6": {
+    "batch": 114,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch114GRHExact_Decomp6.lean",
+    "sha256": "2fc8abdd4fb95fc05a67663bcb5ddc12068a1da8aa8dffc1d651650bd7ca9bc0",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B114: WBG_GC_Exact proved (fun h=>h); Siegel abs corrected to L_sym2(1)!=0 path; CPS_NU_StrongMultOne trivially True; decompose 6 atoms -> 12 sub-atoms (0 sorry)",
+    "theorems_proved": [
+      "wbg_gc_exact_proved",
+      "cps_nu_strong_mult_one_proved",
+      "zfr_sa_from_sym2",
+      "ks_ef_from_casimir_paramid",
+      "zfr_vk_classical_from_weyl_deduction",
+      "cps_nu_from_multone_conductor",
+      "rs_rc_from_norm_formula",
+      "ls2v_from_nonvanishing_rankin",
+      "zfr_logfree_from_bound_region",
+      "batch114_audit"
+    ],
+    "corrections": [
+      "ZFR_SA_BSDImplication_OPEN was incorrect: BSD rank=1 gives L(1,E)=0 (not !=0). Correct path uses L_sym2(1)!=0 (Shimura). New: ZFR_SA_SymSquareInput_OPEN."
+    ],
+    "new_open_defs": [
+      "KS_EF_Casimir_OPEN (~3pp)",
+      "KS_EF_ParameterID_OPEN (~2pp)",
+      "ZFR_VK_WeylDiff_OPEN (~1pp)",
+      "ZFR_VK_ZeroFreeDeduction_OPEN (~1pp)",
+      "CPS_NU_ConductorMatch_OPEN (~1pp)",
+      "RS_RC_PetersonNorm_OPEN (~2pp)",
+      "RS_RC_PoleResidueFormula_OPEN (~1pp)",
+      "LS2V_NonVanishing_OPEN (~1pp)",
+      "LS2V_FromRankin_OPEN (~1pp)",
+      "ZFR_LF_BoundWeaken_OPEN (~1pp)",
+      "ZFR_LF_ZetaRegion_OPEN (~1pp)",
+      "ZFR_SA_SymSquareInput_OPEN (~2pp)"
+    ],
+    "status": "B114_CLOSED"
   }
 }
