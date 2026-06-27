@@ -7078,5 +7078,45 @@
       "EFZ_EF_CompletedL_OPEN (trivial True body)"
     ],
     "status": "B118_CLOSED"
+  },
+  "batch119_largeatoms_decomp6": {
+    "batch": 119,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch119LargeAtoms_Decomp6.lean",
+    "sha256": "f98e5cd67dc85ad29f589ad384d6c087738a375b68e7e63d31095359524ba688",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B119: 4 trivial closures + decompose 6 large B102 atoms -> 12 sub-atoms: LambdaToNu->2, NuBound->2, CPS_BS_Convex->2, EF_WeilBound->2, RS_Residue_Transfer->2, CPS_ConverseExists->2 (0 sorry)",
+    "theorems_proved": [
+      "nub_kim_selberg_proved",
+      "efw_explicit_formula_deriv_proved",
+      "rs_rt_contour_integral_proved",
+      "cps_ce_functional_eqn_proved",
+      "ln_from_selberg_nudef",
+      "nub_from_kim_sarnak",
+      "cps_bc_from_pl_apply",
+      "efw_from_deriv_apply",
+      "rs_rt_from_contour_residue",
+      "cps_ce_from_feqn_converse",
+      "batch119_audit"
+    ],
+    "new_open_defs": [
+      "LN_SelbergEigenvalue_OPEN (~2pp)",
+      "LN_NuDefinition_OPEN (~3pp)",
+      "NuB_SarnakArithm_OPEN (~20pp)",
+      "CPS_BC_PhragmenLindelof_OPEN (~2pp)",
+      "CPS_BC_ConvexApply_OPEN (~1pp)",
+      "EFW_WeilBoundApply_OPEN (~7pp)",
+      "RS_RT_ResidueCompute_OPEN (~2pp)",
+      "CPS_CE_ConverseApply_OPEN (~20pp)"
+    ],
+    "status": "B119_CLOSED"
   }
 }
