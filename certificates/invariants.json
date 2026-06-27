@@ -6402,5 +6402,40 @@
       "Classical.choice",
       "Quot.sound"
     ]
+  },
+  "batch104_cremona_ep_close": {
+    "batch": 104,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch104EulerProductCremonaClose.lean",
+    "sha256": "7bdbdc512a8da0fdd97185ce16b197f6f5ac647bd1de839ddd3a2ad5aa93266c",
+    "commit": "066f2300bdd0a04983d5cc733dd1ffa86aabd354",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B104: Cremona_Unique_143_OPEN + CPS_EulerProduct_OPEN sub-atom closures",
+    "theorems_proved": [
+      "cremona_unique_from_modularity",
+      "cps_ep_from_euler_factors",
+      "real_euler_poly_pos_of_hasse",
+      "euler_poly_pos_for_re_gt_three_halves",
+      "batch104_audit"
+    ],
+    "new_defs": [
+      "Cremona_ModularityL_OPEN",
+      "EP_LocalFactor_NonZero_143_OPEN",
+      "EP_FactoredForm_143_OPEN"
+    ],
+    "closures": {
+      "Cremona_Unique_143_OPEN": "reduced to Cremona_ModularityL_OPEN via Eq.symm.trans",
+      "CPS_EulerProduct_OPEN": "reduced to EP_LocalFactor_NonZero + EP_FactoredForm via 1-line combinator"
+    },
+    "key_proof": "real_euler_poly_pos_of_hasse: 4p*(1-au+pu^2)=(2pu-a)^2+(4p-a^2); sum=0 forces pu^2=1. Contradiction with pu^2<1.",
+    "status": "B104_CLOSED"
   }
 }
