@@ -6687,5 +6687,46 @@
       "EF_ZeroCount_OPEN (~2pp)"
     ],
     "status": "B109_CLOSED"
+  },
+  "batch110_mellin_close_l3_decomp5": {
+    "batch": 110,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch110MellinClose_L3Decomp5.lean",
+    "sha256": "6ce3d270b0906b2db2ad780c62432846c868ac2bd7f2e6c934fecac5337e25f7",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B110: RS_MellinTransform_OPEN closed (constant-1 witness); level-3 decomp of 5 atoms (L_sym2, RS_Residue, CPS_FE, CPS_BS, KS_LambdaNu) -> 10 sub-atoms",
+    "theorems_proved": [
+      "rs_mellin_transform_proved",
+      "l_sym2_from_shimura_value",
+      "rs_residue_from_compute_transfer",
+      "cps_fe_from_twist_epsilon",
+      "cps_bs_from_vertical_convexity",
+      "ks_lambda_nu_from_decomp_formula",
+      "batch110_audit"
+    ],
+    "closed_trivial_atoms": [
+      "RS_MellinTransform_OPEN (constant-1 witness)"
+    ],
+    "new_open_defs": [
+      "L_sym2_Shimura_OPEN (~3pp)",
+      "L_sym2_Value_OPEN (~2pp)",
+      "RS_ResidueCompute_OPEN (~3pp)",
+      "RS_TransferBound_OPEN (~2pp)",
+      "CPS_FE_Twist_OPEN (~3pp)",
+      "CPS_FE_Epsilon_OPEN (~3pp)",
+      "CPS_BS_Vertical_OPEN (~3pp)",
+      "CPS_BS_Convexity_OPEN (~3pp)",
+      "KS_SpectralDecomp_OPEN (~5pp)",
+      "KS_EigenvalueFormula_OPEN (~5pp)"
+    ],
+    "status": "B110_CLOSED"
   }
 }

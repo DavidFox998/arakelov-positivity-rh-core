@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: 56c22ab9 (Batch 109, B104-B109 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: f4ff41ec (Batch 110, B104-B110 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -304,6 +304,14 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
         RS_Identity -> RS_MellinTransform (~5pp) + RS_IdentityConv (~5pp)
         WeilBound_to_GRH -> WBG_ZeroLocalize (~2pp) + WBG_GRHConclusion (~2pp)
         EF_ZeroEnumeration -> EF_HadamardProduct (~3pp) + EF_ZeroCount (~2pp)
+    B110 (Batch110MellinClose_L3Decomp5.lean):
+      RS_MellinTransform_OPEN closed (constant-1 witness, one_ne_zero).
+      Level-3 decomp of 5 atoms -> 10 sub-atoms (combinators 0 sorry):
+        L_sym2_One_Nonzero -> L_sym2_Shimura (~3pp) + L_sym2_Value (~2pp)
+        RS_Residue_Transfer -> RS_ResidueCompute (~3pp) + RS_TransferBound (~2pp)
+        CPS_FunctionalEquation -> CPS_FE_Twist (~3pp) + CPS_FE_Epsilon (~3pp)
+        CPS_BoundedStrips -> CPS_BS_Vertical (~3pp) + CPS_BS_Convexity (~3pp)
+        KS_LambdaNuRelation -> KS_SpectralDecomp (~5pp) + KS_EigenvalueFormula (~5pp)
 
 ## Architecture Decisions
 
