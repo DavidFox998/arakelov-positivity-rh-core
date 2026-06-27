@@ -7251,5 +7251,45 @@
       "CPS_CA_CT_Apply_OPEN (~5pp)"
     ],
     "status": "B122_CLOSED"
+  },
+  "batch123_leaf_push_decomp6": {
+    "batch": 123,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch123LeafPush_Decomp6.lean",
+    "sha256": "f7ba72e478f7febde2f53ab91484490ece0eb10aab15ba9c01309589f8222220",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B123: 5 trivial closures + 6 decomps -> 12 sub-atoms at ~1-3pp: ZFR_EA_HC_StripComplete->2, RS_ID_RO_PoleExtract->2, BC6_SB_SA_SelbergGap->2, CPS_CA_CT_Apply->2, NuB_SA_EB_NuCompute->2, EFW_WeilBoundApply->2 (0 sorry)",
+    "theorems_proved": [
+      "zfr_hc_sc_siegel_input_proved",
+      "bc6_sb_sg_eisenstein_proved",
+      "cps_ca_cta_twist_l_proved",
+      "nub_sa_nc_alpha_bound_proved",
+      "efw_wba_test_fn_pos_proved",
+      "zfr_hc_sc_from_siegel_hadamard",
+      "rs_id_pe_from_l1_residue",
+      "bc6_sb_sg_from_eis_cusp",
+      "cps_ca_cta_from_twist_conclude",
+      "nub_sa_nc_from_alpha_nu",
+      "efw_wba_from_testfn_contrib",
+      "batch123_audit"
+    ],
+    "new_open_defs": [
+      "ZFR_HC_SC_HadamardApply_OPEN (~1pp)",
+      "RS_ID_PE_L1Shimura_OPEN (~2pp)",
+      "RS_ID_PE_ResidueCalc_OPEN (~1pp)",
+      "BC6_SB_SG_Cuspidal_OPEN (~1pp)",
+      "CPS_CA_CTA_Conclude_OPEN (~2pp)",
+      "NuB_SA_NC_NuCast_OPEN (~2pp)",
+      "EFW_WBA_ZeroContrib_OPEN (~3pp)"
+    ],
+    "status": "B123_CLOSED"
   }
 }
