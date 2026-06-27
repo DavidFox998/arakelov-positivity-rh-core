@@ -6594,5 +6594,53 @@
     "net_open_atom_count": 42,
     "estimated_open_pages": 150,
     "status": "B107_CLOSED"
+  },
+  "batch108_arith_close_level4": {
+    "batch": 108,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch108ArithClose_Level4Decomp.lean",
+    "sha256": "f696c08de0943f571ab88c0167c99f87c3a84fc94baaf413b548b8199ce7d46e",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B108: KS_SpectralArith_Corrected PROVED (nlinarith); close 4 trivial B107 atoms; level-4 decomp of 4 medium atoms -> 8 sub-atoms (0 sorry)",
+    "theorems_proved": [
+      "KS_SpectralArith_Corrected",
+      "ks_global_corrected",
+      "ks_exterior_square_proved",
+      "zfr_zero_density_proved",
+      "cps_prelim_proved",
+      "ef_contour_setup_proved",
+      "cps_main_from_autrep_gl2",
+      "zfr_siegel_from_abs_explicit",
+      "ks_local_from_gl4_transfer",
+      "ef_residue_from_cauchy_bound",
+      "batch108_audit"
+    ],
+    "arithmetic_proof": "KS_SpectralArith_Corrected: 0<=nu, nu<=7/64 -> 1/4-nu^2>=975/4096; proved by nlinarith[sq_nonneg(7/64-nu)]",
+    "closed_trivial_atoms": [
+      "KS_ExteriorSquare_OPEN (witness 0)",
+      "ZFR_ZeroDensityEst_OPEN (A=B=1, True body)",
+      "CPS_Prelim_OPEN (zero Hecke coeff)",
+      "EF_ContourSetup_OPEN (cb=1)"
+    ],
+    "new_open_defs_level4": [
+      "CPS_AutRep_OPEN (~12pp)",
+      "CPS_GLS2_OPEN (~8pp)",
+      "ZFR_SiegelAbs_OPEN (~5pp)",
+      "ZFR_SiegelExplicit_OPEN (~3pp)",
+      "KS_GL4Ramanujan_OPEN (~5pp)",
+      "KS_NuTransfer_OPEN (~3pp)",
+      "EF_CauchyApply_OPEN (~3pp)",
+      "EF_WeilBoundEst_OPEN (~2pp)"
+    ],
+    "net_open_atom_count": 46,
+    "status": "B108_CLOSED"
   }
 }

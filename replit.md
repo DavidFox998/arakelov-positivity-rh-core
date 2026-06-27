@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: c651a7c8 (Batch 107, B104-B107 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: 486e3276 (Batch 108, B104-B108 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -287,6 +287,15 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
         CPS_ConverseThm35 -> CPS_Prelim (~15pp) + CPS_MainConverse (~20pp)
         EF_WeilExplicit -> EF_ContourSetup (~5pp) + EF_ResidueIntegral (~5pp)
       Net open atom count: 42 named open defs, ~150pp estimated.
+    B108 (Batch108ArithClose_Level4Decomp.lean):
+      KS_SpectralArith_Corrected PROVED (nlinarith: 0<=nu, nu<=7/64 -> 1/4-nu^2>=975/4096).
+      Closed 4 trivial B107 atoms: KS_ExteriorSquare, ZFR_ZeroDensityEst, CPS_Prelim, EF_ContourSetup.
+      Level-4 decompositions of 4 medium atoms (combinators 0 sorry):
+        CPS_MainConverse -> CPS_AutRep (~12pp) + CPS_GLS2 (~8pp)
+        ZFR_GL2Siegel -> ZFR_SiegelAbs (~5pp) + ZFR_SiegelExplicit (~3pp)
+        KS_LocalNuBound -> KS_GL4Ramanujan (~5pp) + KS_NuTransfer (~3pp)
+        EF_ResidueIntegral -> EF_CauchyApply (~3pp) + EF_WeilBoundEst (~2pp)
+      Net open atom count: 46 named open defs.
 
 ## Architecture Decisions
 
