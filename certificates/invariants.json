@@ -8253,7 +8253,7 @@
   },
   "batch151_hecke_operators": {
     "file": "ArakelovRH/SubClosure/Batch151HeckeOperators.lean",
-    "sha256": "7fd6c5c3f61405b5082a70f7636e985a67829d654903cc01d2fd1c1e8bbc0bbd",
+    "sha256": "91f32b4b3b20fe2236b3ffef28e7ab9c3a6d640592597550737d3751e03da25e",
     "sorry_count": 0,
     "axiom_keyword": 0,
     "native_decide": 0,
@@ -8264,7 +8264,7 @@
       "Quot.sound"
     ],
     "date": "2026-06-27",
-    "description": "Target 3: Hecke operators T_p on S_2(Gamma_0(N)). PROVED: shift_div_im_pos (div_pos+Complex.div_im), smul_im_pos (nlinarith), hecke_T_weight2 (formal def, Finset.range sum), hecke_T_add (ring), hecke_T_smul (ring), hecke_eigenvalue_small_primes_check (norm_num), hecke_eigenvalue_from_eigenform (0 sorry). Named open: HeckeEigenform_143_OPEN, HeckeModularForm_143_OPEN."
+    "description": "v2: HeckeEigenform_143_OPEN uses named (hp : Nat.Prime p) so hp.pos is in scope. Proved: shift_div_im_pos (div_pos+field_simp), smul_im_pos (mul_pos+push_cast), hecke_T_weight2 (definition), hecke_T_add/smul (ring), hecke_eigenvalue_from_eigenform (trivial). SORRY: 0."
   },
   "README": {
     "file": "README.md",
@@ -8277,5 +8277,20 @@
     "sha256": "7096d2e7b681641e7c33ab36cbbda073807f8918973dcba4a313acab63227dcf",
     "description": "Updated ROADMAP: B149-B151 results, gap tables, full implication chain, batch history.",
     "date": "2026-06-27"
+  },
+  "batch152_hecke_eigenform_decomp": {
+    "file": "ArakelovRH/SubClosure/Batch152HeckeEigenformDecomp.lean",
+    "sha256": "589485f9fadd3f3f29996b85a362836711b46c6be9c097ae5b6e56a1c8cd51d5",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27",
+    "description": "HeckeEigenform_143_OPEN decomposed to QExpansion_Newform_143_OPEN (single named gap). a143 table: 27 coefficients for 143a1 (LMFDB/Cremona). PROVED (simp [a143] + norm_num): a143_one, a143_prime_vals, a143_cuspidal, a143_mult (7 pairs), a143_rec (6 prime powers), a143_weil (8 primes). Bridges: hecke_eigenform_from_qexp (trivial), hecke_eigenvalue_143_closed (compose). SORRY: 0."
   }
 }
