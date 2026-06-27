@@ -72,7 +72,7 @@ variable (L_143a1        : ℂ → ℂ)
 def IK_RS_SimplePole_OPEN : Prop :=
   ∃ c : ℝ, 0 < c ∧
     Filter.Tendsto (fun s : ℂ => (s - 1) * RankinSelberg_L s)
-      (nhds (1 : ℂ)) (nhds (c : ℂ))
+      (𝓝[≠] (1 : ℂ)) (nhds (c : ℂ))
 
 /-! ── §3. Atomic sub-gap (2): GRH + RS pole => L_sym2 nonvanishing ─ -/
 
