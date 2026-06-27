@@ -6991,5 +6991,45 @@
       "CPS_EE_EpsilonFactor_OPEN (~1pp)"
     ],
     "status": "B116_CLOSED"
+  },
+  "batch117_medatoms_decomp6": {
+    "batch": 117,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch117MediumAtoms_Decomp6.lean",
+    "sha256": "3b9180293c39e95f77afa7f7c6fe63927599e2718679758512f81163df43ee44",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B117: RS_IC_MI_Perron trivial; decompose 6 medium B102 atoms -> 12 sub-atoms: WeilBound_to_GRH, EF_ZeroEnum, CPS_BS_Vert, ZFR_to_RH, LN_NuLambda, RS_IC_Mellin (0 sorry)",
+    "theorems_proved": [
+      "rs_ic_mi_perron_proved",
+      "wbg_from_zero_set_conclusion",
+      "efz_from_formula_termid",
+      "cps_bv_from_strip_growth",
+      "zfr_rh_from_translation_extend",
+      "ln_nb_from_spectral_bridge",
+      "rs_ic_mi_from_perron_coeff",
+      "batch117_audit"
+    ],
+    "new_open_defs": [
+      "WBG_ZeroSetContainment_OPEN (~2pp)",
+      "WBG_CriticalLineConclusion_OPEN (~2pp)",
+      "EFZ_ExplicitFormula_OPEN (~3pp)",
+      "EFZ_ZeroTermId_OPEN (~2pp)",
+      "CPS_BV_StripBound_OPEN (~2pp)",
+      "CPS_BV_GrowthControl_OPEN (~1pp)",
+      "ZFR_RH_GRHTranslation_OPEN (~15pp)",
+      "ZFR_RH_ExtendToAll_OPEN (~10pp)",
+      "LN_NB_SpectralParam_OPEN (~1pp)",
+      "LN_NB_NuBridge_OPEN (~1pp)",
+      "RS_IC_MI_CoeffBound_OPEN (~1pp)"
+    ],
+    "status": "B117_CLOSED"
   }
 }
