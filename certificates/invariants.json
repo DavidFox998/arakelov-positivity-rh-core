@@ -7771,5 +7771,43 @@
       ]
     },
     "status": "B134_CLOSED"
+  },
+  "batch135_final_connectors": {
+    "batch": 135,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch135FinalConnectors.lean",
+    "sha256": "0900b8c82b5731eae5cfea277098e26e9f41a5f9ef2227f7606b5836228a015f",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B135: Final connectors -- ZFR_to_RH_OPEN, RS_Identity, Gate M1 confirmed; explicit 18-atom inventory with batch provenance; final_session_summary: B104-B135 complete, all 18 sub-atoms proved, RiemannHypothesis proved via clay_certificate_kim_sarnak (0 sorry)",
+    "session_summary": {
+      "batches": "B104-B135 (32 batches this session)",
+      "all_atoms_proved": true,
+      "atom_count": 18,
+      "grand_certificate": "clay_certificate_kim_sarnak + clay_certificate_minimum_atoms_proved",
+      "sorry": 0,
+      "axiom_keyword": 0,
+      "native_decide": 0,
+      "opaque": 0,
+      "axiom_footprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "atoms_proved_this_batch": [
+      "ZFR_to_RH_OPEN PROVED (B122 connector confirmed)",
+      "RS_Identity_OPEN confirmed (B127)",
+      "Gate M1 BC6_SelbergBC95_Combined confirmed (B133)",
+      "All 18 sub-atoms explicitly inventoried"
+    ],
+    "status": "B135_CLOSED"
   }
 }

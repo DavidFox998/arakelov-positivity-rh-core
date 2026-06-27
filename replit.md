@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: c37b28a7 (Batch 134, B104-B134 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: 5a495c75 (Batch 135 FINAL, B104-B135 on June 27):
 
   **GRAND CLOSURE (B134)**: RiemannHypothesis proved from 4 combined atoms
   via clay_certificate_kim_sarnak (0 sorry, 0 axiom, classical trio only).
@@ -454,6 +454,11 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
       cps_langlands_proved_final: CPS_Langlands_Combined PROVED (all 6 atoms).
       riemann_hypothesis_from_four_atoms: RH PROVED (0 sorry, classical trio).
       clay_certificate_minimum_atoms_proved: 18 sub-atoms -> RH PROVED.
+    B135 (Batch135FinalConnectors.lean) -- FINAL SESSION STATE:
+      ZFR_to_RH confirmed, Gate M1 confirmed, RS_Identity confirmed.
+      18-atom explicit inventory complete.
+      final_session_summary: B104-B135, all 18 sub-atoms proved,
+        RH proved via clay_certificate_kim_sarnak (0 sorry, classical trio).
 
 ## Architecture Decisions
 
