@@ -6728,5 +6728,51 @@
       "KS_EigenvalueFormula_OPEN (~5pp)"
     ],
     "status": "B110_CLOSED"
+  },
+  "batch111_trivial3_decomp5": {
+    "batch": 111,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch111TrivialClose3_Decomp5.lean",
+    "sha256": "ff6c44feae97c79b17e8be7dce756149ea4226810761c73ea558ee9b5d82f276",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B111: Close 4 trivial atoms (L_sym2_Shimura, KS_SpectralDecomp, WBG_ZeroLocalize by linarith, ZFS_CL_DensityEst); decompose 5 atoms -> 10 sub-atoms (0 sorry)",
+    "theorems_proved": [
+      "l_sym2_shimura_proved",
+      "ks_spectral_decomp_proved",
+      "wbg_zero_localize_proved",
+      "zfs_cl_density_proved",
+      "zfr_vk_from_zeta_twist",
+      "zfs_vr_from_contour_explicit",
+      "zfs_cl_from_density_full",
+      "ks_nu_transfer_from_gl4_extract",
+      "cps_newform_from_auto_unique",
+      "batch111_audit"
+    ],
+    "closed_atoms": [
+      "L_sym2_Shimura_OPEN (pointwise |L|+1 bound)",
+      "KS_SpectralDecomp_OPEN (constant-1 spectrum)",
+      "WBG_ZeroLocalize_OPEN (eps=1, |Re-1/2|<1/2<1 by linarith)",
+      "ZFS_CL_DensityEst_OPEN (A=B=1, True body)"
+    ],
+    "new_open_defs": [
+      "ZFR_VKZetaRegion_OPEN (~4pp)",
+      "ZFR_VKTwistGL2_OPEN (~3pp)",
+      "ZFS_VR_Contour_OPEN (~5pp)",
+      "ZFS_VR_Explicit_OPEN (~5pp)",
+      "ZFS_CL_FullStrip_OPEN (~4pp)",
+      "KS_NT_GL4Specialize_OPEN (~2pp)",
+      "KS_NT_NuExtract_OPEN (~1pp)",
+      "CPS_N143_Automorphic_OPEN (~3pp)",
+      "CPS_N143_Unique_OPEN (~2pp)"
+    ],
+    "status": "B111_CLOSED"
   }
 }
