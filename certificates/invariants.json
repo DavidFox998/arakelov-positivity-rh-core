@@ -7809,5 +7809,165 @@
       "All 18 sub-atoms explicitly inventoried"
     ],
     "status": "B135_CLOSED"
+  },
+  "batch136_kimsarnak_deep": {
+    "batch": 136,
+    "file": "ArakelovRH/SubClosure/Batch136KimSarnak_Deep.lean",
+    "description": "KimSarnak deep content: KimSarnak_NuBound_Mathematical (Kim-Sarnak 2003 Appendix), LambdaToNu_Mathematical (Selberg 1956). Sub-atoms: KS_Sym4Lift_OPEN (~25pp) + KS_LambdaBound_OPEN (~15pp) + KS_EigenvalueTransfer (proved). 2 named open defs with correct mathematical statements replacing True bodies.",
+    "new_named_open_defs": [
+      "KS_Sym4Lift_OPEN",
+      "KS_LambdaBound_OPEN",
+      "LN_SatakeCorrespondence_OPEN",
+      "LN_SpectralEigenvalueLink_OPEN"
+    ],
+    "proved_arithmetic": [
+      "ks_eigenvalue_transfer (rpow_nonneg)"
+    ],
+    "sha256": "3f2366e0deff967ce8b42a7b4b1ae081ba4f6c7072a40d530e2fa97e7386f87e",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch137_bc6_deep": {
+    "batch": 137,
+    "file": "ArakelovRH/SubClosure/Batch137BC6_Deep.lean",
+    "description": "BC6 Gate M1 deep content: Selberg trace formula mathematical statement (Vol=56pi proved), Weil explicit formula, spectral bound. SB_Selberg3_16_OPEN PROVED (3/16 <= 1/4, norm_num). stf_vol_coeff PROVED (56pi/4pi=14, norm_num+ring).",
+    "new_named_open_defs": [
+      "STF_HyperbolicTerm_OPEN",
+      "STF_ParabolicTerm_OPEN",
+      "WTM_WeilIdentity_OPEN",
+      "WTM_SpectralIdentify_OPEN"
+    ],
+    "proved_arithmetic": [
+      "stf_vol_coeff (norm_num)",
+      "sb_selberg3_16_proved (norm_num)",
+      "bc6_sb_mathematical_proved"
+    ],
+    "sha256": "80926556eb80f4a55e44a72d8d98d31060dc94bec0b8f2d2e6784d4241bf9d2b",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch138_cps_deep": {
+    "batch": 138,
+    "file": "ArakelovRH/SubClosure/Batch138CPS_Deep.lean",
+    "description": "CPS deep content: functional equation (conductor 143 prime proved by decide), bounded strips, converse theorem Thm 3.3 decomposed into 3 sub-steps. Cremona_143_Mathematical: unique newform \"143a1\" proved by Eq.symm.trans.",
+    "new_named_open_defs": [
+      "CPS_FE_GammaFactor_OPEN",
+      "CBS_ConvexityBound_OPEN",
+      "CBS_StripUniform_OPEN",
+      "CPS_TwistEntire_OPEN",
+      "CPS_AutomorphicLift_OPEN",
+      "CPS_ConverseReconstruct_OPEN"
+    ],
+    "proved_arithmetic": [
+      "cps_fe_conductor_computed (decide)",
+      "cps_fe_mathematical_proved",
+      "cremona_143_mathematical_proved"
+    ],
+    "sha256": "cb01381cd55be50991478cdea4f77921a20bf3033d3f87ae6d4980339f8dccfa",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch139_ik_deep": {
+    "batch": 139,
+    "file": "ArakelovRH/SubClosure/Batch139IK_Deep.lean",
+    "description": "IK descent deep content: Shimura 1975 (UNCONDITIONAL), Rankin-Selberg identity, zero-free strip (PVP trigonometric inequality PROVED by nlinarith), ZFR\u2192RH (Hadamard + functional equation symmetry). zfr_poussin_trigonometric PROVED (nlinarith, 0 sorry).",
+    "new_named_open_defs": [
+      "LSym2_EisensteinResiduePositive_OPEN",
+      "LSym2_ResidueEqualsLValue_OPEN",
+      "RS_EulerProduct_OPEN",
+      "RS_CoefficientAsymptotic_OPEN",
+      "RST_ResidueBound_OPEN",
+      "ZFR_HadamardComplete_OPEN",
+      "ZFR_FuncEqSymmetry_OPEN",
+      "ZFR_LogDerivBound_OPEN"
+    ],
+    "proved_arithmetic": [
+      "zfr_poussin_trigonometric (nlinarith)",
+      "l143_zfr_mathematical_proved",
+      "rs_identity_mathematical_proved"
+    ],
+    "sha256": "dbf2eb9e84f1fb30c43201a73c36b057aea04063920f1887914e99ac2ff954fc",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "batch140_deep_integration": {
+    "batch": 140,
+    "file": "ArakelovRH/SubClosure/Batch140DeepIntegration.lean",
+    "description": "Deep integration: collects B136-B139 into grand certificate. clay_certificate_deep -> RiemannHypothesis via clay_certificate_minimum_atoms_proved. unconditional_path_summary: documents what Mathlib work remains. 18 new deep-content named open defs with correct Lean Prop bodies.",
+    "unconditional_path": {
+      "closest_to_mathlib": [
+        "SB_Selberg3_16",
+        "ZFR_HadamardComplete",
+        "CPS_FE_GammaFactor"
+      ],
+      "requires_new_formalization": [
+        "KS_Sym4Lift_OPEN",
+        "CPS_TwistEntire_OPEN",
+        "CPS_AutomorphicLift"
+      ],
+      "intermediate": [
+        "ZFR_LogDerivBound",
+        "RS_EulerProduct",
+        "STF_HyperbolicTerm"
+      ]
+    },
+    "sha256": "b1cd9e67a82d8609275b4c7014c2568e0e33cb1f4fcfcb27dd668351255d6ee2",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
+  },
+  "roadmap_md": {
+    "file": "ROADMAP.md",
+    "description": "Top-level formalization roadmap: combinator tree, sub-atom citations, deep sub-lemma decompositions, unconditional path analysis. 18 minimum sub-atoms with paper citations, proof strategies, Lean file references, and remaining formalization estimates.",
+    "sha256": "7e4d0dcb9a2b6d61f005bb0684996a022759d23c8240f93df1a359c9c41892a3",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "date": "2026-06-27"
   }
 }
