@@ -6774,5 +6774,49 @@
       "CPS_N143_Unique_OPEN (~2pp)"
     ],
     "status": "B111_CLOSED"
+  },
+  "batch112_trivial2_decomp5": {
+    "batch": 112,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch112TrivialClose2_Decomp5.lean",
+    "sha256": "c2209edc3ceb1f0797a07deec2a96af36e3b0d8c13f1c4efaf3764c3144ee29d",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B112: Close KS_NT_GL4Specialize (fun h=>h), CPS_N143_Automorphic (pi_level=143,rfl), RS_IC_CoeffMatch (a(n)^2,rfl); decompose 5 atoms -> 10 sub-atoms (0 sorry)",
+    "theorems_proved": [
+      "ks_nt_gl4_specialize_proved",
+      "cps_n143_automorphic_proved",
+      "rs_ic_coeff_match_proved",
+      "zfr_vk_from_classical_logfree",
+      "zfs_vr_from_eta_sharp",
+      "zfs_cl_from_halfstrip_link",
+      "wbg_grh_from_eps_exact",
+      "rs_ic_from_coeff_mellin",
+      "batch112_audit"
+    ],
+    "closed_atoms": [
+      "KS_NT_GL4Specialize_OPEN (identity fun h=>h)",
+      "CPS_N143_Automorphic_OPEN (pi_level=143, rfl)",
+      "RS_IC_CoeffMatch_OPEN (a(n)*a(n), rfl)"
+    ],
+    "new_open_defs": [
+      "ZFR_VK_ClassicalBound_OPEN (~2pp)",
+      "ZFR_VK_LogFreeExponent_OPEN (~2pp)",
+      "ZFS_VR_EtaCompute_OPEN (~3pp)",
+      "ZFS_VR_LogFreeSharp_OPEN (~2pp)",
+      "ZFS_FS_HalfStrip_OPEN (~2pp)",
+      "ZFS_FS_GRHLink_OPEN (~2pp)",
+      "WBG_GC_EpsToZero_OPEN (~1pp)",
+      "WBG_GC_Exact_OPEN (~1pp)",
+      "RS_IC_MellinInv_OPEN (~2pp)"
+    ],
+    "status": "B112_CLOSED"
   }
 }
