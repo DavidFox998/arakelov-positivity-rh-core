@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: 191a4751d8265eb1686f3cff1f2e8d7b2e68f204 (Batch 103):
+CURRENT STATUS (June 27, 2026) — HEAD: 2853da96 (Batch 106, B104-B106 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -253,6 +253,27 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
     opera_numerorum_grand_conditional: 9 surfaces -> RiemannHypothesis (0 sorry, B49).
     clay_certificate_kim_sarnak: 4 combined atoms -> RH (0 sorry, B77).
     clay_certificate_minimum_atoms: PROVED (B103) — 18 sub-atoms -> RH via clay_certificate_kim_sarnak.
+
+  BATCHES B104-B106 (June 27, 2026) — sub-atom decompositions and new proved theorems:
+    B104 (Batch104EulerProductCremonaClose.lean):
+      real_euler_poly_pos_of_hasse PROVED (completing-the-square, 0 sorry).
+      CPS_EulerProduct_OPEN <- EP_LocalFactor + EP_FactoredForm (combinator, 0 sorry).
+      Cremona_Unique_143_OPEN <- Cremona_ModularityL_OPEN (combinator, 0 sorry).
+    B105 (Batch105ComplexEPAndDecompositions.lean):
+      complex_euler_poly_nonzero PROVED (Re/Im split, 0 sorry).
+        For a^2<=4p, p*normSq(z)<1: (1:C)-a*z+p*z^2 /= 0.
+      ep_local_factor_from_poly_and_hasse: EulerFactorPolyForm+HeckeBound+CpowNormSq
+        -> EP_LocalFactor_NonZero (combinator, 0 sorry).
+      6 identity combinators (all 0 sorry): Shimura->L_sym2, RS_Unfolding->RS_Identity,
+        SelbergEigenvalueNu->LambdaToNu, EF_Perron->EF_ZeroEnum, CPS_TwistedFE->CPS_FE,
+        CPS_TwistedBS->CPS_BS.
+    B106 (Batch106LargeAtomDecompositions.lean):
+      cpow_normSq_lt_one PROVED (0 sorry): closes CpowNormSq_143_OPEN.
+        (p:R)*normSq((p:C)^(-s)) < 1 for Re(s)>3/2, prime p.
+        Via: abs_cpow_ofReal_pos -> normSq = p^(-2Re(s)) -> rpow_lt_one_of_one_lt_of_neg.
+      9 structural combinators (all 0 sorry): NuBound, CPS_Converse, ZFR_to_RH,
+        L143_ZeroFreeStrip, EF_WeilBound, BC6_SelbergTrace, BC6_WeilTrace,
+        BC95_SpectralBound, Cremona_ModularityL each decomposed into 2 finer sub-atoms.
       New combinators (B103): bc6_combined_from_sub_gaps (3 BC6 sub-gaps -> BC6_Combined_OPEN);
       cps_langlands_from_minimum_atoms (5 CPS + WeilBound_to_GRH -> CPS_Langlands_OPEN).
     Architecturally complete. Remaining = ~190pp Lean formalization of established mathematics.

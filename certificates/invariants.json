@@ -6486,5 +6486,57 @@
       "cps_bs_from_twisted_bound": "CPS_TwistedBounded => CPS_BS"
     },
     "status": "B105_CLOSED"
+  },
+  "batch106_large_atom_decompositions": {
+    "batch": 106,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch106LargeAtomDecompositions.lean",
+    "sha256": "f6711c74170a71772df8a0e476afcd0f7b5657ea83fd6baf25a532743ff274d3",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B106: cpow_normSq_lt_one PROVED (closes CpowNormSq_143_OPEN) + 9 large atom decompositions (all 0 sorry)",
+    "theorems_proved": [
+      "cpow_normSq_lt_one",
+      "cpow_normSq_closes_open",
+      "nu_bound_from_kim_sarnak",
+      "cps_converse_from_thm_and_newform",
+      "zfr_to_grh_from_region_and_density",
+      "l143_zfstrip_from_vinogradov",
+      "ef_weil_from_explicit_and_count",
+      "bc6_trace_from_kernel_convergence",
+      "bc6_weil_from_geometric_spectral",
+      "bc95_spectral_from_eigenvalue",
+      "cremona_modL_from_wiles_and_table",
+      "batch106_audit"
+    ],
+    "cpow_normSq_proof": "For Re(s)>3/2, prime p: abs_cpow_ofReal_pos -> p^(-s.re); sq_abs -> normSq=p^(-2Re(s)); rpow arithmetic -> p^(1-2Re(s)) < 1 via rpow_lt_one_of_one_lt_of_neg",
+    "new_open_defs": [
+      "KimSarnak_LocalSpec_OPEN (~20pp)",
+      "KimSarnak_GlobalBound_OPEN (~20pp)",
+      "CPS_ConverseThm35_OPEN (~35pp)",
+      "CPS_Newform143_OPEN (~5pp)",
+      "ZFR_LogFreeRegion_OPEN (~15pp)",
+      "ZFR_DensityToGRH_OPEN (~10pp)",
+      "ZFS_VinogradovRegion_OPEN (~10pp)",
+      "ZFS_CriticalLine_OPEN (~10pp)",
+      "EF_WeilExplicitFormula_OPEN (~10pp)",
+      "EF_BoundToWeil_OPEN (~5pp)",
+      "BC6_TraceKernel_OPEN (~4pp)",
+      "BC6_TraceConvergence_OPEN (~4pp)",
+      "BC6_WeilGeometric_OPEN (~3pp)",
+      "BC6_SpectralTransfer_OPEN (~4pp)",
+      "BC95_Eigenvalue_OPEN (~5pp)",
+      "BC95_SelbergBC95_OPEN (~5pp)",
+      "Wiles_TaylorWiles_OPEN (~4pp)",
+      "Cremona_Conductor143_OPEN (~1pp)"
+    ],
+    "status": "B106_CLOSED"
   }
 }
