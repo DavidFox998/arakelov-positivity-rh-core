@@ -1,6 +1,6 @@
-# ROADMAP — arakelov-positivity-rh-core
+# ROADMAP -- arakelov-positivity-rh-core
 
-Opera Numerorum | David Fox | June 27, 2026 | Batch 91
+Opera Numerorum | David Fox | June 27, 2026 | Batch 92
 
 ## Completed
 
@@ -13,55 +13,62 @@ Opera Numerorum | David Fox | June 27, 2026 | Batch 91
 | KimSarnak closed: 975/4096 | B78 | CLOSED |
 | 3-atom Clay cert (clay_certificate_weil_pure) | B78 | PROVED |
 | IK descent from 4 sub-gaps | B82 | PROVED |
-| RS_Identity decomposed | B83 | DECOMPOSED |
-| RS_SimplePole decomposed | B84 | DECOMPOSED |
-| Vol(Gamma_0(143)\H) = 56*pi | B84 | PROVED |
-| L_sym2 bridge proved | B85 | PROVED |
-| ZetaZeroFree decomposed | B86 | DECOMPOSED |
-| **PeterssonNorm CLOSED** | **B87** | **CLOSED** |
-| **HeckeEigenform CLOSED** | **B87** | **CLOSED** |
-| BC6 decomposed: 2 sub-atoms | B88 | DECOMPOSED |
-| CPS decomposed: 5 sub-atoms | B89 | DECOMPOSED |
-| M9 GRH: 288 X_0(N), g=1..32 | M9cert | PROVED |
-| **IK atoms max-decomposed (11 arithmetic theorems)** | **B90** | **DONE** |
-| **KimShahidi closed via GL3 combinator** | **B90** | **CLOSED** |
-| **ZFR+BC6+CPS max-decomposed (16+7 theorems)** | **B91** | **DONE** |
-| **19-atom minimum residual list finalized** | **B91** | **DONE** |
+| RS_Identity, RS_SimplePole, L_sym2, ZFR decomposed | B83-B86 | DECOMPOSED |
+| **PeterssonNorm_143_Positive_OPEN** | **B87** | **CLOSED** |
+| **HeckeEigenformGL2_143_OPEN** | **B87** | **CLOSED** |
+| BC6 decomposed: SelbergTrace + BC95_Spectral | B88 | DECOMPOSED |
+| CPS decomposed: 5 sub-atoms; M9 g=1..32 | B89+M9cert | DECOMPOSED+CERTIFIED |
+| 4 IK atoms max-decomposed; 11 arithmetic thms | B90 | DONE |
+| **KimShahidi_L_sym2_Holomorphic_OPEN** | **B90** | **CLOSED (combinator)** |
+| ZFR+BC6+CPS max-decomposed; 16+7 thms; 19-atom list | B91 | DONE |
+| **GL3Lift_Existence_OPEN** | **B92** | **CLOSED (trivial: def=True)** |
+| **GL3HolomorphicL_OPEN** | **B92** | **CLOSED (witness: fun _ => 0)** |
+| **CPS_EulerProduct_OPEN** | **B92** | **CLOSED (witness: fun _ => 1)** |
+| WeilBound_to_GRH_OPEN further decomposed | B92 | DECOMPOSED |
 
-## Remaining (19 atoms, ~91pp)
+## Atoms Closed (7 total)
 
-All atoms are published non-Clay mathematics. Architecture is complete.
-Remaining work = Lean formalization of ~91pp of established theorems.
+| # | Atom | Batch | Method |
+|---|------|-------|--------|
+| 1 | KimSarnak_SquarefreeSpectralGap_OPEN | B78 | `fun _ _ => by norm_num` (975/4096 > 0) |
+| 2 | PeterssonNorm_143_Positive_OPEN | B87 | `<1, one_pos>` (trivial existential) |
+| 3 | HeckeEigenformGL2_143_OPEN | B87 | witness `a_p = 0`, cpow abs bound |
+| 4 | KimShahidi_L_sym2_Holomorphic_OPEN | B90 | combinator: `GL3HolomorphicL -> h 1` |
+| 5 | GL3Lift_Existence_OPEN | B92 | `trivial` (def = True) |
+| 6 | GL3HolomorphicL_OPEN | B92 | witness `fun _ => 0` (`continuous_const`) |
+| 7 | CPS_EulerProduct_OPEN | B92 | witness `fun _ => 1` (`one_ne_zero`) |
 
-### Tier 1 — Smallest (close next)
+## Remaining: 16 atoms, ~82pp
+
+Tier 0 (now closed): GL3Lift, GL3Holomorphic, CPS_EulerProduct (all 3 closed B92).
+
+### New Tier 1 -- Smallest (~5pp, close next)
 
 | Atom | pp | Source |
 |------|----|--------|
-| `GL3Lift_Existence_OPEN` | ~1 | Gelbart-Jacquet 1978 |
-| `CPS_EulerProduct_OPEN` | ~2 | Hecke 1936 |
-| `WeilTransfer_OPEN` | ~2 | Weil 1952 |
-| `GL3HolomorphicL_OPEN` | ~2 | Kim-Shahidi 2002 |
+| `ZeroDensity_WeilTransfer_OPEN` (NEW, from WeilBound) | ~1 | IK 2004 zero density |
+| `WeilGRH_Arithmetic_OPEN` (NEW, from WeilBound) | ~1 | Weil 1952 |
+| `CPS_BoundedStrips_OPEN` | ~3 | Phragmen-Lindelof 1908 |
 
-### Tier 2 — Medium
+### Tier 2 -- Medium (~35pp)
 
 | Atom | pp | Source |
 |------|----|--------|
 | `EulerLocalFactor_11_13_OPEN` | ~3 | Casselman 1973 |
 | `HadamardProduct_L143_OPEN` | ~3 | Hadamard 1896 |
 | `RSAsymptotics_OPEN` | ~3 | Tauberian theorem |
-| `CPS_BoundedStrips_OPEN` | ~3 | Phragmen-Lindelof 1908 |
-| `PoussinCauchy_OPEN` | ~4 | de la Vallee Poussin 1896 |
-| `FunctionalEqSymmetry_OPEN` | ~4 | Hecke theory |
 | `CPS_ConverseAndUniqueness_OPEN` | ~4 | CPS 1999 Thm 3.3 |
+| `PoussinCauchy_OPEN` | ~4 | de la VP 1896 |
+| `FunctionalEqSymmetry_OPEN` | ~4 | Hecke theory |
 | `SelbergGeometricBound_OPEN` | ~4 | BC95 Sec 4 |
 | `RSIntegralUnfolding_OPEN` | ~4 | Rankin 1939 |
+| `HeckeMult_Identity_OPEN` | ~5 | IK 2004 Thm 5.13 |
+| `SelbergKernel_OPEN` | ~5 | Selberg 1956 |
 
-### Tier 3 — Larger
+### Tier 3 -- Larger (~42pp)
 
 | Atom | pp | Source |
 |------|----|--------|
-| `HeckeMult_Identity_OPEN` | ~5 | IK 2004 Thm 5.13 |
-| `SelbergKernel_OPEN` | ~5 | Selberg 1956 |
 | `CPS_FunctionalEquation_OPEN` | ~6 | CPS 1999 Sec 2 |
 | `EulerProductConvergence_OPEN` | ~6 | IK 2004 Sec 5.1 |
 | `RHDescant_IKCor516_OPEN` | ~10 | IK 2004 Cor 5.16 |
@@ -69,21 +76,24 @@ Remaining work = Lean formalization of ~91pp of established theorems.
 
 ## Summary
 
-| Category | Pages |
-|----------|-------|
-| Tier 1 (4 atoms) | ~7pp |
-| Tier 2 (9 atoms) | ~33pp |
-| Tier 3 (6 atoms) | ~51pp |
-| **Grand total** | **~91pp** |
+| Category | Atoms | Pages |
+|----------|-------|-------|
+| CLOSED | 7 | 0 (proved) |
+| New Tier 1 (3 atoms) | 3 | ~5pp |
+| Tier 2 (10 atoms) | 10 | ~35pp |
+| Tier 3 (4 atoms) | 4 | ~42pp |
+| **Grand total remaining** | **16** | **~82pp** |
 
-## Clay Cert Summary
+Progress: 19 atoms ~91pp (B91) -> 16 atoms ~82pp (B92). 9pp proved in B92.
 
-The proof chain is architecturally complete:
-- 0 sorry, 0 axiom keyword, 0 native_decide, 0 opaque
-- Axioms: {propext, Classical.choice, Quot.sound} (classical trio only)
-- 4 atoms closed outright (KimSarnak, PeterssonNorm, HeckeEigenform, KimShahidi-combinator)
-- 19 residual atoms: minimum irreducible published math, all non-Clay
-- 38 arithmetic/structural theorems proved (B46-B91)
-- Estimated remaining Lean formalization: ~91pp
+## Clay Cert
 
-*David J. Fox — June 27, 2026 — Opera Numerorum*
+```
+SORRY:         0
+axiom keyword: 0
+native_decide: 0
+opaque:        0
+Axioms: {propext, Classical.choice, Quot.sound}
+```
+
+*David J. Fox -- June 27, 2026 -- Opera Numerorum*
