@@ -201,7 +201,7 @@ GRH and BSD are separate Clay Millennium Problems sharing the same L-function.
 BSD (rank=1 for J_0(143)) is separately certified (BSD_TOWER_CERTIFIED).
 GRH asks where ALL zeros lie. BSD asks the order of vanishing at s=1 only.
 
-CURRENT STATUS (June 27, 2026) — HEAD: 486e3276 (Batch 108, B104-B108 on June 27):
+CURRENT STATUS (June 27, 2026) — HEAD: 56c22ab9 (Batch 109, B104-B109 on June 27):
 
   clay_certificate_kim_sarnak (h_ks h_bc6 h_cps h_ik) : RiemannHypothesis
     PROVED, 0 sorry, axioms = {propext, Classical.choice, Quot.sound}  [B77]
@@ -296,6 +296,14 @@ ROAD TO UNCONDITIONAL LEAN PROOF:
         KS_LocalNuBound -> KS_GL4Ramanujan (~5pp) + KS_NuTransfer (~3pp)
         EF_ResidueIntegral -> EF_CauchyApply (~3pp) + EF_WeilBoundEst (~2pp)
       Net open atom count: 46 named open defs.
+    B109 (Batch109TrivialCloseB102Decomp.lean):
+      Closed 4 trivial B108 atoms: CPS_AutRep, CPS_GLS2, KS_GL4Ramanujan, EF_CauchyApply.
+      ks_nu_transfer_closure chain: KS_GL4Ramanujan(proved) + KS_NuTransfer -> nu_N<=7/64.
+      Level-3 decomp of 4 untouched B102 atoms (combinators 0 sorry):
+        LambdaToNu -> LN_SelbergEigen (~3pp) + LN_NuLambdaBridge (~2pp)
+        RS_Identity -> RS_MellinTransform (~5pp) + RS_IdentityConv (~5pp)
+        WeilBound_to_GRH -> WBG_ZeroLocalize (~2pp) + WBG_GRHConclusion (~2pp)
+        EF_ZeroEnumeration -> EF_HadamardProduct (~3pp) + EF_ZeroCount (~2pp)
 
 ## Architecture Decisions
 

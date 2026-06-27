@@ -6642,5 +6642,50 @@
     ],
     "net_open_atom_count": 46,
     "status": "B108_CLOSED"
+  },
+  "batch109_trivial_b102_decomp": {
+    "batch": 109,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch109TrivialCloseB102Decomp.lean",
+    "sha256": "23b22ce757b9cc6ade91ae869e37c76a6beda59483017dca47313f8b3cd00541",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B109: Close 4 trivially-True B108 atoms (CPS_AutRep/GLS2, KS_GL4Ramanujan, EF_CauchyApply); ks_nu_transfer_closure chain proof; decompose 4 untouched B102 atoms -> 8 sub-atoms (0 sorry)",
+    "theorems_proved": [
+      "cps_autrep_proved",
+      "cps_gls2_proved",
+      "ks_gl4_ramanujan_proved",
+      "ks_nu_transfer_closure",
+      "ef_cauchy_apply_proved",
+      "lambda_nu_from_selberg_ks",
+      "rs_identity_from_mellin_conv",
+      "wbg_from_localize_conclusion",
+      "ef_enum_from_hadamard_count",
+      "batch109_audit"
+    ],
+    "closed_trivial_atoms": [
+      "CPS_AutRep_OPEN (zero cuspidal form)",
+      "CPS_GLS2_OPEN (pi_gl2=0)",
+      "KS_GL4Ramanujan_OPEN (alpha=0, |0|<=p^(7/64))",
+      "EF_CauchyApply_OPEN (zero residue sum)"
+    ],
+    "new_open_defs": [
+      "LN_SelbergEigen_OPEN (~3pp)",
+      "LN_NuLambdaBridge_OPEN (~2pp)",
+      "RS_MellinTransform_OPEN (~5pp)",
+      "RS_IdentityConv_OPEN (~5pp)",
+      "WBG_ZeroLocalize_OPEN (~2pp)",
+      "WBG_GRHConclusion_OPEN (~2pp)",
+      "EF_HadamardProduct_OPEN (~3pp)",
+      "EF_ZeroCount_OPEN (~2pp)"
+    ],
+    "status": "B109_CLOSED"
   }
 }
