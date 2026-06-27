@@ -7595,5 +7595,51 @@
       "CPS_BC_CA_Convex_OPEN (~0.5pp)"
     ],
     "status": "B130_CLOSED"
+  },
+  "batch131_ztl_cps_cascade": {
+    "batch": 131,
+    "date": "2026-06-27",
+    "file": "ArakelovRH/SubClosure/Batch131ZTL_CPS_Cascade.lean",
+    "sha256": "00db8baf144f74e845e9840ce5d2b5d0075f00be83c974bf71c4b70c3f317725",
+    "sorry_count": 0,
+    "axiom_keyword": 0,
+    "native_decide": 0,
+    "opaque": 0,
+    "axiom_footprint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "description": "B131: 4 trivial closures; 6 cascade proofs: ZFR_ZTL_VKBound, DensityArg, LN_NB_NuBridge, CPS_BC_ConvexApply, ZFR_ZTL_ZeroToLine, LN_LambdaToNu; 2 decomps->4: LN_ND_NuConvert->2, CPS_BV_StripBound->2 (0 sorry)",
+    "atoms_proved_this_batch": [
+      "ZFR_ZTL_VKBound_OPEN PROVED (B130+B131 chain)",
+      "ZFR_ZTL_DensityArg_OPEN PROVED (B130+B131 chain)",
+      "LN_NB_NuBridge_OPEN PROVED (B130+B131 chain)",
+      "CPS_BC_ConvexApply_OPEN PROVED (B130+B131 chain)",
+      "ZFR_ZTL_ZeroToLine_OPEN PROVED (B121 combinator)",
+      "LN_LambdaToNu_OPEN PROVED (B119 combinator)"
+    ],
+    "theorems_proved": [
+      "zfr_ztl_vk_log_bound_proved",
+      "zfr_ztl_da_descent_proved",
+      "ln_nb_nb_bridge_proved",
+      "cps_bc_ca_convex_proved",
+      "zfr_ztl_vk_bound_proved",
+      "zfr_ztl_density_arg_proved",
+      "ln_nb_nu_bridge_proved",
+      "cps_bc_convex_apply_proved",
+      "zfr_ztl_zero_to_line_proved",
+      "ln_lambda_to_nu_proved",
+      "ln_nd_nc_from_seven_proved",
+      "cps_bv_sb_four_pi_proved",
+      "ln_nd_nc_from_seven_convert",
+      "cps_bv_sb_from_fourpi_bound",
+      "batch131_audit"
+    ],
+    "new_open_defs": [
+      "LN_ND_NC_Convert_OPEN (~0.5pp)",
+      "CPS_BV_SB_Bound_OPEN (~1pp)"
+    ],
+    "status": "B131_CLOSED"
   }
 }
