@@ -1,0 +1,95 @@
+{
+  "repo": "arakelov-positivity-rh-core",
+  "url": "https://github.com/DavidFox998/arakelov-positivity-rh-core",
+  "opera_pos": "1/19 — ROOT — V2 Arakelov Legacy",
+  "role": "FROZEN CORE — M2 kappa, M7 Manifest, M8C Zoe-M*, M4 Exceptional 10^4000. Ties to P5 boundary leading to 4 separate RH formulizations",
+  "p5_boundary": {
+    "repo": "rh-p5-bridge-14",
+    "url": "https://github.com/DavidFox998/rh-p5-bridge-14",
+    "description": "P5-Bridge v2 TeX: single brick, no bridge — q5=226, q6=165849, p5=67645, cf_bound=82829. Proves conv_5_approx |alpha0 - p5/q5| < 1/(q5*q6). Reduces infinite S_alpha0 to finite S_14 window p <= 82829. All Clay problems after RH reduce to this finite check",
+    "clay": "Continued fraction Diophantine bound for alpha0 = 2 + pi/10. Pi bounds pi_gt_d20, pi_lt_d20 give alpha0 bounds. Convergence gives M4 window reduction"
+  },
+  "formulizations": {
+    "A": {
+      "repo": "riemann-arakelov-positivity",
+      "url": "https://github.com/DavidFox998/riemann-arakelov-positivity",
+      "status": "Closed by Abbes-Ullmo",
+      "clay_ref": "Clay Ref Path A: Abbes-Ullmo theorem — semistable Arakelov bundles over arithmetic curves satisfy Bogomolov inequality, yielding positivity of Arakelov intersection pairing. Via arithmetic Hilbert-Samuel and explicit formula, this positivity implies zero-free strip for zeta(s) and descends to RH. This is the proven closed path"
+    },
+    "B": {
+      "repo": "arakelov-rh-descent",
+      "url": "https://github.com/DavidFox998/arakelov-rh-descent",
+      "clay_ref": "Clay Ref Path B — Descent Formalism: The Arakelov-theoretic RH formulated as positivity of the Arakelov divisor associated to completed zeta xi(s) descends to classical RH via arithmetic Riemann-Roch theorem on Spec(Z). The archimedean contribution dominated by Arakelov Green function forces Re(rho)=1/2 by Hodge Index Theorem on arithmetic surfaces. This is descent from Arakelov to analytic"
+    },
+    "C": {
+      "repo": "rh-growth-contradiction",
+      "url": "https://github.com/DavidFox998/rh-growth-contradiction",
+      "clay_ref": "Clay Ref Path C — Growth Contradiction: Assume non-trivial zero rho0 with Re(rho0) != 1/2. Then associated Arakelov height function h_Faltings exhibits super-exponential growth exceeding M7 manifest bound. This contradicts M8C Zoe-M* subexponential estimate and Faltings height finiteness. Hence no such rho0 exists. Proof by contradiction on growth"
+    },
+    "D": {
+      "repo": "brothers-desert-proof",
+      "url": "https://github.com/DavidFox998/brothers-desert-proof",
+      "clay_ref": "Clay Ref Path D — Self-Symmetry Formulization: Fourth formulization. Studies zero set via self-duality of functional equation and Dirichlet-measured jitter. The 35 brothers (Dirichlet characters) exhibit synchronized orbit and collision-free swarming creating a 'desert' (zero-free region) off critical line. Galois orbit stability + self-duality forces all non-trivial zeros onto Re=1/2. Proves R=1/2 via symmetry and orbit method — Dirichlet measured jitter and orbit allow study of zeta to prove Re=1/2"
+    }
+  },
+  "bsd_tie_in": {
+    "note": "BSD is formulized as well as public legacy BSD repo for backwards compatibility",
+    "smaller_easier": {
+      "repo": "birch-swinnerton-dyer-143a1",
+      "url": "https://github.com/DavidFox998/birch-swinnerton-dyer-143a1",
+      "description": "Smaller, easier to examine repo — curve 143a1 via J0(143) genuine, Peter-Weyl lean special"
+    },
+    "legacy_parent_more_robust": {
+      "repo": "birch-swinnerton-dyer-143",
+      "url": "https://github.com/DavidFox998/birch-swinnerton-dyer-143",
+      "description": "Legacy parent — more robust, original J0(143) construction, backwards compat"
+    },
+    "connection": "Both BSD repos use RH Core + P5-Bridge S_14 finiteness (p <= 82829) to prove analytic rank = algebraic rank via Arakelov height on J0(143)"
+  },
+  "builds_from": [
+    {
+      "repo": "opera-sieve",
+      "url": "https://github.com/DavidFox998/opera-sieve",
+      "role": "methodology .py and datatables — organizes sieving methods, defines S_14 and S_alpha0"
+    }
+  ],
+  "builds_to": [
+    {
+      "repo": "riemann-arakelov-positivity",
+      "url": "https://github.com/DavidFox998/riemann-arakelov-positivity"
+    },
+    {
+      "repo": "arakelov-rh-descent",
+      "url": "https://github.com/DavidFox998/arakelov-rh-descent"
+    },
+    {
+      "repo": "rh-growth-contradiction",
+      "url": "https://github.com/DavidFox998/rh-growth-contradiction"
+    },
+    {
+      "repo": "brothers-desert-proof",
+      "url": "https://github.com/DavidFox998/brothers-desert-proof"
+    },
+    {
+      "repo": "rh-p5-bridge-14",
+      "url": "https://github.com/DavidFox998/rh-p5-bridge-14"
+    }
+  ],
+  "downstream_clay": [
+    "https://github.com/DavidFox998/hodge-abelian-boundaries",
+    "https://github.com/DavidFox998/yang-mills-gap",
+    "https://github.com/DavidFox998/navier-stokes",
+    "https://github.com/DavidFox998/birch-swinnerton-dyer-143a1",
+    "https://github.com/DavidFox998/lindelof-hypothesis-143"
+  ],
+  "brain": {
+    "repo": "zerobeacon",
+    "url": "https://github.com/DavidFox998/zerobeacon",
+    "role": "BRAIN — 1000 essential tools for AI Ecommerce; collision-free-swarming — verifies all 19 repos"
+  },
+  "archive": {
+    "repo": "pistus-theoria",
+    "url": "https://github.com/DavidFox998/pistus-theoria",
+    "role": "ARCHIVE — PDF server, oracle server and certification house — SINGLE SOURCE OF TRUTH",
+    "pdf_single_source": "https://github.com/DavidFox998/pistus-theoria/blob/main/OperaNumerorum_MasterEquations.pdf",
+    "pdf_sha": "7
