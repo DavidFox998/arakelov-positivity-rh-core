@@ -1,7 +1,7 @@
 import Lake
 open Lake DSL
 
-package «arakelov-positivity-rh-core» where
+package arakelov where
   version := v!"2.0.0"
 
 require mathlib from git
