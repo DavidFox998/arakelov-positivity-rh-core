@@ -1,0 +1,43 @@
+{
+  "title": "arakelov-positivity-rh-core — ROOT V2 — Arakelov Positivity for Riemann Hypothesis via X₀(143) — Lean 4.12 formal proof",
+  "description": "ROOT V2 of Opera Numerorum. Provides Arakelov positivity ω²=48/13>0 as the central height input for all four RH proof routes. C01_Arakelov.lean proves arakelovSelfIntersection(X₀(143))=48/13 and its positivity via norm_num. Used by rh-p5-bridge-14 (Keystone), bost-connes (M1-M3), and birch-swinnerton-dyer-143a1 as regulator height input. 313 Lean files. 0 sorry. Axioms: propext, Classical.choice, Quot.sound.",
+  "keywords": [
+    "arakelov-positivity",
+    "riemann-hypothesis",
+    "lean4",
+    "mathlib",
+    "X0-143",
+    "genus-13",
+    "formal-proof",
+    "opera-numerorum",
+    "BSD-143a1",
+    "bost-connes",
+    "ORCID:0009-0008-1290-6105"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "en",
+  "version": "v1.0-rh-unconditional",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/DavidFox998/rh-p5-bridge-14",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/DavidFox998/bost-connes",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Fox, David J.",
+      "orcid": "0009-0008-1290-6105",
+      "affiliation": "Independent Researcher, Opera Numerorum"
+    }
+  ]
+}
