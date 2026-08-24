@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Arakelov Positivity for the Riemann Hypothesis — Core Formalization"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Fox
+    given-names: David
+    orcid: "https://orcid.org/0009-0008-1290-6105"
+    affiliation: "Opera Numerorum"
+license: MIT
+repository-code: "https://github.com/DavidFox998/arakelov-positivity-rh-core"
+keywords:
+  - "Riemann Hypothesis"
+  - "Arakelov positivity"
+  - "X₀(143)"
+  - "Lean 4"
+  - "formal verification"
+  - "modular curves"
+  - "Opera Numerorum"
+abstract: "Lean 4 formalization of the core Arakelov-positivity formalization on the modular curve X₀(143), including the self-intersection value ω² = 48/13 used by the Opera Numerorum Riemann Hypothesis route. This repository is part of David Fox's Opera Numerorum ensemble."
