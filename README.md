@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22040964.svg)](https://doi.org/10.5281/zenodo.22040964) [![CI](https://github.com/DavidFox998/arakelov-positivity-rh-core/actions/workflows/manifest-locked.yml/badge.svg)](https://github.com/DavidFox998/arakelov-positivity-rh-core/actions/workflows/manifest-locked.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22040964.svg)](https://doi.org/10.5281/zenodo.22040964) [![Lean proof build](https://github.com/DavidFox998/arakelov-positivity-rh-core/actions/workflows/lean.yml/badge.svg)](https://github.com/DavidFox998/arakelov-positivity-rh-core/actions/workflows/lean.yml)
 
 # arakelov-positivity-rh-core — ROOT V2 — M2 kappa, M7 Manifest, M8C Zoe-M*, M4 10^4000
 
