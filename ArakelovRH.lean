@@ -213,4 +213,3 @@ import ArakelovRH.SubClosure.Batch67HasDerivAt
 import ArakelovRH.SubClosure.Batch67MasterCertXXII
 import ArakelovRH.SubClosure.Batch68Weierstrass
 import ArakelovRH.SubClosure.Batch68MasterCertXXIII
-import ArakelovRH.SubClosure.Batch158Unconditional
