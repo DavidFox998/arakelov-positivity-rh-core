@@ -19,6 +19,32 @@ namespace ArakelovRH
 
 open Real
 
+/-- Archimedean Green function constant for X₀(143).
+    Source: Jorgenson-Kramer, Compositio Math. 101(2) (1996), Table 1, N=143.
+    K_infty ≈ 5.022.  Positivity certificate: C17_ArakelovPairingCert.
+    Ported 2026-10-09 from rh-p5-bridge-14/Towers/RH/Chain/C01_Arakelov.lean
+    (cross-repo consistency: this definition must exist in all places). -/
+noncomputable def K_infty_143 : ℝ := 5.022
+
+/-- Total Arakelov correction for X₀(143): bad fibers (Ogg-Schoof) + archimedean.
+    K_143_val = 35/3·log(11) + 12·log(13) + K_infty_143 ≈ 63.776.
+    Ported 2026-10-09 from rh-p5-bridge-14 (see above). -/
+noncomputable def K_143_val : ℝ :=
+  35 / 3 * Real.log 11 + 12 * Real.log 13 + K_infty_143
+
+/-- The genuine Arakelov self-intersection (ω,ω)_Ar of X₀(143).
+    DISTINCT from `arakelovSelfIntersection` (slope-formula stand-in 4(g-1)/g).
+    Concretized from JK 1996: (ω,ω)_Ar = 24·log(143) − K_143_val.
+    Positivity proved in C17_ArakelovPairingCert (0 sorry, classical trio).
+    Breakdown:
+      δ_11    = 35/3·log(11) ≈ 27.975  (Ogg-Schoof at p=11)
+      δ_13    = 12·log(13)   ≈ 30.779  (Ogg-Schoof at p=13)
+      K_infty ≈ 5.022        (JK 1996 Table 1, N=143)
+      K_143   ≈ 63.776  <  119.108 ≈ 24·log(143)  ✓  margin ≈ 55.33
+    Ported 2026-10-09 from rh-p5-bridge-14 (see above). -/
+noncomputable def arakelovPairing_X0_143 : ℝ :=
+  24 * Real.log 143 - K_143_val
+
 /-- log(11) > 1.
     Proof: exp_one_lt_d9 gives exp(1) < 2.7182818286 < 11;
     log(11) > log(exp(1)) = 1.
