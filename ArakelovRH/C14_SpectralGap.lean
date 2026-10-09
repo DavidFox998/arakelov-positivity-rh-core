@@ -22,6 +22,7 @@
   Referee: #print axioms ArakelovRH.bc6_from_spectral_gap
 -/
 import ArakelovRH.C01_Arakelov
+import ArakelovRH.C11_ArakelovPairing
 import Mathlib.Algebra.Squarefree.Basic
 import Mathlib.Tactic.IntervalCases
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
@@ -29,6 +30,8 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 namespace ArakelovRH
 
 open Real
+
+variable (S_weil : ℝ → ℂ)
 
 /-! ## S14 spectral constant -/
 
