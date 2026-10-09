@@ -5,7 +5,7 @@
 > **Opera Numerorum ensemble** — 19 repos · chain `7472f4e5` · [REPOS.md →](https://github.com/DavidFox998/rh-p5-bridge-14/blob/main/REPOS.md)
 
 
-**Author: David J. Fox | ORCID: 0009-0008-1290-6105 | Lean 4.12 / Mathlib v4.12.0 — 313 files — 0 sorry — {propext, Classical.choice, Quot.sound}**
+**Author: David J. Fox | ORCID: 0009-0008-1290-6105 | Lean 4.12 / Mathlib v4.12.0 — 320 .lean files (264 in the live build tree, 56 quarantined 2026-10-09) — 1 sorry in the live tree — {propext, Classical.choice, Quot.sound}**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20981649.svg)](https://doi.org/10.5281/zenodo.20981649)
 
@@ -33,21 +33,25 @@ lemma arakelovSelfIntersection_X0_143_pos :
 
 **Scope note:** `arakelovSelfIntersection` is defined as the slope-formula value `4(g−1)/g` — a stand-in, not genuine Arakelov intersection theory (absent from Mathlib v4.12.0), per the docstring in `ArakelovRH/C01_Arakelov.lean`. The checked lemmas certify positivity of this model value (`48/13 > 0`), not the geometric bridge.
 
-## Proof architecture — 0 sorry
+## Proof architecture — 1 sorry
 
 - `C01_Arakelov.lean` — `ArakelovPositivity`, `ω²=4(g-1)/g`, `48/13>0` — `norm_num`
 - `C06_BostConnes.lean` — `C(S₄)=11.422... >2√13` — `C_S4_143_gt_tau`
 - `C07_RHCombinator.lean` — BC6 gate
 - `C09_GRHDescent.lean` — GRH descent
 - `ClayCertificate.lean` — `clay_certificate_kim_sarnak`
-- `SubClosure/Batch158Unconditional.lean` — `riemann_hypothesis_unconditional`
+- `RouteBClosed.lean` — `route_b_clay_certificate` (the honest conditional)
+
+**Withdrawn 2026-10-09:** `SubClosure/Batch158Unconditional.lean` —
+`riemann_hypothesis_unconditional` was quarantined (see `Quarantine/QUARANTINE.md`).
+It was a definitional shadow-closure (trivial witnesses such as
+`lambda_1 := fun _ => 1` fed into weakened `_OPEN` props), not a proof of RH.
 
 ### Axiom check
 
-```lean
-#print axioms riemann_hypothesis_unconditional
--- propext, Classical.choice, Quot.sound
-```
+`route_b_clay_certificate` (`ArakelovRH/RouteBClosed.lean`) is the retained
+honest conditional. The `#print axioms riemann_hypothesis_unconditional` check
+below applied to the now-quarantined unconditional file and is retired.
 
 ## Build
 
