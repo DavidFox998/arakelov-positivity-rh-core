@@ -26,6 +26,8 @@
   Clay rules: no sorry · no axiom · no opaque · no native_decide · no fun _ => trivial
   Axiom footprint: {propext, Classical.choice, Quot.sound}
 -/
+import ArakelovRH.C02_Modularity
+import ArakelovRH.C04_HeightBound
 import ArakelovRH.C05_Discriminant
 import ArakelovRH.C06_BostConnes
 import ArakelovRH.Master

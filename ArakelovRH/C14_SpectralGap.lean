@@ -31,8 +31,6 @@ namespace ArakelovRH
 
 open Real
 
-variable (S_weil : ℝ → ℂ)
-
 /-! ## S14 spectral constant -/
 
 /-- Bost-Connes 1995 S14 spectral constant for X_0(143).
@@ -45,9 +43,21 @@ private theorem sqrt13_lt_4_aux : Real.sqrt 13 < 4 := by
     exact (Real.sqrt_sq (by norm_num)).symm
   rw [h16]; exact Real.sqrt_lt_sqrt (by norm_num) (by norm_num)
 
-/-- C_S14_143 > 2 * sqrt 13.  Proof: 2*sqrt(13) < 8 < 8.629. -/
+/-- C_S14_143 > 2 * sqrt 13.  Proof: 2*sqrt(13) < 8 < 8.629.
+    `nlinarith` does not close `(8.62925199 : ℝ) > 2 * sqrt 13` from
+    `sqrt 13 < 4` alone: the decimal and the product stay in one nonlinear
+    goal.  Multiply the square-root bound by 2 first, compare `8` with the
+    constant by `norm_num`, then chain the two strict inequalities. -/
 theorem C_S14_143_gt_tau : C_S14_143 > 2 * Real.sqrt 13 := by
-  have h4 := sqrt13_lt_4_aux; unfold C_S14_143; nlinarith
+  have h4 := sqrt13_lt_4_aux
+  have h8 : 2 * Real.sqrt 13 < 8 := by
+    have hmul : 2 * Real.sqrt 13 < 2 * 4 :=
+      mul_lt_mul_of_pos_left h4 (by norm_num)
+    have h24 : (2 : ℝ) * 4 = 8 := by norm_num
+    linarith [hmul, h24]
+  have hdec : (8 : ℝ) < C_S14_143 := by
+    unfold C_S14_143; norm_num
+  exact lt_trans h8 hdec
 
 /-! ## Squarefree 143 -/
 
@@ -68,11 +78,18 @@ theorem sq_free_143 : Squarefree (143 : ℕ) := by
 
 /-! ## First Laplace eigenvalue — explicit variable -/
 
-/-- lambda_1 : ℕ → ℝ — first non-zero eigenvalue of the hyperbolic Laplacian
+/- lambda_1 : ℕ → ℝ — first non-zero eigenvalue of the hyperbolic Laplacian
     on Y_0(N).  Introduced as an explicit variable: every theorem below that
     uses lambda_1 carries it as a named formal hypothesis.
-    There is no opaque, no axiom, no sorry for this object. -/
+    There is no opaque, no axiom, no sorry for this object.
+    (Block comment, not a docstring: Lean rejects `/-- -/` on `variable`.) -/
 variable (lambda_1 : ℕ → ℝ)
+
+-- Real-valued Weil term.  `|S_weil T|` is Mathlib's lattice absolute value,
+-- so the codomain has to be an ordered ring.  `ℂ` is not a lattice.
+-- Declared after `lambda_1` so the open surface is applied as
+-- `BC6SelbergTrace_OPEN lambda_1 S_weil`.
+variable (S_weil : ℝ → ℝ)
 
 /-! ## Open surfaces (named gaps — def Prop, no sorry, no axiom) -/
 
@@ -114,7 +131,7 @@ theorem lambda_1_pos_143
     Formal chain: h_bc6 applied to both positivity witnesses. -/
 theorem bc6_from_spectral_gap
     (h_ks  : KimSarnak_OPEN lambda_1)
-    (h_bc6 : BC6SelbergTrace_OPEN lambda_1)
+    (h_bc6 : BC6SelbergTrace_OPEN lambda_1 S_weil)
     (h_ar  : 0 < arakelovPairing_X0_143) :
     ∀ T : ℝ, 1 < T → |S_weil T| ≤ C_S14_143 * T / Real.log T :=
   h_bc6 (lambda_1_pos_143 lambda_1 h_ks) h_ar

@@ -77,15 +77,20 @@ theorem log_143_eq_log_11_add_log_13 :
     SORRY: 0.  Axiom footprint: {propext, Classical.choice, Quot.sound}.
     Referee: #print axioms ArakelovRH.arakelovPairing_X0_143_pos -/
 theorem arakelovPairing_X0_143_pos : (0 : ℝ) < arakelovPairing_X0_143 := by
+  -- Discharge the decimal before any log arithmetic.  Unfolding `K_infty_143`
+  -- into the final goal leaves the literal `5.022` next to three distinct
+  -- `Real.log` atoms, and `linarith` cannot cancel them in one shot.
   have h11 := log_11_gt_one
   have h13 : (0 : ℝ) < Real.log 13 := Real.log_pos (by norm_num)
-  have h37 : (37 : ℝ) / 3 < 37 / 3 * Real.log 11 :=
-    calc (37 : ℝ) / 3 = 37 / 3 * 1       := (mul_one _).symm
-      _ < 37 / 3 * Real.log 11            := mul_lt_mul_of_pos_left h11 (by norm_num)
-  have hlog : (24 : ℝ) * Real.log 143 = 24 * Real.log 11 + 24 * Real.log 13 := by
+  have h_ki : K_infty_143 < (37 : ℝ) / 3 := by
+    unfold K_infty_143; norm_num
+  have h_expand : (24 : ℝ) * Real.log 143 =
+      24 * Real.log 11 + 24 * Real.log 13 := by
     rw [log_143_eq_log_11_add_log_13]; ring
-  have h12 : (0 : ℝ) < 12 * Real.log 13 := mul_pos (by norm_num) h13
-  unfold arakelovPairing_X0_143 K_143_val K_infty_143
-  linarith
+  -- 24·log(143) − (35/3·log 11 + 12·log 13 + K_∞)
+  --   = 37/3·log 11 + 12·log 13 − K_∞, and that is positive because
+  --   K_∞ < 37/3 < 37/3·log 11 and 12·log 13 > 0.
+  unfold arakelovPairing_X0_143 K_143_val
+  linarith [h_expand]
 
 end ArakelovRH
